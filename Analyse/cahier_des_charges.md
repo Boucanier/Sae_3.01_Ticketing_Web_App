@@ -93,4 +93,9 @@ Ce glossaire défini les mots complexes utilisés dans le cahier des charges.
 
 
 ## La technologie employée
+
 Le site va être effectué en PHP, MySQL, HTML, CSS. Le serveur pourra tourner sur un système Linux. Il faudra se connecter en ssh afin que les autres utilisateurs puissent accéder à la plateforme. Il y aura des pages web dynamiques dans et statiques se mettant à jour grâce à une base de données qui se remplit par l’intermédiaire des différentes actions des utilisateurs.
+
+## Autres exigences
+
+Les participants au projet sont Jules Chiron, Matis Rodier, Thomas Godineau, Maxence Ouvrard. Nous privilégions l’accessibilité pour tous sur notre plateforme. Nous souhaitons que les utilisateurs trouvent des réponses aux problèmes qu’ils rencontrent le plus efficacement et rapidement possible. Nous allons devoir installer Apache, PHP, MySQL afin que la plateforme puisse fonctionner correctement. De plus, le site doit ressembler plus ou moins aux maquettes que nous avons réalisées en amont. Ce projet est soumis à des dépendances client/utilisateurs car notre site dépend de la satisfaction de ces personnes. De plus ce projet à des dépendances techniques vis-à-vis de la base de données du site.
