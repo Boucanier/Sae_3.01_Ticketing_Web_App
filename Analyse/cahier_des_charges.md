@@ -90,3 +90,7 @@ Ce glossaire défini les mots complexes utilisés dans le cahier des charges.
 | Serveur SGBD            | Serveur de 'Système de Gestion de Base de Données', système de base de données lié à la plateforme (MySQL, MariaDB ...)                                                             |
 | RPi 4                   | Raspberry Pi 4 : Nano-ordinateur supportant notre plateforme                                                                                                                        |
 | Connexion ssh           | Connexion 'Secure Shell' : protocole de communication permettant de se connecter au serveur                                                                                         |
+
+
+## La technologie employée
+Le site va être effectué en PHP, MySQL, HTML, CSS. Le serveur pourra tourner sur un système Linux. Il faudra se connecter en ssh afin que les autres utilisateurs puissent accéder à la plateforme. Il y aura des pages web dynamiques dans et statiques se mettant à jour grâce à une base de données qui se remplit par l’intermédiaire des différentes actions des utilisateurs.
