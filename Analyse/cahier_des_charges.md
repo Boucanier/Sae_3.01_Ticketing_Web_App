@@ -232,41 +232,7 @@ Ce glossaire défini les mots complexes utilisés dans le cahier des charges.
 | **Portée** : Base de donnée                                                                                                                                                                                                                                                                                                   |
 | **Niveau** : Stratégique                                                                                                                                                                                                                                                                                                      |
 | **Acteurs principaux** : Utilisateur, Administrateur web                                                                                                                                                                                                                                                                      |
-| **Scénario** : <ol><li>L'utilisateur ou l'administrateur web se connecte</li><li>L'utilisateur peut créer un ticket</li><li>L'administrateur web peut : <ul><li>Définir les niveaux d'urgence</li><li>Affecter les ticket aux techniciens</li><li>Gérer les status des tickets</li><li>Gérer les libéllés</li></ul></li></ol> |
-
-
-
-
-<<<<<<< HEAD
-=======
-|🐟 (Niveau Sous-fonction)|
-|-------------------------|
-|Proposer texte explicatif|
-|Se connecter (+ en ssh)|
-|Consulter les différentes demandes|
-|Se déconnecter|
-|Changer son mdp|
-|Création d’un journal d’activité|
-|Création tableau de bord|
-
-## Glossaire
-
-Ce glossaire défini les mots complexes utilisés dans le cahier des charges.
-
-| Mot                     | Définition                                                                                                                                                                          |
-|-------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Application web         | Logiciel qui s'exécute dans un navigateur                                                                                                                                           |
-| Plateforme de ticketing | Plateforme permettant de signaler des problèmes informatiques (1 problème = 1 ticket) afin que leur dépannage soit pris en charge                                                   |
-| CAPTCHA                 | 'Completely Automated Public Turing test to tell Computers and Humans Apart' est un système d'authentification permettant de différencier les utilisateurs humains de robots        |
-| Libellé                 | Titre d'un ticket                                                                                                                                                                   |
-| Ticket                  | Demande de dépannage, contient la nature du problème, un niveau d'urgence, le demandeur, le lieu et la description du problème. Il peut être ouvert, fermé ou en cours de traitement|
-| Journal d'activité      | Recueil de différentes actions qui ont eu lieu sur le serveur et de leur détails (historique de connexions ...)                                                                     |
-| Adresse IP              | 'Internet Protocol', adresses liées aux différents appareils numériques qui nous entoure, permet de différencier les différentes personnes qui se connectent à la plateforme        |
-| Serveur web             | Système permettant de lier les pages web entre elles (ici Apache)                                                                                                                   |
-| Serveur SGBD            | Serveur de 'Système de Gestion de Base de Données', système de base de données lié à la plateforme (MySQL, MariaDB ...)                                                             |
-| RPi 4                   | Raspberry Pi 4 : Nano-ordinateur supportant notre plateforme                                                                                                                        |
-| Connexion ssh           | Connexion 'Secure Shell' : protocole de communication permettant de se connecter au serveur                                                                                         |
-
+| **Scénario** : <ol><li>L'utilisateur ou l'administrateur web se connecte</li><li>L'utilisateur peut créer un ticket</li><li>L'administrateur web peut : <ul><li>Définir les niveaux d'urgence</li><li>Affecter les ticket aux techniciens</li><li>Gérer les status des tickets</li><li>Gérer les libéllés</li></ul></li></ol> |                               |
 
 ## La technologie employée
 
