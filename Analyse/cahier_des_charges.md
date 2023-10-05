@@ -1,6 +1,6 @@
 # Cahier des Charges SAE
 
-L’objectif général est la gestion d’un système de ticketing
+L’objectif général de ce projet est la gestion d’un système de ticketing qui sera implémenté en PHP et MySQL. Il aura pour but de recueillir les demandes de dépannage de différents utilisateurs dans les salles de l'établissement. La plateforme de ticketing devra être accessible par l’intermédiaire de n’importe quel autre poste de l’IUT. Nous devons réaliser cette plateforme par groupe de quatre. Le projet doit  être complètement fini et déposé en janvier.
 
 ## Liste des acteurs, objets et actions
 
