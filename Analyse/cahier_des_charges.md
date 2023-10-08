@@ -69,7 +69,6 @@ L’objectif général de ce projet est la gestion d’un système de ticketing 
 | Changer son mdp           |
 | Supprimer un compte       |
 
-
 ## Glossaire
 
 Ce glossaire défini les mots complexes utilisés dans le cahier des charges.
@@ -87,6 +86,7 @@ Ce glossaire défini les mots complexes utilisés dans le cahier des charges.
 | Serveur SGBD            | Serveur de 'Système de Gestion de Base de Données', système de base de données lié à la plateforme (MySQL, MariaDB ...)                                                             |
 | RPi 4                   | Raspberry Pi 4 : Nano-ordinateur supportant notre plateforme                                                                                                                        |
 | Connexion ssh           | Connexion 'Secure Shell' : protocole de communication permettant de se connecter au serveur                                                                                         |
+
 ## Cas d'utilisations
 
 ### Niveau Sous-fonction
@@ -241,3 +241,13 @@ Le site va être effectué en PHP, MySQL, HTML, CSS. Le serveur pourra tourner s
 ## Autres exigences
 
 Les participants au projet sont Jules Chiron, Matis Rodier, Thomas Godineau, Maxence Ouvrard. Nous privilégions l’accessibilité pour tous sur notre plateforme. Nous souhaitons que les utilisateurs trouvent des réponses aux problèmes qu’ils rencontrent le plus efficacement et rapidement possible. Nous allons devoir installer Apache, PHP, MySQL afin que la plateforme puisse fonctionner correctement. De plus, le site doit ressembler plus ou moins aux maquettes que nous avons réalisées en amont. Ce projet est soumis à des dépendances client/utilisateurs car notre site dépend de la satisfaction de ces personnes. De plus ce projet à des dépendances techniques vis-à-vis de la base de données du site.
+
+## Recours humain, questions juridiques, politiques, organisationnelles
+
+Comme nous l'avons vu précédemment, l'équipe de développement se compose de quatre personnes. Ils ont pour objectif de réaliser le projet dans son intégralité, c'est-à-dire la rédaction du cahier des charges, la création du serveur, de la base de données, des pages web, du logo,... Leur objectif est donc de fournir le produit afin que les utilisateurs puissent l'utiliser de manière correcte et simple. Il existe une autre catégorie de personnes dans le recours humain au fonctionnement de ce projet. En effet, il s'agit d'une plateforme de ticketing, alors le produit fini ne peut vivre sans les utilisateurs finaux. Parmi eux, nous retrouvons les visiteurs qui consultent le site, les utilisateurs qui utilisent le site en créant des tickets, l'administrateur système qui peut accéder au journal d'activité et l'administrateur web qui peut gérer les informations liées aux tickets. Il s'agit donc d'une plateforme qui doit être utilisée quotidiennement par les utilisateurs finaux afin qu'elle soit utile.
+
+Notre plateforme, utilisant des données utilisateurs, se doit d'être conforme à certaines règles. En effet, les développeurs se doivent de créer une plateforme sécurisée afin que les données soient protégées. Tout d'abord, ce projet est réalisé en France et doit donc respecter la vie privée des utilisateurs. Pour ce faire, le projet doit respecter la norme RGPD. Ensuite, les mots de passe utilisateurs devront être enregistrés avec un format md5 par exemple, pour qu'aucune personne n'ait accès aux mots de passe en clair, que ce soit les développeurs, les différents administrateurs de l'application ou encore de personnes mal intentionnées. Enfin, le projet se doit d'être accessible à tous. En effet, depuis quelques années, la France a une loi qui oblige les développeurs à réaliser leurs sites et applications avec des normes d'accessibilité.
+
+La création d'une telle application web va avoir des impacts sur les différents utilisateurs qui l'utilisent. En effet, l'introduction de cet outil dans l'enceinte de l'IUT va demander un changement d'habitudes pour les élèves ou professeurs (qui seront des utilisateurs) car pour le bon fonctionnement de celle-ci, il faudra une connexion fréquente afin de reporter les différents problèmes ainsi que de voir leur état d'avancement. Pour les deux administrateurs, il leur faudra aussi utiliser très fréquemment cette application afin de répondre aux utilisateurs. De plus, il leur faudra apprendre à utiliser l'application, même si celle-ci se veut simple d'accès. Pour le bon fonctionnement, il faut que cette application soit déployable sur l'ensemble du parc informatique de l'IUT.
+
+Pour que chaque utilisateur puisse utiliser le site correctement, une vidéo explicative sera réalisée afin d'expliquer de manière claire et simple le fonctionnement correct de l'application.
