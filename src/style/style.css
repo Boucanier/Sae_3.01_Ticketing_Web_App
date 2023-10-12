@@ -1,0 +1,154 @@
+header {
+    display: flex;
+    flex-direction: column;
+}
+
+#top {
+    display: flex;
+    justify-content: space-between;
+    background-color: #cffdff;
+    padding: 2%;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    background-color: lightblue;
+}
+
+nav > a {
+    padding: 2%;
+    text-decoration: none;
+}
+
+nav > a:hover {
+    background-color: aquamarine;
+    transition: 0.5s;
+}
+
+nav > a:visited {
+    color: black;
+}
+
+
+#image1 {
+    height: 30%;
+    width: 30%;
+}
+
+#image2 {
+    height: 30%;
+    width: 30%;
+}
+
+
+footer {
+    display: flex;
+    justify-content: center;
+    background-color: lightblue;
+}
+
+footer > a {
+    padding: 2%;
+    text-decoration: none;
+}
+
+footer > a:hover {
+    background-color: aquamarine;
+    transition: 0.5s;
+}
+
+footer > a:visited {
+    color: black;
+}
+
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input {
+    padding: 8px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.reset_buttons:hover, .submit_buttons:hover{
+    background-color: #45a049;
+}
+
+.reset_buttons, .submit_buttons{
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+    width: 35%;
+}
+
+.form_containers{
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.resetSubmitButtons{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.sign_up {
+    width: 50%;
+    border: solid black 1px;
+    padding: 2%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.log_in{
+    width: 30%;
+}
+
+.user_info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form_group{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-right: 20%;
+}
+
+.form_group > input {
+    width: 40em;
+}
+
+.form_group > label{
+    width: 200px;
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+}
+
+.captcha_group{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.captcha_group > input{
+    width: 40%;
+}
