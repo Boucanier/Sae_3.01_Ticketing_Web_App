@@ -1,3 +1,7 @@
+html {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
 header {
     display: flex;
     flex-direction: column;
@@ -13,23 +17,37 @@ header {
 nav {
     display: flex;
     justify-content: space-between;
-    background-color: lightblue;
+    background-color: rgb(200, 250, 220);
 }
 
-nav > a {
-    padding: 2%;
+a {
+    padding: 10px;
+    color: black;
+    text-align: center;
     text-decoration: none;
 }
 
-nav > a:hover {
-    background-color: aquamarine;
-    transition: 0.5s;
-}
-
-nav > a:visited {
+a:visited {
     color: black;
 }
 
+a:hover {
+    background-color: rgb(150, 180, 250);
+    transition: 0.5s;
+}
+
+#nav1,#nav2{
+    display: flex;
+    flex-direction: row;
+}
+
+#nav1 {
+    justify-content: left;
+}
+
+#nav2 {
+    justify-content: right;
+}
 
 #image1 {
     height: 30%;
@@ -45,22 +63,10 @@ nav > a:visited {
 footer {
     display: flex;
     justify-content: center;
-    background-color: lightblue;
+    background-color: rgb(200, 250, 220);
 }
 
-footer > a {
-    padding: 2%;
-    text-decoration: none;
-}
 
-footer > a:hover {
-    background-color: aquamarine;
-    transition: 0.5s;
-}
-
-footer > a:visited {
-    color: black;
-}
 
 
 label {
