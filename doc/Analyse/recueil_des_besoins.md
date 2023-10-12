@@ -1,4 +1,14 @@
-# Cahier des Charges SAE
+![logo_uvsq](../annexes/logo_uvsq.png)
+
+# Recueil des besoins
+
+**Godineau Thomas**
+
+**Rodier Matis**
+
+**Chiron Jules**
+
+**Ouvrard Maxence**
 
 L’objectif général de ce projet est la gestion d’un système de ticketing qui sera implémenté en PHP et MySQL. Il aura pour but de recueillir les demandes de dépannage de différents utilisateurs dans les salles de l'établissement. La plateforme de ticketing devra être accessible par l’intermédiaire de n’importe quel autre poste de l’IUT. Nous devons réaliser cette plateforme par groupe de quatre. Le projet doit  être complètement fini et déposé en janvier.
 
@@ -41,8 +51,27 @@ L’objectif général de ce projet est la gestion d’un système de ticketing 
 |                       | nature du problème               |                                                                  |
 |                       | _salle du problème_              |                                                                  |
 
-## Tableaux de définition des cas d’utilisation
+## Glossaire
 
+Ce glossaire défini les mots complexes utilisés dans le cahier des charges.
+
+| Mot                     | Définition                                                                                                                                                                           |
+|-------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Application web         | Logiciel qui s'exécute dans un navigateur                                                                                                                                            |
+| Plateforme de ticketing | Plateforme permettant de signaler des problèmes informatiques (1 problème = 1 ticket) afin que leur dépannage soit pris en charge                                                    |
+| CAPTCHA                 | 'Completely Automated Public Turing test to tell Computers and Humans Apart' est un système d'authentification permettant de différencier les utilisateurs humains de robots         |
+| Libellé                 | Titre d'un ticket                                                                                                                                                                    |
+| Ticket                  | Demande de dépannage, contient la nature du problème, un niveau d'urgence, le demandeur, le lieu et la description du problème. Il peut être ouvert, fermé ou en cours de traitement |
+| Journal d'activité      | Recueil de différentes actions qui ont eu lieu sur le serveur et de leur détails (historique de connexions ...)                                                                      |
+| Adresse IP              | 'Internet Protocol', adresses liées aux différents appareils numériques qui nous entoure, permet de différencier les différentes personnes qui se connectent à la plateforme         |
+| Serveur web             | Système permettant de lier les pages web entre elles (ici Apache)                                                                                                                    |
+| Serveur SGBD            | Serveur de 'Système de Gestion de Base de Données', système de base de données lié à la plateforme (MySQL, MariaDB ...)                                                              |
+| RPi 4                   | Raspberry Pi 4 : Nano-ordinateur supportant notre plateforme                                                                                                                         |
+| Connexion ssh           | Connexion 'Secure Shell' : protocole de communication permettant de se connecter au serveur                                                                                          |
+
+## Cas d'utilisations
+
+### Tableaux de définition des cas d’utilisation
 | 🪁 (Niveau Stratégique) 🔲 |
 |----------------------------|
 | Gérer les utilisateurs     |
@@ -68,36 +97,19 @@ L’objectif général de ce projet est la gestion d’un système de ticketing 
 | Se déconnecter            |
 | Changer son mdp           |
 | Supprimer un compte       |
+| Afficher un page          |
 
-## Glossaire
-
-Ce glossaire défini les mots complexes utilisés dans le cahier des charges.
-
-| Mot                     | Définition                                                                                                                                                                          |
-|-------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Application web         | Logiciel qui s'exécute dans un navigateur                                                                                                                                           |
-| Plateforme de ticketing | Plateforme permettant de signaler des problèmes informatiques (1 problème = 1 ticket) afin que leur dépannage soit pris en charge                                                   |
-| CAPTCHA                 | 'Completely Automated Public Turing test to tell Computers and Humans Apart' est un système d'authentification permettant de différencier les utilisateurs humains de robots        |
-| Libellé                 | Titre d'un ticket                                                                                                                                                                   |
-| Ticket                  | Demande de dépannage, contient la nature du problème, un niveau d'urgence, le demandeur, le lieu et la description du problème. Il peut être ouvert, fermé ou en cours de traitement|
-| Journal d'activité      | Recueil de différentes actions qui ont eu lieu sur le serveur et de leur détails (historique de connexions ...)                                                                     |
-| Adresse IP              | 'Internet Protocol', adresses liées aux différents appareils numériques qui nous entoure, permet de différencier les différentes personnes qui se connectent à la plateforme        |
-| Serveur web             | Système permettant de lier les pages web entre elles (ici Apache)                                                                                                                   |
-| Serveur SGBD            | Serveur de 'Système de Gestion de Base de Données', système de base de données lié à la plateforme (MySQL, MariaDB ...)                                                             |
-| RPi 4                   | Raspberry Pi 4 : Nano-ordinateur supportant notre plateforme                                                                                                                        |
-| Connexion ssh           | Connexion 'Secure Shell' : protocole de communication permettant de se connecter au serveur                                                                                         |
-
-## Cas d'utilisations
+![figure_1](../annexes/figure1.png)
 
 ### Niveau Sous-fonction
 
-| Cas d'ulilisation 1 : Se connecter                                                                                                                                                                                                                                                                                                                                                                                                       |
-|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Nom** : Se connecter                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| **Portée** : Application Web                                                                                                                                                                                                                                                                                                                                                                                                             |
-| **Niveau** : Sous-fonction                                                                                                                                                                                                                                                                                                                                                                                                               |
-| **Acteurs Principaux** : Utilisateur, Aministrateur Web                                                                                                                                                                                                                                                                                                                                                                                  |
-| **Scénario nominal** :<ol><li>L'utilisateur entre son login et son mot de passe</li><li>Récupérer les données et chercher dans la base de données</li><li>Récupérer le statut de l'utilisateur</li><li>Redirige vers la page correspondante</li></ol>                                                                                                                                                                                    |
+| Cas d'ulilisation 1 : Se connecter                                                                                                                                                                                                                                                                                                                                                                                                        |
+|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Nom** : Se connecter                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| **Portée** : Application Web                                                                                                                                                                                                                                                                                                                                                                                                              |
+| **Niveau** : Sous-fonction                                                                                                                                                                                                                                                                                                                                                                                                                |
+| **Acteurs Principaux** : Utilisateur, Aministrateur Web                                                                                                                                                                                                                                                                                                                                                                                   |
+| **Scénario nominal** :<ol><li>L'utilisateur entre son login et son mot de passe</li><li>Récupérer les données et chercher dans la base de données</li><li>Récupérer le statut de l'utilisateur</li><li>Redirige vers la page correspondante</li></ol>                                                                                                                                                                                     |
 | **Extension** :<ul><li>Si les informations données correspondent à un administrateur web<ul><li>Redirection vers la page administrateur web</li></ul></li><li>Si les informations données correspondent à un utilisateur<ul><li>Redirection vers la page d'accueil en étant conneté</li></ul></li><li>Si les informations données sont incorrectes<ul><li>Redirection vers la page d'accueil avec un message d'erreur</li></ul></li></ul> |
 
 | Cas d'ulilisation 2 : Se déconnecter                                                                                                                           |
@@ -125,9 +137,17 @@ Ce glossaire défini les mots complexes utilisés dans le cahier des charges.
 | **Acteurs principaux** : Utilisateur                                                                 |
 | **Scénario** : <ol><li>L'utilisateur se connecte</li><li>L'utilisateur supprime son compte</li></ol> |
 
+| Cas d'utilisation 5 : Afficher une page web                                       |
+|-----------------------------------------------------------------------------------|
+| **Nom** : Affiche une page web                                                    |
+| **Portée** : site statique                                                        |
+| **Niveau** : Sous-fonction                                                        |
+| **Acteurs principaux** : Utilisateur                                              |
+| **Scénario** : <ol><li>L'utilisateur clique sur un lien de la page html</li></ol> |
+
 ### Niveau utilisateur
 
-| Cas d'utilisation 5 : Créer ticket                                                                                                                                               |
+| Cas d'utilisation 6 : Créer ticket                                                                                                                                               |
 |----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Nom** : Création d'un ticket                                                                                                                                                   |
 | **Portée** : Base de donnée                                                                                                                                                      |
@@ -135,7 +155,7 @@ Ce glossaire défini les mots complexes utilisés dans le cahier des charges.
 | **Acteurs principaux** : Utilisateur                                                                                                                                             |
 | **Scénario** : <ol><li>L'utilisateur se connecte</li><li>Il remplie les champs nécessaire à la création d'un ticket</li><li>Creation du ticket dans la base de données</li></ol> |
 
-| Cas d'utilisation 6 : Accéder à son profil                                                                                                                                                                                                                 |
+| Cas d'utilisation 7 : Accéder à son profil                                                                                                                                                                                                                 |
 |------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Nom** : Accéder à son profil                                                                                                                                                                                                                             |
 | **Portée** : Application web                                                                                                                                                                                                                               |
@@ -143,7 +163,7 @@ Ce glossaire défini les mots complexes utilisés dans le cahier des charges.
 | **Acteurs principaux** : Utilisateur                                                                                                                                                                                                                       |
 | **Scénario** : <ol><li>L'utilisateur se connecte</li><li>Il peut changer son mot de passe</li><li>Il peut acceder à son tableau de bord</li><li>Il peut creer un ticket</li><li>Il peut supprimer son compte</li><li>L'utilisateur se déconnecte</li></li> |
 
-| Cas d'utilisation 7 : Afficher les tickets                                                                                                                                     |
+| Cas d'utilisation 8 : Afficher les tickets                                                                                                                                     |
 |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Nom** : Afficher les tickets                                                                                                                                                 |
 | **Portée** : Application web                                                                                                                                                   |
@@ -152,7 +172,7 @@ Ce glossaire défini les mots complexes utilisés dans le cahier des charges.
 | **Scénario** : <ol><li>L'utilisateur se connecte</li><li>Il peut choisir l'ordre d'affichage des tickets selon certains critères</li><li>L'utilisateur se déconnecte</li></ol> |
 | **Extension** : <ul><li>Si c'est un utilisateur non-inscrit<ul><li>Il ne peut voir que les 10 derniers tickets</li></ul></li></ul>                                             |
 
-| Cas d'utilisation 8 : Gérer liste libellés                                                                                                                       |
+| Cas d'utilisation 9 : Gérer liste libellés                                                                                                                       |
 |------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Nom** : Gérer liste libellés                                                                                                                                   |
 | **Portée** : Base de donnée                                                                                                                                      |
@@ -160,7 +180,7 @@ Ce glossaire défini les mots complexes utilisés dans le cahier des charges.
 | **Acteurs principaux** : Administrateur web                                                                                                                      |
 | **Scénario** : <ol><li>L'administrateur se connecte</li><li>L'administrateur web peut modifier les libéllés</li><li>L'administrateur web se déconnecte</li></ol> |
 
-| Cas d'utilisation 9 : Gérer status tickets                                                                                                                               |
+| Cas d'utilisation 10 : Gérer status tickets                                                                                                                              |
 |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Nom** : Gérer status tickets                                                                                                                                           |
 | **Portée** : Base de données                                                                                                                                             |
@@ -168,7 +188,7 @@ Ce glossaire défini les mots complexes utilisés dans le cahier des charges.
 | **Acteurs principaux** : Administrateur web                                                                                                                              |
 | **Scénario** : <ol><li>L'administrateur se connecte</li><li>L'administrateur web peut changer le statut d'un ticket</li><li>L'administrateur web se déconnecte</li></ol> |
 
-| Cas d'utilisation 10 : Définir les niveaux d’urgence                                                                                                                                |
+| Cas d'utilisation 11 : Définir les niveaux d’urgence                                                                                                                                |
 |-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Nom** : Définir les niveaux d’urgence                                                                                                                                             |
 | **Portée** : Base de données                                                                                                                                                        |
@@ -176,7 +196,7 @@ Ce glossaire défini les mots complexes utilisés dans le cahier des charges.
 | **Acteurs principaux** : Administrateur web                                                                                                                                         |
 | **Scénario** : <ol><li>L'administrateur se connecte</li><li>L'administrateur web peut modifier le niveau d'urgence d'un ticket</li><li>L'administrateur web se déconnecte</li></ol> |
 
-| Cas d'utilisation 11 : Creer comptes techniciens                                                                                                                            |
+| Cas d'utilisation 12 : Creer comptes techniciens                                                                                                                            |
 |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Nom** : Creer comptes techniciens                                                                                                                                         |
 | **Portée** : Base de données                                                                                                                                                |
@@ -184,7 +204,7 @@ Ce glossaire défini les mots complexes utilisés dans le cahier des charges.
 | **Acteurs principaux** : Administrateur web                                                                                                                                 |
 | **Scénario** : <ol><li>L'administrateur se connecte</li><li>L'administrateur web peut créer des comptes de techniciens</li><li>L'administrateur web se déconnecte</li></ol> |
 
-| Cas d'utilisation 12 : Consulter journaux d’activités                                                                                                                            |
+| Cas d'utilisation 13 : Consulter journaux d’activités                                                                                                                            |
 |----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Nom** : Consulter journaux d’activités                                                                                                                                         |
 | **Portée** : Journaux d'activités                                                                                                                                                |
@@ -192,7 +212,7 @@ Ce glossaire défini les mots complexes utilisés dans le cahier des charges.
 | **Acteurs principaux** : Administrateur système                                                                                                                                  |
 | **Scénario** : <ol><li>L'administrateur se connecte</li><li>L'administrateur système peut consulter les journaux d'activité</li><li>L'administrateur web se déconnecte</li></ol> |
 
-| Cas d'utilisation 13 : Inscription des nouveaux utilisateurs                       |
+| Cas d'utilisation 14 : Inscription des nouveaux utilisateurs                       |
 |------------------------------------------------------------------------------------|
 | **Nom** : Inscription des nouveaux utilisateurs                                    |
 | **Portée** : Base de données                                                       |
@@ -200,7 +220,7 @@ Ce glossaire défini les mots complexes utilisés dans le cahier des charges.
 | **Acteurs principaux** : Utilisateur                                               |
 | **Scénario** : <ol><li>L'utilisateur non-inscrit peut se créer un compte</li></ol> |
 
-| Cas d'utilisation 14 : Affecter les tickets aux techniciens                                                                                                                                                                                   |
+| Cas d'utilisation 15 : Affecter les tickets aux techniciens                                                                                                                                                                                   |
 |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Nom** : Affecter les tickets aux techniciens                                                                                                                                                                                                |
 | **Portée** : Base de données                                                                                                                                                                                                                  |
@@ -210,7 +230,7 @@ Ce glossaire défini les mots complexes utilisés dans le cahier des charges.
 
 ### Niveau stratégique
 
-| Cas d'utilisation 15 : Gérer les utilisateurs                                                                                                                                                        |
+| Cas d'utilisation 16 : Gérer les utilisateurs                                                                                                                                                        |
 |------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Nom** : Gérer les utilisateurs                                                                                                                                                                     |
 | **Portée** : Base de donnée                                                                                                                                                                          |
@@ -218,7 +238,7 @@ Ce glossaire défini les mots complexes utilisés dans le cahier des charges.
 | **Acteurs principaux** : Utilisateurs                                                                                                                                                                |
 | **Scénario** : <ol><li>L'utilisateur peut se créer un compte s'il n'est pas inscrit</li><li>Il peut accéder à son compte</li><li>Créer un compte technicien s'il est un administrateur web</li></ol> |
 
-| Cas d'utilisation 16 : Configuration du système                                                                                                                                                                               |
+| Cas d'utilisation 17 : Configuration du système                                                                                                                                                                               |
 |-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Nom** : Configuration du système                                                                                                                                                                                            |
 | **Portée** : Base de donnée                                                                                                                                                                                                   |
@@ -226,7 +246,7 @@ Ce glossaire défini les mots complexes utilisés dans le cahier des charges.
 | **Acteurs principaux** : Administrateur sysème                                                                                                                                                                                |
 | **Scénario** : <ol><li>L'administrateur système se connecte</li><li>Il gère la base de données de l'application web</li><li>Il gère l'administration réseau du serveur</li><li>Il consulte les journaux d'activités</li></ol> |
 
-| Cas d'utilisation 17 : Gérer les tickets                                                                                                                                                                                                                                                                                      |
+| Cas d'utilisation 18 : Gérer les tickets                                                                                                                                                                                                                                                                                      |
 |-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Nom** : Gérer les tickets                                                                                                                                                                                                                                                                                                   |
 | **Portée** : Base de donnée                                                                                                                                                                                                                                                                                                   |
