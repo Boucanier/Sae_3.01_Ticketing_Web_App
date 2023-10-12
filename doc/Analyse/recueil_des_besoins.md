@@ -72,6 +72,7 @@ Ce glossaire défini les mots complexes utilisés dans le cahier des charges.
 ## Cas d'utilisations
 
 ### Tableaux de définition des cas d’utilisation
+
 | 🪁 (Niveau Stratégique) 🔲 |
 |----------------------------|
 | Gérer les utilisateurs     |
@@ -100,6 +101,8 @@ Ce glossaire défini les mots complexes utilisés dans le cahier des charges.
 | Afficher un page          |
 
 ![figure_1](../annexes/figure1.png)
+
+**Figure 1** : Représentation des cas d'utilisation
 
 ### Niveau Sous-fonction
 
