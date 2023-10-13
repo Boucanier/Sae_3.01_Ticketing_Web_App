@@ -253,3 +253,27 @@ th {
     background: linear-gradient(to bottom right, rgb(226, 226, 226),rgb(228, 78, 78));
     border-right: 1px solid black;
 }
+
+#ticket_about {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+}
+
+#ticket_details > p {
+    margin-left: 25px;
+    margin-right: 10px;
+    width: 200%;
+}
+
+#ticket_description {
+    border: 1px solid black;
+    padding: 1%;
+    width: 75%;
+}
+
+#ticket_description > p, #ticket_details > p {
+    font-size: 20px;
+}
