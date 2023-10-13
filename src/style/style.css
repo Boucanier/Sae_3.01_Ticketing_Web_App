@@ -69,6 +69,12 @@ footer {
 
 
 
+
+main {
+    padding-bottom: 3%;
+    padding-top: 3%;
+}
+
 label {
     display: block;
     font-weight: bold;
