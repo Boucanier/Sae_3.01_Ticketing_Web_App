@@ -59,16 +59,11 @@ a:hover {
     width: 30%;
 }
 
-
 footer {
     display: flex;
     justify-content: center;
     background-color: rgb(200, 250, 220);
 }
-
-
-
-
 
 main {
     padding-bottom: 3%;
@@ -135,24 +130,21 @@ input {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
 }
 
 .form_group{
     display: flex;
     flex-direction: row;
+    justify-content: right;
     align-items: center;
-    padding-right: 20%;
+    margin-bottom: 3%;
+    margin-right: 40%;
+    width: 170%;
 }
 
-.form_group > input {
-    width: 40em;
-}
-
-.form_group > label{
-    width: 200px;
-    display: flex;
-    align-items: center;
-    flex-direction: row-reverse;
+#login, #name, #f_name, #pwd, #conf_pwd{
+    width: 63%;
 }
 
 .captcha_group{
@@ -161,6 +153,17 @@ input {
     align-items: center;
     justify-content: center;
 }
+
 .captcha_group > input{
     width: 40%;
+}
+
+.form_group2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form_group2 > input{
+    width: 60%;
 }
