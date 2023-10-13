@@ -11,8 +11,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #cffdff;
-    padding: 2%;
+    background: linear-gradient(#cffdff, rgb(200, 250, 220));
 }
 
 nav {
@@ -33,7 +32,15 @@ a:visited {
 }
 
 a:hover {
-    background-color: rgb(150, 180, 250);
+    background-color: rgb(150, 205, 250);
+    border-radius: 100px;
+    transition: 0.5s;
+}
+
+a:focus {
+    background-color: rgb(150, 205, 250);
+    border-radius: 100px;
+    border: none;
     transition: 0.5s;
 }
 
@@ -51,13 +58,11 @@ a:hover {
 }
 
 #image1 {
-    height: 30%;
-    width: 30%;
+    width: 7%;
 }
 
 #image2 {
-    height: 30%;
-    width: 30%;
+    width: 10%;
 }
 
 
@@ -69,11 +74,15 @@ footer {
 
 
 
-
+p {
+    text-align: justify;
+}
 
 main {
-    padding-bottom: 3%;
-    padding-top: 3%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 label {
