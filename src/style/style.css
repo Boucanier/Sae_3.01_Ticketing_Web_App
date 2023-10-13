@@ -10,6 +10,7 @@ header {
 #top {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     background-color: #cffdff;
     padding: 2%;
 }
@@ -59,16 +60,11 @@ a:hover {
     width: 30%;
 }
 
-
 footer {
     display: flex;
     justify-content: center;
     background-color: rgb(200, 250, 220);
 }
-
-
-
-
 
 main {
     padding-bottom: 3%;
@@ -135,24 +131,21 @@ input {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
 }
 
 .form_group{
     display: flex;
     flex-direction: row;
+    justify-content: right;
     align-items: center;
-    padding-right: 20%;
+    margin-bottom: 3%;
+    margin-right: 40%;
+    width: 170%;
 }
 
-.form_group > input {
-    width: 40em;
-}
-
-.form_group > label{
-    width: 200px;
-    display: flex;
-    align-items: center;
-    flex-direction: row-reverse;
+#login, #name, #f_name, #pwd, #conf_pwd{
+    width: 63%;
 }
 
 .captcha_group{
@@ -161,91 +154,7 @@ input {
     align-items: center;
     justify-content: center;
 }
+
 .captcha_group > input{
     width: 40%;
-}
-
-table {
-    border-collapse: collapse;
-    width: 80%;
-    text-align: center;
-    border: 2px solid black;
-}
-
-tr {
-    border: 1px solid black;
-    height: 45px;
-}
-
-tr:has(th) {
-    border: 2px solid black;
-}
-
-th {
-    border-left: 1px solid black;
-    border-right: 1px solid black;
-}
-
-#details_button {
-    display: flex;
-    flex-direction: column;
-    margin-top: 45px;
-    margin-left: 10px;
-}
-
-#details_button > button {
-    height: 35px;
-    background-color: #fff;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    width: 150%;
-}
-
-#details_button > button:hover {
-    background-color: rgb(226, 226, 226);
-}
-
-#ticket_table {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-}
-
-#ticket_top {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    padding-left: 5%;
-    padding-right: 5%;
-    margin-bottom: 20px;
-}
-
-#ticket_top > button {
-    height: 35px;
-    background-color: #fff;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 20px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    width: 20%;
-}
-
-#ticket_top > button:hover {
-    background-color: rgb(226, 226, 226);
-}
-
-#ticket_case_1 {
-    background: linear-gradient(to bottom right, rgb(226, 226, 226),rgb(80, 200, 80));
-    border-right: 1px solid black;
-}
-
-#ticket_case_2 {
-    background: linear-gradient(to bottom right, rgb(226, 226, 226),rgb(228, 78, 78));
-    border-right: 1px solid black;
 }
