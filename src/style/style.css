@@ -158,3 +158,89 @@ input {
 .captcha_group > input{
     width: 40%;
 }
+
+
+table {
+    border-collapse: collapse;
+    width: 80%;
+    text-align: center;
+    border: 2px solid black;
+}
+
+tr {
+    border: 1px solid black;
+    height: 45px;
+}
+
+tr:has(th) {
+    border: 2px solid black;
+}
+
+th {
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+}
+
+#details_button {
+    display: flex;
+    flex-direction: column;
+    margin-top: 45px;
+    margin-left: 10px;
+}
+
+#details_button > button {
+    height: 35px;
+    background-color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 150%;
+}
+
+#details_button > button:hover {
+    background-color: rgb(226, 226, 226);
+}
+
+#ticket_table {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+#ticket_top {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 5%;
+    padding-right: 5%;
+    margin-bottom: 20px;
+}
+
+#ticket_top > button {
+    height: 35px;
+    background-color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 20%;
+}
+
+#ticket_top > button:hover {
+    background-color: rgb(226, 226, 226);
+}
+
+#ticket_case_1 {
+    background: linear-gradient(to bottom right, rgb(226, 226, 226),rgb(80, 200, 80));
+    border-right: 1px solid black;
+}
+
+#ticket_case_2 {
+    background: linear-gradient(to bottom right, rgb(226, 226, 226),rgb(228, 78, 78));
+    border-right: 1px solid black;
+}
