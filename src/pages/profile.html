@@ -9,7 +9,7 @@
 <body>
 <header>
     <div id="top">
-        <img src="../resources/temp_logo.png" alt="logo de la plateforme" id="image1">
+        <img src="../resources/logo.png" alt="logo de la plateforme" id="image1">
         <h1>Ticket App</h1>
         <img src="../resources/logo_UVSQ.png" alt="logo de l'UVSQ" id="image2">
     </div>
@@ -27,12 +27,10 @@
 </header>
 
 <main>
-    <img src="../resources/temp_user_icon.png" alt="icone d'utilisateur">
-    <div>
-        <p>Nom</p>
-        <p>Prénom</p>
-        <p>Login</p>
-    </div>
+    <img src="../resources/temp_user_icon.png" alt="icone d'utilisateur" style="width: 10%">
+    <p>Nom</p>
+    <p>Prénom</p>
+    <p>Login</p>
     <form action="" method="get">
         <label for="actual_pwd">Mot de passe actuel :</label>
         <input type="password" id="actual_pwd" name="actual_pwd"/>
@@ -43,8 +41,10 @@
         <label for="conf_pwd">Confirmer le nouveau mot de passe :</label>
         <input type="password" id="conf_pwd" name="conf_pwd"/>
         <br>
-        <input type="reset" value="Effacer">
-        <input type="submit" value="Valider">
+        <div class="resetSubmitButtons">
+            <input class="reset_buttons" type="reset" value="Effacer">
+            <input class="submit_buttons" type="submit" value="Changer le mot de passe">
+        </div>
     </form>
     <button>Supprimer le compte</button>
 </main>
