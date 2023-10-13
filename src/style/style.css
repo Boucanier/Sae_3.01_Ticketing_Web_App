@@ -58,11 +58,13 @@ a:focus {
 }
 
 #image1 {
-    width: 7%;
+    height: 100px;
+    width: 100px;
 }
 
 #image2 {
-    width: 10%;
+    height: 70px;
+    width: 150px;
 }
 
 
@@ -79,10 +81,41 @@ p {
 }
 
 main {
-    padding: 10px;
+    padding: 10px
+}
+
+#main_page {
+    display: flex;
+    flex-direction: column;
+}
+
+#profile_part1 {
+    display: flex;
+    flex-direction: row;
+}
+
+#img_info {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+#information {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#info_perso {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#profile {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
 
 label {
@@ -97,13 +130,20 @@ input {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+    min-width: 300px;
 }
 
-.reset_buttons:hover, .submit_buttons:hover{
-    background-color: #45a049;
+.reset_buttons:hover, .submit_buttons:hover, button:hover{
+    background-color: #6a84c2;
+    transition: 0.5s;
 }
 
-.reset_buttons, .submit_buttons{
+.reset_buttons:focus, .submit_buttons:focus, button:focus {
+    background-color: #6a84c2;
+    transition: 0.5s;
+}
+
+.reset_buttons, .submit_buttons, button{
     background-color: #4CAF50;
     color: #fff;
     padding: 10px 20px;
