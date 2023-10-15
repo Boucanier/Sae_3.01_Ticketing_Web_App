@@ -25,18 +25,18 @@ nav {
     background-color: rgb(200, 250, 220);
 }
 
-a {
+#nav1 > a, #nav2 > a, footer> a {
     padding: 10px;
     color: black;
     text-align: center;
     text-decoration: none;
 }
 
-a:visited {
+#nav1 > a:visited, #nav2 > a:visited, footer> a:visited {
     color: black;
 }
 
-a:hover {
+#nav1 > a:hover, #nav2 > a:hover, footer> a:hover {
     background-color: rgb(150, 180, 250);
     transition: 0.5s;
 }
@@ -281,3 +281,39 @@ th {
 #ticket_description > p, #ticket_details > p {
     font-size: 20px;
 }
+
+#contact_containers{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contact_text{
+    font-size: 3em;
+}
+
+.link_on_page {
+    color: #18272F;
+    position: relative;
+    text-decoration: none;
+  }
+  
+.link_on_page::before {
+content: '';
+position:absolute;
+width: 100%;
+height: 4px;
+border-radius: 4px;
+background-color: #18272F;
+bottom: 0;
+left: 0;
+transform-origin: right;
+transform: scaleX(0);
+transition: transform .3s ease-in-out;
+}
+  
+.link_on_page:hover::before {
+transform-origin: left;
+transform: scaleX(1);
+}
+  
