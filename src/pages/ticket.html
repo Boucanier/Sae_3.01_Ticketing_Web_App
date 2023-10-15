@@ -25,26 +25,38 @@
     </nav>
 </header>
 <main>
-
-    <form action="index.html" method="get">
-        <label for="libelle">Libellé:</label>
-        <input type="text" id="libelle" name="libelle"/>
-        <br>
-        <label for="salle">Salle:</label>
-        <input type="text" id="salle" name="salle"/>
-        <br>
-        <label for="niveauUrgence">Niveau d'urgence estimé:</label>
-        <input type="text" id="niveauUrgence" name="niveauUrgence"/>
-        <br>
-        <label for="descriptionPrbl">Description</label>
-        <textarea id="descriptionPrbl" name="descriptionPrbl" rows="5" cols="33"></textarea>
-        <br>
-        <input type="reset" value="Effacer">
-        <input type="submit" value="Valider">
+    <div id="ticket_top">
+        <h2>Créer un ticket</h2>
+    </div>
+    <form action="dashboard.html" method="get" id="ticket_form">
+        <div id="ticket_creation">
+            <div id="ticket_label">
+                <label for="libelle">Libellé&nbsp;:&nbsp;</label>
+                <br>
+                <label for="salle">Salle&nbsp;:&nbsp;</label>
+                <br>
+                <label for="niveauUrgence">Niveau&nbsp;d'urgence&nbsp;estimé&nbsp;:&nbsp;</label>
+                <br>
+                <label for="descriptionPrbl">Description&nbsp;:&nbsp;</label>
+                <br>
+            </div>
+            <div id="ticket_input">
+                <input type="text" id="libelle" name="libelle"/>
+                <br>
+                <input type="text" id="salle" name="salle"/>
+                <br>
+                <input type="text" id="niveauUrgence" name="niveauUrgence"/>
+                <br>
+                <textarea id="descriptionPrbl" name="descriptionPrbl" rows="5" cols="33"></textarea>
+                <br>
+            </div>
+        </div>
+        <div id="ticket_buttons">
+            <input type="reset" id="ticket_reset" value="Effacer">
+            <input type="submit" id="ticket_sub" value="Valider">
+        </div>
     </form>
-
-
-
+    
 </main>
 <footer>
     <a href="contact.html">Nous contacter</a>
