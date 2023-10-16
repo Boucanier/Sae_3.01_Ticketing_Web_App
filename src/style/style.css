@@ -130,7 +130,6 @@ input {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-    min-width: 300px;
 }
 
 .reset_buttons:hover, .submit_buttons:hover, button:hover{
@@ -211,6 +210,10 @@ input {
 
 .captcha_group > input{
     width: 40%;
+}
+
+.user_info > input{
+    min-width: 80%;
 }
 
 .form_group2{
