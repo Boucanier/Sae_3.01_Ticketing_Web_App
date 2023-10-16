@@ -34,13 +34,13 @@ nav {
 #nav1 > a:visited, #nav2 > a:visited, footer> a:visited {
     color: black;
 }
-a:hover {
+header > nav > div > a:hover, footer > a:hover {
     background-color: rgb(150, 205, 250);
     border-radius: 100px;
     transition: 0.5s;
 }
 
-a:focus {
+header > nav > div > a:focus, footer > a:focus {
     background-color: rgb(150, 205, 250);
     border-radius: 100px;
     border: none;
