@@ -44,6 +44,7 @@ a:focus {
     background-color: rgb(150, 205, 250);
     border-radius: 100px;
     border: none;
+}
 
 #nav1 > a:hover, #nav2 > a:hover, footer> a:hover {
     background-color: rgb(150, 180, 250);
