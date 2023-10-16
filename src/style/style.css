@@ -14,23 +14,26 @@ header {
     background: linear-gradient(#cffdff, rgb(200, 250, 220));
 }
 
+body {
+    margin: 0;
+}
+
 nav {
     display: flex;
     justify-content: space-between;
     background-color: rgb(200, 250, 220);
 }
 
-a {
+#nav1 > a, #nav2 > a, footer> a {
     padding: 10px;
     color: black;
     text-align: center;
     text-decoration: none;
 }
 
-a:visited {
+#nav1 > a:visited, #nav2 > a:visited, footer> a:visited {
     color: black;
 }
-
 a:hover {
     background-color: rgb(150, 205, 250);
     border-radius: 100px;
@@ -41,6 +44,9 @@ a:focus {
     background-color: rgb(150, 205, 250);
     border-radius: 100px;
     border: none;
+
+#nav1 > a:hover, #nav2 > a:hover, footer> a:hover {
+    background-color: rgb(150, 180, 250);
     transition: 0.5s;
 }
 
@@ -67,19 +73,12 @@ a:focus {
     width: 150px;
 }
 
-
 footer {
     display: flex;
     justify-content: center;
     background-color: rgb(200, 250, 220);
 }
-
-
-
-p {
-    text-align: justify;
-}
-
+  
 main {
     padding: 10px
 }
@@ -185,24 +184,21 @@ input {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
 }
 
 .form_group{
     display: flex;
     flex-direction: row;
+    justify-content: right;
     align-items: center;
-    padding-right: 20%;
+    margin-bottom: 3%;
+    margin-right: 40%;
+    width: 170%;
 }
 
-.form_group > input {
-    width: 40em;
-}
-
-.form_group > label{
-    width: 200px;
-    display: flex;
-    align-items: center;
-    flex-direction: row-reverse;
+#login, #name, #f_name, #pwd, #conf_pwd{
+    width: 63%;
 }
 
 .captcha_group{
@@ -211,6 +207,248 @@ input {
     align-items: center;
     justify-content: center;
 }
+
 .captcha_group > input{
     width: 40%;
+}
+
+.form_group2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form_group2 > input{
+    width: 60%;
+}
+
+table {
+    border-collapse: collapse;
+    width: 80%;
+    text-align: center;
+    border: 2px solid black;
+}
+
+tr {
+    border: 1px solid black;
+    height: 45px;
+}
+
+tr:has(th) {
+    border: 2px solid black;
+}
+
+th {
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+}
+
+#details_button {
+    display: flex;
+    flex-direction: column;
+    margin-top: 45px;
+    margin-left: 10px;
+}
+
+#details_button > button {
+    height: 35px;
+    background-color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 150%;
+}
+
+#details_button > button:hover {
+    background-color: rgb(226, 226, 226);
+}
+
+#ticket_table {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+#ticket_top {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 5%;
+    padding-right: 5%;
+    margin-bottom: 20px;
+}
+
+#ticket_top > button {
+    height: 35px;
+    background-color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 20%;
+}
+
+#ticket_buttons > input {
+    height: 35px;
+    background-color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 10%;
+}
+
+#ticket_top > button:hover {
+    background-color: rgb(226, 226, 226);
+}
+
+#ticket_buttons > input:hover {
+    background-color: rgb(226, 226, 226);
+}
+
+#ticket_buttons > #ticket_sub:hover {
+    background-color: #45a049;
+}
+
+#ticket_case_1 {
+    background: linear-gradient(to bottom right, rgb(226, 226, 226),rgb(80, 200, 80));
+    border-right: 1px solid black;
+}
+
+#ticket_case_2 {
+    background: linear-gradient(to bottom right, rgb(226, 226, 226),rgb(228, 78, 78));
+    border-right: 1px solid black;
+}
+
+#ticket_about {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+}
+
+#ticket_details > p {
+    margin-left: 25px;
+    margin-right: 10px;
+    width: 200%;
+}
+
+#ticket_description {
+    border: 1px solid black;
+    padding: 1%;
+    width: 75%;
+}
+
+#ticket_description > p, #ticket_details > p {
+    font-size: 20px;
+}
+
+#contact_containers{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contact_text{
+    font-size: 3em;
+}
+
+.link_on_page {
+    color: #18272F;
+    position: relative;
+    text-decoration: none;
+  }
+  
+.link_on_page::before {
+content: '';
+position:absolute;
+width: 100%;
+height: 4px;
+border-radius: 4px;
+background-color: #18272F;
+bottom: 0;
+left: 0;
+transform-origin: right;
+transform: scaleX(0);
+transition: transform .3s ease-in-out;
+}
+  
+.link_on_page:hover::before {
+transform-origin: left;
+transform: scaleX(1);
+}
+
+#ticket_label{
+    display: flex;
+    flex-direction: column;
+    align-content: flex-end;
+}
+
+#ticket_label > label {
+    width:100%;
+    height: 35px;
+    text-align: right;
+    margin: 0px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    padding: 0px;
+}
+
+#ticket_input{
+    display: flex;
+    flex-direction: column;
+}
+
+#ticket_input > input{
+    height: 35px;
+    margin: 0px;
+    font-size: 16px;
+    margin-bottom: 20px;
+    padding: 0px;
+}
+
+#ticket_creation {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+#descriptionPrbl {
+    height: 80%;
+    font-size: 16px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    resize:none;
+}
+
+#ticket_form {
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    margin-left: 25%;
+    padding-top: 1%;
+}
+
+#ticket_buttons {
+    margin-top: 1%;
+    margin-bottom: 1%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+#salle, #niveauUrgence {
+    width: 25%;
 }
