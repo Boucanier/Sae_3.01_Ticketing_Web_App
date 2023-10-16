@@ -132,17 +132,17 @@ input {
     box-sizing: border-box;
 }
 
-.reset_buttons:hover, .submit_buttons:hover, button:hover{
+.reset_buttons:hover, .submit_buttons:hover, #account_sup:hover{
     background-color: #6a84c2;
     transition: 0.5s;
 }
 
-.reset_buttons:focus, .submit_buttons:focus, button:focus {
+.reset_buttons:focus, .submit_buttons:focus, #account_sup:focus {
     background-color: #6a84c2;
     transition: 0.5s;
 }
 
-.reset_buttons, .submit_buttons, button{
+.reset_buttons, .submit_buttons, #account_sup{
     background-color: #4CAF50;
     color: #fff;
     padding: 10px 20px;
