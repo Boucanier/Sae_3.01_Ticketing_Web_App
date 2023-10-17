@@ -277,7 +277,7 @@ th {
     justify-content: center;
 }
 
-#ticket_top {
+#part_top {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -287,7 +287,7 @@ th {
     margin-bottom: 20px;
 }
 
-#ticket_top > button {
+#part_top > button {
     height: 35px;
     background-color: #fff;
     border-radius: 4px;
@@ -309,7 +309,7 @@ th {
     width: 10%;
 }
 
-#ticket_top > button:hover {
+#part_top > button:hover {
     background-color: rgb(226, 226, 226);
 }
 
