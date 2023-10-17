@@ -410,7 +410,7 @@ transform: scaleX(1);
     flex-direction: column;
 }
 
-#ticket_input > input{
+#ticket_input > input, #ticket_input > select{
     height: 35px;
     margin: 0px;
     font-size: 16px;
@@ -455,4 +455,5 @@ transform: scaleX(1);
 
 #salle, #niveauUrgence {
     width: 25%;
+    text-align: center;
 }

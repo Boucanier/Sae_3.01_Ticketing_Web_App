@@ -43,9 +43,17 @@
             <div id="ticket_input">
                 <input type="text" id="libelle" name="libelle"/>
                 <br>
-                <input type="text" id="salle" name="salle"/>
+                <select id="salle" name="choix">
+                    <option value="I21">I21</option>
+                    <option value="G21">G21</option>
+                    <option value="G22">G22</option>
+                    <option value="G23">G23</option>
+                    <option value="G24">G24</option>
+                    <option value="G25">G25</option>
+                    <option value="G26">G26</option>
+                </select>
                 <br>
-                <input type="text" id="niveauUrgence" name="niveauUrgence"/>
+                <input type="number" id="niveauUrgence" name="niveauUrgence" max="4" min="1" value="1"/>
                 <br>
                 <textarea id="descriptionPrbl" name="descriptionPrbl" rows="5" cols="33"></textarea>
                 <br>
