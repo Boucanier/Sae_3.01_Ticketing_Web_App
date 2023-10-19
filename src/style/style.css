@@ -36,19 +36,14 @@ nav {
 }
 header > nav > div > a:hover, footer > a:hover {
     background-color: rgb(150, 205, 250);
-    border-radius: 100px;
-    transition: 0.5s;
+    border-radius: 20px;
+    transition: 0.15s;
 }
 
 header > nav > div > a:focus, footer > a:focus {
     background-color: rgb(150, 205, 250);
-    border-radius: 100px;
+    border-radius: 5px;
     border: none;
-}
-
-#nav1 > a:hover, #nav2 > a:hover, footer> a:hover {
-    background-color: rgb(150, 180, 250);
-    transition: 0.5s;
 }
 
 #nav1,#nav2{
@@ -67,14 +62,17 @@ header > nav > div > a:focus, footer > a:focus {
 #image1 {
     height: 100px;
     width: 100px;
+    margin-left: 10px;
 }
 
 #image2 {
     height: 70px;
     width: 150px;
+    margin-right: 10px;
 }
 
 footer {
+    margin-top: 70px;
     display: flex;
     justify-content: center;
     background-color: rgb(200, 250, 220);
