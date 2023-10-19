@@ -262,7 +262,7 @@ On peut représenter les différents cas d'utilisation et leur correspondances.
 
 ## La technologie employée
 
-Le site va être effectué en PHP, MySQL, HTML, CSS. Le serveur Apache2 devra tourner sur un système Linux installé sur un RasberryPi.
+Le site va être effectué en PHP, MySQL, HTML, CSS. Le serveur Apache2 devra tourner sur un système Linux installé sur un Raspberry Pi.
 Il faudra se connecter en ssh afin que les autres utilisateurs puissent accéder à la plateforme.
 Il y aura des pages web dynamiques et statiques se mettant à jour grâce à une base de données qui se remplit par
 l’intermédiaire des différentes actions des utilisateurs.
@@ -274,7 +274,7 @@ C'est à dire les pages HTML du site avec le fichier CSS associé. Le site sera 
 Ce premier livrable sera rendu pour le 22/10/2023.
 Le deuxième livrable contiendra le site web final en PHP avec le CSS correspondant, le serveur Apache2 fonctionnel et la base de données + le dossier de gestion des risques.
 Nous rendrons ce deuxième livrable le 05/11/2023
-Le troisième livrabre sera le RasberryPi contenant la carte SD sur laquelle sera configuré le serveur LAMP (Linux, Apache2, MySql, PHP).
+Le troisième livrabre sera le Raspberry Pi contenant la carte SD sur laquelle sera configuré le serveur LAMP (Linux, Apache2, MySql, PHP).
 Celui ci sera rendu le 12/11/2023
 Les participants au projet sont Jules Chiron, Matis Rodier, Thomas Godineau, Maxence Ouvrard. Nous privilégions
 l’accessibilité pour tous sur notre plateforme.
@@ -283,7 +283,7 @@ Nous allons devoir installer Apache, PHP, MySQL afin que la plateforme puisse fo
 De plus, le site doit ressembler aux maquettes que nous avons réalisées en amont.
 Ce projet est soumis à des dépendances client/utilisateurs car notre site dépend de la satisfaction de ces personnes .
 De plus ce projet à des dépendances techniques vis-à-vis de la base de données du site, la connexion au serveur Apache,
-l'accessibilité au RasberryPi sur lequel le serveur sera installé.
+l'accessibilité au Raspberry Pi sur lequel le serveur sera installé.
 
 ## Recours humain, questions juridiques, politiques, organisationnelles
 
