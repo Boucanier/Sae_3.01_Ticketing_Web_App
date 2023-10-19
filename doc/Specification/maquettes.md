@@ -12,7 +12,7 @@ Ce présent rapport a pour but de présenter les maquettes html du site web stat
 
 ## Méthode
 
-Nous avons d'abord commencé par réaliser des schémas de chaque page du site web pour chacune des maquettes (cf [schéma maquette 1](../annexes/figure_maquette_1.png), [schéma maquette 2](../annexes/figure_maquette_2.png)). Nous avons ensuite réalisé les maquettes html de chaque page.
+Nous avons d'abord commencé par réaliser des schémas de chaque page du site web pour chacune des maquettes (cf [schéma maquette 1](#fg1), [schéma maquette 2](#fg3)). Nous avons ensuite réalisé les maquettes html de chaque page.
 
 ## Présentation générale <a id="pre_generale"></a>
 
@@ -22,7 +22,7 @@ Le contenu des pages entre les maquettes est le même, seul le style et la dispo
 
 ### Tableaux <a id="tableaux"></a>
 
-Le contenu et les en-têtes du tableau diffèrent en fonction des utilisateurs. Ainsi, sur la page d'accueil, nous affichons les 10 derniers tickets encore ouvert (conformément au cahier des charges). Sur cette page, nous affichons le niveau d'urgence d'un ticket, la salle dans laquelle se trouve le problème, le titre du ticket, le demandeur et la date de création du ticket. De ce fait, cette page peut servir à n'importe quel utilisateur afin de ne pas créer de tickets en double.
+Le contenu et les en-têtes des tableaux diffèrent en fonction des utilisateurs. Ainsi, sur la page d'accueil, nous affichons les 10 derniers tickets encore ouvert (conformément au cahier des charges). Sur cette page, nous affichons le niveau d'urgence d'un ticket, la salle dans laquelle se trouve le problème, le titre du ticket, le demandeur et la date de création du ticket. De ce fait, cette page peut servir à n'importe quel utilisateur afin de ne pas créer de tickets en double.
 
 Sur le tableau de bord de l'utilisateur, nous affichons uniquement les tickets créés par l'utilisateur connecté. Nous n'affichons donc plus le demandeur d'un ticket. Cependant, nous avons ajouté un bouton à côté de chaque ligne (1 ligne = 1 ticket) pour afficher le détail d'un ticket. Ce bouton est un lien vers la page d'affichage d'un ticket.
 
@@ -66,3 +66,23 @@ Nous avons décider d'inclure la création de compte dans la même page que la p
 ### Contact
 
 La page contact contient deux textes avec chacun un lien. Le premier renvoie vers un client mail avec un message à remplir destiné à une adresse mail de contact. Le deuxième lien renvoie vers le dépôt github du projet.
+
+## Plan du site web
+
+Le plan du site web se trouve en [Figure 3](#fg3). Il représente la navigabilité entre les pages du site. Il contient les pages suivantes : [*index.html*](../../src/pages/index.html), [*dashboard.html*](../../src/pages/dashboard.html), [*ticket.html*](../../src/pages/ticket.html), [*ticket_details.html*](../../src/pages/ticket_details.html), [*profile.html*](../../src/pages/profile.html), [*contact.html*](../../src/pages/contact.html) et [*connection.html*](../../src/pages/connection.html).
+
+Les pages *index*, *dashboard*, *profile*, *connection* et *contact* sont accessibles toutes accessibles entre elles. Les pages *ticket* et *ticket_details* ont également accès à ces pages mais sont accessibles uniquement depuis la page *dashboard*.
+
+## Annexes
+
+<a id="fg1"></a>
+![figure_maquette_1](../annexes/figure_maquette_1.png)
+**Figure 1** : schéma de la maquette 1
+
+<a id="fg2"></a>
+![figure_maquette_2](../annexes/figure_maquette_2.png)
+**Figure 2** : schéma de la maquette 2
+
+<a id="fg3"></a>
+![figure_plan_maquette](../annexes/figure_plan_maquette.png)
+**Figure 3** : plan du site web
