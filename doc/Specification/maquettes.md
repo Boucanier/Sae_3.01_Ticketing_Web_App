@@ -16,13 +16,13 @@ Nous avons d'abord commencé par réaliser des schémas de chaque page du site w
 
 ## Présentation générale <a id="pre_generale"></a>
 
-Pour chacune des maquettes, nous avons décidé de proposer les pages qui concernent l'utilisateur (accueil, connexion, contact, tableau de bord, création de ticket, affichage de ticket, profil). En effet, les pages d'utilisateurs permettent de montrer différents éléments du site (tableaux, formulaires, textes). Afin de montrer toutes les mécaniques du site, nous avons mis dans le header à la fois le lien de connexion et de déconnexion (cela différera dans la version finale du projet). De même, nous avons ajouté des liens pour changer la langue et la police. Ces liens feront appel à des fichiers PHP dans le futur, pour l'instant il rafraîchissent uniquement la page.
+Pour chacune des maquettes, nous avons décidé de proposer les pages qui concernent l'utilisateur (accueil, connexion, contact, tableau de bord, création de ticket, affichage de ticket, profil). En effet, les pages d'utilisateurs permettent de montrer différents éléments du site (tableaux, formulaires, textes). Afin de montrer toutes les mécaniques du site, nous avons mis dans le header à la fois le lien de connexion et de déconnexion (cela différera dans la version finale du projet). De même, nous avons ajouté des liens pour changer la langue et la police. Ces liens feront appel à des fichiers PHP dans le futur, pour l'instant ils rafraîchissent uniquement la page.
 
 Le contenu des pages entre les maquettes est le même, seul le style et la disposition des éléments changent.
 
 ### Tableaux <a id="tableaux"></a>
 
-Le contenu et les en-têtes des tableaux diffèrent en fonction des utilisateurs. Ainsi, sur la page d'accueil, nous affichons les 10 derniers tickets encore ouvert (conformément au cahier des charges). Sur cette page, nous affichons le niveau d'urgence d'un ticket, la salle dans laquelle se trouve le problème, le titre du ticket, le demandeur et la date de création du ticket. De ce fait, cette page peut servir à n'importe quel utilisateur afin de ne pas créer de tickets en double.
+Le contenu et les en-têtes des tableaux diffèrent en fonction des utilisateurs. Ainsi, sur la page d'accueil, nous affichons les 10 derniers tickets encore ouverts (conformément au cahier des charges). Sur cette page, nous affichons le niveau d'urgence d'un ticket, la salle dans laquelle se trouve le problème, le titre du ticket, le demandeur et la date de création du ticket. De ce fait, cette page peut servir à n'importe quel utilisateur afin de ne pas créer de tickets en double.
 
 Sur le tableau de bord de l'utilisateur, nous affichons uniquement les tickets créés par l'utilisateur connecté. Nous n'affichons donc plus le demandeur d'un ticket. Cependant, nous avons ajouté un bouton à côté de chaque ligne (1 ligne = 1 ticket) pour afficher le détail d'un ticket. Ce bouton est un lien vers la page d'affichage d'un ticket.
 
@@ -31,11 +31,11 @@ Sur le tableau de bord de l'utilisateur, nous affichons uniquement les tickets c
 Le header contient le logo de l'application ainsi que celui de l'IUT de Vélizy.
 Pour un utilisateur connecté, il contient un lien vers la page d'accueil, un lien vers le tableau de bord, un lien vers la page de profil et un lien pour se déconnecter (renvoie vers la page d'accueil). Nous avons rajouté le lien vers la page de connexion (cf [Présentation générale](#pre_generale)).
 
-Pour la version finale du site, il est prévu de créer plusieurs header et d'afficher unuiquement celui qui concerne l'utilisateur actuellement connecté.
+Pour la version finale du site, il est prévu de créer plusieurs header et d'afficher uniquement celui qui concerne l'utilisateur actuellement connecté.
 
 ### Footer
 
-Le footer contient un lien vers la page de contact, un lien pour changer la langue et un lien pour appliquer une police adaptée aux personnes dyslexiques. Ces deux derniers liens n'ont pas encore de fonctionnalités mais servent à avoir une idée générale du site finale.
+Le footer contient un lien vers la page de contact, un lien pour changer la langue et un lien pour appliquer une police adaptée aux personnes dyslexiques. Ces deux derniers liens n'ont pas encore de fonctionnalités mais servent à avoir une idée générale du site final.
 
 ### Page d'accueil
 
@@ -59,9 +59,9 @@ La page de profil contient les informations de l'utilisateur. Ces informations s
 
 ### Connexion
 
-La page de connexion contient un formulaire pour se connecter. Ce formulaire contient un champ pour le login et un champ pour le mot de passe. Ce formulaire contient également un bouton pour envoyer le formulaire.Pour l'instant ce bouton renvoie vers le tableau de bord.
+La page de connexion contient un formulaire pour se connecter. Ce formulaire contient un champ pour le login et un champ pour le mot de passe. Ce formulaire contient également un bouton pour envoyer le formulaire. Pour l'instant, ce bouton renvoie vers le tableau de bord.
 
-Nous avons décider d'inclure la création de compte dans la même page que la page de connexion afin d'améliorer l'expérience utilisateur. Ainsi, nous avons ajouté un formulaire pour créer un compte. Les deux formulaires sont distinctement séparés (un contient une bordure). Le formulaire de création de compte contient un champ pour le nom, un champ pour le prénom, un champ pour le login, un champ pour le mot de passe, un champ pour confirmer le mot de passe et un bouton pour envoyer le formulaire. Pour l'instant ce bouton renvoie vers le tableau de bord.
+Nous avons décidé d'inclure la création de compte dans la même page que la page de connexion afin d'améliorer l'expérience utilisateur. Ainsi, nous avons ajouté un formulaire pour créer un compte. Les deux formulaires sont distinctement séparés (un contient une bordure). Le formulaire de création de compte contient un champ pour le nom, un champ pour le prénom, un champ pour le login, un champ pour le mot de passe, un champ pour confirmer le mot de passe et un bouton pour envoyer le formulaire. Pour l'instant, ce bouton renvoie vers le tableau de bord.
 
 ### Contact
 
