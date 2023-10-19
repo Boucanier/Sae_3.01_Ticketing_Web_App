@@ -87,6 +87,40 @@ main {
 #main_page {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+}
+
+#presentation {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin: 30px;
+    padding-left: 120px;
+}
+
+#texte_explicatif {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+}
+
+#video_explicative {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+}
+
+#iframe{
+    width: 100%;
+    max-width: 560px;
+    border: none;
+}
+
+#derniers_tickets {
+    align-self: center;
+    margin: 30px;
 }
 
 #profile_part1 {
