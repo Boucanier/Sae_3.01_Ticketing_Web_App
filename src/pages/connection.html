@@ -32,29 +32,33 @@
             <h2>Créer un compte</h2>
             <form action="dashboard.html" method="get">
                 <div class="user_info">
-                    <div class="form_group">
-                        <label for="login">Login&nbsp :</label>
+                    <div id="form_group_login">
+                        <label for="login">Login&nbsp;:</label>
                         <input type="text" id="login" name="login"/>
                     </div>
                     <br>
-                    <div class="form_group">
-                        <label for="name">Nom&nbsp :</label>
-                        <input type="text" id="name" name="name"/>
+                    <div id="name_f_name">
+                        <div id="form_group_name">
+                            <label for="name">Nom&nbsp;:</label>
+                            <input type="text" id="name" name="name"/>
+                        </div>
+                        <br>
+                        <div id="form_group_f_name">
+                            <label for="f_name">Prénom&nbsp;:</label>
+                            <input type="text" id="f_name" name="f_name"/>
+                        </div>
                     </div>
                     <br>
-                    <div class="form_group">
-                        <label for="f_name">Prénom&nbsp :</label>
-                        <input type="text" id="f_name" name="f_name"/>
-                    </div>
-                    <br>
-                    <div class="form_group">
-                        <label for="pwd">Mot de passe&nbsp :</label>
-                        <input type="password" id="pwd" name="pwd"/>
-                    </div>
-                    <br>
-                    <div class="form_group">
-                        <label for="conf_pwd">Confirmer le mot de passe :</label>
-                        <input type="password" id="conf_pwd" name="conf_pwd"/>
+                    <div id="pwd_conf_pwd">
+                        <div id="form_group_pwd">
+                            <label for="pwd">Mot de passe&nbsp;:</label>
+                            <input type="password" id="pwd" name="pwd"/>
+                        </div>
+                        <br>
+                        <div id="form_group_conf_pwd">
+                            <label for="conf_pwd">Confirmer le mot de passe :</label>
+                            <input type="password" id="conf_pwd" name="conf_pwd"/>
+                        </div>
                     </div>
                     <br>
                 </div>

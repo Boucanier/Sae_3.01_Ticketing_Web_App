@@ -79,7 +79,7 @@ footer {
     justify-content: center;
     background-color: rgb(200, 250, 220);
 }
-  
+
 main {
     padding: 10px
 }
@@ -157,6 +157,7 @@ input {
 
 .form_containers{
     display: flex;
+    flex-direction: row-reverse;
     align-content: center;
     align-items: center;
     justify-content: space-evenly;
@@ -171,7 +172,7 @@ input {
 .sign_up {
     width: 50%;
     border: solid black 1px;
-    padding: 2%;
+    padding: 1.5%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -186,16 +187,35 @@ input {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    width: 90%;
 }
 
-.form_group{
+#form_group_login{
     display: flex;
     flex-direction: row;
-    justify-content: right;
+    justify-content: center;
     align-items: center;
     margin-bottom: 3%;
-    margin-right: 40%;
-    width: 170%;
+    width: 150%;
+}
+
+#name_f_name, #pwd_conf_pwd{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 150%;
+    justify-content: center;
+}
+
+#name_f_name > div > input, #pwd_conf_pwd > div > input{
+    width: 90%;
+}
+
+#form_group_name, #form_group_f_name, #form_group_pwd, #form_group_conf_pwd{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
 }
 
 #login, #name, #f_name, #pwd, #conf_pwd{
@@ -369,25 +389,25 @@ th {
     color: #18272F;
     position: relative;
     text-decoration: none;
-  }
-  
-.link_on_page::before {
-content: '';
-position:absolute;
-width: 100%;
-height: 4px;
-border-radius: 4px;
-background-color: #18272F;
-bottom: 0;
-left: 0;
-transform-origin: right;
-transform: scaleX(0);
-transition: transform .3s ease-in-out;
 }
-  
+
+.link_on_page::before {
+    content: '';
+    position:absolute;
+    width: 100%;
+    height: 4px;
+    border-radius: 4px;
+    background-color: #18272F;
+    bottom: 0;
+    left: 0;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform .3s ease-in-out;
+}
+
 .link_on_page:hover::before {
-transform-origin: left;
-transform: scaleX(1);
+    transform-origin: left;
+    transform: scaleX(1);
 }
 
 #ticket_label{
