@@ -92,22 +92,23 @@ main {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    margin: 30px;
-    padding-left: 120px;
+    margin-bottom: 60px;
+    flex-wrap: wrap;
 }
 
 #texte_explicatif {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 50%;
+    width: 55em;
+    font-size: 20px;
 }
 
 #video_explicative {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 50%;
+    width: 45em;
 }
 
 #iframe{
@@ -401,7 +402,7 @@ th {
     color: #18272F;
     position: relative;
     text-decoration: none;
-  }
+}
   
 .link_on_page::before {
 content: '';
