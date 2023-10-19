@@ -354,12 +354,17 @@ th {
     background-color: #45a049;
 }
 
-#ticket_case_1 {
+.ticket_case_1 {
     background: linear-gradient(to bottom right, rgb(226, 226, 226),rgb(80, 200, 80));
     border-right: 1px solid black;
 }
 
-#ticket_case_2 {
+.ticket_case_2 {
+    background: linear-gradient(to bottom right, rgb(226, 226, 226),rgb(255, 240, 32));
+    border-right: 1px solid black;
+}
+
+.ticket_case_4 {
     background: linear-gradient(to bottom right, rgb(226, 226, 226),rgb(228, 78, 78));
     border-right: 1px solid black;
 }
