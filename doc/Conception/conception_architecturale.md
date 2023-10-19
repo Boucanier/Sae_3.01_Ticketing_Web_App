@@ -1,16 +1,12 @@
-![logo_uvsq](../annexes/logo_uvsq.png)
-
 # Conception architecturale
 
-**Godineau Thomas**
+![logo_uvsq](../annexes/logo_uvsq.png)
 
-**Rodier Matis**
+**Godineau Thomas**, **Rodier Matis**, **Chiron Jules**
 
-**Chiron Jules**
+## Site web
 
-**Ouvrard Maxence**
-
-La version V1 du projet contient le site web statique. Elle contient un ensemble de pages html,  une feuille de style CSS et des images.
+Le premier livrable du projet contient le site web statique. Elle contient un ensemble de pages html,  une feuille de style CSS et des images.
 On créé donc trois packages :
 
 - Pages html
@@ -21,6 +17,6 @@ On créé donc trois packages :
 
 Les pages html dépendent de la feuille de style et des images. On peut rassembler ces packages sous un grand package qu’on appelle site web. Cela est représenté par la figure 2.
 
-![figure2](../annexes/figure2.png)
+![figure2](../annexes/figure_conception_archi_web_static.png)
 
 **Figure 2** : Représentation de la conception architecturale
