@@ -41,21 +41,32 @@
                 <button style="min-width: 60%" id="account_sup">Supprimer le compte</button>
             </div>
         </div>
-        <form class="user_info" action="" method="get">
-            <label for="actual_pwd">Mot de passe actuel :</label>
-            <input type="password" id="actual_pwd" name="actual_pwd"/>
-            <br>
-            <label for="new_pwd">Nouveau mot de passe :</label>
-            <input type="password" id="new_pwd" name="new_pwd"/>
-            <br>
-            <label for="conf_pwd">Confirmer le nouveau mot de passe :</label>
-            <input type="password" id="conf_pwd" name="conf_pwd"/>
-            <br>
-            <div class="resetSubmitButtons">
-                <input class="reset_buttons" type="reset" value="Effacer">
-                <input class="submit_buttons" type="submit" value="Changer le mot de passe"  style="min-width: 250px">
-            </div>
-        </form>
+        <div id="profile_part2">
+            <h1>Modification du mot de passe</h1>
+            <form action="" method="get">
+                <div id="info_pwd">
+                    <div id="form_group_actual_pwd">
+                        <label for="actual_pwd">Mot de passe actuel&nbsp;:</label>
+                        <input type="password" id="actual_pwd" name="actual_pwd"/>
+                    </div>
+                    <br>
+                    <div id="form_group_new_pwd">
+                        <label for="new_pwd">Nouveau mot de passe&nbsp;:</label>
+                        <input type="password" id="new_pwd" name="new_pwd"/>
+                    </div>
+                    <br>
+                    <div id="form_group_conf_pwd">
+                        <label for="conf_pwd">Confirmer le nouveau mot de passe&nbsp;:</label>
+                        <input type="password" id="conf_pwd" name="conf_pwd"/>
+                    </div>
+                </div>
+                <br>
+                <div class="resetSubmitButtons">
+                    <input class="reset_buttons" type="reset" value="Effacer">
+                    <input class="submit_buttons" type="submit" value="Changer le mot de passe"  style="min-width: 250px">
+                </div>
+            </form>
+        </div>
     </div>
 </main>
 
