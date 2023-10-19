@@ -1,18 +1,19 @@
-![logo_uvsq](../annexes/logo_uvsq.png)
-
 # Recueil des besoins
 
-**Godineau Thomas**
+![logo_uvsq](../annexes/logo_uvsq.png)
 
-**Rodier Matis**
+**Godineau Thomas**, **Rodier Matis**, **Chiron Jules**
 
-**Chiron Jules**
+Groupe : **INF2 - FI A**
 
-**Ouvrard Maxence**
+## Objectif et portee
 
-L’objectif général de ce projet est la gestion d’un système de ticketing qui sera implémenté en PHP et MySQL. Il aura pour but de recueillir les demandes de dépannage de différents utilisateurs dans les salles de l'établissement. La plateforme de ticketing devra être accessible par l’intermédiaire de n’importe quel autre poste de l’IUT. Nous devons réaliser cette plateforme par groupe de quatre. Le projet doit  être complètement fini et déposé en janvier.
+L’objectif général de ce projet est la gestion d’un système de ticketing qui sera implémenté en PHP et MySQL.
+Il aura pour but de recueillir les demandes de dépannage de différents utilisateurs dans les salles de l'établissement.
+La plateforme de ticketing devra être accessible par l’intermédiaire de n’importe quel autre poste de l’IUT.
+Nous devons réaliser cette plateforme par groupe de quatre. Le projet doit  être complètement fini et déposé en janvier.
 
-## Liste des acteurs, objets et actions
+### Liste des acteurs, objets et actions
 
 | Acteurs               | Objets                           | Actions                                                          |
 |-----------------------|----------------------------------|------------------------------------------------------------------|
@@ -49,7 +50,7 @@ L’objectif général de ce projet est la gestion d’un système de ticketing 
 |                       | dépôt distant                    |                                                                  |
 |                       | code                             |                                                                  |
 |                       | nature du problème               |                                                                  |
-|                       | _salle du problème_              |                                                                  |
+|                       | salle d'où vient le problème     |                                                                  |
 
 ## Glossaire
 
@@ -100,7 +101,9 @@ Ce glossaire défini les mots complexes utilisés dans le cahier des charges.
 | Supprimer un compte       |
 | Afficher un page          |
 
-![figure_1](../annexes/figure1.png)
+On peut représenter les différents cas d'utilisation et leur correspondances.
+
+![figure1](../annexes/figure_cas_utilisation.png)
 
 **Figure 1** : Représentation des cas d'utilisation
 
@@ -259,18 +262,52 @@ Ce glossaire défini les mots complexes utilisés dans le cahier des charges.
 
 ## La technologie employée
 
-Le site va être effectué en PHP, MySQL, HTML, CSS. Le serveur pourra tourner sur un système Linux. Il faudra se connecter en ssh afin que les autres utilisateurs puissent accéder à la plateforme. Il y aura des pages web dynamiques dans et statiques se mettant à jour grâce à une base de données qui se remplit par l’intermédiaire des différentes actions des utilisateurs.
+Le site va être effectué en PHP, MySQL, HTML, CSS. Le serveur Apache2 devra tourner sur un système Linux installé sur un Raspberry Pi.
+Il faudra se connecter en ssh afin que les autres utilisateurs puissent accéder à la plateforme.
+Il y aura des pages web dynamiques et statiques se mettant à jour grâce à une base de données qui se remplit par
+l’intermédiaire des différentes actions des utilisateurs.
 
 ## Autres exigences
 
-Les participants au projet sont Jules Chiron, Matis Rodier, Thomas Godineau, Maxence Ouvrard. Nous privilégions l’accessibilité pour tous sur notre plateforme. Nous souhaitons que les utilisateurs trouvent des réponses aux problèmes qu’ils rencontrent le plus efficacement et rapidement possible. Nous allons devoir installer Apache, PHP, MySQL afin que la plateforme puisse fonctionner correctement. De plus, le site doit ressembler plus ou moins aux maquettes que nous avons réalisées en amont. Ce projet est soumis à des dépendances client/utilisateurs car notre site dépend de la satisfaction de ces personnes. De plus ce projet à des dépendances techniques vis-à-vis de la base de données du site.
+Nous alons rendre un premier livrable contenant le site web static.
+C'est à dire les pages HTML du site avec le fichier CSS associé. Le site sera navigable mais on ne pourra interagir avec le site.
+Ce premier livrable sera rendu pour le 22/10/2023.
+Le deuxième livrable contiendra le site web final en PHP avec le CSS correspondant, le serveur Apache2 fonctionnel et la base de données + le dossier de gestion des risques.
+Nous rendrons ce deuxième livrable le 05/11/2023
+Le troisième livrabre sera le Raspberry Pi contenant la carte SD sur laquelle sera configuré le serveur LAMP (Linux, Apache2, MySql, PHP).
+Celui ci sera rendu le 12/11/2023
+Les participants au projet sont Jules Chiron, Matis Rodier, Thomas Godineau, Maxence Ouvrard. Nous privilégions
+l’accessibilité pour tous sur notre plateforme.
+Nous souhaitons que les utilisateurs trouvent des réponses aux problèmes qu’ils rencontrent le plus efficacement et rapidement possible.
+Nous allons devoir installer Apache, PHP, MySQL afin que la plateforme puisse fonctionner correctement.
+De plus, le site doit ressembler aux maquettes que nous avons réalisées en amont.
+Ce projet est soumis à des dépendances client/utilisateurs car notre site dépend de la satisfaction de ces personnes .
+De plus ce projet à des dépendances techniques vis-à-vis de la base de données du site, la connexion au serveur Apache,
+l'accessibilité au Raspberry Pi sur lequel le serveur sera installé.
 
 ## Recours humain, questions juridiques, politiques, organisationnelles
 
-Comme nous l'avons vu précédemment, l'équipe de développement se compose de quatre personnes. Ils ont pour objectif de réaliser le projet dans son intégralité, c'est-à-dire la rédaction du cahier des charges, la création du serveur, de la base de données, des pages web, du logo,... Leur objectif est donc de fournir le produit afin que les utilisateurs puissent l'utiliser de manière correcte et simple. Il existe une autre catégorie de personnes dans le recours humain au fonctionnement de ce projet. En effet, il s'agit d'une plateforme de ticketing, alors le produit fini ne peut vivre sans les utilisateurs finaux. Parmi eux, nous retrouvons les visiteurs qui consultent le site, les utilisateurs qui utilisent le site en créant des tickets, l'administrateur système qui peut accéder au journal d'activité et l'administrateur web qui peut gérer les informations liées aux tickets. Il s'agit donc d'une plateforme qui doit être utilisée quotidiennement par les utilisateurs finaux afin qu'elle soit utile.
-
-Notre plateforme, utilisant des données utilisateurs, se doit d'être conforme à certaines règles. En effet, les développeurs se doivent de créer une plateforme sécurisée afin que les données soient protégées. Tout d'abord, ce projet est réalisé en France et doit donc respecter la vie privée des utilisateurs. Pour ce faire, le projet doit respecter la norme RGPD. Ensuite, les mots de passe utilisateurs devront être enregistrés avec un format md5 par exemple, pour qu'aucune personne n'ait accès aux mots de passe en clair, que ce soit les développeurs, les différents administrateurs de l'application ou encore de personnes mal intentionnées. Enfin, le projet se doit d'être accessible à tous. En effet, depuis quelques années, la France a une loi qui oblige les développeurs à réaliser leurs sites et applications avec des normes d'accessibilité.
-
-La création d'une telle application web va avoir des impacts sur les différents utilisateurs qui l'utilisent. En effet, l'introduction de cet outil dans l'enceinte de l'IUT va demander un changement d'habitudes pour les élèves ou professeurs (qui seront des utilisateurs) car pour le bon fonctionnement de celle-ci, il faudra une connexion fréquente afin de reporter les différents problèmes ainsi que de voir leur état d'avancement. Pour les deux administrateurs, il leur faudra aussi utiliser très fréquemment cette application afin de répondre aux utilisateurs. De plus, il leur faudra apprendre à utiliser l'application, même si celle-ci se veut simple d'accès. Pour le bon fonctionnement, il faut que cette application soit déployable sur l'ensemble du parc informatique de l'IUT.
-
+Comme nous l'avons vu précédemment, l'équipe de développement se compose de quatre personnes. 
+Ils ont pour objectif de réaliser le projet dans son intégralité, c'est-à-dire la rédaction du cahier des charges,
+la création du serveur, de la base de données, des pages web, du logo,... 
+Leur objectif est donc de fournir le produit afin que les utilisateurs puissent l'utiliser de manière correcte et simple.
+Il existe une autre catégorie de personnes dans le recours humain au fonctionnement de ce projet.
+En effet, il s'agit d'une plateforme de ticketing, alors le produit fini ne peut vivre sans les utilisateurs finaux.
+Parmi eux, nous retrouvons les visiteurs qui consultent le site, les utilisateurs qui utilisent le site en créant des tickets,
+l'administrateur système qui peut accéder au journal d'activité et l'administrateur web qui peut gérer les informations liées aux tickets.
+Il s'agit donc d'une plateforme qui doit être utilisée quotidiennement par les utilisateurs finaux afin qu'elle soit utile.
+Notre plateforme, utilisant des données utilisateurs, se doit d'être conforme à certaines règles.
+En effet, les développeurs se doivent de créer une plateforme sécurisée afin que les données soient protégées.
+Tout d'abord, ce projet est réalisé en France et doit donc respecter la vie privée des utilisateurs.
+Pour ce faire, le projet doit respecter la norme RGPD. Ensuite, les mots de passe utilisateurs devront être enregistrés avec un format md5 par exemple,
+pour qu'aucune personne n'ait accès aux mots de passe en clair, que ce soit les développeurs,
+les différents administrateurs de l'application ou encore de personnes mal intentionnées.
+Enfin, le projet se doit d'être accessible à tous. En effet, depuis quelques années,
+la France a une loi qui oblige les développeurs à réaliser leurs sites et applications avec des normes d'accessibilité.
+La création d'une telle application web va avoir des impacts sur les différents utilisateurs qui l'utilisent.
+En effet, l'introduction de cet outil dans l'enceinte de l'IUT va demander un changement d'habitudes pour les élèves ou professeurs (qui seront des utilisateurs)
+car pour le bon fonctionnement de celle-ci, il faudra une connexion fréquente afin de reporter les différents problèmes ainsi que de voir leur état d'avancement.
+Pour les deux administrateurs, il leur faudra aussi utiliser très fréquemment cette application afin de répondre aux utilisateurs.
+De plus, il leur faudra apprendre à utiliser l'application, même si celle-ci se veut simple d'accès.
+Pour le bon fonctionnement, il faut que cette application soit déployable sur l'ensemble du parc informatique de l'IUT.
 Pour que chaque utilisateur puisse utiliser le site correctement, une vidéo explicative sera réalisée afin d'expliquer de manière claire et simple le fonctionnement correct de l'application.
