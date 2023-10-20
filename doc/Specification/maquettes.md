@@ -85,4 +85,4 @@ Les pages *index*, *dashboard*, *profile*, *connection* et *contact* sont access
 
 <a id="fg3"></a>
 ![figure_plan_maquette](../annexes/figure_plan_maquette.png)
-**Figure 3** : plan du site web
+**Figure 3** : [plan du site web](../annexes/figure_plan_maquette.png)
