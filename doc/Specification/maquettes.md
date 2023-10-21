@@ -14,11 +14,15 @@ Ce présent rapport a pour but de présenter les maquettes html du site web stat
 
 Nous avons d'abord commencé par réaliser des schémas de chaque page du site web pour chacune des maquettes (cf [schéma maquette 1](#fg1), [schéma maquette 2](#fg3)). Nous avons ensuite réalisé les maquettes html de chaque page.
 
+Les tests d'acceptation ont été réalisés en comparant les schémas de maquettes avec les pages html (cf [Rapport de tests d'acceptation](../Tests/tests_acceptation.md)).
+
 ## Présentation générale <a id="pre_generale"></a>
 
 Pour chacune des maquettes, nous avons décidé de proposer les pages qui concernent l'utilisateur (accueil, connexion, contact, tableau de bord, création de ticket, affichage de ticket, profil). En effet, les pages d'utilisateurs permettent de montrer différents éléments du site (tableaux, formulaires, textes). Afin de montrer toutes les mécaniques du site, nous avons mis dans le header à la fois le lien de connexion et de déconnexion (cela différera dans la version finale du projet). De même, nous avons ajouté des liens pour changer la langue et la police. Ces liens feront appel à des fichiers PHP dans le futur, pour l'instant ils rafraîchissent uniquement la page.
 
 Le contenu des pages entre les maquettes est le même, seul le style et la disposition des éléments changent.
+
+La maquette html 1 se trouvent dans le dossier [src](../../src) et la maquette html 2 se trouvent dans le dossier [src2](../../src2).
 
 ### Tableaux <a id="tableaux"></a>
 
