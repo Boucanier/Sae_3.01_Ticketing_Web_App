@@ -4,6 +4,8 @@
 
 **Godineau Thomas**, **Rodier Matis**, **Chiron Jules**
 
+Groupe : **INF2 - FI A**
+
 ## Site web
 
 Nous avons dans la conception architecturale défini 3 composants :

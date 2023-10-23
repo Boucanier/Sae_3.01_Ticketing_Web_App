@@ -4,6 +4,8 @@
 
 **Godineau Thomas**, **Rodier Matis**, **Chiron Jules**
 
+Groupe : **INF2 - FI A**
+
 ## Introduction
 
 Nous choisissons de représenter la conception architecturale du projet par une vue composant-connecteur.
