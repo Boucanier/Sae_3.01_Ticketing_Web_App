@@ -2,7 +2,7 @@
 
 ![logo_uvsq](../annexes/logo_uvsq.png)
 
-**Godineau Thomas**, **Rodier Matis**, **Chiron Jules**
+**Godineau Thomas**, **Rodier Matis**, **Chiron Jules**, **Ouvrard Maxence**
 
 Groupe : **INF2 - FI A**
 

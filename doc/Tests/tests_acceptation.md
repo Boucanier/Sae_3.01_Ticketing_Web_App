@@ -12,7 +12,7 @@ Ce présent rapport a pour but de comparer le schéma des maquettes html avec le
 
 ## Comparaison
 
-Toutes les captures d'écran se trouvent en annexes. Pour chaque élément, la schéma de la maquette précède la capture d'écran de la page html afin de pouvoir les comparer. Les couleurs et les logos ont été choisis en lien avec la charte [graphique](chemin_charte_graphique).
+Toutes les captures d'écran se trouvent en annexes. Pour chaque élément, la schéma de la maquette précède la capture d'écran de la page html afin de pouvoir les comparer. Les couleurs et les logos ont été choisis en lien avec la [charte graphique](../Specification/charte_graphique.md).
 
 ### Maquette 1
 
