@@ -88,11 +88,11 @@ Nous allons donc employer un langage qui sera accessible à tous, sans employer 
 
 ![logo1_couleur](../annexes/logo1_couleur.png)
 
-Figure1 : Logo 1 en couleur
+**Figure 1** : Logo 1 en couleur
 
 ![logo1_couleur](../annexes/logo1_nb.png)
 
-Figure2 : Logo 1 en noir et blanc
+**Figure 2** : Logo 1 en noir et blanc
 
 Le premier logo est un logo au format carré réalisé grâce à la plateforme de conception graphique Canva.
 Il s'agit d'un logo sous la forme de pictogramme, cela veut dire qu'il s'agit d'un logo qui représente un véritable objet ou un dessin schématique le représentant.
@@ -129,11 +129,11 @@ Pour conclure nous avons vu que ce logo a donc pour but de respecter la charte  
 
 ![logo2_nb](../annexes/logo2_nb.png)
 
-Figure3 : Logo 2 en noir et blanc
+**Figure 3** : Logo 2 en noir et blanc
 
 ![logo2_couleur](../annexes/logo2_couleur.png)
 
-Figure4 : Logo 2 en couleur
+**Figure 4** : Logo 2 en couleur
 
 Continuons avec le deuxième logo. Pour celui-ci nous avons également utilisé le site Web Canva afin de le réaliser.
 Il s'agit également d'un logo pictogramme, mais aussi typographique avec le mot ticket d’écrit dessus.

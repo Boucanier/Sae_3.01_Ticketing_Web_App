@@ -22,6 +22,6 @@ On crée donc trois packages :
 
 Les pages html dépendent de la feuille de style et des images. On peut rassembler ces packages sous un grand package qu’on appelle site web. Cela est représenté par la figure 2.
 
-![figure2](../annexes/figure_conception_archi_web_statique.png)
+![figure1](../annexes/figure_conception_archi_web_statique.png)
 
-**Figure 2** : Représentation de la conception architecturale
+**Figure 1** : Représentation de la conception architecturale
