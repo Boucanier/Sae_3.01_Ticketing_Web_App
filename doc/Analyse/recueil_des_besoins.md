@@ -6,7 +6,7 @@
 
 Groupe : **INF2 - FI A**
 
-## Objectif et portee
+## Objectif et portée
 
 L’objectif général de ce projet est la gestion d’un système de ticketing qui sera implémenté en PHP et MySQL.
 Il aura pour but de recueillir les demandes de dépannage de différents utilisateurs dans les salles de l'établissement.
@@ -19,7 +19,7 @@ Nous devons réaliser cette plateforme par groupe de quatre. Le projet doit  êt
 |-----------------------|----------------------------------|------------------------------------------------------------------|
 | étudiants             | Application web                  | Formuler des demandes                                            |
 | professeurs           | plateforme de tickecting         | Accueillir les users                                             |
-| utilisateurs          | page d'acueil                    | ~~proposer texte explicatif~~                                    |
+| utilisateurs          | page d'accueil                   | ~~proposer texte explicatif~~                                    |
 | admin système         | texte explicatif                 | consulter différentes demandes                                   |
 | admin web             | tableau de bord                  | visualiser 10 dernières demandes                                 |
 | techniciens           | demandes                         | s'inscrire sur la plateforme                                     |
@@ -54,7 +54,7 @@ Nous devons réaliser cette plateforme par groupe de quatre. Le projet doit  êt
 
 ## Glossaire
 
-Ce glossaire défini les mots complexes utilisés dans le cahier des charges.
+Ce glossaire définit les mots complexes utilisés dans le cahier des charges.
 
 | Mot                     | Définition                                                                                                                                                                           |
 |-------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -109,22 +109,22 @@ On peut représenter les différents cas d'utilisation et leur correspondances.
 
 ### Niveau Sous-fonction
 
-| Cas d'ulilisation 1 : Se connecter                                                                                                                                                                                                                                                                                                                                                                                                        |
+| Cas d'utilisation 1 : Se connecter                                                                                                                                                                                                                                                                                                                                                                                                        |
 |-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Nom** : Se connecter                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | **Portée** : Application Web                                                                                                                                                                                                                                                                                                                                                                                                              |
 | **Niveau** : Sous-fonction                                                                                                                                                                                                                                                                                                                                                                                                                |
-| **Acteurs Principaux** : Utilisateur, Aministrateur Web                                                                                                                                                                                                                                                                                                                                                                                   |
+| **Acteurs Principaux** : Utilisateur, Administrateur Web                                                                                                                                                                                                                                                                                                                                                                                   |
 | **Scénario nominal** :<ol><li>L'utilisateur entre son login et son mot de passe</li><li>Récupérer les données et chercher dans la base de données</li><li>Récupérer le statut de l'utilisateur</li><li>Redirige vers la page correspondante</li></ol>                                                                                                                                                                                     |
-| **Extension** :<ul><li>Si les informations données correspondent à un administrateur web<ul><li>Redirection vers la page administrateur web</li></ul></li><li>Si les informations données correspondent à un utilisateur<ul><li>Redirection vers la page d'accueil en étant conneté</li></ul></li><li>Si les informations données sont incorrectes<ul><li>Redirection vers la page d'accueil avec un message d'erreur</li></ul></li></ul> |
+| **Extension** :<ul><li>Si les informations données correspondent à un administrateur web<ul><li>Redirection vers la page administrateur web</li></ul></li><li>Si les informations données correspondent à un utilisateur<ul><li>Redirection vers la page d'accueil en étant connecté</li></ul></li><li>Si les informations données sont incorrectes<ul><li>Redirection vers la page d'accueil avec un message d'erreur</li></ul></li></ul> |
 
-| Cas d'ulilisation 2 : Se déconnecter                                                                                                                           |
+| Cas d'utilisation 2 : Se déconnecter                                                                                                                           |
 |----------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Nom** : Se déconnecter                                                                                                                                       |
 | **Portée** : Application Web                                                                                                                                   |
 | **Niveau** : Sous-fonction                                                                                                                                     |
-| **Acteurs Principaux** : Utilisateur, Aministrateur Web                                                                                                        |
-| **Scénario** : <ol><li>L'acteur clique sur le boutton "se déconnecter"</li><li>Redirige sur la page d'accueil avec le message "déconnection réussie"</li></ol> |
+| **Acteurs Principaux** : Utilisateur, Administrateur Web                                                                                                        |
+| **Scénario** : <ol><li>L'acteur clique sur le bouton "se déconnecter"</li><li>Redirige sur la page d'accueil avec le message "déconnexion réussie"</li></ol> |
 
 | Cas d'utilisation 3 : Changer de mot de passe                                                                                                                                                 |
 |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -133,7 +133,7 @@ On peut représenter les différents cas d'utilisation et leur correspondances.
 | **Niveau** : Sous-fonction                                                                                                                                                                    |
 | **Acteurs principaux** : Utilisateur                                                                                                                                                          |
 | **Scénario** : <ol><li>L'utilisateur remplit les champs pour pouvoir changer son mot de passe</li><li>Change dans la base de données le mot de passe de l'utilisateur correspondant</li></ol> |
-| **Extensions** : <ul><li>Si les données ne sont pas correctes<ul><li>Ne modifie pas la base de données et renvoie un message d'eereur</li></ul></li></ul>                                     |
+| **Extensions** : <ul><li>Si les données ne sont pas correctes<ul><li>Ne modifie pas la base de données et renvoie un message d'erreur</li></ul></li></ul>                                     |
 
 | Cas d'utilisation 4 : Supprimer un compte                                                            |
 |------------------------------------------------------------------------------------------------------|
@@ -159,7 +159,7 @@ On peut représenter les différents cas d'utilisation et leur correspondances.
 | **Portée** : Base de donnée                                                                                                                                                      |
 | **Niveau** : Utilisateur                                                                                                                                                         |
 | **Acteurs principaux** : Utilisateur                                                                                                                                             |
-| **Scénario** : <ol><li>L'utilisateur se connecte</li><li>Il remplie les champs nécessaire à la création d'un ticket</li><li>Creation du ticket dans la base de données</li></ol> |
+| **Scénario** : <ol><li>L'utilisateur se connecte</li><li>Il remplit les champs nécessaire à la création d'un ticket</li><li>Création du ticket dans la base de données</li></ol> |
 
 | Cas d'utilisation 7 : Accéder à son profil                                                                                                                                                                                                                 |
 |------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -167,7 +167,7 @@ On peut représenter les différents cas d'utilisation et leur correspondances.
 | **Portée** : Application web                                                                                                                                                                                                                               |
 | **Niveau** : Utilisateur                                                                                                                                                                                                                                   |
 | **Acteurs principaux** : Utilisateur                                                                                                                                                                                                                       |
-| **Scénario** : <ol><li>L'utilisateur se connecte</li><li>Il peut changer son mot de passe</li><li>Il peut acceder à son tableau de bord</li><li>Il peut creer un ticket</li><li>Il peut supprimer son compte</li><li>L'utilisateur se déconnecte</li></li> |
+| **Scénario** : <ol><li>L'utilisateur se connecte</li><li>Il peut changer son mot de passe</li><li>Il peut accéder à son tableau de bord</li><li>Il peut créer un ticket</li><li>Il peut supprimer son compte</li><li>L'utilisateur se déconnecte</li></li> |
 
 | Cas d'utilisation 8 : Afficher les tickets                                                                                                                                     |
 |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -184,7 +184,7 @@ On peut représenter les différents cas d'utilisation et leur correspondances.
 | **Portée** : Base de donnée                                                                                                                                      |
 | **Niveau** : Utilisateur                                                                                                                                         |
 | **Acteurs principaux** : Administrateur web                                                                                                                      |
-| **Scénario** : <ol><li>L'administrateur se connecte</li><li>L'administrateur web peut modifier les libéllés</li><li>L'administrateur web se déconnecte</li></ol> |
+| **Scénario** : <ol><li>L'administrateur se connecte</li><li>L'administrateur web peut modifier les libellés</li><li>L'administrateur web se déconnecte</li></ol> |
 
 | Cas d'utilisation 10 : Gérer status tickets                                                                                                                              |
 |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -232,7 +232,7 @@ On peut représenter les différents cas d'utilisation et leur correspondances.
 | **Portée** : Base de données                                                                                                                                                                                                                  |
 | **Niveau** : Utilisateur                                                                                                                                                                                                                      |
 | **Acteurs principaux** : Administrateur web, techniciens                                                                                                                                                                                      |
-| **Scénario** : <ol><li>L'administrateur ou le technicien se connecte</li><li>L'administrateur web peut attribuer un ticket à un technice ou celui-ci peut s'en attribuer un</li><li>L'administrateur ou le technicien se déconnecte</li></ol> |
+| **Scénario** : <ol><li>L'administrateur ou le technicien se connecte</li><li>L'administrateur web peut attribuer un ticket à un technicien ou celui-ci peut s'en attribuer un</li><li>L'administrateur ou le technicien se déconnecte</li></ol> |
 
 ### Niveau stratégique
 
@@ -249,7 +249,7 @@ On peut représenter les différents cas d'utilisation et leur correspondances.
 | **Nom** : Configuration du système                                                                                                                                                                                            |
 | **Portée** : Base de donnée                                                                                                                                                                                                   |
 | **Niveau** : Stratégique                                                                                                                                                                                                      |
-| **Acteurs principaux** : Administrateur sysème                                                                                                                                                                                |
+| **Acteurs principaux** : Administrateur système                                                                                                                                                                                |
 | **Scénario** : <ol><li>L'administrateur système se connecte</li><li>Il gère la base de données de l'application web</li><li>Il gère l'administration réseau du serveur</li><li>Il consulte les journaux d'activités</li></ol> |
 
 | Cas d'utilisation 18 : Gérer les tickets                                                                                                                                                                                                                                                                                      |
@@ -258,7 +258,7 @@ On peut représenter les différents cas d'utilisation et leur correspondances.
 | **Portée** : Base de donnée                                                                                                                                                                                                                                                                                                   |
 | **Niveau** : Stratégique                                                                                                                                                                                                                                                                                                      |
 | **Acteurs principaux** : Utilisateur, Administrateur web                                                                                                                                                                                                                                                                      |
-| **Scénario** : <ol><li>L'utilisateur ou l'administrateur web se connecte</li><li>L'utilisateur peut créer un ticket</li><li>L'administrateur web peut : <ul><li>Définir les niveaux d'urgence</li><li>Affecter les ticket aux techniciens</li><li>Gérer les status des tickets</li><li>Gérer les libéllés</li></ul></li></ol> |                               |
+| **Scénario** : <ol><li>L'utilisateur ou l'administrateur web se connecte</li><li>L'utilisateur peut créer un ticket</li><li>L'administrateur web peut : <ul><li>Définir les niveaux d'urgence</li><li>Affecter les tickets aux techniciens</li><li>Gérer les statuts des tickets</li><li>Gérer les libellés</li></ul></li></ol> |                               |
 
 ## La technologie employée
 
@@ -269,12 +269,12 @@ l’intermédiaire des différentes actions des utilisateurs.
 
 ## Autres exigences
 
-Nous alons rendre un premier livrable contenant le site web static.
-C'est à dire les pages HTML du site avec le fichier CSS associé. Le site sera navigable mais on ne pourra interagir avec le site.
+Nous allons rendre un premier livrable contenant le site web static.
+C'est-à-dire les pages HTML du site avec le fichier CSS associé. Le site sera navigable mais on ne pourra interagir avec le site.
 Ce premier livrable sera rendu pour le 22/10/2023.
 Le deuxième livrable contiendra le site web final en PHP avec le CSS correspondant, le serveur Apache2 fonctionnel et la base de données + le dossier de gestion des risques.
 Nous rendrons ce deuxième livrable le 05/11/2023
-Le troisième livrabre sera le Raspberry Pi contenant la carte SD sur laquelle sera configuré le serveur LAMP (Linux, Apache2, MySql, PHP).
+Le troisième livrable sera le Raspberry Pi contenant la carte SD sur laquelle sera configuré le serveur LAMP (Linux, Apache2, MySql, PHP).
 Celui ci sera rendu le 12/11/2023
 Les participants au projet sont Jules Chiron, Matis Rodier, Thomas Godineau, Maxence Ouvrard. Nous privilégions
 l’accessibilité pour tous sur notre plateforme.
@@ -287,9 +287,9 @@ l'accessibilité au Raspberry Pi sur lequel le serveur sera installé.
 
 ## Recours humain, questions juridiques, politiques, organisationnelles
 
-Comme nous l'avons vu précédemment, l'équipe de développement se compose de quatre personnes. 
+Comme nous l'avons vu précédemment, l'équipe de développement se compose de quatre personnes.
 Ils ont pour objectif de réaliser le projet dans son intégralité, c'est-à-dire la rédaction du cahier des charges,
-la création du serveur, de la base de données, des pages web, du logo,... 
+la création du serveur, de la base de données, des pages web, du logo,...
 Leur objectif est donc de fournir le produit afin que les utilisateurs puissent l'utiliser de manière correcte et simple.
 Il existe une autre catégorie de personnes dans le recours humain au fonctionnement de ce projet.
 En effet, il s'agit d'une plateforme de ticketing, alors le produit fini ne peut vivre sans les utilisateurs finaux.

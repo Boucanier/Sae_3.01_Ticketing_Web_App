@@ -12,7 +12,7 @@ Effectivement, cette vue est la plus adaptée pour un site web car chaque compos
 ## Site web
 
 Le premier livrable du projet contient le site web statique. Elle contient un ensemble de pages html,  une feuille de style CSS et des images.
-On créé donc trois packages :
+On crée donc trois packages :
 
 - Pages html : abstraction des pages html de la maquette
 

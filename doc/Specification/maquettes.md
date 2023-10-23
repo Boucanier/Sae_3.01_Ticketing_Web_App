@@ -22,7 +22,7 @@ Pour chacune des maquettes, nous avons décidé de proposer les pages qui concer
 
 Le contenu des pages entre les maquettes est le même, seul le style et la disposition des éléments changent.
 
-La maquette html 1 se trouvent dans le dossier [src](../../src) et la maquette html 2 se trouvent dans le dossier [src2](../../src2).
+La maquette html 1 se trouve dans le dossier [src](../../src) et la maquette html 2 se trouve dans le dossier [src2](../../src2).
 
 ### Tableaux <a id="tableaux"></a>
 
