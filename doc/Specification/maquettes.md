@@ -77,6 +77,10 @@ Le plan du site web se trouve en [Figure 3](#fg3). Il représente la navigabilit
 
 Les pages *index*, *dashboard*, *profile*, *connection* et *contact* sont accessibles toutes accessibles entre elles. Les pages *ticket* et *ticket_details* ont également accès à ces pages mais sont accessibles uniquement depuis la page *dashboard*.
 
+## Conclusion
+
+Nous choisissons la maquette 1 pour la version finale du site web. En effet, nous trouvons cette maquette plus jolie et plus agréable à utiliser.
+
 ## Annexes
 
 <a id="fg1"></a>
