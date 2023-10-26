@@ -10,20 +10,18 @@ Groupe : **INF2 - FI A**
 
 Nous choisissons de représenter la conception architecturale du projet par une vue composant-connecteur.
 Effectivement, cette vue est la plus adaptée pour un site web car chaque composant représente un type de donnée.
+Nous rappelons que dans cette version, nous n'avons pas installé le serveur sur le RaspberryPi. 
 
-## Site web
+## Projet global
 
-Le premier livrable du projet contient le site web statique. Elle contient un ensemble de pages html,  une feuille de style CSS et des images.
-On crée donc trois packages :
+Tout d'abord nous allons réaliser la conception architecturale du projet dans sa globalité (hors installation sur RaspberryPi).
+Nous devons réfléchir à quels sont les grands objets du projets.
 
-- Pages html : abstraction des pages html de la maquette
+Nous définissons 4 grands objets : 
 
-- Feuille css : abstraction de la feuille de style de la maquette
+- Le **navigateur internet** : biais par lequel l'utilisateur va acceder au site web.
+- La **base de données** : base de données ***MySql*** permettant de stocker toutes les données relatives aux tickets et aux utilisateurs
+- Le **site web** : site web ***PHP*** qui sera le corps de l'application
+- Le **serveur** : serveur ***Apache2*** qui fera la connexion entre la base de données, le navigateur du client et le site web
 
-- Images : abstraction des images utilisées sur le site
-
-Les pages html dépendent de la feuille de style et des images. On peut rassembler ces packages sous un grand package qu’on appelle site web. Cela est représenté par la figure 2.
-
-![figure1](../annexes/figure_conception_archi_web_statique.png)
-
-**Figure 1** : Représentation de la conception architecturale
+Maintenant que nous avons nos objets, nous devons définir les relations ces grands objets.
