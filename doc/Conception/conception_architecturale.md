@@ -56,6 +56,15 @@ Les relations entre ces objets sont :
 
 On représente cela par le diagramme suivant : <a href='#figure3'>figure 3</a>.
 
+## Diagramme de déploiement
+
+Pour réaliser le diagramme de déploiement, nous devons définir les différents nœuds. Dans cette version 0.2, nous installons le serveur sur un ordinateur de l'IUT.
+
+- **Ordinateur 1** : Un ordinateur sur lequel sera installée la base de données, le site web et le serveur Apache2.
+- **Ordinateur 2** : Un ordinateur sur lequel est installé un navigateur web et qui est connecté au réseau de l'IUT. 
+
+On obtient don le diagramme de déploiement suivant : <a href='#figure4'>figure 4</a>.
+
 ## Annexes
 
 <img alt="figure1" id="figure1" src="../annexes/figure_conception_globale.png">
@@ -69,3 +78,7 @@ On représente cela par le diagramme suivant : <a href='#figure3'>figure 3</a>.
 <img alt="figure3" id="figure3" src="../annexes/figure_conception_web.png">
 
 **Figure 3** : Conception site web
+
+<img alt="figure4" id="figure4" src="../annexes/figure_diagramme_deploiement.png">
+
+**Figure 4** : Diagramme de déploiement
