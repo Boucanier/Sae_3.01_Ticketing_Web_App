@@ -29,6 +29,54 @@ On a donc les pages suivantes :
 - Page tableau de bord (dashbord.html)
 - Page profil utilisateur (profile.html)
 - Page de création de ticket (ticket.html)
+- Page des tickets disponibles
+- Page modification du ticket du technicien
+- Page modification du ticket de l'admin web
+- Page gérer les techniciens
+- Page journaux d'activité
+
+Voici les différents utilisasteurs du site et les pages auquelles ils ont acces :
+
+#### Visiteur
+
+- Page d'accueil utilisateur
+- Page de connexion / création de compte
+- Page contact
+
+#### Utilisateurs inscrits
+
+- Page d'accueil utilisateur
+- Page contact
+- Page affichage ticket utilisateur
+- Page tableau de bord
+- Page profil utilisateur
+- Page de création de ticket
+
+#### Techniciens
+
+- Page d'accueil utilisateur
+- Page contact
+- Page tableau de bord
+- Page des tickets disponibles
+- Page profil utilisateur
+- Page affichage ticket utilisateur
+- Page modification du ticket du technicien
+
+#### Administrateurs web
+
+- Page d'accueil utilisateur
+- Page contact
+- Page tableau de bord
+- Page gérer les techniciens
+- Page profil utilisateur
+- Page modification du ticket de l'admin web
+
+#### Administrateurs systems
+
+- Page d'accueil utilisateur
+- Page contact
+- Page journaux d'activité
+- Page profil utilisateur
 
 La navigabilité entre ces différentes pages est également présentée dans le dossier de spécification (cf [spécification maquette](../Specification/maquettes.md)).
 
@@ -40,3 +88,4 @@ Elle est associée à tous les fichiers HTML. La raison est que toutes les pages
 ### Images
 
 Les images utilisées sont le logo de l'IUT de Vélizy, notre logo et une icône d'utilisateur temporaire.
+De plus nous avons ajouté une vidéo de présentation du site.
