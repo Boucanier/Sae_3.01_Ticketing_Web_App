@@ -19,15 +19,15 @@ Nous définissons 4 grands objets :
 - Le **navigateur internet** : biais par lequel l'utilisateur va accéder au site web.
 - La **base de données** : base de données ***MySql*** permettant de stocker toutes les données relatives aux tickets et aux utilisateurs
 - Le **site web** : site web ***PHP*** qui sera le corps de l'application
-- Le **serveur** : serveur ***Apache2*** qui fera la connexion entre la base de données, le navigateur du client et le site web
+- Le **serveur web** : serveur ***Apache2*** qui fera la connexion entre la base de données, le navigateur du client et le site web
 
 Maintenant que nous avons nos objets, nous devons définir les relations entre ces grands objets.
 
-- Le serveur est dépendant du site web
-- Le serveur accède à la base de données par l'interface I_BD
-- Le navigateur internet accède au serveur par l'interface Requête
+- Le serveur web est dépendant du site web
+- Le serveur web accède à la base de données par l'interface I_BD
+- Le navigateur internet accède au serveur web par l'interface Requête
 
-La [figure 1](#figure1) représente la conception architecturale du projet global
+La [figure 1](#figure1) représente la conception architecturale du projet global.
 
 ## Base de données
 
@@ -36,9 +36,9 @@ Cette section est la conception architecturale du projet à l'abstraction au dom
 - **Users** : Table qui contient tous les utilisateurs
 - **Tickets** : Table qui contient tous les tickets
 
-Ces deux tables sont reliées par une relation d'**association**. L'utilisateur peut avoir le nombre de tickets qu'il veut, mais le ticket n'a qu'un utilisateur.
+Ces deux tables sont reliées par une relation d'**association**. Un utilisateur peut avoir le nombre de tickets qu'il veut, mais un ticket n'a qu'un utilisateur.
 
-Mais en revenant au [cahier des charges](../Analyse/cahier_des_charges.md), on s'aperçoit qu'on doit une troisième table **Intervention** qui est une classe association entre Users et Tickets. En effet, cette table correspond à la prise en charge d'un ticket par un technicien. Elle n'existe que s'il y a un ticket à traiter et un technicien.
+Mais en revenant au [cahier des charges](../Analyse/cahier_des_charges.md), on s'aperçoit qu'on doit utiliser une troisième table **Interventions** qui est une classe association entre Users et Tickets. En effet, cette table correspond à la prise en charge d'un ticket par un technicien. Elle n'existe que s'il y a un ticket à traiter et un technicien.
 
 On obtient donc la représentation présentée par la [figure 2](#figure2).
 
@@ -48,7 +48,7 @@ Cette section est la conception architecturale du projet à l'abstraction au dom
 
 - **Pages PHP** : Ce sont les différentes pages du site web
 - **Feuilles de style** : Fichiers qui contiennent le style de pages php
-- **Images** : Différentes images utilisées par le site comme les logos de l'UVSQ ou celui de notre groupe.
+- **Images** : Différentes images utilisées par le site comme les logos de l'UVSQ ou celui de notre groupe
 
 Les relations entre ces objets sont :
 
