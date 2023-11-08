@@ -26,7 +26,7 @@ On a donc les pages suivantes :
 - Page de connexion / création de compte (connection.html)
 - Page contact (contact.html)
 - Page affichage ticket utilisateur (ticket_details.html)
-- Page tableau de bord (dashbord.html)
+- Page tableau de bord (dashboard.html)
 - Page profil utilisateur (profile.html)
 - Page de création de ticket (ticket.html)
 - Page des tickets disponibles
@@ -35,7 +35,7 @@ On a donc les pages suivantes :
 - Page gérer les techniciens
 - Page journaux d'activité
 
-Voici les différents utilisasteurs du site et les pages auquelles ils ont acces :
+Voici les différents utilisateurs du site et les pages auxquelles ils ont accès :
 
 #### Visiteur
 
@@ -88,4 +88,4 @@ Elle est associée à tous les fichiers HTML. La raison est que toutes les pages
 ### Images
 
 Les images utilisées sont le logo de l'IUT de Vélizy, notre logo et une icône d'utilisateur temporaire.
-De plus nous avons ajouté une vidéo de présentation du site.
+De plus, nous avons ajouté une vidéo de présentation du site.
