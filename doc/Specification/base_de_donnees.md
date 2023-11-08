@@ -52,6 +52,13 @@ Cette table contient les colonnes suivantes :
   - *closed* : ticket fermé
   - *in_progress* : ticket en cours de traitement
 
+- **emergency** : niveau d'urgence du ticket de type *integer* qui peut prendre les valeurs suivantes :
+
+  - *1* : faible
+  - *2* : moyen
+  - *3* : élevé
+  - *4* : critique
+
 - **date** : date de création du ticket de type *date*
 - **user_login** : champ de type *varchar(30)* qui correspond à l'utilisateur qui a créé le ticket, c'est une ***clé étrangère*** de la table qui fait référence à la colonne *login* de la table **Users**
 
@@ -87,6 +94,7 @@ Tickets :
 - description
 - room
 - status
+- emergency
 - creation_date
 - #login
 
