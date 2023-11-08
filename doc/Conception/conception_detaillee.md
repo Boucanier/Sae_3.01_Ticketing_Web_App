@@ -14,7 +14,7 @@ Nous avons dans la conception architecturale défini 3 composants :
 - Feuilles de style
 - Images
 
-Nous allons ici faire la conception détaillée des ces composants.
+Nous allons ici faire la conception détaillée de ces composants.
 
 ### Pages web
 
@@ -82,7 +82,7 @@ La navigabilité entre ces différentes pages est également présentée dans le
 
 ### Feuille de style
 
-Nous n'avons qu'une seule feuille de style CSS : **style.css**
+Nous n'avons qu'une seule feuille de style CSS : **style.css**.
 Elle est associée à tous les fichiers HTML. La raison est que toutes les pages se ressemblent et sont même identiques pour l'entête de page et le pied de page.
 
 ### Images
