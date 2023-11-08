@@ -43,7 +43,7 @@ Aucun de ces champs ne peut être nul, sans quoi nous aurions des profils incomp
 
 Cette table contient les colonnes suivantes :
 
-- **id_ticket** : champ de type *integer* qui est un identifiant unique à chaque ticket, c'est la ***clé primaire*** de la table, elle s'auto-incrémente
+- **ticket_id** : champ de type *integer* qui est un identifiant unique à chaque ticket, c'est la ***clé primaire*** de la table, elle s'auto-incrémente
 - **title** : titre du ticket de type *varchar(30)*, c'est le libellé du ticket
 - **description** : description du ticket de type *text*, c'est le détail du ticket
 - **status** : statut du ticket de type *varchar(20)* qui peut prendre les valeurs suivantes :
@@ -62,13 +62,13 @@ Aucun de ces champs ne peut être nul, sans quoi nous aurions des tickets incomp
 Cette table est une table-association des tables **Users** et **Tickets**. Elle contient les colonnes suivantes :
 
 - **id_int** : champ de type *integer* qui est un identifiant unique à chaque intervention, c'est la ***clé primaire*** de la table, elle s'auto-incrémente
-- **ticket_id** : champ de type *integer* qui correspond à l'identifiant du ticket, c'est une ***clé étrangère*** de la table qui fait référence à la colonne *id_ticket* de la table **Tickets**
+- **ticket_id** : champ de type *integer* qui correspond à l'identifiant du ticket, c'est une ***clé étrangère*** de la table qui fait référence à la colonne *ticket_id* de la table **Tickets**
 - **tech_login** : champ de type *varchar(30)* qui correspond à l'identifiant du technicien qui a pris en charge le ticket, c'est une ***clé étrangère*** de la table qui fait référence à la colonne *login* de la table **Users**
 - **end_date** : date de fin de l'intervention de type *date*
 
 Seul la colonne **end_date** peut être nulle, car une intervention peut être en cours.
 
-### Modèle logique de données
+## Modèle logique de données
 
 Le modèle logique de données permet de représenter les tables et leurs colonnes en précisant les clés primaires et étrangères. Il est présenté ci-dessous :
 
@@ -82,7 +82,7 @@ Users :
 
 Tickets :
 
-- $id_ticket
+- $ticket_id
 - title,
 - description
 - room
@@ -93,8 +93,24 @@ Tickets :
 Interventions :
 
 - $id_int
-- #id_ticket
+- #ticket_id
 - #login
 - end_date
 
 **Légende** : Les champs précédés d'un **$** sont les clés primaires et ceux précédés d'un **#** sont des clés étrangères.
+
+## Contraintes
+
+Voici les différentes contraintes que nous avons définies pour les différentes tables qui ne sont pas présentées dans la description des tables :
+
+- **Users** :
+  - **login** : unique
+  - **role** : uniques valeurs possibles : *user*, *tech*, *web_admin*, *sys_admin*
+
+- **Tickets** :
+  - **status** : uniques valeurs possibles : *open*, *closed*, *in_progress*
+  - **user_login** : référence la colonne **login** de la table **Users** -> l'utilisateur qui crée un ticket doit être du type *user*
+
+- **Interventions** :
+  - **ticket_id** : référence la colonne **ticket_id** de la table **Tickets** -> une intervention sur un ticket ne peut être créée que si son état est *open*
+  - **tech_login** : référence la colonne **login** de la table **Users** -> l'utilisateur qui prend en charge un ticket doit être du type *tech*
