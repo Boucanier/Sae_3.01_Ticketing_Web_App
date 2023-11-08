@@ -114,3 +114,7 @@ Voici les différentes contraintes que nous avons définies pour les différente
 - **Interventions** :
   - **ticket_id** : référence la colonne **ticket_id** de la table **Tickets** -> une intervention sur un ticket ne peut être créée que si son état est *open*
   - **tech_login** : référence la colonne **login** de la table **Users** -> l'utilisateur qui prend en charge un ticket doit être du type *tech*
+
+## Conclusion
+
+Nous avons présenté dans ce rapport les différentes tables de la base de données ainsi que leurs colonnes, leurs types et leurs contraintes. Nous avons également présenté le modèle logique de données qui permet de représenter les tables et leurs colonnes en précisant les clés primaires et étrangères. Cette spécification nous permettra de créer la base de données et de l'utiliser dans notre application.
