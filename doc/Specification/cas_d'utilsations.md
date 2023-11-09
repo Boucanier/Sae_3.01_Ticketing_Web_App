@@ -55,6 +55,13 @@ Le cas d'utilisation 5 "afficher une page web", permet d'afficher une page web.
 Pour cela, il suffit qu'un utilisateur quel qu'il soit, inscrit ou non, de clique sur un lien hypertext.
 Ce dernier peut être n'importe lequel présent sur la page actuelle, dans la barre de navigation ou le pied de page.
 
+## Cas 15
+
+Le cas d'utilisation 15 "Affecter les tickets aux techniciens", permet aux administrateurs web d'affecter un ticket à un technicien.
+
+Une fois connecté à la page d'accueil l'administrateur web devra alors aller sur son tableau de bord.
+Il cliquera ensuite sur les détails d'un ticket afin de pouvoir avoir accès aux détails du ticket et affecter un ticket à un technicien. De plus, il peut modifier le libellé, le niveau d'urgence et le nouvel état de celui-ci.
+
 ## Cas 16
 
 Le cas d'utilisation 16 "Gérer les utilisateurs", permet aux utilisateurs de se gérer et à l'administrateur web de gérer les techniciens.
