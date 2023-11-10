@@ -161,22 +161,21 @@ On peut représenter les différents cas d'utilisation et leur correspondances.
 | **Acteurs principaux** : Utilisateur                                                                                                                                             |
 | **Scénario** : <ol><li>L'utilisateur se connecte</li><li>Il remplit les champs nécessaire à la création d'un ticket</li><li>Création du ticket dans la base de données</li></ol> |
 
-| Cas d'utilisation 7 : Accéder à son profil                                                                                                                                   |
-|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Nom** : Accéder à son profil                                                                                                                                               |
-| **Portée** : Application web                                                                                                                                                 |
-| **Niveau** : Utilisateur                                                                                                                                                     |
-| **Acteurs principaux** : Utilisateur                                                                                                                                         |
-| **Scénario** : <ol><li>L'utilisateur se connecte</li><li>Il peut changer son mot de passe</li><li>Il peut supprimer son compte</li><li>L'utilisateur se déconnecte</li></li> |
+| Cas d'utilisation 7 : Accéder à son profil                                                                                                                                                                  |
+|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Nom** : Accéder à son profil                                                                                                                                                                              |
+| **Portée** : Application web                                                                                                                                                                                |
+| **Niveau** : Utilisateur                                                                                                                                                                                    |
+| **Acteurs principaux** : Utilisateur                                                                                                                                                                        |
+| **Scénario** : <ol><li>L'utilisateur se connecte</li><li>Il accède à son profil</li><li>Il peut changer son mot de passe</li><li>Il peut supprimer son compte</li><li>L'utilisateur se déconnecte</li></li> |
 
-| Cas d'utilisation 8 : Afficher les tickets                                                                                                                                     |
-|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Nom** : Afficher les tickets                                                                                                                                                 |
-| **Portée** : Application web                                                                                                                                                   |
-| **Niveau** : Utilisateur                                                                                                                                                       |
-| **Acteurs principaux** : Utilisateur                                                                                                                                           |
-| **Scénario** : <ol><li>L'utilisateur se connecte</li><li>Il peut choisir l'ordre d'affichage des tickets selon certains critères</li><li>L'utilisateur se déconnecte</li></ol> |
-| **Extension** : <ul><li>Si c'est un utilisateur non-inscrit<ul><li>Il ne peut voir que les 10 derniers tickets</li></ul></li></ul>                                             |
+| Cas d'utilisation 8 : Accéder au tableau de bord                                                                                                                                                                          |
+|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Nom** : Afficher les tickets                                                                                                                                                                                            |
+| **Portée** : Application web                                                                                                                                                                                              |
+| **Niveau** : Utilisateur                                                                                                                                                                                                  |
+| **Acteurs principaux** : Utilisateur                                                                                                                                                                                      |
+| **Scénario** : <ol><li>L'utilisateur se connecte</li><li>Il accède à son tableau de bord</li><li>Il peut créer un ticket</li><li>Il à accès à tous les tickets qu'il a créé</li><li>L'utilisateur se déconnecte</li></ol> |
 
 | Cas d'utilisation 9 : Gérer liste libellés                                                                                                                       |
 |------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -226,12 +225,12 @@ On peut représenter les différents cas d'utilisation et leur correspondances.
 | **Acteurs principaux** : Utilisateur                                               |
 | **Scénario** : <ol><li>L'utilisateur non-inscrit peut se créer un compte</li></ol> |
 
-| Cas d'utilisation 15 : Affecter les tickets aux techniciens                                                                                                                                                                                   |
-|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Nom** : Affecter les tickets aux techniciens                                                                                                                                                                                                |
-| **Portée** : Base de données                                                                                                                                                                                                                  |
-| **Niveau** : Utilisateur                                                                                                                                                                                                                      |
-| **Acteurs principaux** : Administrateur web, techniciens                                                                                                                                                                                      |
+| Cas d'utilisation 15 : Affecter les tickets aux techniciens                                                                                                                                                                                     |
+|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Nom** : Affecter les tickets aux techniciens                                                                                                                                                                                                  |
+| **Portée** : Base de données                                                                                                                                                                                                                    |
+| **Niveau** : Utilisateur                                                                                                                                                                                                                        |
+| **Acteurs principaux** : Administrateur web, techniciens                                                                                                                                                                                        |
 | **Scénario** : <ol><li>L'administrateur ou le technicien se connecte</li><li>L'administrateur web peut attribuer un ticket à un technicien ou celui-ci peut s'en attribuer un</li><li>L'administrateur ou le technicien se déconnecte</li></ol> |
 
 ### Niveau stratégique
@@ -249,15 +248,15 @@ On peut représenter les différents cas d'utilisation et leur correspondances.
 | **Nom** : Configuration du système                                                                                                                                                                                            |
 | **Portée** : Base de donnée                                                                                                                                                                                                   |
 | **Niveau** : Stratégique                                                                                                                                                                                                      |
-| **Acteurs principaux** : Administrateur système                                                                                                                                                                                |
+| **Acteurs principaux** : Administrateur système                                                                                                                                                                               |
 | **Scénario** : <ol><li>L'administrateur système se connecte</li><li>Il gère la base de données de l'application web</li><li>Il gère l'administration réseau du serveur</li><li>Il consulte les journaux d'activités</li></ol> |
 
-| Cas d'utilisation 18 : Gérer les tickets                                                                                                                                                                                                                                                                                      |
-|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Nom** : Gérer les tickets                                                                                                                                                                                                                                                                                                   |
-| **Portée** : Base de donnée                                                                                                                                                                                                                                                                                                   |
-| **Niveau** : Stratégique                                                                                                                                                                                                                                                                                                      |
-| **Acteurs principaux** : Utilisateur, Administrateur web                                                                                                                                                                                                                                                                      |
+| Cas d'utilisation 18 : Gérer les tickets                                                                                                                                                                                                                                                                                        |
+|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Nom** : Gérer les tickets                                                                                                                                                                                                                                                                                                     |
+| **Portée** : Base de donnée                                                                                                                                                                                                                                                                                                     |
+| **Niveau** : Stratégique                                                                                                                                                                                                                                                                                                        |
+| **Acteurs principaux** : Utilisateur, Administrateur web                                                                                                                                                                                                                                                                        |
 | **Scénario** : <ol><li>L'utilisateur ou l'administrateur web se connecte</li><li>L'utilisateur peut créer un ticket</li><li>L'administrateur web peut : <ul><li>Définir les niveaux d'urgence</li><li>Affecter les tickets aux techniciens</li><li>Gérer les statuts des tickets</li><li>Gérer les libellés</li></ul></li></ol> |                               |
 
 ## La technologie employée
