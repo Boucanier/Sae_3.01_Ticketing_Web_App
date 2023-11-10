@@ -6,6 +6,9 @@
 
 Groupe : **INF2 - FI A**
 
+## Introduction
+
+Ce rapport a pour but de détailler les cas d'utilisations définis dans le [recueil de besoins](../Analyse/recueil_des_besoins.md).
 
 ## Cas 1
 
