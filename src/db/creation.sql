@@ -2,6 +2,9 @@ CREATE DATABASE IF NOT EXISTS ticket_app;
 USE ticket_app;
 
 DROP TABLES IF EXISTS Users, Tickets, Interventions;
+DROP TRIGGER IF EXISTS check_interventions_user;
+DROP TRIGGER IF EXISTS check_interventions_ticket;
+DROP TRIGGER IF EXISTS check_tickets_user;
 
 CREATE TABLE Users (
     login VARCHAR(30) UNIQUE NOT NULL PRIMARY KEY,
@@ -28,3 +31,39 @@ CREATE TABLE Interventions (
     tech_login VARCHAR(30) NOT NULL REFERENCES Users(login),
     end_date DATE
 );
+
+delimiter //
+CREATE TRIGGER check_interventions_user BEFORE INSERT ON Interventions
+FOR EACH ROW
+BEGIN
+    IF NOT (NEW.tech_login IN (SELECT login FROM Users)) THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'User must exist';
+    END IF;
+    IF (SELECT role FROM Users WHERE login = NEW.tech_login) != 'tech' THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Tech login must be a tech';
+    END IF;
+END;//
+delimiter ;
+
+delimiter //
+CREATE TRIGGER check_interventions_ticket BEFORE INSERT ON Interventions
+FOR EACH ROW
+BEGIN
+    IF (SELECT emergency FROM Tickets WHERE ticket_id = NEW.ticket_id) != 'open' THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Ticket is closed or in progress';
+    END IF;
+END;//
+delimiter ;
+
+delimiter //
+CREATE TRIGGER check_tickets_user BEFORE INSERT ON Tickets
+FOR EACH ROW
+BEGIN
+    IF NOT (NEW.user_login IN (SELECT login FROM Users)) THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'User must exist';
+    END IF;
+    IF (SELECT role FROM Users WHERE login = NEW.user_login) != 'user' THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'User login must be a user';
+    END IF;
+END;//
+delimiter ;
