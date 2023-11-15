@@ -15,13 +15,13 @@
     </div>
     <nav>
         <div id="nav1">
-            <a href="index.html">Accueil</a>
-            <a href="dashboard.html">Tableau de bord</a>
+            <a href="index.php">Accueil</a>
+            <a href="dashboard.php">Tableau de bord</a>
         </div>
         <div id="nav2">
-            <a href="profile.html">Profil</a>
-            <a href="connection.html">Se connecter</a>
-            <a href="index.html">Déconnexion</a>
+            <a href="profile.php">Profil</a>
+            <a href="connection.php">Se connecter</a>
+            <a href="index.php">Déconnexion</a>
         </div>
     </nav>
 </header>
@@ -30,7 +30,7 @@
     <div class="form_containers">
         <div class="sign_up">
             <h2>Créer un compte</h2>
-            <form action="dashboard.html" method="get">
+            <form action="dashboard.php" method="get">
                 <div class="user_info">
                     <div class="form_group">
                         <label for="login">Login&nbsp;:</label>
@@ -70,7 +70,7 @@
             </form>
         </div>
         <div class="log_in">
-            <form action="dashboard.html" method="get">
+            <form action="dashboard.php" method="get">
                 <div class="form_group2">
                     <label for="login_connect">Login :</label>
                     <input type="text" id="login_connect" name="login_connect"/>
@@ -91,7 +91,7 @@
 </main>
 
 <footer>
-    <a href="contact.html">Nous contacter</a>
+    <a href="contact.php">Nous contacter</a>
     <a href="">Changer la langue</a>
     <a href="">Police dyslexie</a>
 </footer>

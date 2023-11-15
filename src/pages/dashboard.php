@@ -14,20 +14,20 @@
     </div>
     <nav>
         <div id="nav1">
-            <a href="index.html">Accueil</a>
-            <a href="dashboard.html">Tableau de bord</a>
+            <a href="index.php">Accueil</a>
+            <a href="dashboard.php">Tableau de bord</a>
         </div>
         <div id="nav2">
-            <a href="profile.html">Profil</a>
-            <a href="connection.html">Se connecter</a>
-            <a href="index.html">Déconnexion</a>
+            <a href="profile.php">Profil</a>
+            <a href="connection.php">Se connecter</a>
+            <a href="index.php">Déconnexion</a>
         </div>
     </nav>
 </header>
 <main>
     <div id="part_top">
     <h2>Mes tickets</h2>    
-        <button type="button" onclick="location.href='ticket.html'">Créer un ticket</button>
+        <button type="button" onclick="location.href='ticket.php'">Créer un ticket</button>
     </div>
     <div id="ticket_table">
     <table>
@@ -54,13 +54,13 @@
         </tr>
     </table>
     <div id="details_button">
-        <button type="button" onclick="location.href='ticket_details.html'">Détails</button>
-        <button type="button" onclick="location.href='ticket_details.html'">Détails</button>
+        <button type="button" onclick="location.href='ticket_details.php'">Détails</button>
+        <button type="button" onclick="location.href='ticket_details.php'">Détails</button>
     </div>
     </div>
 </main>
 <footer>
-    <a href="contact.html">Nous contacter</a>
+    <a href="contact.php">Nous contacter</a>
     <a href="">Changer la langue</a>
     <a href="">Police dyslexie</a>
 </footer>
