@@ -496,3 +496,9 @@ transform: scaleX(1);
     width: 25%;
     text-align: center;
 }
+
+.modification_ticket_main{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
