@@ -74,4 +74,4 @@ INSERT INTO Users VALUES ('tec2', 'tec2', 'tec2', '73f7a2f5b9bd744ab54cd1d307975
 
 DROP USER IF EXISTS 'ticket_app'@'localhost';
 CREATE USER 'ticket_app'@'localhost' IDENTIFIED BY 'ticket_s301';
-GRANT SELECT, INSERT, UPDATE ON *.* TO 'ticket_app'@'localhost' WITH GRANT OPTION;
+GRANT SELECT, INSERT, UPDATE ON *.* TO 'ticket_app'@'localhost';
