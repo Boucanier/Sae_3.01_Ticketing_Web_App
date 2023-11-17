@@ -27,7 +27,7 @@
 <main>
     <form id="form_modification_ticket" action="" method="get">
         <div id="texte_explicatif_info_actuel">
-            <textarea id="description_prbl_modification_page" name="description du probleme" rows="10" cols="25" readonly>Voici un problème tres particulier pour lequel je n'ai pas de réponse</textarea>
+            <textarea id="description_prbl_modification_page" name="description du probleme" rows="10" cols="20" readonly>Voici un problème tres particulier pour lequel je n'ai pas de réponse</textarea>
             <div id="form_valeur_actuelle_valeur_a_modifier">
                 <div id="modification_ticket_valeur_actuelle">
                     <div id="modification_ticket_libelle_salle">
@@ -81,9 +81,9 @@
                 </div>
             </div>
         </div>
-        <div id="modification_ticket_boutons">
-            <input type="reset" id="reset_modification_ticket" name="reset_modification_ticket"/>
-            <input type="submit" id="modifier_ticket" name="modifier_ticket"/>
+        <div class="resetSubmitButtons">
+            <input type="reset" id="reset_modification_ticket" name="reset_modification_ticket" class="reset_buttons"/>
+            <input type="submit" id="modifier_ticket" name="modifier_ticket"  class="submit_buttons"/>
         </div>
     </form>
 </main>
