@@ -178,11 +178,14 @@ input {
 }
 
 .reset_buttons, .submit_buttons, #account_sup{
-    padding: 10px 20px;
     background-color: #fff;
     border: solid black 1px;
     border-radius: 4px;
     cursor: pointer;
+}
+
+.reset_buttons, .submit_buttons, #account_sup{
+    padding: 10px 20px;
     font-size: 16px;
     margin-top: 10px;
     width: 35%;
@@ -512,4 +515,55 @@ th {
 #salle, #niveauUrgence {
     width: 25%;
     text-align: center;
+}
+
+#description_prbl_modification_page{
+    font-size: 20pt;
+    resize: none;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding: 1%;
+}
+
+#form_modification_ticket{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#texte_explicatif_info_actuel{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 50%;
+    justify-content: space-around;
+}
+
+#form_valeur_actuelle_valeur_a_modifier{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#modification_ticket_valeur_actuelle > div{
+    margin-top: 15px;
+ }
+
+#modification_ticket_valeur_actuelle > div{
+    display: flex;
+    flex-direction: row;
+}
+
+#modification_ticket_valeur_a_modifier > div{
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: 15px;
+    margin-right: 20px;
+}
+
+#form_modification_ticket > div > .reset_buttons, #form_modification_ticket > div > .submit_buttons{
+    width: 200%;
 }
