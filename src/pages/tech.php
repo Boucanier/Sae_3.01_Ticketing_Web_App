@@ -28,6 +28,41 @@
 
 <main>
     <div class="form_containers">
+        <div class="tech_view">
+            <h2>Liste des techniciens</h2>
+            <table id="tech_table">
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Tickets en cours</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Zanzibare</td>
+                        <td>Jean</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>Madagascar</td>
+                        <td>Rémi</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>Martinique</td>
+                        <td>Roger</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>Zanzibare</td>
+                        <td>Julien</td>
+                        <td>1</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
         <div class="sign_up">
             <h2>Ajouter un technicien</h2>
             <form action="dashboard.php" method="get">
@@ -57,10 +92,6 @@
                         <input type="password" id="conf_pwd" name="conf_pwd"/>
                     </div>
                     <br>
-                </div>
-                <div class="captcha_group">
-                    <label for="captcha">2 + 3 =</label>
-                    <input type="number" id="captcha" name="captcha"/>
                 </div>
                 <br>
                 <div class="resetSubmitButtons">
