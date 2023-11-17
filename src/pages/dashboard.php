@@ -46,7 +46,7 @@
     '
     }
 
-    echo '<tr>';
+    echo '</tr>';
 
     ### Partie pour ajouter les tickets au tableau ###
 
