@@ -82,11 +82,9 @@
     $mdp = "ticket_s301";
     $nom_db = "ticket_app";
 
-    /*
     $db = mysqli_connect($host, $login, $mdp) or die("Can't connect to database");
 
     mysqli_select_db($db, $nom_db) or die("Can't open the database");
-    */
 
 ?>
 <div id="presentation">
@@ -104,11 +102,10 @@
 </div>
 <?php
     echo '
-        <table id="derniers_tickets">
+        <table id="derniers_tickets" style="border: 1px solid black">
             <tr>
     ';
 
-    /*
     ### Partie pour ajouter les colonnes au tableau ###
 
     $requete_colonnes = 'SHOW COLUMNS
@@ -118,10 +115,9 @@
 
     $colonnes_voulues = array('emergency', 'room', 'title', 'user_login', 'creation_date');
 
-    for (mysqli_fetch_array($colonnes) as $colonne){
-        if ($colonne in $colonnes_voulues)
+    foreach ($colonnes as $colonne){
+        if (in_array($colonne['Field'], $colonnes_voulues))
             echo '<th>$colonne</th>';
-    '
     }
 
     echo '</tr>';
@@ -132,11 +128,11 @@
                         FROM tickets
                         WHERE ticket_id > ((SELECT MAX(ticket_id)
                                             FROM tickets)
-                                            - 10);
+                                            - 10);';
 
     $tickets = mysqli_query($db, $requete_tickets);
 
-    foreach (mysqli_fetch_array($tickets) as $elem){
+    while ($elem = mysqli_fetch_array($tickets)){
         echo '
         <tr>
             <td>$elem[0]</td>
@@ -147,7 +143,8 @@
         </tr>
         ';
     }
-    */
+
+    echo '</table>';
 
     include "footer.php";
 ?>
