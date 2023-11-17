@@ -529,6 +529,7 @@ th {
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
+    margin-top: 60px;
 }
 
 #texte_explicatif_info_actuel{
@@ -554,7 +555,13 @@ th {
     flex-direction: row;
 }
 
-#modification_ticket_valeur_a_modifier > div{
+#modification_ticket_valeur_a_modifier {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+#modification_ticket_valeur_a_modifier > .modif_form_input{
     display: flex;
     flex-direction: row;
     align-content: center;
@@ -564,6 +571,14 @@ th {
     margin-right: 20px;
 }
 
+#modification_ticket_valeur_a_modifier > .modif_form_input > input, #modification_ticket_valeur_a_modifier > .modif_form_input > select{
+    width: 230px;
+    height: 35px;
+    margin: 5px;
+    margin-right: 0px;
+}
+
 #form_modification_ticket > div > .reset_buttons, #form_modification_ticket > div > .submit_buttons{
     width: 200%;
+    margin-top: 40px;
 }

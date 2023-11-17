@@ -25,9 +25,9 @@
     </nav>
 </header>
 <main>
-    <form id="form_modification_ticket" action="" method="get">
+    <div id="form_modification_ticket">
         <div id="texte_explicatif_info_actuel">
-            <textarea id="description_prbl_modification_page" name="description du probleme" rows="10" cols="20" readonly>Voici un problème tres particulier pour lequel je n'ai pas de réponse</textarea>
+            <textarea id="description_prbl_modification_page" name="description_probleme" rows="10" cols="20" readonly>Voici un problème tres particulier pour lequel je n'ai pas de réponse</textarea>
             <div id="form_valeur_actuelle_valeur_a_modifier">
                 <div id="modification_ticket_valeur_actuelle">
                     <div id="modification_ticket_libelle_salle">
@@ -61,29 +61,40 @@
                         </div>
                     </div>
                 </div>
-                <div id="modification_ticket_valeur_a_modifier">
-                    <div>
+                <form id="modification_ticket_valeur_a_modifier" action="" method="get">
+                    <div class="modif_form_input">
                         <label for="new_libelle">Nouveau libellé&nbsp:</label>
                         <input type="text" id="new_libelle" name="new_libelle"/>
                     </div>
-                    <div>
+                    <div class="modif_form_input">
                         <label for="new_emergency">Niveau d'urgence&nbsp:</label>
-                        <input type="text" id="new_emergency" name="new_emergency"/>
+                        <input type="number" id="new_emergency" max="4" min="1" name="new_emergency"/>
                     </div>
-                    <div>
-                        <label for="new_etat">Nouvel état&nbsp:</label>
-                        <input type="text" id="new_etat" name="new_etat"/>
+                    <div class="modif_form_input">
+                        <label for="new_status">Nouvel état&nbsp:</label>
+                        <select id="new_status" name="new_status">
+                            <option value="Vide"></option>
+                            <option value="open">Ouvert</option>
+                            <option value="in_progress">En cours</option>
+                            <option value="closed">Résolu</option>
+                        </select>
                     </div>
-                    <div>
-                        <label for="new_technicien">Affecter un technicien&nbsp:</label>
-                        <input type="text" id="new_technicien" name="new_technicien"/>
+                    <div class="modif_form_input">
+                        <label for="new_tech">Affecter un technicien&nbsp:</label>
+                        <select id="new_tech" name="new_tech">
+                            <option value="Vide"></option>
+                            <option value="tech1">Tech1</option>
+                            <option value="tech2">Tech2</option>
+                            <option value="tech3">Tech3</option>
+                            <!-- Afficher la liste de tous les techniciens, valeur = login, affichage = prénom + nom -->
+                        </select>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="resetSubmitButtons">
-            <input type="reset" id="reset_modification_ticket" name="reset_modification_ticket" class="reset_buttons"/>
-            <input type="submit" id="modifier_ticket" name="modifier_ticket"  class="submit_buttons"/>
+                    <div class="resetSubmitButtons">
+                        <input type="reset" value="Effacer" id="reset_modification_ticket" name="reset_modification_ticket" class="reset_buttons"/>
+                        <input type="submit" value="Modifier" id="modifier_ticket" name="modifier_ticket"  class="submit_buttons"/>
+                    </div>
         </div>
     </form>
 </main>
