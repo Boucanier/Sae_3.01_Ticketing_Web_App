@@ -24,7 +24,8 @@ CREATE TABLE Tickets (
     status VARCHAR(20) NOT NULL CHECK (status IN ('open', 'closed', 'in_progress')),
     emergency VARCHAR(10) NOT NULL CHECK (emergency IN (1, 2, 3, 4)),
     creation_date DATE NOT NULL,
-    user_login VARCHAR(30) NOT NULL REFERENCES Users(login)
+    user_login VARCHAR(30) NOT NULL REFERENCES Users(login),
+    ip_address VARCHAR(15) NOT NULL
 );
 
 CREATE TABLE Interventions (
@@ -36,7 +37,7 @@ CREATE TABLE Interventions (
 
 CREATE TABLE Connections (
     id_co INTEGER PRIMARY KEY AUTO_INCREMENT,
-    ip_adress VARCHAR(15) NOT NULL,
+    ip_address VARCHAR(15) NOT NULL,
     login VARCHAR(30) NOT NULL REFERENCES Users(login),
     password VARCHAR(40) NOT NULL,
     succes BOOLEAN NOT NULL,
