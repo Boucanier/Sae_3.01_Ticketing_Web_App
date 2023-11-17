@@ -14,7 +14,7 @@
         </div>
 
 <?php
-    $type = 'visit';
+    $type = 'user';
 
     if ($type == 'visit'){
     echo (' <nav>
