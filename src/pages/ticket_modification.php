@@ -25,11 +25,10 @@
     </nav>
 </header>
 <main>
-    <div id="modification_ticket_main">
-        <textarea id="description_prbl_modification_page" name="description du probleme" rows="20" cols="33" style="FONT-SIZE: 15pt"></textarea>
-
-        <div id="modification_ticket_general_info">
-            <form action="" method="get">
+    <form id="form_modification_ticket" action="" method="get">
+        <div id="texte_explicatif_info_actuel">
+            <textarea id="description_prbl_modification_page" name="description du probleme" rows="10" cols="25" readonly>Voici un problème tres particulier pour lequel je n'ai pas de réponse</textarea>
+            <div id="form_valeur_actuelle_valeur_a_modifier">
                 <div id="modification_ticket_valeur_actuelle">
                     <div id="modification_ticket_libelle_salle">
                         <div id="modification_ticket_libelle">
@@ -62,13 +61,31 @@
                         </div>
                     </div>
                 </div>
-            </form>
-
-            <div id="modification_ticket_valeur_a_modifier">
-                    
+                <div id="modification_ticket_valeur_a_modifier">
+                    <div>
+                        <label for="new_libelle">Nouveau libellé</label>
+                        <input type="text" id="new_libelle" name="new_libelle"/>
+                    </div>
+                    <div>
+                        <label for="new_emergency">Niveau d'urgence</label>
+                        <input type="text" id="new_emergency" name="new_emergency"/>
+                    </div>
+                    <div>
+                        <label for="new_etat">Nouvel état</label>
+                        <input type="text" id="new_etat" name="new_etat"/>
+                    </div>
+                    <div>
+                        <label for="new_technicien">Affecter un technicien</label>
+                        <input type="text" id="new_technicien" name="new_technicien"/>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+        <div id="modification_ticket_boutons">
+            <input type="reset" id="reset_modification_ticket" name="reset_modification_ticket"/>
+            <input type="submit" id="modifier_ticket" name="modifier_ticket"/>
+        </div>
+    </form>
 </main>
 <?php
     include "footer.php";

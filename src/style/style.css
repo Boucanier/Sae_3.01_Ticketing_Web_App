@@ -497,8 +497,37 @@ transform: scaleX(1);
     text-align: center;
 }
 
-.modification_ticket_main{
+#description_prbl_modification_page{
+    font-size: 20pt;
+}
+
+#form_modification_ticket{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#texte_explicatif_info_actuel{
     display: flex;
     flex-direction: row;
     align-items: center;
+}
+
+#form_valeur_actuelle_valeur_a_modifier{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#modification_ticket_valeur_actuelle > div{
+    display: flex;
+    flex-direction: row;
+}
+
+#modification_ticket_valeur_a_modifier > div{
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+    justify-content: flex-end;
 }
