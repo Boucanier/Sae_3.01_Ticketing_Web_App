@@ -193,6 +193,23 @@ input {
     align-content: center;
     align-items: center;
     justify-content: space-evenly;
+    margin-top: 60px;
+}
+
+.tech_view {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 35%;
+}
+
+#scroll_table {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: scroll;
+    max-height: 700px;
+    width: 100%;
 }
 
 .resetSubmitButtons{
@@ -410,22 +427,22 @@ th {
 }
   
 .link_on_page::before {
-content: '';
-position:absolute;
-width: 100%;
-height: 4px;
-border-radius: 4px;
-background-color: #18272F;
-bottom: 0;
-left: 0;
-transform-origin: right;
-transform: scaleX(0);
-transition: transform .3s ease-in-out;
+    content: '';
+    position:absolute;
+    width: 100%;
+    height: 4px;
+    border-radius: 4px;
+    background-color: #18272F;
+    bottom: 0;
+    left: 0;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform .3s ease-in-out;
 }
   
 .link_on_page:hover::before {
-transform-origin: left;
-transform: scaleX(1);
+    transform-origin: left;
+    transform: scaleX(1);
 }
 
 #ticket_label{
