@@ -193,6 +193,7 @@ input {
     align-content: center;
     align-items: center;
     justify-content: space-evenly;
+    margin-top: 60px;
 }
 
 .tech_view {
@@ -200,8 +201,15 @@ input {
     flex-direction: column;
     align-items: center;
     width: 35%;
-    overflow: auto;
-    height: 100%;
+}
+
+#scroll_table {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: scroll;
+    max-height: 700px;
+    width: 100%;
 }
 
 .resetSubmitButtons{

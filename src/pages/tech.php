@@ -30,37 +30,44 @@
     <div class="form_containers">
         <div class="tech_view">
             <h2>Liste des techniciens</h2>
-            <table id="tech_table">
-                <thead>
-                    <tr>
-                        <th>Nom</th>
-                        <th>Prénom</th>
-                        <th>Tickets en cours</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Zanzibare</td>
-                        <td>Jean</td>
-                        <td>3</td>
-                    </tr>
-                    <tr>
-                        <td>Madagascar</td>
-                        <td>Rémi</td>
-                        <td>0</td>
-                    </tr>
-                    <tr>
-                        <td>Martinique</td>
-                        <td>Roger</td>
-                        <td>1</td>
-                    </tr>
-                    <tr>
-                        <td>Zanzibare</td>
-                        <td>Julien</td>
-                        <td>1</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div id="scroll_table">
+                <table id="tech_table">
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Prénom</th>
+                            <th>Tickets en cours</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Zanzibare</td>
+                            <td>Jean</td>
+                            <td>3</td>
+                        </tr>
+                        <tr>
+                            <td>Zanzibare</td>
+                            <td>Jean</td>
+                            <td>3</td>
+                        </tr>
+                        <tr>
+                            <td>Madagascar</td>
+                            <td>Rémi</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>Martinique</td>
+                            <td>Roger</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>Zanzibare</td>
+                            <td>Julien</td>
+                            <td>1</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
         <div class="sign_up">
