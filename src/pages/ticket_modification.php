@@ -63,19 +63,19 @@
                 </div>
                 <div id="modification_ticket_valeur_a_modifier">
                     <div>
-                        <label for="new_libelle">Nouveau libellé</label>
+                        <label for="new_libelle">Nouveau libellé&nbsp:</label>
                         <input type="text" id="new_libelle" name="new_libelle"/>
                     </div>
                     <div>
-                        <label for="new_emergency">Niveau d'urgence</label>
+                        <label for="new_emergency">Niveau d'urgence&nbsp:</label>
                         <input type="text" id="new_emergency" name="new_emergency"/>
                     </div>
                     <div>
-                        <label for="new_etat">Nouvel état</label>
+                        <label for="new_etat">Nouvel état&nbsp:</label>
                         <input type="text" id="new_etat" name="new_etat"/>
                     </div>
                     <div>
-                        <label for="new_technicien">Affecter un technicien</label>
+                        <label for="new_technicien">Affecter un technicien&nbsp:</label>
                         <input type="text" id="new_technicien" name="new_technicien"/>
                     </div>
                 </div>
