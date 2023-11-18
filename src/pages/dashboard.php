@@ -28,6 +28,13 @@
 <?php
     $role = "tech";
 
+    if (isset($_GET['dispo']) && $_GET['dispo'] == "true"){
+        $dispo = true;
+    }
+    else {
+        $dispo = false;
+    }
+
     echo '<main>
         <div id="part_top">';
 
@@ -49,15 +56,30 @@
             </div>';
         $header = array('Niveau', 'Salle', 'Problème', 'Demandeur', 'Date');
 
-        # TODO: Remplacer ce tableau par une requête SQL
-        $ticket_id = array(3, 2, 1, 4, 5);
+        if ($dispo){
+            # TODO: Remplacer ce tableau par une requête SQL
+            $ticket_id = array(3, 2, 1, 4, 5);
 
-        # TODO: Remplacer ce tableau par une requête SQL en utilisant les id
-        $test_col = array(array(4,'G26', 'Fuite d\'eau sur les machines', 'J. Cabessa', '05/10/2023'),
-                        array(1, '315', 'Câble projecteur HS', 'Fabrice Hoguin', '04/10/2023'),
-                        array(2, 'I21', 'Multiprise cassée', 'David Auger', '26/09/2023'),
-                        array(3, 'G26', 'Projecteur en panne', 'Alain Oster', '24/09/2023'),
-                        array(4, 'G21', 'Prise ethernet cassée', 'David Auger', '10/09/2023'));
+            # TODO: Remplacer ce tableau par une requête SQL en utilisant les id
+            $test_col = array(array(4,'G26', 'Fuite d\'eau sur les machines', 'J. Cabessa', '05/10/2023'),
+                            array(1, '315', 'Câble projecteur HS', 'Fabrice Hoguin', '04/10/2023'),
+                            array(2, 'I21', 'Multiprise cassée', 'David Auger', '26/09/2023'),
+                            array(3, 'G26', 'Projecteur en panne', 'Alain Oster', '24/09/2023'),
+                            array(4, 'G21', 'Prise ethernet cassée', 'David Auger', '10/09/2023'));
+        }
+
+        else {
+            # TODO: Remplacer ce tableau par une requête SQL
+            $ticket_id = array(3, 2, 1, 4, 5);
+    
+            # TODO: Remplacer ce tableau par une requête SQL en utilisant les id
+            $test_col = array(array(4,'G26', 'Fuite d\'eau sur les machines', 'J. Cabessa', '05/10/2023'),
+                            array(1, '315', 'Câble projecteur HS', 'Fabrice Hoguin', '04/10/2023'),
+                            array(2, 'I21', 'Multiprise cassée', 'David Auger', '26/09/2023'),
+                            array(3, 'G26', 'Projecteur en panne', 'Alain Oster', '24/09/2023'),
+                            array(4, 'G21', 'Prise ethernet cassée', 'David Auger', '10/09/2023'));
+        }
+
     }
 
     else {
@@ -103,14 +125,18 @@
     }
 
     echo '</table>';
-
-    if ($role == 'user' || $role == 'tech'){
-        echo '<div id="details_button">';
-        for ($i = 0; $i < count($test_col); $i++) {
+    echo '<div id="details_button">';
+    for ($i = 0; $i < count($test_col); $i++) {
+        if ($role == 'user')
             echo '<button type="button" onclick="location.href=\'ticket_details.php?id='.$ticket_id[$i].'\'">Détails</button>';
+        else if ($role == 'tech'){
+            if ($dispo)
+                echo '<button type="button" onclick="location.href=\'ticket_details.php?id='.$ticket_id[$i].'&function=take\'">Prendre en charge</button>';
+            else
+                echo '<button type="button" onclick="location.href=\'ticket_details.php?id='.$ticket_id[$i].'&function=close\'">Détails</button>';
         }
-        echo '</div>';
     }
+    echo '</div>';
 
     echo '</div>
         </main>';

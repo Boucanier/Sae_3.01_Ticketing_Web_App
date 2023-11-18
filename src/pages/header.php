@@ -6,7 +6,7 @@
         </div>
 
 <?php
-    $type = 'user';
+    $type = 'tech';
 
     if ($type == 'visit'){
     echo (' <nav>
@@ -39,7 +39,7 @@
                     <div id="nav1">
                         <a href="index.php">Accueil</a>
                         <a href="dashboard.php">Tableau de bord</a>
-                        <a href="">Tickets disponibles</a>
+                        <a href="dashboard.php?dispo=true">Tickets disponibles</a>
                     </div>
                     <div id="nav2">
                         <a href="profile.php">Profil</a>
