@@ -74,6 +74,8 @@
             echo '<br>
             <div class="resetSubmitButtons">
                 <input type="button" value="Annuler" class="reset_buttons" onclick="history.back();">';
+
+                    # TODO: Faire une requête pour vérifier l'état du ticket afin de vérifier que la fonction est la bonne
                     if ($_GET['function'] == 'take'){
                         echo '<input type="submit" value="Prendre en charge" name="take" class="submit_buttons">';
                     }
