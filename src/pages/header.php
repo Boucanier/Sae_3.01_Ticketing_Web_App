@@ -1,11 +1,3 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-<meta charset="UTF-8">
-<title>Accueil</title>
-<link rel="stylesheet" type="text/css" href="../style/style.css">
-</head>
-<body>
     <header>
         <div id="top">
             <img src="../resources/logo.png" alt="logo de la plateforme" id="image1">
