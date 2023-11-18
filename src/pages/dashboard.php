@@ -6,100 +6,99 @@
     <link rel="stylesheet" type="text/css" href="../style/style.css">
 </head>
 <body>
+<header>
+    <div id="top">
+        <img src="../resources/logo.png" alt="logo de la plateforme" id="image1">
+        <h1>Ticket App</h1>
+        <img src="../resources/logo_UVSQ.png" alt="logo de l'UVSQ" id="image2">
+    </div>
+    <nav>
+        <div id="nav1">
+            <a href="index.php">Accueil</a>
+            <a href="dashboard.php">Tableau de bord</a>
+        </div>
+        <div id="nav2">
+            <a href="profile.php">Profil</a>
+            <a href="connection.php">Se connecter</a>
+            <a href="index.php">Déconnexion</a>
+        </div>
+    </nav>
+</header>
 
 <?php
-    include "header.php";
+    $role = "user";
 
-    if(!isset($_POST['login'])){  # if(!isset($_SESSION['login'])){
-        # header("Location: index.php?erreur=1");
+    echo '<main>
+        <div id="part_top">
+        <h2>Mes tickets</h2>';
+
+    if ($role == "user") {
+            echo '<button type="button" onclick="location.href=\'ticket.php\'">Créer un ticket</button></div>';
+            $header = array('Niveau', 'Salle', 'Problème', 'Date', 'État');
+
+            # TODO: Remplacer ce tableau par une requête SQL
+            $test_col = array(array(1, '315', 'Câble projecteur HS', '04/10/2023', 'open'),
+                                array(4, 'G23', 'Écran cassé', '14/09/2023', 'closed'));
+
+            # TODO: Remplacer ce tableau par une requête SQL
+            $ticket_id = array(1, 2);
+        }
+
+    else {
+        echo '</div>';
     }
 
-    $login = "ticket_app"; # $user = $_SESSION['login']
-    $host = "localhost";
-    $mdp = "ticket_s301";
-    $nom_db = "ticket_app";
-
-    /*
-    $db = mysqli_connect($host, $login, $mdp) or die("Can't connect to database");
-
-    mysqli_select_db($db, $nom_db) or die("Can't open the database");
-    */
-
-    echo '
-        <div id="part_top">
-        <h2>Mes tickets</h2>    
-            <button type="button" onclick="location.href=\'ticket.php\'">Créer un ticket</button>
-        </div>
-    ';
-
-
-    echo '
-        <div id="ticket_table">
+    echo '<div id="ticket_table">
         <table>
-        <tr>
-    ';
-
-    /*
-    ### Partie pour ajouter les colonnes au tableau ###
-
-    $requete_colonnes = 'SHOW COLUMNS
-                         FROM tickets;';
-
-    $colonnes = mysqli_query($db, $requete_colonnes);
-
-    $colonnes_voulues = array('emergency', 'room', 'title', 'creation_date', 'status');
-
-    for (mysqli_fetch_array($colonnes) as $colonne){
-        if ($colonne in $colonnes_voulues)
-            echo '<th>$colonne</th>';
-    '
+        <tr>';
+    
+    foreach ($header as $h) {
+        echo '<th>' . $h . '</th>';
     }
 
     echo '</tr>';
 
-    ### Partie pour ajouter les tickets au tableau ###
-
-    $requete_tickets = 'SELECT emergency, room, title, creation_date, status
-                        FROM tickets
-                        WHERE user_login = $login;';
-
-    # ATTENTION $login ci-dessus devra être remplacé par les cookies de session
-
-    $tickets = mysqli_query($db, $requete_tickets);
-
-    foreach (mysqli_fetch_array($tickets) as $elem){
-        echo '
-        <tr>
-            <td>$elem[0]</td>
-            <td>$elem[1]</td>
-            <td>$elem[2]</td>
-            <td>$elem[3]</td>
-            <td>$elem[4]</td>
-        </tr>
-        ';
+    foreach ($test_col as $row) {
+        echo '<tr>';
+        for ($i = 0; $i < count($row); $i++) {
+            if ($i == 0) {
+                echo '<td class="ticket_case_' . $row[$i] . '">' . $row[$i] . '</td>';
+            }
+            else if ($i == 4) {
+                switch ($row[$i]){
+                    case 'open':
+                        echo '<td>Ouvert</td>';
+                        break;
+                    case 'in_progress':
+                        echo '<td>En cours</td>';
+                        break;
+                    case 'closed':
+                        echo '<td>Fermé</td>';
+                        break;
+                    default:
+                        echo '<td>Inconnu</td>';
+                }
+            }
+            else {
+                echo '<td>' . $row[$i] . '</td>';
+            }
+        }
+        echo '</tr>';   
     }
-    */
 
-    echo '
-        </table>
-        <div id="details_button">
-    ';
+    echo '</table>';
 
-    /*
-    $requete_nb_tickets = 'SELECT COUNT(ticket_id)
-                           FROM tickets
-                           WHERE user_login = $login;';
-
-    $nb_tickets = mysqli_query($db, $requete_nb_tickets);
-
-    for (int i=0; i<$nb_tickets; i++){
-            echo '<button type="button" onclick="location.href=\'ticket_details.php\'">Détails</button>';
+    if ($role == 'user'){
+        echo '<div id="details_button">';
+        for ($i = 0; $i < count($test_col); $i++) {
+            echo '<button type="button" onclick="location.href=\'ticket_details.php?id='.$ticket_id[$i].'\'">Détails</button>';
+        }
+        echo '</div>';
     }
-    */
-    echo'
-        </div>
-        </div>
-    ';
 
-    include "footer.php";
+    echo '</div>
+        </main>';
+        include "footer.php";
+    echo '</body>
+    </html>';
 ?>
