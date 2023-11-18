@@ -1,4 +1,3 @@
-<!--
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -39,112 +38,41 @@
             <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=QOroqZ7wXyNrZZh8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
     </div>
-    <table id="derniers_tickets">
-        <tr>
-            <th>Niveau</th>
-            <th>Salle</th>
-            <th>Problème</th>
-            <th>Demandeur</th>
-            <th>Date</th>
-        </tr>
-        <tr>
-            <td class="ticket_case_4">4</td>
-            <td>G26</td>
-            <td>Fuite d'eau sur les machines</td>
-            <td>J. Cabessa</td>
-            <td>05/10/2023</td>
-        </tr>
-        <tr>
-            <td class="ticket_case_1">1</td>
-            <td>315</td>
-            <td>Câble projecteur HS</td>
-            <td>F. Hoguin</td>
-            <td>04/10/2023</td>
-        </tr>
-        <tr>
-            <td class="ticket_case_2">2</td>
-            <td>I21</td>
-            <td>Multiprise cassée</td>
-            <td>D. Auger</td>
-            <td>26/09/2023</td>
-        </tr>
-    </table>
-</main>
-</body>
 
--->
-
-<?php
-    include "header.php";
-
-    $login = "ticket_app"; # $user = $_SESSION['login']
-    $host = "localhost";
-    $mdp = "ticket_s301";
-    $nom_db = "ticket_app";
-
-    $db = mysqli_connect($host, $login, $mdp) or die("Can't connect to database");
-
-    mysqli_select_db($db, $nom_db) or die("Can't open the database");
-
-?>
-<div id="presentation">
-    <div id="texte_explicatif">
-        <h2>Texte explicatif</h2>
-        <p>
-            Sed (saepe enim redeo ad Scipionem, cuius omnis sermo erat de amicitia) querebatur, quod omnibus in rebus homines diligentiores essent; capras et oves quot quisque haberet, dicere posse, amicos quot haberet, non posse dicere et in illis quidem parandis adhibere curam, in amicis eligendis neglegentis esse nec habere quasi signa quaedam et notas, quibus eos qui ad amicitias essent idonei, iudicarent. Sunt igitur firmi et stabiles et constantes eligendi; cuius generis est magna penuria. Et iudicare difficile est sane nisi expertum; experiendum autem est in ipsa amicitia. Ita praecurrit amicitia iudicium tollitque experiendi potestatem.
-            Sed (saepe enim redeo ad Scipionem, cuius omnis sermo erat de amicitia) querebatur, quod omnibus in rebus homines diligentiores essent; capras et oves quot quisque haberet, dicere posse, amicos quot haberet, non posse dicere et in illis quidem parandis adhibere curam, in amicis eligendis neglegentis esse nec habere quasi signa quaedam et notas, quibus eos qui ad amicitias essent idonei, iudicarent. Sunt igitur firmi et stabiles et constantes eligendi; cuius generis est magna penuria. Et iudicare difficile est sane nisi expertum; experiendum autem est in ipsa amicitia. Ita praecurrit amicitia iudicium tollitque experiendi potestatem.
-        </p>
-    </div>
-    <div id="video_explicative">
-        <h2>Vidéo explicative</h2>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=QOroqZ7wXyNrZZh8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-    </div>
-</div>
-<?php
-    echo '
-        <table id="derniers_tickets" style="border: 1px solid black">
+    <?php
+    echo '<table id="derniers_tickets">
             <tr>
-    ';
+                <th>Niveau</th>
+                <th>Salle</th>
+                <th>Problème</th>
+                <th>Demandeur</th>
+                <th>Date</th>
+            </tr>';
 
-    ### Partie pour ajouter les colonnes au tableau ###
-
-    $requete_colonnes = 'SHOW COLUMNS
-                         FROM tickets;';
-
-    $colonnes = mysqli_query($db, $requete_colonnes);
-
-    $colonnes_voulues = array('emergency', 'room', 'title', 'user_login', 'creation_date');
-
-    foreach ($colonnes as $colonne){
-        if (in_array($colonne['Field'], $colonnes_voulues))
-            echo '<th>$colonne</th>';
-    }
-
-    echo '</tr>';
-
-    ### Partie pour ajouter les tickets au tableau ###
-
-    $requete_tickets = 'SELECT emergency, room, title, user_login, creation_date
-                        FROM tickets
-                        WHERE ticket_id > ((SELECT MAX(ticket_id)
-                                            FROM tickets)
-                                            - 10);';
-
-    $tickets = mysqli_query($db, $requete_tickets);
-
-    while ($elem = mysqli_fetch_array($tickets)){
-        echo '
-        <tr>
-            <td>$elem[0]</td>
-            <td>$elem[1]</td>
-            <td>$elem[2]</td>
-            <td>$elem[3]</td>
-            <td>$elem[4]</td>
-        </tr>
-        ';
+    # TODO: Remplacer ce tableau par une requête SQL
+    $data = array(array(4,'G26', 'Fuite d\'eau sur les machines', 'J. Cabessa', '05/10/2023'),
+                    array(1,'315','Câble projecteur HS', 'F. Hoguin', '04/10/2023'),
+                    array(2, 'I21', 'Multiprise cassée', 'D. Auger', '26/09/2023'));
+    
+    foreach ($data as $row) {
+        echo '<tr>';
+        for ($i = 0; $i < count($row); $i++) {
+            if ($i == 0) {
+                echo '<td class="ticket_case_'.$row[0].'">'.$row[0].'</td>';
+            }
+            else {
+                echo '<td>'.$row[$i].'</td>';
+            }
+        }
+        echo '</tr>';
     }
 
     echo '</table>';
-
+    ?>
+    </table>
+</main>
+</body>
+<?php
     include "footer.php";
 ?>
+</html>

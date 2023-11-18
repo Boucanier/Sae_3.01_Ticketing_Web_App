@@ -377,16 +377,25 @@ th {
 .ticket_case_1 {
     background: linear-gradient(to bottom right, rgb(226, 226, 226),rgb(80, 200, 80));
     border-right: 1px solid black;
+    font-weight: bold;
 }
 
 .ticket_case_2 {
     background: linear-gradient(to bottom right, rgb(226, 226, 226),rgb(255, 240, 32));
     border-right: 1px solid black;
+    font-weight: bold;
+}
+
+.ticket_case_3 {
+    background: linear-gradient(to bottom right, rgb(226, 226, 226),rgb(253, 147, 60));
+    border-right: 1px solid black;
+    font-weight: bold;
 }
 
 .ticket_case_4 {
-    background: linear-gradient(to bottom right, rgb(226, 226, 226),rgb(228, 78, 78));
+    background: linear-gradient(to bottom right, rgb(226, 226, 226),rgb(255, 39, 39));
     border-right: 1px solid black;
+    font-weight: bold;
 }
 
 #ticket_about {
