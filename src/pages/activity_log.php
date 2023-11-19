@@ -36,26 +36,26 @@
                     <thead>
                         <tr>
                             <th>Date</th>
-                            <th>Id</th>
-                            <th>Demandeur</th>
-                            <th>Niveau d\'urgence</th>
+                            <th>Login</th>
+                            <th>Ip</th>
+                            <th class="short_cell">Niveau d\'urgence</th>
                         </tr>
                     </thead>';
                     
                     # TODO: Remplacer ce tableau par une requête SQL
                     $data = array(
-                        array('19-11-2023', 'matis', 'Matis', 4),
-                        array('18-3-2023', 'jules', 'Jules', 3),
-                        array('22-1-2023', 'thomas', 'Thomas', 2),
-                        array('23-5-2023', 'thomas', 'Thomas', 4),
-                        array('19-11-2023', 'thomas', 'Thomas', 1),
-                        array('14-11-2023', 'jules', 'Jules', 2),
-                        array('8-10-2023', 'matis', 'Matis', 4),
-                        array('22-1-2023', 'thomas', 'Thomas', 2),
-                        array('23-5-2023', 'thomas', 'Thomas', 4),
-                        array('19-11-2023', 'thomas', 'Thomas', 1),
-                        array('14-11-2023', 'jules', 'Jules', 2),
-                        array('8-10-2023', 'matis', 'Matis', 4)
+                        array('19-11-2023', 'matis', '192.168.1.1', 4),
+                        array('18-3-2023', 'jules', '192.168.1.13', 3),
+                        array('22-1-2023', 'thomas', '192.168.1.32', 2),
+                        array('23-5-2023', 'thomas', '192.168.1.11', 4),
+                        array('19-11-2023', 'thomas', '192.168.1.14', 1),
+                        array('14-11-2023', 'jules', '192.168.1.57', 2),
+                        array('8-10-2023', 'matis', '192.168.1.35', 4),
+                        array('22-1-2023', 'thomas', '192.168.1.45', 2),
+                        array('23-5-2023', 'thomas', '192.168.1.1', 4),
+                        array('19-11-2023', 'thomas', '192.168.1.32', 1),
+                        array('14-11-2023', 'jules', '192.168.1.1', 2),
+                        array('8-10-2023', 'matis', '192.168.1.13', 4)
                     );
 
                     echo '<tbody>';
@@ -123,7 +123,7 @@
         </div>
 
         <div class="activity_log_parts">
-            <h2>Historiaque des tickets fermés</h2>
+            <h2>Historique des tickets fermés</h2>
             <div id="scrollable-table">
                 <?php
                     echo '
@@ -132,8 +132,8 @@
                         <tr>
                             <th>Niveau</th>
                             <th>Salle</th>
-                            <th>Probleme</th>
-                            <th>Demandeur</th>
+                            <th>Problème</th>
+                            <th>Login</th>
                             <th>Date</th>
                             <th>Date fin</th>
                         </tr>
