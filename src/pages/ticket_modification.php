@@ -25,39 +25,62 @@
     </nav>
 </header>
 <main>
+    <?php
+    # TODO: Remplacer ce tableau par une requête SQL
+    $data = array(
+        "Voici un problème tres particulier pour lequel je n'ai pas de réponse",
+        "Probleme avec le projecteur",
+        "G23",
+        "UnRandom",
+        "JJ Le sang",
+        4,
+        "En cours"
+    );
+
+    # TODO: Remplacer ce tableau par une requête SQL
+    # liste de tout les techniciens
+    $techniciens = array(
+        array("tech1", "Jean", "Dujardin"),
+        array("tech2", "Matis", "Rod"),
+        array("tech3", "Jules", "Chi"),
+        array("tech4", "Thomas", "God"),
+        array("tech5", "Couscous", "Merguez"),
+    );
+
+    echo '
     <div id="form_modification_ticket">
         <div id="texte_explicatif_info_actuel">
-            <textarea id="description_prbl_modification_page" name="description_probleme" rows="10" cols="20" readonly>Voici un problème tres particulier pour lequel je n'ai pas de réponse</textarea>
+            <textarea id="description_prbl_modification_page" name="description_probleme" rows="10" cols="20" readonly>'.$data[0].'</textarea>
             <div id="form_valeur_actuelle_valeur_a_modifier">
                 <div id="modification_ticket_valeur_actuelle">
                     <div id="modification_ticket_libelle_salle">
                         <div id="modification_ticket_libelle">
                             <label for="ticket_libelle">Libellé</label>
-                            <input type="text" id="ticket_libelle" name="ticket_libelle" value="un libellé" readonly/>
+                            <input type="text" id="ticket_libelle" name="ticket_libelle" value="'.$data[1].'" readonly/>
                         </div>
                         <div id="modification_ticket_salle">
                             <label for="ticket_salle">Salle</label>
-                            <input type="text" id="ticket_salle" name="ticket_salle" value="G23" readonly/>
+                            <input type="text" id="ticket_salle" name="ticket_salle" value="'.$data[2].'" readonly/>
                         </div>
                     </div>
                     <div id="modification_ticket_demandeur_technicien">
                         <div id="modification_ticket_demandeur">
                             <label for="ticket_demandeur">Demandeur</label>
-                            <input type="text" id="ticket_demandeur" name="ticket_demandeur" value="Thomasse" readonly/>
+                            <input type="text" id="ticket_demandeur" name="ticket_demandeur" value="'.$data[3].'" readonly/>
                         </div>
                         <div id="modification_ticket_technicien">
                             <label for="ticket_technicien">Technicien</label>
-                            <input type="text" id="ticket_technicien" name="ticket_technicien" value="JJ le sang" readonly/>
+                            <input type="text" id="ticket_technicien" name="ticket_technicien" value="'.$data[4].'" readonly/>
                         </div>
                     </div>
                     <div id="modification_ticket_niveauUrgence_etat">
                         <div id="modification_ticket_niveauUrgence">
-                            <label for="ticket_niveauUrgence">Niveau d'urgence</label>
-                            <input type="text" id="ticket_niveauUrgence" name="ticket_niveauUrgence" value="3" readonly/>
+                            <label for="ticket_niveauUrgence">Niveau d\'urgence</label>
+                            <input type="text" class="ticket_case_'.$data[5].'" id="ticket_niveauUrgence" name="ticket_niveauUrgence" value="'.$data[5].'" readonly/>
                         </div>
                         <div id="modification_ticket_etat">
                             <label for="ticket_etat">État</label>
-                            <input type="text" id="ticket_etat" name="ticket_etat" value="En cours" readonly/>
+                            <input type="text" id="ticket_etat" name="ticket_etat" value="'.$data[6].'" readonly/>
                         </div>
                     </div>
                 </div>
@@ -67,7 +90,7 @@
                         <input type="text" id="new_libelle" name="new_libelle"/>
                     </div>
                     <div class="modif_form_input">
-                        <label for="new_emergency">Niveau d'urgence&nbsp:</label>
+                        <label for="new_emergency">Niveau d\'urgence&nbsp:</label>
                         <input type="number" id="new_emergency" max="4" min="1" name="new_emergency"/>
                     </div>
                     <div class="modif_form_input">
@@ -81,11 +104,14 @@
                     </div>
                     <div class="modif_form_input">
                         <label for="new_tech">Affecter un technicien&nbsp:</label>
-                        <select id="new_tech" name="new_tech">
-                            <option value="Vide"></option>
-                            <option value="tech1">Tech1</option>
-                            <option value="tech2">Tech2</option>
-                            <option value="tech3">Tech3</option>
+                        <select id="new_tech" name="new_tech">';
+                            ?>
+                            <?php
+                            echo '<option value="Vide"></option>';
+                            foreach($techniciens as $tech){
+                                echo '<option value="'.$tech[0].'">'.$tech[1].' '.$tech[2].'</option>';
+                            }
+                            echo '
                             <!-- Afficher la liste de tous les techniciens, valeur = login, affichage = prénom + nom -->
                         </select>
                     </div>
@@ -96,7 +122,8 @@
                         <input type="submit" value="Modifier" id="modifier_ticket" name="modifier_ticket"  class="submit_buttons"/>
                     </div>
         </div>
-    </form>
+    </form>';
+    ?>
 </main>
 <?php
     include "footer.php";
