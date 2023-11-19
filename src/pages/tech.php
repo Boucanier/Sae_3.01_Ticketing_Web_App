@@ -36,35 +36,24 @@
                         <tr>
                             <th>Nom</th>
                             <th>Prénom</th>
-                            <th>Tickets en cours</th>
+                            <th class="short_cell">Tickets en cours</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Zanzibare</td>
-                            <td>Jean</td>
-                            <td>3</td>
-                        </tr>
-                        <tr>
-                            <td>Zanzibare</td>
-                            <td>Jean</td>
-                            <td>3</td>
-                        </tr>
-                        <tr>
-                            <td>Madagascar</td>
-                            <td>Rémi</td>
-                            <td>0</td>
-                        </tr>
-                        <tr>
-                            <td>Martinique</td>
-                            <td>Roger</td>
-                            <td>1</td>
-                        </tr>
-                        <tr>
-                            <td>Zanzibare</td>
-                            <td>Julien</td>
-                            <td>1</td>
-                        </tr>
+                        <?php
+                            $data = array(array('Jean', 'Zanzibare', '3'),
+                                        array('Roger', 'Martinique', '1'),
+                                        array('Julien', 'Zanzibare', '0'),
+                                        array('Francis', 'St Pierre et Miquelon', '5'));
+                            
+                            foreach ($data as $row) {
+                                echo '<tr>';
+                                for ($i = 0; $i < count($row); $i++) {
+                                    echo '<td>' . $row[$i] . '</td>';
+                                }
+                                echo '</tr>';
+                            }
+                        ?>
                     </tbody>
                 </table>
             </div>

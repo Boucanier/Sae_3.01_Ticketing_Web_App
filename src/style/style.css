@@ -210,9 +210,27 @@ input {
     display: flex;
     flex-direction: column;
     align-items: center;
-    overflow: scroll;
+    overflow-y: auto;
+    margin: auto;
     max-height: 700px;
+    width: 80%;
+    position: relative;
+    table-layout: fixed;
+}
+
+#tech_table {
     width: 100%;
+    border-collapse: collapse;
+}
+
+#tech_table > tbody > tr > td {
+    overflow: auto;
+    width: 40%;
+    word-wrap:break-word;
+}
+
+.short_cell {
+    width: 20%;
 }
 
 .resetSubmitButtons{
