@@ -27,7 +27,16 @@
 <main>
     <?php
     
+    if (isset($_GET['id']) && !empty($_GET['id'])){
+        $ticket_id = $_GET['id'];
+    }
+
+    else {
+        header('Location: dashboard.php');
+    }
+
     # TODO: Remplacer ce tableau par une requête SQL
+    # TODO: Vérifier que l'utilisateur actuel est bien le demandeur du ticket si c'est un user
     $data = array('jj/mm/aaaa',
             'Bacon ipsum dolor amet shoulder short ribs burgdoggen, picanha pancetta chicken pastrami t-bone cow beef buffalo landjaeger. Meatball boudin tenderloin pork belly, chuck pork bacon. Ham hock t-bone bacon turkey. Chislic picanha buffalo, bresaola prosciutto venison tail pig porchetta spare ribs kielbasa short loin beef ribs capicola. Shoulder tail pastrami ground round brisket tri-tip burgdoggen kevin short loin jowl alcatra.',
             'Libellé',
@@ -65,6 +74,8 @@
             echo '<br>
             <div class="resetSubmitButtons">
                 <input type="button" value="Annuler" class="reset_buttons" onclick="history.back();">';
+
+                    # TODO: Faire une requête pour vérifier l'état du ticket afin de vérifier que la fonction est la bonne
                     if ($_GET['function'] == 'take'){
                         echo '<input type="submit" value="Prendre en charge" name="take" class="submit_buttons">';
                     }
