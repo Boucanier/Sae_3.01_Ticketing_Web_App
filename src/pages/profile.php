@@ -9,6 +9,9 @@
 <body>
 <?php
     include "header.php";
+    if (!isset($_SESSION['login'])){
+        header('Location: index.php');
+    }
 ?>
 
 <main>
@@ -18,9 +21,19 @@
                 <div id="information">
                     <img src="../resources/temp_user_icon.png" alt="icone d'utilisateur" style="height: 300px; width: 300px">
                     <div id="info_perso">
-                        <p>Nom</p>
-                        <p>Prénom</p>
-                        <p>Login</p>
+                        <?php
+                            $mysqli = new mysqli($host, $user, $passwd,$db);
+                            $stmt = $mysqli->prepare("SELECT last_name, first_name, login FROM Users WHERE login = ?");
+                            $stmt->bind_param("s", $_SESSION['login']);
+                            $stmt->execute();
+                            $result = $stmt->get_result()->fetch_row();
+                            
+                            $mysqli->close();
+
+                            echo "<p>Nom : ".$result[0]."</p>";
+                            echo "<p>Prénom : ".$result[1]."</p>";
+                            echo "<p>Login : ".$result[2]."</p>";
+                        ?>
                     </div>
                 </div>
                 <button style="min-width: 60%" id="account_sup">Supprimer le compte</button>
