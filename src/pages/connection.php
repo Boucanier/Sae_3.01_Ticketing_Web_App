@@ -30,7 +30,7 @@
     <div class="form_containers">
         <div class="sign_up">
             <h2>Créer un compte</h2>
-            <form action="dashboard.php" method="get">
+            <form action="account.php" method="get">
                 <div class="user_info">
                     <div class="form_group">
                         <label for="login">Login&nbsp;:</label>
@@ -65,12 +65,13 @@
                 <br>
                 <div class="resetSubmitButtons">
                     <input type="reset" value="Effacer" class="reset_buttons">
-                    <input type="submit" value="Créer" class="submit_buttons">
+                    <input type="submit" value="Créer" class="submit_buttons" name="create_acc">
                 </div>
             </form>
         </div>
+
         <div class="log_in">
-            <form action="dashboard.php" method="get">
+            <form action="account.php" method="get">
                 <div class="form_group2">
                     <label for="login_connect">Login :</label>
                     <input type="text" id="login_connect" name="login_connect"/>
@@ -83,7 +84,7 @@
                 <br>
                 <div class="resetSubmitButtons">
                     <input type="reset" value="Effacer" class="reset_buttons">
-                    <input type="submit" value="Se connecter" class="submit_buttons">
+                    <input type="submit" value="Se connecter" class="submit_buttons" name="log_acc">
                 </div>
             </form>
         </div>
