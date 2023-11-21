@@ -35,8 +35,9 @@ Cette section est la conception architecturale du projet à l'abstraction au dom
 
 - **Users** : Table qui contient tous les utilisateurs
 - **Tickets** : Table qui contient tous les tickets
+- **Connections** : Table qui contient toutes les tentatives de connexions sur le site (réussies et échouées).
 
-Ces deux tables sont reliées par une relation d'**association**. Un utilisateur peut avoir le nombre de tickets qu'il veut, mais un ticket n'a qu'un utilisateur.
+Les tables **User** et **Tickets** sont reliées par une relation d'**association**. Un utilisateur peut avoir le nombre de tickets qu'il veut, mais un ticket n'a qu'un utilisateur. La table **Connections** est en association avec la table **User**.
 
 Mais en revenant au [cahier des charges](../Analyse/cahier_des_charges.md), on s'aperçoit qu'on doit utiliser une troisième table **Interventions** qui est une classe association entre Users et Tickets. En effet, cette table correspond à la prise en charge d'un ticket par un technicien. Elle n'existe que s'il y a un ticket à traiter et un technicien.
 

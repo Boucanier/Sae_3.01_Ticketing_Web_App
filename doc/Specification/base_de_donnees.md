@@ -14,11 +14,12 @@ Ce document présente les choix que nous avons fait pour créer la base de donn�
 
 ### Tables
 
-Nous avons défini 3 tables :
+Nous avons défini 4 tables :
 
 - **Users** qui contient les informations sur les utilisateurs
 - **Tickets** qui contient les informations sur les tickets
 - **Interventions** qui contient les informations sur les interventions : c'est une table-association des tables Users et Tickets
+- **Connections** qui contient les informations sur les tentatives de connections (réussies ou échouées)
 
 ### Colonnes
 
@@ -75,11 +76,25 @@ Cette table est une table-association des tables **Users** et **Tickets**. Elle 
 
 Seul la colonne **end_date** peut être nulle, car une intervention peut être en cours.
 
+#### Connections
+
+Cette table contient les colonnes suivantes :
+
+- **id_co** : champ de type *integer* qui est un identifiant unique à chaque tentative, c'est la ***clé primaire*** de la table
+- **ip_adress** : adresse ip de l'utilisateur *varchar(15)*
+- **login** : login de l'utilisateur de type *varchar(30)*, c'est une ***clé étrangère*** de la table qui fait référence à la colonne *login* de la table **Users**
+- **password** : mot de passe tenté de type *varchar(40)* car nous stockons le hash du mot de passe en format **sha1**
+- **succes** : *booleen* qui indique si l'utilisateur à pu se connecter
+- **date_co** : de type *datetime*, indique la date et l'heure de la tentative de connexion
+
+Aucun de ces champs ne peut être nul.
+
+
 ## Modèle logique de données
 
 Le modèle logique de données permet de représenter les tables et leurs colonnes en précisant les clés primaires et étrangères. Il est présenté ci-dessous :
 
-Users :
+#### Users :
 
 - $login
 - first_name
@@ -87,7 +102,7 @@ Users :
 - password
 - role
 
-Tickets :
+#### Tickets :
 
 - $ticket_id
 - title,
@@ -98,12 +113,16 @@ Tickets :
 - creation_date
 - #login
 
-Interventions :
+#### Interventions :
 
-- $id_int
-- #ticket_id
+- $id_co
+- ip_adress
 - #login
-- end_date
+- password
+- succes
+- date_co
+
+Connections :
 
 **Légende** : Les champs précédés d'un **$** sont les clés primaires et ceux précédés d'un **#** sont des clés étrangères.
 
@@ -122,6 +141,9 @@ Voici les différentes contraintes que nous avons définies pour les différente
 - **Interventions** :
   - **ticket_id** : référence la colonne **ticket_id** de la table **Tickets** -> une intervention sur un ticket ne peut être créée que si son état est *open*
   - **tech_login** : référence la colonne **login** de la table **Users** -> l'utilisateur qui prend en charge un ticket doit être du type *tech*
+
+- **Connections** :
+  - **login** référence la colonne **login** de la table **Users** -> la tentative de connexion doit référencer un utilisateur.
 
 ## Conclusion
 
