@@ -29,13 +29,15 @@
                 <input type="text" id="libelle" name="libelle"/>
                 <br>
                 <select id="salle" name="choix">
-                    <option value="I21">I21</option>
-                    <option value="G21">G21</option>
-                    <option value="G22">G22</option>
-                    <option value="G23">G23</option>
-                    <option value="G24">G24</option>
-                    <option value="G25">G25</option>
-                    <option value="G26">G26</option>
+                    <?php
+                        $salles = array(
+                                'I21', 'G21', 'G22', 'G23', 'G24', 'G25', 'G26'
+                        );
+                        echo '<option value="other">Autre</option>';
+                        foreach($salles as $salle){
+                            echo '<option value="'.$salle.'">'.$salle.'</option>';
+                        }
+                    ?>
                 </select>
                 <br>
                 <input type="number" id="niveauUrgence" name="niveauUrgence" max="4" min="1" value="1"/>
