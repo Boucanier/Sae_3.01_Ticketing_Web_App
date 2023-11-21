@@ -36,7 +36,7 @@
         <button type="button" onclick="location.href=\'ticket.php\'">Créer un ticket</button></div>';
         $header = array('Niveau', 'Salle', 'Problème', 'Date', 'État');
 
-        $stmt1 = $mysqli->prepare("SELECT ticket_id FROM Tickets WHERE user_login = ?");
+        $stmt1 = $mysqli->prepare("SELECT ticket_id FROM Tickets WHERE user_login LIKE ?");
         $stmt1->bind_param("s", $actual_user);
         $stmt1->execute();
         $stmt1->bind_result($ticket_id);
@@ -71,7 +71,7 @@
         if ($dispo) {
             echo '<h2>Tickets disponibles</h2>';
 
-            $stmt1 = $mysqli->prepare("SELECT ticket_id FROM Tickets WHERE user_login = ?");
+            $stmt1 = $mysqli->prepare("SELECT ticket_id FROM Tickets WHERE status LIKE 'open'");
             $stmt1->bind_param("s", $actual_user);
             $stmt1->execute();
             $stmt1->bind_result($ticket_id);
@@ -85,14 +85,16 @@
 
             $test_col = array();
             foreach ($ticket_ids as $ticket_id) {
-                $stmt2 = $mysqli->prepare("SELECT emergency, room, title, user_login, creation_date FROM Tickets WHERE ticket_id = ?");
+                $stmt2 = $mysqli->prepare("SELECT emergency, room, title, last_name, first_name, creation_date FROM Tickets T, Users U WHERE ticket_id = ? AND T.user_login = U.login");
                 $stmt2->bind_param("s", $ticket_id);
                 $stmt2->execute();
-                $stmt2->bind_result($emergency, $room, $title, $user_login, $creation_date);
+                $stmt2->bind_result($emergency, $room, $title, $nom, $prenom, $creation_date);
+
+                echo $emergency;
 
                 $stmt2->fetch();
 
-                $test_col[] = array($emergency, $room, $title, $user_login, $creation_date);
+                $test_col[] = array($emergency, $room, $title, $nom, $prenom, $creation_date);
 
                 $stmt2->close();
             }
@@ -101,7 +103,7 @@
         else {
             echo '<h2>Mes interventions en cours</h2>';
 
-            $stmt1 = $mysqli->prepare("SELECT ticket_id FROM Interventions I WHERE tech_login LIKE ?");
+            $stmt1 = $mysqli->prepare("SELECT ticket_id FROM Interventions WHERE tech_login LIKE ?");
             $stmt1->bind_param("s", $actual_user);
             $stmt1->execute();
             $stmt1->bind_result($ticket_id);
@@ -115,14 +117,14 @@
 
             $test_col = array();
             foreach ($ticket_ids as $ticket_id){
-                $stmt2 = $mysqli->prepare("SELECT emergency, room, title, user_login, creation_date FROM Tickets WHERE ticket_id = ?");
+                $stmt2 = $mysqli->prepare("SELECT emergency, room, title, last_name, first_name, creation_date FROM Tickets T, Users U WHERE ticket_id = ? AND T.user_login = U.login");
                 $stmt2->bind_param("s", $ticket_id);
                 $stmt2->execute();
-                $stmt2->bind_result($emergency, $room, $title, $user_login, $creation_date);
+                $stmt2->bind_result($emergency, $room, $title, $nom, $prenom, $creation_date);
 
                 $stmt2->fetch();
 
-                $test_col[] = array($emergency, $room, $title, $user_login, $creation_date);
+                $test_col[] = array($emergency, $room, $title, $nom, $prenom, $creation_date);
 
                 $stmt2->close();
             }
