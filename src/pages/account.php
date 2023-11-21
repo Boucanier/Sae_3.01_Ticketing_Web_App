@@ -96,7 +96,13 @@
                         $_SESSION['role'] = $role;
                         $_SESSION['date'] = $date;
 
-                        header('Location: dashboard.php');
+                        if ($role == 'sys_admin'){
+                            header('Location: index.php');
+                        }
+                        
+                        else {
+                            header('Location: dashboard.php');
+                        }
                     }
 
                     else {
