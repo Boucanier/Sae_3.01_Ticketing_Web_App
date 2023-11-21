@@ -9,9 +9,9 @@ DROP TRIGGER IF EXISTS check_tickets_user;
 
 
 CREATE TABLE Users (
-    login VARCHAR(30) UNIQUE NOT NULL PRIMARY KEY,
-    first_name VARCHAR(30) NOT NULL,
-    last_name VARCHAR(30) NOT NULL,
+    login VARCHAR(40) UNIQUE NOT NULL PRIMARY KEY,
+    first_name VARCHAR(40) NOT NULL,
+    last_name VARCHAR(40) NOT NULL,
     password VARCHAR(40) NOT NULL,
     role VARCHAR(10) NOT NULL CHECK (role IN ('user', 'tech', 'web_admin', 'sys_admin'))
 );
@@ -24,21 +24,21 @@ CREATE TABLE Tickets (
     status VARCHAR(20) NOT NULL CHECK (status IN ('open', 'closed', 'in_progress')),
     emergency INTEGER NOT NULL CHECK (emergency IN (1, 2, 3, 4)),
     creation_date DATE NOT NULL,
-    user_login VARCHAR(30) NOT NULL REFERENCES Users(login),
+    user_login VARCHAR(40) NOT NULL REFERENCES Users(login),
     ip_address VARCHAR(15) NOT NULL
 );
 
 CREATE TABLE Interventions (
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
     ticket_id INTEGER NOT NULL REFERENCES Tickets(ticket_id),
-    tech_login VARCHAR(30) NOT NULL REFERENCES Users(login),
+    tech_login VARCHAR(40) NOT NULL REFERENCES Users(login),
     end_date DATE
 );
 
 CREATE TABLE Connections (
     id_co INTEGER PRIMARY KEY AUTO_INCREMENT,
     ip_address VARCHAR(15) NOT NULL,
-    login VARCHAR(30) NOT NULL REFERENCES Users(login),
+    login VARCHAR(40) NOT NULL REFERENCES Users(login),
     password VARCHAR(40) NOT NULL,
     succes BOOLEAN NOT NULL,
     date_co DATETIME NOT NULL
@@ -78,6 +78,16 @@ BEGIN
     IF (SELECT role FROM Users WHERE login = NEW.user_login) != 'user' THEN
         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'User login must be a user';
     END IF;
+END;//
+delimiter ;
+
+delimiter //
+CREATE TRIGGER update_login_references AFTER UPDATE ON Users
+FOR EACH ROW
+BEGIN
+    UPDATE Connections Cnt SET Cnt.login = NEW.login WHERE Cnt.login = OLD.login;
+    UPDATE Interventions Itv SET Itv.tech_login = NEW.login WHERE Itv.tech_login = OLD.login;
+    UPDATE Tickets Tkt SET Tkt.user_login = NEW.login WHERE Tkt.user_login = OLD.login;
 END;//
 delimiter ;
 
