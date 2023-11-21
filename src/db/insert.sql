@@ -1,6 +1,6 @@
 INSERT INTO Users VALUES ('user1', 'user1', 'user1', '12dea96fec20593566ab75692c9949596833adc9', 'user');
-INSERT INTO Users VALUES ('user2', 'user1', 'user1', '12dea96fec20593566ab75692c9949596833adc9', 'user');
-INSERT INTO Users VALUES ('user3', 'user1', 'user1', '12dea96fec20593566ab75692c9949596833adc9', 'user');
+INSERT INTO Users VALUES ('user2', 'user2', 'user2', '12dea96fec20593566ab75692c9949596833adc9', 'user');
+INSERT INTO Users VALUES ('user3', 'user3', 'user3', '12dea96fec20593566ab75692c9949596833adc9', 'user');
 /*
     mpd = user
 */
