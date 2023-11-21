@@ -5,7 +5,7 @@
     $host = "localhost";
 
     if (isset($_GET['create_acc'])){
-        $mysqli = new mysqli($host, $user, $passwd,$db);
+        $mysqli = new mysqli($host, $user, $passwd, $db);
 
         if (isset($_GET['login'], $_GET['f_name'], $_GET['name'], $_GET['pwd'], $_GET['conf_pwd'])){
             $login = $_GET['login'];
@@ -48,7 +48,7 @@
     }
 
     else if (isset($_GET['log_acc'])){
-        $mysqli = new mysqli($host, $user, $passwd,$db);
+        $mysqli = new mysqli($host, $user, $passwd, $db);
 
         if (isset($_GET['login_connect'], $_GET['pwd_connect'])){
             $login = $_GET['login_connect'];
@@ -59,7 +59,7 @@
             if ($login != '' && $pwd != ''){
                 $pwd = sha1($pwd);
                 
-                $mysqli = new mysqli($host, $user, $passwd,$db);
+                $mysqli = new mysqli($host, $user, $passwd, $db);
                 
                 $stmt = $mysqli->prepare("SELECT COUNT(*) FROM Users WHERE login = ?");
                 $stmt->bind_param("s", $login);
@@ -174,9 +174,37 @@
                 }
             }
         }
+        
         else {
             header('Location: profile.php?error=1');
         }
     }
+
+    else if (isset($_GET['sup_acc']) && $_GET['sup_acc'] == true){
+        session_start();
+        if (isset($_SESSION['login'])){
+            $mysqli = new mysqli($host, $user, $passwd, $db);
+
+            $stmt = $mysqli->prepare("SELECT last_name, first_name FROM Users WHERE login = ?");
+            $stmt->bind_param("s", $_SESSION['login']);
+            $stmt->execute();
+            $result = $stmt->get_result()->fetch_row();
+
+            $stmt->close();
+
+            $last_name = md5($result[0]);
+            $first_name = md5($result[1]);
+            $login = 'rmv-'.md5($_SESSION['login']);
+
+            $stmt = $mysqli->prepare("UPDATE Users Usr SET Usr.last_name = ?, Usr.first_name = ?, Usr.login = ? WHERE Usr.login = ?");
+            $stmt->bind_param("ssss", $last_name, $first_name, $login, $_SESSION['login']);
+            $stmt->execute();
+            $stmt->close();
+
+            $mysqli->close();
+            header('Location: out.php');
+        }
+    }
+
     else header('Location: index.php?error=0');
 ?>
