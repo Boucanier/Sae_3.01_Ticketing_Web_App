@@ -47,21 +47,22 @@
 
     $data = mysqli_query($connection,$requete) or die ("erreur");
 
-    $long = mysqli_fetch_lengths($data);
+    $long = mysqli_num_rows($data);
 
     if ($long > 10){
         $long = 10;
     }
 
-    while ($row = mysqli_fetch_array($data)){
-        echo '<tr>
-                <td>'.$row[0].'</td>
-                <td>'.$row[1].'</td>
-                <td>'.$row[2].'</td>
-                <td>'.$row[3].'</td>
-                <td>'.$row[4].'</td>
-            </tr>'
-        ;
+    for ($i=0; $i<$long; $i++){
+        $row = mysqli_fetch_array($data);
+        echo '<tr>';
+        for ($j=0; $j<5; $j++){
+            if ($j == 0)
+                echo '<td class="ticket_case_'.$row[$j].'">'.$row[$j].'</td>';
+            else
+                echo '<td>'.$row[$j].'</td>';
+        }
+        echo '</tr>';
     }
 
     mysqli_close($connection);
