@@ -188,12 +188,14 @@
             $stmt = $mysqli->prepare("SELECT last_name, first_name FROM Users WHERE login = ?");
             $stmt->bind_param("s", $_SESSION['login']);
             $stmt->execute();
-            $result = $stmt->get_result()->fetch_row();
+            $stmt->bind_result($last_name, $first_name);
+
+            $stmt->fetch();
 
             $stmt->close();
 
-            $last_name = md5($result[0]);
-            $first_name = md5($result[1]);
+            $last_name = md5($last_name);
+            $first_name = md5($first_name);
             $login = 'rmv-'.md5($_SESSION['login']);
 
             $stmt = $mysqli->prepare("UPDATE Users Usr SET Usr.last_name = ?, Usr.first_name = ?, Usr.login = ? WHERE Usr.login = ?");

@@ -41,7 +41,7 @@
                         ?>
                     </div>
                 </div>
-                <button style="min-width: 60%" id="account_sup" onclick="location.href='account.php?sup_acc=true'">Supprimer le compte</button>
+                <button style="min-width: 60%" id="account_sup" onclick="location.href='confirmation.php?sup_acc=true'">Supprimer le compte</button>
             </div>
         </div>
 
