@@ -2,10 +2,12 @@ CREATE DATABASE IF NOT EXISTS ticket_app;
 USE ticket_app;
 
 
+
 DROP TABLES IF EXISTS Users, Tickets, Interventions, Connections;
 DROP TRIGGER IF EXISTS check_interventions_user;
 DROP TRIGGER IF EXISTS check_interventions_ticket;
 DROP TRIGGER IF EXISTS check_tickets_user;
+
 
 
 CREATE TABLE Users (
@@ -45,6 +47,9 @@ CREATE TABLE Connections (
 );
 
 
+
+
+
 delimiter //
 CREATE TRIGGER check_interventions_user BEFORE INSERT ON Interventions
 FOR EACH ROW
@@ -59,7 +64,17 @@ END;//
 delimiter ;
 
 delimiter //
-CREATE TRIGGER check_interventions_ticket BEFORE INSERT ON Interventions
+CREATE TRIGGER check_ticket_id_intervention BEFORE INSERT ON Interventions
+FOR EACH ROW
+BEGIN
+    IF NEW.ticket_id NOT IN (SELECT ticket_id FROM Tickets)
+        THEN SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Ticket must exist';
+    END IF;
+END;//
+delimiter;
+
+delimiter //
+CREATE TRIGGER check_interventions_ticket_open BEFORE INSERT ON Interventions
 FOR EACH ROW
 BEGIN
     IF (SELECT emergency FROM Tickets WHERE ticket_id = NEW.ticket_id) != 'open' THEN
@@ -81,9 +96,13 @@ BEGIN
 END;//
 delimiter ;
 
+
+
 INSERT INTO Users VALUES ('admin', 'admin', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'sys_admin');
 INSERT INTO Users VALUES ('tec1', 'tec1', 'tec1', '73f7a2f5b9bd744ab54cd1d307975868fc93a844', 'tech');
 INSERT INTO Users VALUES ('tec2', 'tec2', 'tec2', '73f7a2f5b9bd744ab54cd1d307975868fc93a844', 'tech');
+
+
 
 DROP USER IF EXISTS 'ticket_app'@'localhost';
 CREATE USER 'ticket_app'@'localhost' IDENTIFIED BY 'ticket_s301';
