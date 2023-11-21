@@ -22,7 +22,7 @@ CREATE TABLE Tickets (
     description TEXT NOT NULL,
     room VARCHAR(10) NOT NULL,
     status VARCHAR(20) NOT NULL CHECK (status IN ('open', 'closed', 'in_progress')),
-    emergency VARCHAR(10) NOT NULL CHECK (emergency IN (1, 2, 3, 4)),
+    emergency INTEGER NOT NULL CHECK (emergency IN (1, 2, 3, 4)),
     creation_date DATE NOT NULL,
     user_login VARCHAR(30) NOT NULL REFERENCES Users(login),
     ip_address VARCHAR(15) NOT NULL
@@ -84,10 +84,6 @@ delimiter ;
 INSERT INTO Users VALUES ('admin', 'admin', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'sys_admin');
 INSERT INTO Users VALUES ('tec1', 'tec1', 'tec1', '73f7a2f5b9bd744ab54cd1d307975868fc93a844', 'tech');
 INSERT INTO Users VALUES ('tec2', 'tec2', 'tec2', '73f7a2f5b9bd744ab54cd1d307975868fc93a844', 'tech');
-
-INSERT INTO Connections VALUES (1, '172.0.0.1', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', true, '2000-01-01 00:00:00');
-INSERT INTO Connections VALUES (2, '192.168.3.52', 'tec1', '73f7a2f5b9bd744ab54cd1d307975868fc93a844', true, '2004-09-24 23:59:59');
-INSERT INTO Connections VALUES (3, '8.8.8.8', 'tec2', '73f7a2f5b9bd744ab54cd1d307975868fc93a844', false, '2020-02-02 02:02:02');
 
 DROP USER IF EXISTS 'ticket_app'@'localhost';
 CREATE USER 'ticket_app'@'localhost' IDENTIFIED BY 'ticket_s301';
