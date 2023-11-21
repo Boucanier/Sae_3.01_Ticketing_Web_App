@@ -11,7 +11,7 @@
 ?>
 
 <?php
-    $role = "user";
+    $role = $type;
 
     if (isset($_GET['dispo']) && $_GET['dispo'] == "true"){
         $dispo = true;
