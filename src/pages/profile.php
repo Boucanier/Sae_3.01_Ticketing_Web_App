@@ -15,6 +15,11 @@
 ?>
 
 <main>
+        <?php
+            if (isset($_GET['success'])) {
+                echo '<div class="success"><p>Mot de passe changé avec succès !</p></div>';
+            }
+        ?>
     <div id="profile">
         <div id="profile_part1">
             <div id="img_info">
