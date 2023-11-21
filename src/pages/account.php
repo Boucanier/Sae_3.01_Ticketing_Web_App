@@ -99,13 +99,16 @@
                         if ($role == 'sys_admin'){
                             header('Location: index.php');
                         }
-                        
+
                         else {
                             header('Location: dashboard.php');
                         }
                     }
 
                     else {
+                        $requete = "INSERT INTO Connections(login, ip_address, password, succes, date_co) VALUES('$login', '$ip_address', '$pwd', 0, '$date')";
+                        mysqli_query($connection,$requete) or die ("erreur");
+
                         mysqli_close($connection);
                         header('Location: connection.php?error=14');
                     }
