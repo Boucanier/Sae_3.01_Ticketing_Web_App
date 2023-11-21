@@ -142,7 +142,6 @@ main {
 #info_perso {
     display: flex;
     flex-direction: column;
-    align-items: center;
 }
 
 #profile {
@@ -641,4 +640,20 @@ th {
 #ticket_log_table {
     width: 100%;
     border-collapse: collapse;
+}
+
+#profile {
+    margin-top: 60px;
+}
+
+.success > p{
+    color: blue;
+}
+
+.success {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
 }
