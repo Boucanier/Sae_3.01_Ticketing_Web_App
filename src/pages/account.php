@@ -1,4 +1,9 @@
 <?php
+    $user = "ticket_app";
+    $passwd = "ticket_s301";
+    $db = "ticket_app";
+    $host = "localhost";
+
     if (isset($_GET['create_acc'])){
         if (isset($_GET['login'], $_GET['f_name'], $_GET['name'], $_GET['pwd'], $_GET['conf_pwd'])){
             $login = $_GET['login'];
@@ -14,21 +19,15 @@
                 if (!($pwd == $conf_pwd)){
                     header('Location: connection.php?error=2');
                 }
-    
-                $user = "ticket_app";
-                $passwd = "ticket_s301";
-                $db = "ticket_app";
-                $host = "localhost";
-    
-                $connection = mysqli_connect($host,$user,$passwd) or die ("erreur");
-    
-                $db = mysqli_select_db($connection,$db) or die ("erreur");
-    
-                $requete = "INSERT INTO Users VALUES('$login','$f_name','$l_name','$pwd','user')";
-    
-                mysqli_query($connection,$requete) or die ("erreur");
                 
-                mysqli_close($connection);
+                $mysqli = new mysqli($host, $user, $passwd,$db);
+    
+                $stmt = $mysqli->prepare("INSERT INTO Users(login, first_name, last_name, password, role) VALUES (?, ?, ?, ?, 'user')");
+                $stmt->bind_param("ssss", $login, $f_name, $l_name, $pwd);
+                $stmt->execute();
+    
+                $mysqli->close();
+
                 session_start();
                         
                 $_SESSION['login'] = $login;
@@ -57,18 +56,14 @@
 
             if ($login != '' && $pwd != ''){
                 $pwd = sha1($pwd);
-    
-                $user = "ticket_app";
-                $passwd = "ticket_s301";
-                $db = "ticket_app";
-                $host = "localhost";
-    
-                $connection = mysqli_connect($host,$user,$passwd) or die ("erreur");
-    
-                $db = mysqli_select_db($connection,$db) or die ("erreur");
+                
+                $mysqli = new mysqli($host, $user, $passwd,$db);
+                
+                $stmt = $mysqli->prepare("SELECT COUNT(*) FROM Users WHERE login = ?");
+                $stmt->bind_param("s", $login);
+                $stmt->execute();
 
-                $requete = "SELECT COUNT(*) FROM Users WHERE login='$login'";
-                $taille = mysqli_fetch_row(mysqli_query($connection,$requete))[0];
+                $taille = $stmt->get_result()->fetch_row()[0];
 
                 if ($taille == 0){
                     header('Location: connection.php?error=12');
@@ -79,17 +74,25 @@
                 }
 
                 else {
-                    $requete = "SELECT password FROM Users WHERE login = '$login'";
-                    $get_pwd = mysqli_fetch_row(mysqli_query($connection,$requete))[0];
+                    $stmt = $mysqli->prepare("SELECT password FROM Users WHERE login = ?");
+                    $stmt->bind_param("s", $login);
+                    $stmt->execute();
+
+                    $get_pwd = $stmt->get_result()->fetch_row()[0];
 
                     if ($pwd == $get_pwd){
-                        $requete = "SELECT role FROM Users WHERE login = '$login'";
-                        $role = mysqli_fetch_row(mysqli_query($connection,$requete))[0];
+                        $stmt = $mysqli->prepare("SELECT role FROM Users WHERE login = ?");
+                        $stmt->bind_param("s", $login);
+                        $stmt->execute();
 
-                        $requete = "INSERT INTO Connections(login, ip_address, password, succes, date_co) VALUES('$login', '$ip_address', '$pwd', 1, '$date')";
-                        mysqli_query($connection,$requete) or die ("erreur");
+                        $role = $stmt->get_result()->fetch_row()[0];
+                
+                        $stmt = $mysqli->prepare("INSERT INTO Connections(login, ip_address, password, succes, date_co) VALUES (?, ?, ?, 1, ?)");
+                        $stmt->bind_param("ssss", $login, $ip_address, $pwd, $date);
+                        $stmt->execute();
+
+                        $mysqli->close();
                         
-                        mysqli_close($connection);
                         session_start();
                         
                         $_SESSION['login'] = $login;
@@ -106,10 +109,12 @@
                     }
 
                     else {
-                        $requete = "INSERT INTO Connections(login, ip_address, password, succes, date_co) VALUES('$login', '$ip_address', '$pwd', 0, '$date')";
-                        mysqli_query($connection,$requete) or die ("erreur");
+                        $stmt = $mysqli->prepare("INSERT INTO Connections(login, ip_address, password, succes, date_co) VALUES (?, ?, ?, 0, ?)");
+                        $stmt->bind_param("ssss", $login, $ip_address, $pwd, $date);
+                        $stmt->execute();
+                        
+                        $mysqli->close();
 
-                        mysqli_close($connection);
                         header('Location: connection.php?error=14');
                     }
                 }
