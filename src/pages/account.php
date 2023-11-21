@@ -29,6 +29,11 @@
                 mysqli_query($connection,$requete) or die ("erreur");
                 
                 mysqli_close($connection);
+                session_start();
+                        
+                $_SESSION['login'] = $login;
+                $_SESSION['role'] = 'user';
+                $_SESSION['date'] = date('F j, Y, g:i a');
     
                 header("Location: dashboard.php");
             }
@@ -85,10 +90,11 @@
                         mysqli_query($connection,$requete) or die ("erreur");
                         
                         mysqli_close($connection);
+                        session_start();
                         
-                        // $_SESSION['login'] = $login;
-                        // $_SESSION['role'] = $role;
-                        // $_SESSION['date'] = $date;
+                        $_SESSION['login'] = $login;
+                        $_SESSION['role'] = $role;
+                        $_SESSION['date'] = $date;
 
                         header('Location: dashboard.php');
                     }

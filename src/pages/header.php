@@ -6,7 +6,12 @@
         </div>
 
 <?php
-    $type = 'tech';
+    session_start();
+    $type = 'visit';
+
+    if (isset($_SESSION['login'])){
+        $type = $_SESSION['role'];
+    }
 
     if ($type == 'visit'){
     echo (' <nav>
@@ -28,7 +33,7 @@
                     </div>
                     <div id="nav2">
                         <a href="profile.php">Profil</a>
-                        <a href="index.php">Déconnexion</a>
+                        <a href="out.php">Déconnexion</a>
                     </div>
                 </nav>
             </header>');
@@ -43,7 +48,7 @@
                     </div>
                     <div id="nav2">
                         <a href="profile.php">Profil</a>
-                        <a href="index.php">Déconnexion</a>
+                        <a href="out.php">Déconnexion</a>
                     </div>
                 </nav>
             </header>');
@@ -54,11 +59,11 @@
                     <div id="nav1">
                         <a href="index.php">Accueil</a>
                         <a href="dashboard.php">Tableau de bord</a>
-                        <a href="">Gérer les techniciens</a>
+                        <a href="tech.php">Gérer les techniciens</a>
                     </div>
                     <div id="nav2">
                         <a href="profile.php">Profil</a>
-                        <a href="index.php">Déconnexion</a>
+                        <a href="out.php">Déconnexion</a>
                     </div>
                 </nav>
             </header>');
@@ -68,11 +73,11 @@
         echo (' <nav>
                     <div id="nav1">
                         <a href="index.php">Accueil</a>
-                        <a href="dashboard.php">Journaux d\'activités</a>
+                        <a href="activity_log.php">Journaux d\'activités</a>
                     </div>
                     <div id="nav2">
                         <a href="profile.php">Profil</a>
-                        <a href="index.php">Déconnexion</a>
+                        <a href="out.php">Déconnexion</a>
                     </div>
                 </nav>
             </header>');

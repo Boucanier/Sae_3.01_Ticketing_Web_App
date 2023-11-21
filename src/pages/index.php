@@ -6,24 +6,9 @@
     <link rel="stylesheet" type="text/css" href="../style/style.css">
 </head>
 <body>
-<header>
-    <div id="top">
-        <img src="../resources/logo.png" alt="logo de la plateforme" id="image1">
-        <h1>Ticket App</h1>
-        <img src="../resources/logo_UVSQ.png" alt="logo de l'UVSQ" id="image2">
-    </div>
-    <nav>
-        <div id="nav1">
-            <a href="index.php">Accueil</a>
-            <a href="dashboard.php">Tableau de bord</a>
-        </div>
-        <div id="nav2">
-            <a href="profile.php">Profil</a>
-            <a href="connection.php">Se connecter</a>
-            <a href="index.php">Déconnexion</a>
-        </div>
-    </nav>
-</header>
+<?php
+    include "header.php";
+?>
 <main id="main_page">
     <div id="presentation">
         <div id="texte_explicatif">
