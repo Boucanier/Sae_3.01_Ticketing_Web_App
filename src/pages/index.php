@@ -33,33 +33,39 @@
             <th>Date</th>
         </tr>
 
-    <?php
-        $user = "ticket_app";
-        $passwd = "ticket_s301";
-        $db = "ticket_app";
-        $host = "localhost";
+<?php
+    $user = "ticket_app";
+    $passwd = "ticket_s301";
+    $db = "ticket_app";
+    $host = "localhost";
 
-        $connection = mysqli_connect($host,$user,$passwd) or die ("erreur");
+    $connection = mysqli_connect($host,$user,$passwd) or die ("erreur");
 
-        $db = mysqli_select_db($connection,$db) or die ("erreur");
+    $db = mysqli_select_db($connection,$db) or die ("erreur");
 
-        $requete = "SELECT emergency, room, title, user_login, creation_date FROM Tickets";
+    $requete = "SELECT emergency, room, title, user_login, creation_date FROM Tickets WHERE status = 'open' ORDER BY creation_date DESC;";
 
-        $data = mysqli_query($connection,$requete) or die ("erreur");
+    $data = mysqli_query($connection,$requete) or die ("erreur");
 
-        while ($row = mysqli_fetch_array($data)) {
-            echo '<tr>
-                    <td>$row[0]</td>
-                    <td>$row[1]</td>
-                    <td>$row[2]</td>
-                    <td>$row[3]</td>
-                    <td>$row[4]</td>
-                </tr>
-            ';
-        }
+    $long = mysqli_fetch_lengths($data);
 
-        mysqli_close($connection);
-    ?>
+    if ($long > 10){
+        $long = 10;
+    }
+
+    while ($row = mysqli_fetch_array($data)){
+        echo '<tr>
+                <td>'.$row[0].'</td>
+                <td>'.$row[1].'</td>
+                <td>'.$row[2].'</td>
+                <td>'.$row[3].'</td>
+                <td>'.$row[4].'</td>
+            </tr>'
+        ;
+    }
+
+    mysqli_close($connection);
+?>
     </table>
 
 </main>
