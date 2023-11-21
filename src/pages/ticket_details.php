@@ -76,12 +76,14 @@
                 <input type="button" value="Annuler" class="reset_buttons" onclick="history.back();">';
 
                     # TODO: Faire une requête pour vérifier l'état du ticket afin de vérifier que la fonction est la bonne
-                    if ($_GET['function'] == 'take'){
-                        echo '<input type="submit" value="Prendre en charge" name="take" class="submit_buttons">';
-                    }
-                    
-                    else if ($_GET['function'] == 'close'){
-                        echo '<input type="submit" value="Clore" name="close" class="submit_buttons">';
+                    if (isset($_GET['function']) && !empty($_GET['function'])){
+                        if ($_GET['function'] == 'take'){
+                            echo '<input type="submit" value="Prendre en charge" name="take" class="submit_buttons">';
+                        }
+                        
+                        else if ($_GET['function'] == 'close'){
+                            echo '<input type="submit" value="Clore" name="close" class="submit_buttons">';
+                        }
                     }
                 ?>
             </div>
