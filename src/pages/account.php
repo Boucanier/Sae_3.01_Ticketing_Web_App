@@ -5,6 +5,8 @@
     $host = "localhost";
 
     if (isset($_GET['create_acc'])){
+        $mysqli = new mysqli($host, $user, $passwd,$db);
+
         if (isset($_GET['login'], $_GET['f_name'], $_GET['name'], $_GET['pwd'], $_GET['conf_pwd'])){
             $login = $_GET['login'];
             $f_name = $_GET['f_name'];
@@ -19,8 +21,6 @@
                 if (!($pwd == $conf_pwd)){
                     header('Location: connection.php?error=2');
                 }
-                
-                $mysqli = new mysqli($host, $user, $passwd,$db);
     
                 $stmt = $mysqli->prepare("INSERT INTO Users(login, first_name, last_name, password, role) VALUES (?, ?, ?, ?, 'user')");
                 $stmt->bind_param("ssss", $login, $f_name, $l_name, $pwd);
@@ -48,6 +48,8 @@
     }
 
     else if (isset($_GET['log_acc'])){
+        $mysqli = new mysqli($host, $user, $passwd,$db);
+
         if (isset($_GET['login_connect'], $_GET['pwd_connect'])){
             $login = $_GET['login_connect'];
             $pwd = $_GET['pwd_connect'];
@@ -129,5 +131,52 @@
             header('Location: connection.php');
         }
     }
-    else header('Location: connection.php?error=0');
+
+    else if (isset($_GET['update_acc'])){
+        session_start();
+        $mysqli = new mysqli($host, $user, $passwd,$db);
+        $pwd = sha1($_GET['actual_pwd']);
+        $new_pwd = $_GET['new_pwd'];
+        $conf_pwd = $_GET['conf_pwd'];
+
+        if ($new_pwd == $conf_pwd){
+            $stmt = $mysqli->prepare("SELECT password FROM Users WHERE login = ?");
+            $stmt->bind_param("s", $_SESSION['login']);
+            $stmt->execute();
+            $taille = $stmt->get_result()->num_rows;
+            
+            $stmt->execute();
+            $get_pwd = $stmt->get_result()->fetch_row()[0];
+
+            if ($taille == 0){
+                header('Location: profile.php?error=12');
+            }
+
+            else if ($taille > 1){
+                header('Location: profile.php?error=13');
+            }
+
+            else {
+
+                if ($pwd == $get_pwd){
+                    $new_pwd = sha1($new_pwd);
+                    $stmt = $mysqli->prepare("UPDATE Users SET password = ? WHERE login = ?");
+                    $stmt->bind_param("ss", $new_pwd, $_SESSION['login']);
+                    $stmt->execute();
+                    $mysqli->close();
+                    header('Location: profile.php?success=1');
+
+                    mysqli_close($mysqli);
+                }
+
+                else {
+                    header('Location: profile.php?error=2');
+                }
+            }
+        }
+        else {
+            header('Location: profile.php?error=1');
+        }
+    }
+    else header('Location: index.php?error=0');
 ?>

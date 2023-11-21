@@ -642,3 +642,7 @@ th {
     width: 100%;
     border-collapse: collapse;
 }
+
+#profile {
+    margin-top: 60px;
+}

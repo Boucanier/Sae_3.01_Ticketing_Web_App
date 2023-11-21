@@ -16,7 +16,7 @@
         <div id="profile_part1">
             <div id="img_info">
                 <div id="information">
-                        <img src="../resources/temp_user_icon.png" alt="icone d'utilisateur" style="height: 300px; width: 300px">
+                    <img src="../resources/temp_user_icon.png" alt="icone d'utilisateur" style="height: 300px; width: 300px">
                     <div id="info_perso">
                         <p>Nom</p>
                         <p>Prénom</p>
@@ -26,7 +26,8 @@
                 <button style="min-width: 60%" id="account_sup">Supprimer le compte</button>
             </div>
         </div>
-        <form class="user_info" action="" method="get">
+
+        <form class="user_info" action="account.php" method="get">
             <label for="actual_pwd">Mot de passe actuel :</label>
             <input type="password" id="actual_pwd" name="actual_pwd"/>
             <br>
@@ -38,7 +39,7 @@
             <br>
             <div class="resetSubmitButtons">
                 <input class="reset_buttons" type="reset" value="Effacer">
-                <input class="submit_buttons" type="submit" value="Changer le mot de passe"  style="min-width: 250px">
+                <input class="submit_buttons" type="submit" value="Changer le mot de passe"  style="min-width: 250px" name="update_acc">
             </div>
         </form>
     </div>
