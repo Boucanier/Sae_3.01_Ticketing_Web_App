@@ -20,51 +20,113 @@
         $dispo = false;
     }
 
+    $user = "ticket_app";
+    $passwd = "ticket_s301";
+    $db = "ticket_app";
+    $host = "localhost";
+    $mysqli = new mysqli($host, $user, $passwd,$db);
+
+    $actual_user = $_SESSION['login'];
+
     echo '<main>
         <div id="part_top">';
 
     if ($role == "user") {
         echo '<h2>Mes tickets</h2>
-            <button type="button" onclick="location.href=\'ticket.php\'">Créer un ticket</button></div>';
+        <button type="button" onclick="location.href=\'ticket.php\'">Créer un ticket</button></div>';
         $header = array('Niveau', 'Salle', 'Problème', 'Date', 'État');
 
-        # TODO: Remplacer ce tableau par une requête SQL
-        $ticket_id = array(1, 2);
+        $stmt1 = $mysqli->prepare("SELECT ticket_id FROM Tickets WHERE user_login LIKE ?");
+        $stmt1->bind_param("s", $actual_user);
+        $stmt1->execute();
+        $stmt1->bind_result($ticket_id);
 
-        # TODO: Remplacer ce tableau par une requête SQL en utilisant les id
-        $test_col = array(array(1, '315', 'Câble projecteur HS', '04/10/2023', 'open'),
-                            array(4, 'G23', 'Écran cassé', '14/09/2023', 'closed'));
+        $ticket_ids = array();
+        while ($stmt1->fetch()) {
+            $result = $ticket_id;
+            $ticket_ids[] = $result;
+        }
+        $stmt1->close();
+
+        $test_col = array();
+        foreach ($ticket_ids as $ticket_id){
+            $stmt2 = $mysqli->prepare("SELECT emergency, room, title, creation_date, status FROM Tickets WHERE ticket_id = ?");
+            $stmt2->bind_param("s", $ticket_id);
+            $stmt2->execute();
+            $stmt2->bind_result($emergency, $room, $title, $creation_date, $status);
+
+            $stmt2->fetch();
+
+            $test_col[] = array(
+                $emergency, $room, $title, $creation_date, $status
+            );
+
+            $stmt2->close();
+        }
     }
 
     else if ($role == "tech") {
         $header = array('Niveau', 'Salle', 'Problème', 'Demandeur', 'Date');
 
-        if ($dispo){
+        if ($dispo) {
             echo '<h2>Tickets disponibles</h2>';
 
-            # TODO: Remplacer ce tableau par une requête SQL
-            $ticket_id = array(3, 2, 1, 4, 5);
+            $stmt1 = $mysqli->prepare("SELECT ticket_id FROM Tickets WHERE status LIKE 'open'");
+            $stmt1->execute();
+            $stmt1->bind_result($ticket_id);
 
-            # TODO: Remplacer ce tableau par une requête SQL en utilisant les id
-            $test_col = array(array(4,'G26', 'Fuite d\'eau sur les machines', 'Jérémy', 'Cabessa', '05/10/2023'),
-                            array(1, '315', 'Câble projecteur HS', 'Fabrice', 'Hoguin', '04/10/2023'),
-                            array(2, 'I21', 'Multiprise cassée', 'David', 'Auger', '26/09/2023'),
-                            array(3, 'G26', 'Projecteur en panne', 'Alain', 'Oster', '24/09/2023'),
-                            array(4, 'G21', 'Prise ethernet cassée', 'David', 'Auger', '10/09/2023'));
+            $ticket_ids = array();
+            while ($stmt1->fetch()) {
+                $result = $ticket_id;
+                $ticket_ids[] = $result;
+            }
+            $stmt1->close();
+
+            $test_col = array();
+            foreach ($ticket_ids as $ticket_id) {
+                $stmt2 = $mysqli->prepare("SELECT emergency, room, title, last_name, first_name, creation_date FROM Tickets T, Users U WHERE ticket_id = ? AND T.user_login = U.login");
+                $stmt2->bind_param("s", $ticket_id);
+                $stmt2->execute();
+                $stmt2->bind_result($emergency, $room, $title, $nom, $prenom, $creation_date);
+
+                echo $emergency;
+
+                $stmt2->fetch();
+
+                $test_col[] = array($emergency, $room, $title, $nom, $prenom, $creation_date);
+
+                $stmt2->close();
+            }
         }
 
         else {
             echo '<h2>Mes interventions en cours</h2>';
 
-            # TODO: Remplacer ce tableau par une requête SQL
-            $ticket_id = array(3, 2, 1, 4, 5);
-    
-            # TODO: Remplacer ce tableau par une requête SQL en utilisant les id
-            $test_col = array(array(4,'G26', 'Fuite d\'eau sur les machines', 'Jérémy', 'Cabessa', '05/10/2023'),
-                            array(1, '315', 'Câble projecteur HS', 'Fabrice', 'Hoguin', '04/10/2023'),
-                            array(2, 'I21', 'Multiprise cassée', 'David', 'Auger', '26/09/2023'),
-                            array(3, 'G26', 'Projecteur en panne', 'Alain', 'Oster', '24/09/2023'),
-                            array(4, 'G21', 'Prise ethernet cassée', 'David', 'Auger', '10/09/2023'));
+            $stmt1 = $mysqli->prepare("SELECT ticket_id FROM Interventions WHERE tech_login LIKE ?");
+            $stmt1->bind_param("s", $actual_user);
+            $stmt1->execute();
+            $stmt1->bind_result($ticket_id);
+
+            $ticket_ids = array();
+            while ($stmt1->fetch()) {
+                $result = $ticket_id;
+                $ticket_ids[] = $result;
+            }
+            $stmt1->close();
+
+            $test_col = array();
+            foreach ($ticket_ids as $ticket_id){
+                $stmt2 = $mysqli->prepare("SELECT emergency, room, title, last_name, first_name, creation_date FROM Tickets T, Users U WHERE ticket_id = ? AND T.user_login = U.login");
+                $stmt2->bind_param("s", $ticket_id);
+                $stmt2->execute();
+                $stmt2->bind_result($emergency, $room, $title, $nom, $prenom, $creation_date);
+
+                $stmt2->fetch();
+
+                $test_col[] = array($emergency, $room, $title, $nom, $prenom, $creation_date);
+
+                $stmt2->close();
+            }
         }
         echo '</div>';
     }
@@ -74,15 +136,30 @@
             </div>';
         $header = array('Niveau', 'Salle', 'Problème', 'Date', 'Demandeur', 'Technicien', 'État');
 
-        # TODO: Remplacer ce tableau par une requête SQL
-        $ticket_id = array(3, 2, 1, 4, 5);
+        $stmt1 = $mysqli->prepare("SELECT ticket_id FROM Tickets WHERE status LIKE 'open' OR status LIKE 'in_progress'");
+        $stmt1->execute();
+        $stmt1->bind_result($ticket_id);
 
-        # TODO: Remplacer ce tableau par une requête SQL en utilisant les id
-        $test_col = array(array(4,'G26', 'Fuite d\'eau sur les machines', '05/10/2023', 'Jérémy', 'Cabessa', 'Jean', 'Zanzibare', 'in_progress'),
-                        array(1, '315', 'Câble projecteur HS', '04/10/2023', 'Fabrice', 'Hoguin', '', '', 'open'),
-                        array(2, 'I21', 'Multiprise cassée', '26/09/2023', 'David', 'Auger', 'Roger', 'Martinique', 'in_progress'),
-                        array(3, 'G26', 'Projecteur en panne', '24/09/2023', 'Alain', 'Oster', 'Jean', 'Zanzibare', 'in_progress'),
-                        array(4, 'G21', 'Prise ethernet cassée', '10/09/2023', 'David', 'Auger', '', '', 'open'));
+        $ticket_ids = array();
+        while ($stmt1->fetch()) {
+            $result = $ticket_id;
+            $ticket_ids[] = $result;
+        }
+        $stmt1->close();
+
+
+        $test_col = array();
+        foreach ($ticket_ids as $ticket_id){
+            $stmt2 = $mysqli->prepare("SELECT emergency, room, title, creation_date, last_name, first_name, status FROM Tickets T, Users U WHERE ticket_id = ? AND U.login = T.user_login");
+            $stmt2->bind_param("s", $ticket_id);
+            $stmt2->execute();
+            $stmt2->bind_result($emergency, $room, $title, $creation_date, $nom, $prenom, $status);
+            
+            $stmt2->fetch();
+            $demandeur = "";
+            $test_col[] = array($emergency, $room, $title, $creation_date, $nom, $prenom, $demandeur, $status);
+            $stmt2->close();
+        }
     }
 
     else {
@@ -138,15 +215,15 @@
     echo '<div id="details_button">';
     for ($i = 0; $i < count($test_col); $i++) {
         if ($role == 'user')
-            echo '<button type="button" onclick="location.href=\'ticket_details.php?id='.$ticket_id[$i].'\'">Détails</button>';
+            echo '<button type="button" onclick="location.href=\'ticket_details.php?id='.$ticket_ids[$i].'\'">Détails</button>';
         else if ($role == 'tech'){
             if ($dispo)
-                echo '<button type="button" onclick="location.href=\'ticket_details.php?id='.$ticket_id[$i].'&function=take\'">Prendre en charge</button>';
+                echo '<button type="button" onclick="location.href=\'ticket_details.php?id='.$ticket_ids[$i].'&function=take\'">Prendre en charge</button>';
             else
-                echo '<button type="button" onclick="location.href=\'ticket_details.php?id='.$ticket_id[$i].'&function=close\'">Détails</button>';
+                echo '<button type="button" onclick="location.href=\'ticket_details.php?id='.$ticket_ids[$i].'&function=close\'">Détails</button>';
         }
         else if ($role == 'web_admin')
-            echo '<button type="button" onclick="location.href=\'ticket_modification.php?id='.$ticket_id[$i].'\'">Modifier</button>';
+            echo '<button type="button" onclick="location.href=\'ticket_modification.php?id='.$ticket_ids[$i].'\'">Modifier</button>';
     }
     echo '</div>';
 

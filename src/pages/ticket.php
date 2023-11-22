@@ -13,7 +13,17 @@
     <div id="part_top">
         <h2>Créer un ticket</h2>
     </div>
-    <form action="dashboard.php" method="get" id="ticket_form">
+    <?php
+    if (isset($_GET["error"])){
+        if($_GET['error'] == "e0"){
+            echo '<div class="ticketPageError"><p>Le libelle ne doit pas être vide !</p></div>';
+        }
+        elseif ($_GET['error'] == "e1"){
+            echo '<div class="ticketPageError"><p>La description ne doit pas être vide !</p></div>';
+        }
+    }
+    ?>
+    <form action="create_ticket.php" method="get" id="ticket_form">
         <div id="ticket_creation">
             <div id="ticket_label">
                 <label for="libelle">Libellé&nbsp;:&nbsp;</label>
@@ -48,10 +58,9 @@
         </div>
         <div id="ticket_buttons">
             <input type="reset" id="ticket_reset" value="Effacer">
-            <input type="submit" id="ticket_sub" value="Valider">
+            <input type="submit" id="ticket_sub" value="Valider" name="create_ticket">
         </div>
     </form>
-    
 </main>
 <?php
     include "footer.php";

@@ -642,6 +642,14 @@ th {
     border-collapse: collapse;
 }
 
+.ticketPageError > p{
+    color: red;
+}
+
+.ticketPageError{
+    display: flex;
+    justify-content: center;
+
 #profile {
     margin-top: 60px;
 }
