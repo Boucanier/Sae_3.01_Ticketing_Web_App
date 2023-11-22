@@ -10,6 +10,6 @@ Groupe : **INF2 - FI A**
 
 Ce projet a pour but de créer une application web de gestion de tickets. Cette application permettra à des utilisateurs de créer des tickets, de les assigner à des techniciens et de les gérer.
 
-## Version 0.1
+## Configuration Raspberry Pi
 
-Cette version contient le site statique de la plateforme (pages html et css).
+Le rapport de la configuration du Raspberry Pi est disponible [ici](doc/Specification/config_rpi.md).
