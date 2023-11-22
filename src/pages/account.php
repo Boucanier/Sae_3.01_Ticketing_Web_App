@@ -7,63 +7,74 @@
     if (isset($_GET['create_acc'])){
         $mysqli = new mysqli($host, $user, $passwd, $db);
 
-        if (isset($_GET['login'], $_GET['f_name'], $_GET['name'], $_GET['pwd'], $_GET['conf_pwd'])){
-            $login = $_GET['login'];
-            $test_login = 'rmv-'.md5($login);
-            
-            $stmt = $mysqli->prepare("SELECT COUNT(*) FROM Users WHERE login = ? OR login = ?");
-            $stmt->bind_param("ss", $test_login, $login);
-            $stmt->execute();
-            $taille = $stmt->get_result()->fetch_row()[0];
-            
-            $stmt->close();
+        if (isset($_GET['captcha'])){
+            $reponse_attendue = $_GET["reponse_attendue"];
+            $reponse_utilisateur = $_GET["captcha"];
 
-            if ($taille > 0){
-                header('Location: connection.php?error=3');
-                # Login invalide
-            }
-
-            else {
-                $f_name = $_GET['f_name'];
-                $l_name = $_GET['name'];
-                $pwd = $_GET['pwd'];
-                $conf_pwd = $_GET['conf_pwd'];
-
-                if ($login != '' && $f_name != '' && $l_name != '' && $pwd != '' && $conf_pwd != ''){
-                    $pwd = sha1($_GET['pwd']);
-                    $conf_pwd = sha1($_GET['conf_pwd']);
-
-                    if (!($pwd == $conf_pwd)){
-                        header('Location: connection.php?error=2');
-                        # Mots de passe différents
-                    }
-        
-                    $stmt = $mysqli->prepare("INSERT INTO Users(login, first_name, last_name, password, role) VALUES (?, ?, ?, ?, 'user')");
-                    $stmt->bind_param("ssss", $login, $f_name, $l_name, $pwd);
+            if ($reponse_utilisateur == $reponse_attendue) {
+                if (isset($_GET['login'], $_GET['f_name'], $_GET['name'], $_GET['pwd'], $_GET['conf_pwd'])){
+                    $login = $_GET['login'];
+                    $test_login = 'rmv-'.md5($login);
+                    
+                    $stmt = $mysqli->prepare("SELECT COUNT(*) FROM Users WHERE login = ? OR login = ?");
+                    $stmt->bind_param("ss", $test_login, $login);
                     $stmt->execute();
+                    $taille = $stmt->get_result()->fetch_row()[0];
+                    
                     $stmt->close();
         
-                    $mysqli->close();
-
-                    session_start();
-                            
-                    $_SESSION['login'] = $login;
-                    $_SESSION['role'] = 'user';
-                    $_SESSION['date'] = date('F j, Y, g:i a');
+                    if ($taille > 0){
+                        header('Location: connection.php?error=3');
+                        # Login invalide
+                    }
         
-                    header("Location: dashboard.php");
+                    else {
+                        $f_name = $_GET['f_name'];
+                        $l_name = $_GET['name'];
+                        $pwd = $_GET['pwd'];
+                        $conf_pwd = $_GET['conf_pwd'];
+        
+                        if ($login != '' && $f_name != '' && $l_name != '' && $pwd != '' && $conf_pwd != ''){
+                            $pwd = sha1($_GET['pwd']);
+                            $conf_pwd = sha1($_GET['conf_pwd']);
+        
+                            if (!($pwd == $conf_pwd)){
+                                header('Location: connection.php?error=2');
+                                # Mots de passe différents
+                            }
+                
+                            $stmt = $mysqli->prepare("INSERT INTO Users(login, first_name, last_name, password, role) VALUES (?, ?, ?, ?, 'user')");
+                            $stmt->bind_param("ssss", $login, $f_name, $l_name, $pwd);
+                            $stmt->execute();
+                            $stmt->close();
+                
+                            $mysqli->close();
+        
+                            session_start();
+                                    
+                            $_SESSION['login'] = $login;
+                            $_SESSION['role'] = 'user';
+                            $_SESSION['date'] = date('F j, Y, g:i a');
+                
+                            header("Location: dashboard.php");
+                        }
+        
+                        else {
+                            header('Location: connection.php?error=1');
+                            # Champs vides
+                        }
+                    }
                 }
-
+                
                 else {
-                    header('Location: connection.php?error=1');
-                    # Champs vides
+                    #il manque des parametres dans le formulaire
+                    header('Location: connection.php');
                 }
             }
-        }
-        
-        else {
-            header('Location: connection.php');
-            # Paramètres manquants
+            else{
+                # le captcha n'est pas bon
+                header('Location: connection.php?error=4');
+            }
         }
     }
 

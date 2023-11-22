@@ -43,10 +43,18 @@
                     </div>
                     <br>
                 </div>
+                <?php
+                    $nb1 = rand(1, 5);
+                    $nb2 = rand(1, 5);
+                    $reponse_attendue = $nb1 + $nb2;
+
+                echo '
                 <div class="captcha_group">
-                    <label for="captcha">2 + 3 =</label>
+                    <label for="captcha">'.$nb1.' + '.$nb2.' =</label>
                     <input type="number" id="captcha" name="captcha"/>
-                </div>
+                    <input type="hidden" name="reponse_attendue" value="'.$reponse_attendue.'"/>
+                </div>'
+                ?>
                 <br>
                 <div class="resetSubmitButtons">
                     <input type="reset" value="Effacer" class="reset_buttons">
