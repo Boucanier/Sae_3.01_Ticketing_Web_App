@@ -9,41 +9,61 @@
 
         if (isset($_GET['login'], $_GET['f_name'], $_GET['name'], $_GET['pwd'], $_GET['conf_pwd'])){
             $login = $_GET['login'];
-            $f_name = $_GET['f_name'];
-            $l_name = $_GET['name'];
-            $pwd = $_GET['pwd'];
-            $conf_pwd = $_GET['conf_pwd'];
+            $test_login = 'rmv-'.md5($login);
+            
+            $stmt = $mysqli->prepare("SELECT COUNT(*) FROM Users WHERE login = ? OR login = ?");
+            $stmt->bind_param("ss", $test_login, $login);
+            $stmt->execute();
+            $taille = $stmt->get_result()->fetch_row()[0];
+            
+            $stmt->close();
 
-            if ($login != '' && $f_name != '' && $l_name != '' && $pwd != '' && $conf_pwd != ''){
-                $pwd = sha1($_GET['pwd']);
-                $conf_pwd = sha1($_GET['conf_pwd']);
-
-                if (!($pwd == $conf_pwd)){
-                    header('Location: connection.php?error=2');
-                }
-    
-                $stmt = $mysqli->prepare("INSERT INTO Users(login, first_name, last_name, password, role) VALUES (?, ?, ?, ?, 'user')");
-                $stmt->bind_param("ssss", $login, $f_name, $l_name, $pwd);
-                $stmt->execute();
-    
-                $mysqli->close();
-
-                session_start();
-                        
-                $_SESSION['login'] = $login;
-                $_SESSION['role'] = 'user';
-                $_SESSION['date'] = date('F j, Y, g:i a');
-    
-                header("Location: dashboard.php");
+            if ($taille > 0){
+                header('Location: connection.php?error=3');
+                # Login invalide
             }
 
             else {
-                header('Location: connection.php?error=1');
+                $f_name = $_GET['f_name'];
+                $l_name = $_GET['name'];
+                $pwd = $_GET['pwd'];
+                $conf_pwd = $_GET['conf_pwd'];
+
+                if ($login != '' && $f_name != '' && $l_name != '' && $pwd != '' && $conf_pwd != ''){
+                    $pwd = sha1($_GET['pwd']);
+                    $conf_pwd = sha1($_GET['conf_pwd']);
+
+                    if (!($pwd == $conf_pwd)){
+                        header('Location: connection.php?error=2');
+                        # Mots de passe différents
+                    }
+        
+                    $stmt = $mysqli->prepare("INSERT INTO Users(login, first_name, last_name, password, role) VALUES (?, ?, ?, ?, 'user')");
+                    $stmt->bind_param("ssss", $login, $f_name, $l_name, $pwd);
+                    $stmt->execute();
+                    $stmt->close();
+        
+                    $mysqli->close();
+
+                    session_start();
+                            
+                    $_SESSION['login'] = $login;
+                    $_SESSION['role'] = 'user';
+                    $_SESSION['date'] = date('F j, Y, g:i a');
+        
+                    header("Location: dashboard.php");
+                }
+
+                else {
+                    header('Location: connection.php?error=1');
+                    # Champs vides
+                }
             }
         }
         
         else {
             header('Location: connection.php');
+            # Paramètres manquants
         }
     }
 
@@ -69,10 +89,12 @@
 
                 if ($taille == 0){
                     header('Location: connection.php?error=12');
+                    # Erreur d'identifiants
                 }
 
                 else if ($taille > 1){
                     header('Location: connection.php?error=13');
+                    # Erreur de base de données
                 }
 
                 else {
@@ -117,18 +139,21 @@
                         
                         $mysqli->close();
 
-                        header('Location: connection.php?error=14');
+                        header('Location: connection.php?error=12');
+                        # Erreur d'identifiants
                     }
                 }
             }
 
             else {
                 header('Location: connection.php?error=11');
+                # Champs vides
             }
         }
 
         else {
             header('Location: connection.php');
+            # Paramètres manquants
         }
     }
 
@@ -150,10 +175,12 @@
 
             if ($taille == 0){
                 header('Location: profile.php?error=12');
+                # Erreur d'identifiants
             }
 
             else if ($taille > 1){
                 header('Location: profile.php?error=13');
+                # Erreur de base de données
             }
 
             else {
@@ -165,18 +192,21 @@
                     $stmt->execute();
                     $mysqli->close();
                     header('Location: profile.php?success=1');
+                    # Mot de passe modifié
 
                     mysqli_close($mysqli);
                 }
 
                 else {
                     header('Location: profile.php?error=2');
+                    # Errue d'identifiants
                 }
             }
         }
         
         else {
             header('Location: profile.php?error=1');
+            # Mots de passe différents
         }
     }
 
@@ -209,4 +239,5 @@
     }
 
     else header('Location: index.php?error=0');
+    # Paramètres manquants
 ?>
