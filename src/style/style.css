@@ -142,7 +142,6 @@ main {
 #info_perso {
     display: flex;
     flex-direction: column;
-    align-items: center;
 }
 
 #profile {
@@ -650,4 +649,19 @@ th {
 .ticketPageError{
     display: flex;
     justify-content: center;
+
+#profile {
+    margin-top: 60px;
+}
+
+.success > p{
+    color: blue;
+}
+
+.success {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
 }

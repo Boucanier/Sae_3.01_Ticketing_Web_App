@@ -24,37 +24,51 @@
         </div>
     </div>
 
-    <?php
-    echo '<table id="derniers_tickets">
-            <tr>
-                <th>Niveau</th>
-                <th>Salle</th>
-                <th>Problème</th>
-                <th>Demandeur</th>
-                <th>Date</th>
-            </tr>';
+    <table id="derniers_tickets">
+        <tr>
+            <th>Niveau</th>
+            <th>Salle</th>
+            <th>Problème</th>
+            <th>Demandeur</th>
+            <th>Date</th>
+        </tr>
 
-    # TODO: Remplacer ce tableau par une requête SQL
-    $data = array(array(4,'G26', 'Fuite d\'eau sur les machines', 'J. Cabessa', '05/10/2023'),
-                    array(1,'315','Câble projecteur HS', 'F. Hoguin', '04/10/2023'),
-                    array(2, 'I21', 'Multiprise cassée', 'D. Auger', '26/09/2023'));
-    
-    foreach ($data as $row) {
+<?php
+    $user = "ticket_app";
+    $passwd = "ticket_s301";
+    $db = "ticket_app";
+    $host = "localhost";
+
+    $connection = mysqli_connect($host,$user,$passwd) or die ("erreur");
+
+    $db = mysqli_select_db($connection,$db) or die ("erreur");
+
+    $requete = "SELECT emergency, room, title, user_login, creation_date FROM Tickets WHERE status = 'open' ORDER BY creation_date DESC;";
+
+    $data = mysqli_query($connection,$requete) or die ("erreur");
+
+    $long = mysqli_num_rows($data);
+
+    if ($long > 10){
+        $long = 10;
+    }
+
+    for ($i=0; $i<$long; $i++){
+        $row = mysqli_fetch_array($data);
         echo '<tr>';
-        for ($i = 0; $i < count($row); $i++) {
-            if ($i == 0) {
-                echo '<td class="ticket_case_'.$row[0].'">'.$row[0].'</td>';
-            }
-            else {
-                echo '<td>'.$row[$i].'</td>';
-            }
+        for ($j=0; $j<5; $j++){
+            if ($j == 0)
+                echo '<td class="ticket_case_'.$row[$j].'">'.$row[$j].'</td>';
+            else
+                echo '<td>'.$row[$j].'</td>';
         }
         echo '</tr>';
     }
 
-    echo '</table>';
-    ?>
+    mysqli_close($connection);
+?>
     </table>
+
 </main>
 </body>
 <?php
