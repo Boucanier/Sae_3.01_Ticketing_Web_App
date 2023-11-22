@@ -89,8 +89,6 @@
                 $stmt2->execute();
                 $stmt2->bind_result($emergency, $room, $title, $nom, $prenom, $creation_date);
 
-                echo $emergency;
-
                 $stmt2->fetch();
 
                 $test_col[] = array($emergency, $room, $title, $nom, $prenom, $creation_date);
