@@ -34,38 +34,37 @@
         </tr>
 
 <?php
-    $user = "ticket_app";
-    $passwd = "ticket_s301";
-    $db = "ticket_app";
-    $host = "localhost";
-
-    $connection = mysqli_connect($host,$user,$passwd) or die ("erreur");
-
-    $db = mysqli_select_db($connection,$db) or die ("erreur");
-
-    $requete = "SELECT emergency, room, title, user_login, creation_date FROM Tickets WHERE status = 'open' ORDER BY creation_date DESC;";
-
-    $data = mysqli_query($connection,$requete) or die ("erreur");
-
+    $mysqli = new mysqli($host, $user, $passwd, $db);
+    $stmt = $mysqli->prepare("SELECT emergency, room, title, first_name, last_name, creation_date FROM Tickets, Users
+                                WHERE Users.login = Tickets.user_login
+                                AND status = 'open'
+                                ORDER BY creation_date DESC");
+    $stmt->execute();
+    $data = $stmt->get_result();
     $long = mysqli_num_rows($data);
 
     if ($long > 10){
         $long = 10;
     }
 
-    for ($i=0; $i<$long; $i++){
+    for ($i=0; $i < $long; $i++){
         $row = mysqli_fetch_array($data);
         echo '<tr>';
-        for ($j=0; $j<5; $j++){
+        for ($j=0; $j < 6; $j++){
             if ($j == 0)
                 echo '<td class="ticket_case_'.$row[$j].'">'.$row[$j].'</td>';
+            else if ($j == 3){
+                echo '<td>'.$row[$j].' '.$row[$j+1].'</td>';
+                $j++;
+            }
             else
                 echo '<td>'.$row[$j].'</td>';
         }
         echo '</tr>';
     }
 
-    mysqli_close($connection);
+    $stmt->close();
+    $mysqli->close();
 ?>
     </table>
 
