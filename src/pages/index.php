@@ -8,6 +8,10 @@
 <body>
 <?php
     include "header.php";
+
+    if (isset($_GET['success']) && $_GET['success'] == 1){
+        echo '<div class="success"><p>Votre compte a bien été supprimé</p></div>';
+    }
 ?>
 <main id="main_page">
     <div id="presentation">

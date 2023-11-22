@@ -15,11 +15,11 @@
 ?>
 
 <main>
-        <?php
-            if (isset($_GET['success'])) {
-                echo '<div class="success"><p>Mot de passe changé avec succès !</p></div>';
-            }
-        ?>
+    <?php
+        if (isset($_GET['success'])) {
+            echo '<div class="success"><p>Mot de passe changé avec succès !</p></div>';
+        }
+    ?>
     <div id="profile">
         <div id="profile_part1">
             <div id="img_info">
@@ -46,6 +46,18 @@
         </div>
 
         <form class="user_info" action="account.php" method="get">
+            <?php
+                if (isset($_GET['error'])){
+                    switch ($_GET['error']){
+                        case 31:
+                            echo '<div class="error"><p>Erreur d\'identifiants</p></div>';
+                            break;
+                        case 33:
+                            echo '<div class="error"><p>Mots de passe différents</p></div>';
+                            break;
+                    }
+                }
+            ?>
             <label for="actual_pwd">Mot de passe actuel :</label>
             <input type="password" id="actual_pwd" name="actual_pwd"/>
             <br>

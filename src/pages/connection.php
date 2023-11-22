@@ -15,6 +15,21 @@
     <div class="form_containers">
         <div class="sign_up">
             <h2>Créer un compte</h2>
+            <?php
+                if (isset($_GET['error'])){
+                    switch ($_GET['error']){
+                        case 11:
+                            echo '<div class="error"><p>Login invalide</p></div>';
+                            break;
+                        case 12:
+                            echo '<div class="error"><p>Les mots de passe ne correspondent pas</p></div>';
+                            break;
+                        case 13:
+                            echo '<div class="error"><p>Formulaire incomplet</p></div>';
+                            break;
+                    }
+                }
+            ?>
             <form action="account.php" method="get">
                 <div class="user_info">
                     <div class="form_group">
@@ -53,7 +68,7 @@
                     <label for="captcha">'.$nb1.' + '.$nb2.' =&nbsp;</label>
                     <input type="number" id="captcha" name="captcha"/>';
                     if (isset($_GET['error'])){
-                        if ($_GET['error'] == "4"){
+                        if ($_GET['error'] == "14"){
                             echo "<pre>Le captcha n'est \n   pas valide !</pre>";
                         }
                     }
@@ -70,6 +85,11 @@
         </div>
 
         <div class="log_in">
+            <?php
+                if (isset($_GET['error']) && $_GET['error'] == 21){
+                    echo '<div class="error"><p>Erreur d\'identifiants</p></div>';
+                }
+            ?>
             <form action="account.php" method="get">
                 <div class="form_group2">
                     <label for="login_connect">Login :</label>
