@@ -50,10 +50,16 @@
 
                 echo '
                 <div class="captcha_group">
-                    <label for="captcha">'.$nb1.' + '.$nb2.' =</label>
-                    <input type="number" id="captcha" name="captcha"/>
+                    <label for="captcha">'.$nb1.' + '.$nb2.' =&nbsp;</label>
+                    <input type="number" id="captcha" name="captcha"/>';
+                    if (isset($_GET['error'])){
+                        if ($_GET['error'] == "4"){
+                            echo "<pre>Le captcha n'est \n   pas valide !</pre>";
+                        }
+                    }
+                echo '
                     <input type="hidden" name="reponse_attendue" value="'.$reponse_attendue.'"/>
-                </div>'
+                </div>';
                 ?>
                 <br>
                 <div class="resetSubmitButtons">
