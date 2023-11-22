@@ -72,7 +72,6 @@
             echo '<h2>Tickets disponibles</h2>';
 
             $stmt1 = $mysqli->prepare("SELECT ticket_id FROM Tickets WHERE status LIKE 'open'");
-            $stmt1->bind_param("s", $actual_user);
             $stmt1->execute();
             $stmt1->bind_result($ticket_id);
 
@@ -137,15 +136,30 @@
             </div>';
         $header = array('Niveau', 'Salle', 'Problème', 'Date', 'Demandeur', 'Technicien', 'État');
 
-        # TODO: Remplacer ce tableau par une requête SQL
-        $ticket_ids = array(3, 2, 1, 4, 5);
+        $stmt1 = $mysqli->prepare("SELECT ticket_id FROM Tickets WHERE status LIKE 'open' OR status LIKE 'in_progress'");
+        $stmt1->execute();
+        $stmt1->bind_result($ticket_id);
 
-        # TODO: Remplacer ce tableau par une requête SQL en utilisant les id
-        $test_col = array(array(4,'G26', 'Fuite d\'eau sur les machines', '05/10/2023', 'Jérémy', 'Cabessa', 'Jean', 'Zanzibare', 'in_progress'),
-                        array(1, '315', 'Câble projecteur HS', '04/10/2023', 'Fabrice', 'Hoguin', '', '', 'open'),
-                        array(2, 'I21', 'Multiprise cassée', '26/09/2023', 'David', 'Auger', 'Roger', 'Martinique', 'in_progress'),
-                        array(3, 'G26', 'Projecteur en panne', '24/09/2023', 'Alain', 'Oster', 'Jean', 'Zanzibare', 'in_progress'),
-                        array(4, 'G21', 'Prise ethernet cassée', '10/09/2023', 'David', 'Auger', '', '', 'open'));
+        $ticket_ids = array();
+        while ($stmt1->fetch()) {
+            $result = $ticket_id;
+            $ticket_ids[] = $result;
+        }
+        $stmt1->close();
+
+
+        $test_col = array();
+        foreach ($ticket_ids as $ticket_id){
+            $stmt2 = $mysqli->prepare("SELECT emergency, room, title, creation_date, last_name, first_name, status FROM Tickets T, Users U WHERE ticket_id = ? AND U.login = T.user_login");
+            $stmt2->bind_param("s", $ticket_id);
+            $stmt2->execute();
+            $stmt2->bind_result($emergency, $room, $title, $creation_date, $nom, $prenom, $status);
+            
+            $stmt2->fetch();
+            $demandeur = "";
+            $test_col[] = array($emergency, $room, $title, $creation_date, $nom, $prenom, $demandeur, $status);
+            $stmt2->close();
+        }
     }
 
     else {
