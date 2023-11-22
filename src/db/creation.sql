@@ -71,7 +71,7 @@ BEGIN
         THEN SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Ticket must exist';
     END IF;
 END;//
-delimiter;
+delimiter ;
 
 delimiter //
 CREATE TRIGGER check_interventions_ticket_open BEFORE INSERT ON Interventions
