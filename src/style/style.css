@@ -649,6 +649,7 @@ th {
 .ticketPageError{
     display: flex;
     justify-content: center;
+}
 
 #profile {
     margin-top: 60px;
