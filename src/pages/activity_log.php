@@ -76,28 +76,21 @@
                             <th>Ip</th>
                         </tr>
                     </thead>';
-                    
-                    # TODO: Remplacer ce tableau par une requête SQL
-                    $data = array(
-                        array('19-11-2023', 'matis', 'gfsg8gad8g6agd756a675faf7da89', '192.168.1.1'),
-                        array('18-3-2023', 'jules', 'gfsg8gad8g6agd756a675faf7da89', '192.168.1.32'),
-                        array('22-1-2023', 'thomas', 'gfsg8gad8g6agd756a675faf7da89', '192.168.1.14'),
-                        array('23-5-2023', 'thomas', 'g7df89s7g8asd9g78g7g7gd78da7', '192.168.1.45'),
-                        array('19-11-2023', 'thomas', 'g7f9s8g7fs89gsf9gsf98gs89g', '192.168.1.3'),
-                        array('14-11-2023', 'jules', 'fd98fad7das87gsdgsf9a8da89d78', '192.168.1.1'),
-                        array('8-10-2023', 'matis', 'g7sdf6h78sffad9g7s9', '192.168.1.3'),
-                        array('22-1-2023', 'thomas', 'g7f89f7hng6fasgad89ghad9', '192.168.1.14'),
-                        array('23-5-2023', 'thomas', '7hbfg8ga8h7f89ag79adg', '192.168.1.67'),
-                        array('19-11-2023', 'thomas', 'hn7g897adf9h89da09ghas', '192.168.1.1'),
-                        array('14-11-2023', 'jules', 'hn7g897adf890ghadf789fad', '192.168.1.14'),
-                        array('8-10-2023', 'matis', 'h789af976gh87adf0adgags', '192.168.1.1')
-                    );
+
+                    $mysqli = new mysqli($host, $user, $passwd, $db);
+                    $stmt = $mysqli->prepare("SELECT creation_date, user_login, ip_address, emergency 
+                                                    FROM Tickets
+                                                    WHERE status != 'closed'
+                                                    ORDER BY creation_date DESC");
+                    $stmt->execute();
+                    $data = $stmt->get_result();
 
                     echo '<tbody>';
-                    foreach ($data as $row) {
+                    for ($i=0; $i<mysqli_num_rows($data); $i++) {
+                        $row = mysqli_fetch_array($data);
                         echo '<tr>';
-                        for ($i = 0; $i < count($row); $i++) {
-                            echo '<td>'.$row[$i].'</td>';
+                        for ($j = 0; $j < 4; $j++) {
+                            echo '<td>'.$row[$j].'</td>';
                         }
                         echo '</tr>';
                     }
