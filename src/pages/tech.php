@@ -33,6 +33,16 @@
                             $data = mysqli_fetch_all($data);
                             
                             foreach ($data as $row) {
+                                $stmt = $mysqli->prepare("SELECT COUNT(*) FROM Interventions, Tickets
+                                                            WHERE tech_login = ?
+                                                            AND Tickets.ticket_id = Interventions.ticket_id
+                                                            AND status = 'in_progress'");
+                                                            
+                                $stmt->bind_param("s", $row[2]);
+                                $stmt->execute();
+                                $row[2] = $stmt->get_result()->fetch_row()[0];
+                                $stmt->close();
+
                                 echo '<tr>';
                                 for ($i = 0; $i < count($row); $i++) {
                                     echo '<td>' . $row[$i] . '</td>';
