@@ -64,7 +64,7 @@
                     <div id="nav1">
                         <a href="index.php">Accueil</a>
                         <a href="dashboard.php">Tableau de bord</a>
-                        <a href="tech.php">Gérer les techniciens</a>
+                        <a href="tech.php">Gestion des techniciens</a>
                     </div>
                     <div id="nav2">
                         <a href="profile.php">Profil</a>

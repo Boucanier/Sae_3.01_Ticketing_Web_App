@@ -1,17 +1,23 @@
-<?php
+<?php            
+    session_start();
+
     $user = "ticket_app";
     $passwd = "ticket_s301";
     $db = "ticket_app";
     $host = "localhost";
 
-    if (isset($_GET['create_acc'])){
+    if (isset($_GET['create_acc'], $_GET['role']) && (($_GET['role'] == 'user' && !isset($_SESSION['role'])) || ($_GET['role'] == 'tech' && isset($_SESSION['role']) && $_SESSION['role'] != "web_admin"))){
         $mysqli = new mysqli($host, $user, $passwd, $db);
+        $role = $_GET['role'];
 
-        if (isset($_GET['captcha'])){
-            $reponse_attendue = $_GET["reponse_attendue"];
-            $reponse_utilisateur = $_GET["captcha"];
+        if ($role == "tech" || isset($_GET['captcha'])){
 
-            if ($reponse_utilisateur == $reponse_attendue) {
+            if (isset($_GET['captcha'])){
+                $reponse_attendue = $_GET["reponse_attendue"];
+                $reponse_utilisateur = $_GET["captcha"];
+            }
+
+            if ($role == "tech" || $reponse_utilisateur == $reponse_attendue) {
                 if (isset($_GET['login'], $_GET['f_name'], $_GET['name'], $_GET['pwd'], $_GET['conf_pwd'])){
                     $login = $_GET['login'];
                     $test_login = 'rmv-'.md5($login);
@@ -44,20 +50,24 @@
                             }
                             
                             else {
-                                $stmt = $mysqli->prepare("INSERT INTO Users(login, first_name, last_name, password, role) VALUES (?, ?, ?, ?, 'user')");
-                                $stmt->bind_param("ssss", $login, $f_name, $l_name, $pwd);
+                                $stmt = $mysqli->prepare("INSERT INTO Users(login, first_name, last_name, password, role) VALUES (?, ?, ?, ?, ?)");
+                                $stmt->bind_param("sssss", $login, $f_name, $l_name, $pwd, $role);
                                 $stmt->execute();
                                 $stmt->close();
                     
                                 $mysqli->close();
-            
-                                session_start();
-                                        
-                                $_SESSION['login'] = $login;
-                                $_SESSION['role'] = 'user';
-                                $_SESSION['date'] = date('F j, Y, g:i a');
-                    
-                                header("Location: dashboard.php");
+
+                                if ($role == 'user'){
+                                    $_SESSION['login'] = $login;
+                                    $_SESSION['role'] = 'user';
+                                    $_SESSION['date'] = date('F j, Y, g:i a');
+
+                                    header("Location: dashboard.php");
+                                }
+
+                                else {
+                                    header("Location: tech.php");
+                                }
                             }
                         }
         
@@ -130,8 +140,6 @@
 
                         $mysqli->close();
                         
-                        session_start();
-                        
                         $_SESSION['login'] = $login;
                         $_SESSION['role'] = $role;
                         $_SESSION['date'] = $date;
@@ -171,7 +179,6 @@
     }
 
     else if (isset($_GET['update_acc'])){
-        session_start();
         if (isset($_SESSION['login'])){
             $mysqli = new mysqli($host, $user, $passwd,$db);
             $pwd = sha1($_GET['actual_pwd']);
@@ -225,7 +232,6 @@
     }
 
     else if (isset($_GET['sup_acc']) && $_GET['sup_acc'] == true){
-        session_start();
         if (isset($_SESSION['login'])){
             $mysqli = new mysqli($host, $user, $passwd, $db);
 
