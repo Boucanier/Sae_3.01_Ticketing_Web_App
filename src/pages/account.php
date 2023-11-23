@@ -6,7 +6,7 @@
     $db = "ticket_app";
     $host = "localhost";
 
-    if (isset($_GET['create_acc'], $_GET['role']) && (($_GET['role'] == 'user' && !isset($_SESSION['role'])) || ($_GET['role'] == 'tech' && isset($_SESSION['role']) && $_SESSION['role'] != "web_admin"))){
+    if (isset($_GET['create_acc'], $_GET['role']) && (($_GET['role'] == 'user' && !isset($_SESSION['role'])) || ($_GET['role'] == 'tech' && isset($_SESSION['role']) && $_SESSION['role'] == "web_admin"))){
         $mysqli = new mysqli($host, $user, $passwd, $db);
         $role = $_GET['role'];
 
@@ -29,7 +29,7 @@
                     
                     $stmt->close();
         
-                    if ($taille > 0){
+                    if ($taille > 0 || substr($login, 0, 4) == 'rmv-'){
                         header('Location: connection.php?error=11');
                         # Login invalide
                     }
@@ -127,7 +127,7 @@
 
                     $get_pwd = $stmt->get_result()->fetch_row()[0];
 
-                    if ($pwd == $get_pwd){
+                    if ($pwd == $get_pwd && !(substr($login, 0, 4) == 'rmv-')){
                         $stmt = $mysqli->prepare("SELECT role FROM Users WHERE login = ?");
                         $stmt->bind_param("s", $login);
                         $stmt->execute();
