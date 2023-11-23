@@ -26,10 +26,11 @@
                     </thead>
                     <tbody>
                         <?php
-                            $data = array(array('Jean', 'Zanzibare', '3'),
-                                        array('Roger', 'Martinique', '1'),
-                                        array('Julien', 'Zanzibare', '0'),
-                                        array('Francis', 'St Pierre et Miquelon', '5'));
+                            $mysqli = new mysqli($host, $user, $passwd, $db);
+                            $stmt = $mysqli->prepare("SELECT last_name, first_name, login FROM Users WHERE role = 'tech' AND login NOT LIKE 'rmv-%'");
+                            $stmt->execute();
+                            $data = $stmt->get_result();
+                            $data = mysqli_fetch_all($data);
                             
                             foreach ($data as $row) {
                                 echo '<tr>';
