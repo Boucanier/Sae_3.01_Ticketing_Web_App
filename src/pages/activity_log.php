@@ -26,33 +26,24 @@
                             <th class="short_cell">Niveau d\'urgence</th>
                         </tr>
                     </thead>';
-                    
-                    # TODO: Remplacer ce tableau par une requête SQL
-                    $data = array(
-                        array('19-11-2023', 'matis', '192.168.1.1', 4),
-                        array('18-3-2023', 'jules', '192.168.1.13', 3),
-                        array('22-1-2023', 'thomas', '192.168.1.32', 2),
-                        array('23-5-2023', 'thomas', '192.168.1.11', 4),
-                        array('19-11-2023', 'thomas', '192.168.1.14', 1),
-                        array('14-11-2023', 'jules', '192.168.1.57', 2),
-                        array('8-10-2023', 'matis', '192.168.1.35', 4),
-                        array('22-1-2023', 'thomas', '192.168.1.45', 2),
-                        array('23-5-2023', 'thomas', '192.168.1.1', 4),
-                        array('19-11-2023', 'thomas', '192.168.1.32', 1),
-                        array('14-11-2023', 'jules', '192.168.1.1', 2),
-                        array('8-10-2023', 'matis', '192.168.1.13', 4)
-                    );
+
+                    $mysqli = new mysqli($host, $user, $passwd, $db);
+                    $stmt = $mysqli->prepare("SELECT creation_date, user_login, ip_address, emergency 
+                                                        FROM Tickets
+                                                        WHERE status != 'closed'
+                                                        ORDER BY creation_date DESC");
+                    $stmt->execute();
+                    $data = $stmt->get_result();
 
                     echo '<tbody>';
-                    foreach ($data as $row) {
+                    for ($i=0; $i<mysqli_num_rows($data); $i++) {
+                        $row = mysqli_fetch_array($data);
                         echo '<tr>';
-                        for ($i = 0; $i < count($row); $i++) {
-                            if ($i == 3) {
-                                echo '<td class="ticket_case_'.$row[$i].'">'.$row[$i].'</td>';
-                            }
-                            else {
-                                echo '<td>'.$row[$i].'</td>';
-                            }
+                        for ($j = 0; $j < 4; $j++) {
+                            if ($j == 3)
+                                echo '<td class="ticket_case_'.$row[$j].'">'.$row[$j].'</td>';
+                            else
+                                echo '<td>'.$row[$j].'</td>';
                         }
                         echo '</tr>';
                     }
@@ -77,11 +68,10 @@
                         </tr>
                     </thead>';
 
-                    $mysqli = new mysqli($host, $user, $passwd, $db);
-                    $stmt = $mysqli->prepare("SELECT creation_date, user_login, ip_address, emergency 
-                                                    FROM Tickets
-                                                    WHERE status != 'closed'
-                                                    ORDER BY creation_date DESC");
+                    $stmt = $mysqli->prepare("SELECT date_co, login, password, ip_address 
+                                                            FROM Connections
+                                                            WHERE succes = 0
+                                                            ORDER BY date_co DESC");
                     $stmt->execute();
                     $data = $stmt->get_result();
 
@@ -116,33 +106,24 @@
                             <th>Date fin</th>
                         </tr>
                     </thead>';
-                    
-                    # TODO: Remplacer ce tableau par une requête SQL
-                    $data = array(
-                        array(2, 'G23' , 'projecteur cassé', 'matis', '19-11-2023', '25-11-2023'),
-                        array(1, 'G21' , 'projecteur cassé', 'thomas', '27-11-2023', '30-11-2023'),
-                        array(4, 'I21' , 'lumiere ne marche plus', 'jules', '2-11-2023', '10-11-2023'),
-                        array(3, 'G23' , 'projecteur cassé', 'matis', '19-11-2023', '25-11-2023'),
-                        array(2, 'G21' , 'projecteur cassé', 'thomas', '27-11-2023', '30-11-2023'),
-                        array(4, 'I21' , 'lumiere ne marche plus', 'thomas', '2-11-2023', '10-11-2023'),
-                        array(3, 'G23' , 'projecteur cassé', 'matis', '19-11-2023', '25-11-2023'),
-                        array(1, 'G21' , 'projecteur cassé', 'matis', '27-11-2023', '30-11-2023'),
-                        array(2, 'I21' , 'lumiere ne marche plus', 'thomas', '2-11-2023', '10-11-2023'),
-                        array(3, 'G23' , 'projecteur cassé', 'thomas', '19-11-2023', '25-11-2023'),
-                        array(1, 'G21' , 'projecteur cassé', 'matis', '27-11-2023', '30-11-2023'),
-                        array(4, 'I21' , 'lumiere ne marche plus', 'jules', '2-11-2023', '10-11-2023')
-                    );
+
+                    $stmt = $mysqli->prepare("SELECT emergency, room, title, user_login, creation_date, end_date
+                                                            FROM Tickets, Interventions
+                                                            WHERE Tickets.ticket_id = Interventions.ticket_id
+                                                            AND status = 'closed'
+                                                            ORDER BY creation_date DESC");
+                    $stmt->execute();
+                    $data = $stmt->get_result();
 
                     echo '<tbody>';
-                    foreach ($data as $row) {
+                    for ($i=0; $i<mysqli_num_rows($data); $i++) {
+                        $row = mysqli_fetch_array($data);
                         echo '<tr>';
-                        for ($i = 0; $i < count($row); $i++) {
-                            if ($i == 0) {
-                                echo '<td class="ticket_case_'.$row[$i].'">'.$row[$i].'</td>';
-                            }
-                            else {
-                                echo '<td>'.$row[$i].'</td>';
-                            }
+                        for ($j = 0; $j < 6; $j++) {
+                            if ($j == 0)
+                                echo '<td class="ticket_case_'.$row[$j].'">'.$row[$j].'</td>';
+                            else
+                                echo '<td>'.$row[$j].'</td>';
                         }
                         echo '</tr>';
                     }
