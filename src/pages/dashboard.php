@@ -36,7 +36,7 @@
         <button type="button" onclick="location.href=\'ticket.php\'">Créer un ticket</button></div>';
         $header = array('Niveau', 'Salle', 'Problème', 'Date', 'État');
 
-        $stmt1 = $mysqli->prepare("SELECT ticket_id FROM Tickets WHERE user_login LIKE ?");
+        $stmt1 = $mysqli->prepare("SELECT ticket_id FROM Tickets WHERE user_login LIKE ? ORDER BY creation_date DESC");
         $stmt1->bind_param("s", $actual_user);
         $stmt1->execute();
         $stmt1->bind_result($ticket_id);
@@ -71,7 +71,7 @@
         if ($dispo) {
             echo '<h2>Tickets disponibles</h2>';
 
-            $stmt1 = $mysqli->prepare("SELECT ticket_id FROM Tickets WHERE status LIKE 'open'");
+            $stmt1 = $mysqli->prepare("SELECT ticket_id FROM Tickets WHERE status LIKE 'open' ORDER BY creation_date DESC");
             $stmt1->execute();
             $stmt1->bind_result($ticket_id);
 
@@ -100,7 +100,7 @@
         else {
             echo '<h2>Mes interventions en cours</h2>';
 
-            $stmt1 = $mysqli->prepare("SELECT ticket_id FROM Interventions WHERE tech_login LIKE ?");
+            $stmt1 = $mysqli->prepare("SELECT ticket_id FROM Interventions WHERE tech_login LIKE ? ORDER BY end_date DESC");
             $stmt1->bind_param("s", $actual_user);
             $stmt1->execute();
             $stmt1->bind_result($ticket_id);
@@ -134,7 +134,7 @@
             </div>';
         $header = array('Niveau', 'Salle', 'Problème', 'Date', 'Demandeur', 'Technicien', 'État');
 
-        $stmt1 = $mysqli->prepare("SELECT ticket_id FROM Tickets WHERE status LIKE 'open' OR status LIKE 'in_progress'");
+        $stmt1 = $mysqli->prepare("SELECT ticket_id FROM Tickets WHERE status LIKE 'open' OR status LIKE 'in_progress' ORDER BY creation_date DESC");
         $stmt1->execute();
         $stmt1->bind_result($ticket_id);
 

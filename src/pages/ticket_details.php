@@ -15,10 +15,22 @@
     if (isset($_GET['id']) && !empty($_GET['id'])){
         $ticket_id = $_GET['id'];
     }
-
     else {
         header('Location: dashboard.php');
     }
+
+    $user = "ticket_app";
+    $passwd = "ticket_s301";
+    $db = "ticket_app";
+    $host = "localhost";
+
+    $mysqli = new mysqli($host, $user, $passwd, $db);
+
+    $stmt = $mysqli->prepare("SELECT creation_date, description, title, room, emergency, status FROM Tickets WHERE ticket_id = ?");
+    $stmt->bind_param("i", $ticket_id);
+    $stmt->execute();
+    $stmt->bind_result($creation_date, $description, $title, $room, $emergency, $status);
+    $stmt->fetch();
 
     # TODO: Remplacer ce tableau par une requête SQL
     # TODO: Vérifier que l'utilisateur actuel est bien le demandeur du ticket si c'est un user
@@ -30,19 +42,19 @@
             'in_progress');
 
     echo '<div id="part_top">
-        <h2>Ticket du '.$data[0].'</h2>
+        <h2>Ticket du '.$creation_date.'</h2>
     </div>
     <form id="ticket_about">
         <div id="ticket_description">
             <h3>Description du problème</h3>
-            <p>'.$data[1].'</p>
+            <p>'.$description.'</p>
         </div>
         <div id="ticket_details">
-            <p>'.$data[2].'</p>
-            <p>Salle : '.$data[3].'</p>
-            <p>Niveau d\'urgence : '.$data[4].'</p>';
+            <p>'.$title.'</p>
+            <p>Salle : '.$room.'</p>
+            <p>Niveau d\'urgence : '.$emergency.'</p>';
 
-            switch ($data[5]){
+            switch ($status){
                 case 'open':
                     echo '<p>État : Ouvert</p>';
                     break;
@@ -74,6 +86,9 @@
             </div>
         </div>
     </form>
+    <?php
+        $stmt->close();
+    ?>
 </main>
 <?php
     include "footer.php";
