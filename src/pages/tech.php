@@ -26,12 +26,23 @@
                     </thead>
                     <tbody>
                         <?php
-                            $data = array(array('Jean', 'Zanzibare', '3'),
-                                        array('Roger', 'Martinique', '1'),
-                                        array('Julien', 'Zanzibare', '0'),
-                                        array('Francis', 'St Pierre et Miquelon', '5'));
+                            $mysqli = new mysqli($host, $user, $passwd, $db);
+                            $stmt = $mysqli->prepare("SELECT last_name, first_name, login FROM Users WHERE role = 'tech' AND login NOT LIKE 'rmv-%'");
+                            $stmt->execute();
+                            $data = $stmt->get_result();
+                            $data = mysqli_fetch_all($data);
                             
                             foreach ($data as $row) {
+                                $stmt = $mysqli->prepare("SELECT COUNT(*) FROM Interventions, Tickets
+                                                            WHERE tech_login = ?
+                                                            AND Tickets.ticket_id = Interventions.ticket_id
+                                                            AND status = 'in_progress'");
+                                                            
+                                $stmt->bind_param("s", $row[2]);
+                                $stmt->execute();
+                                $row[2] = $stmt->get_result()->fetch_row()[0];
+                                $stmt->close();
+
                                 echo '<tr>';
                                 for ($i = 0; $i < count($row); $i++) {
                                     echo '<td>' . $row[$i] . '</td>';
@@ -46,7 +57,7 @@
 
         <div class="sign_up">
             <h2>Ajouter un technicien</h2>
-            <form action="dashboard.php" method="get">
+            <form action="account.php" method="get">
                 <div class="user_info">
                     <div class="form_group">
                         <label for="login">Login&nbsp;:</label>
@@ -67,6 +78,7 @@
                         <label for="pwd">Mot de passe&nbsp;:</label>
                         <input type="password" id="pwd" name="pwd"/>
                     </div>
+                    <input type="hidden" name="role" value="tech"/>
                     <br>
                     <div class="form_group">
                         <label for="conf_pwd">Confirmer le mot de passe&nbsp;:</label>
@@ -77,7 +89,7 @@
                 <br>
                 <div class="resetSubmitButtons">
                     <input type="reset" value="Effacer" class="reset_buttons">
-                    <input type="submit" value="Créer" class="submit_buttons">
+                    <input type="submit" value="Créer" class="submit_buttons" name="create_acc">
                 </div>
             </form>
         </div>

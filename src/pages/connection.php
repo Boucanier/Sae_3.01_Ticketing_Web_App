@@ -51,6 +51,7 @@
                         <label for="pwd">Mot de passe&nbsp;:</label>
                         <input type="password" id="pwd" name="pwd"/>
                     </div>
+                    <input type="hidden" name="role" value="user"/>
                     <br>
                     <div class="form_group">
                         <label for="conf_pwd">Confirmer le mot de passe&nbsp;:</label>
