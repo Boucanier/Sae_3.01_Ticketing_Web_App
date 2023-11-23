@@ -27,9 +27,9 @@ Nous avons défini 4 tables :
 
 Cette table contient les colonnes suivantes :
 
-- **login** : champ de type *varchar(30)* qui est un identifiant unique à chaque l'utilisateur, c'est la ***clé primaire*** de la table
-- **first_name** : prénom de l'utilisateur de type *varchar(30)*
-- **last_name** : nom de l'utilisateur de type *varchar(30)*
+- **login** : champ de type *varchar(40)* qui est un identifiant unique à chaque l'utilisateur, c'est la ***clé primaire*** de la table
+- **first_name** : prénom de l'utilisateur de type *varchar(40)*
+- **last_name** : nom de l'utilisateur de type *varchar(40)*
 - **password** : mot de passe de l'utilisateur de type *varchar(40)* car nous stockons le hash du mot de passe en format **sha1**
 - **role** : rôle de l'utilisateur de type *varchar(10)* qui peut prendre les valeurs suivantes :
 
@@ -61,7 +61,7 @@ Cette table contient les colonnes suivantes :
   - *4* : critique
 
 - **date** : date de création du ticket de type *date*
-- **user_login** : champ de type *varchar(30)* qui correspond à l'utilisateur qui a créé le ticket, c'est une ***clé étrangère*** de la table qui fait référence à la colonne *login* de la table **Users**
+- **user_login** : champ de type *varchar(40)* qui correspond à l'utilisateur qui a créé le ticket, c'est une ***clé étrangère*** de la table qui fait référence à la colonne *login* de la table **Users**
 
 Aucun de ces champs ne peut être nul, sans quoi nous aurions des tickets incomplets.
 
@@ -82,19 +82,18 @@ Cette table contient les colonnes suivantes :
 
 - **id_co** : champ de type *integer* qui est un identifiant unique à chaque tentative, c'est la ***clé primaire*** de la table
 - **ip_adress** : adresse ip de l'utilisateur *varchar(15)*
-- **login** : login de l'utilisateur de type *varchar(30)*, c'est une ***clé étrangère*** de la table qui fait référence à la colonne *login* de la table **Users**
+- **login** : login de l'utilisateur de type *varchar(40)*, c'est une ***clé étrangère*** de la table qui fait référence à la colonne *login* de la table **Users**
 - **password** : mot de passe tenté de type *varchar(40)* car nous stockons le hash du mot de passe en format **sha1**
 - **succes** : *booleen* qui indique si l'utilisateur à pu se connecter
 - **date_co** : de type *datetime*, indique la date et l'heure de la tentative de connexion
 
 Aucun de ces champs ne peut être nul.
 
-
 ## Modèle logique de données
 
 Le modèle logique de données permet de représenter les tables et leurs colonnes en précisant les clés primaires et étrangères. Il est présenté ci-dessous :
 
-#### Users :
+Users :
 
 - $login
 - first_name
@@ -102,7 +101,7 @@ Le modèle logique de données permet de représenter les tables et leurs colonn
 - password
 - role
 
-#### Tickets :
+Tickets :
 
 - $ticket_id
 - title,
@@ -113,7 +112,7 @@ Le modèle logique de données permet de représenter les tables et leurs colonn
 - creation_date
 - #login
 
-#### Interventions :
+Interventions :
 
 - $id_co
 - ip_adress
