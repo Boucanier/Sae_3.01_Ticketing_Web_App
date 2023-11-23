@@ -77,7 +77,7 @@ delimiter //
 CREATE TRIGGER check_interventions_ticket_open BEFORE INSERT ON Interventions
 FOR EACH ROW
 BEGIN
-    IF (SELECT emergency FROM Tickets WHERE ticket_id = NEW.ticket_id) != 'open' THEN
+    IF (SELECT status FROM Tickets WHERE ticket_id = NEW.ticket_id) != 'open' THEN
         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Ticket is closed or in progress';
     END IF;
 END;//
