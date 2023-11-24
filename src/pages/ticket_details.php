@@ -32,19 +32,10 @@
     $stmt->bind_result($creation_date, $description, $title, $room, $emergency, $status);
     $stmt->fetch();
 
-    # TODO: Remplacer ce tableau par une requête SQL
-    # TODO: Vérifier que l'utilisateur actuel est bien le demandeur du ticket si c'est un user
-    $data = array('jj/mm/aaaa',
-            'Bacon ipsum dolor amet shoulder short ribs burgdoggen, picanha pancetta chicken pastrami t-bone cow beef buffalo landjaeger. Meatball boudin tenderloin pork belly, chuck pork bacon. Ham hock t-bone bacon turkey. Chislic picanha buffalo, bresaola prosciutto venison tail pig porchetta spare ribs kielbasa short loin beef ribs capicola. Shoulder tail pastrami ground round brisket tri-tip burgdoggen kevin short loin jowl alcatra.',
-            'Libellé',
-            'G24',
-            '3',
-            'in_progress');
-
     echo '<div id="part_top">
         <h2>Ticket du '.$creation_date.'</h2>
     </div>
-    <form id="ticket_about">
+    <form id="ticket_about" action="action_ticket.php" method="GET">
         <div id="ticket_description">
             <h3>Description du problème</h3>
             <p>'.$description.'</p>
