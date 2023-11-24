@@ -114,6 +114,13 @@ Tickets :
 
 Interventions :
 
+- $id
+- #ticket_id
+- #tech_login
+- end_date
+
+Connections :
+
 - $id_co
 - ip_adress
 - #login
@@ -121,7 +128,6 @@ Interventions :
 - succes
 - date_co
 
-Connections :
 
 **Légende** : Les champs précédés d'un **$** sont les clés primaires et ceux précédés d'un **#** sont des clés étrangères.
 
