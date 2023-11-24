@@ -48,8 +48,6 @@ CREATE TABLE Connections (
 
 
 
-
-
 delimiter //
 CREATE TRIGGER check_interventions_user BEFORE INSERT ON Interventions
 FOR EACH ROW
@@ -122,6 +120,16 @@ BEGIN
         UPDATE Interventions SET end_date = CURDATE() WHERE ticket_id = NEW.ticket_id;
     END IF;
 END;//
+delimiter ;
+
+delimiter //
+CREATE TRIGGER close_tickets_for_deleted_account AFTER UPDATE ON Users
+FOR EACH ROW
+BEGIN
+    IF (NEW.login LIKE 'rmv-%') THEN
+        UPDATE Tickets SET status = 'closed' WHERE user_login = NEW.login;
+    END IF ;
+END //
 delimiter ;
 
 
