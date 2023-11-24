@@ -106,6 +106,16 @@ BEGIN
 END;//
 delimiter ;
 
+delimiter //
+CREATE TRIGGER update_ticket_status_in_progress AFTER INSERT ON Interventions
+FOR EACH ROW
+BEGIN
+    UPDATE Tickets SET status = 'in_progress' WHERE ticket_id = NEW.ticket_id;
+END;//
+delimiter ;
+
+
+
 INSERT INTO Users VALUES ('admin', 'admin', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'sys_admin');
 INSERT INTO Users VALUES ('tec1', 'tec1', 'tec1', '73f7a2f5b9bd744ab54cd1d307975868fc93a844', 'tech');
 INSERT INTO Users VALUES ('tec2', 'tec2', 'tec2', '73f7a2f5b9bd744ab54cd1d307975868fc93a844', 'tech');
