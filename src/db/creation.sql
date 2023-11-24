@@ -114,6 +114,16 @@ BEGIN
 END;//
 delimiter ;
 
+delimiter //
+CREATE TRIGGER update_end_date AFTER UPDATE ON Tickets
+FOR EACH ROW
+BEGIN
+    IF (NEW.status = 'closed') THEN
+        UPDATE Interventions SET end_date = CURDATE() WHERE ticket_id = NEW.ticket_id;
+    END IF;
+END;//
+delimiter ;
+
 
 
 INSERT INTO Users VALUES ('admin', 'admin', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'sys_admin');
