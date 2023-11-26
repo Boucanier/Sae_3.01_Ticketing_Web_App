@@ -133,10 +133,13 @@ END //
 delimiter ;
 
 
-
-INSERT INTO Users VALUES ('admin', 'admin', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'sys_admin');
+-- Ajout des utilisateurs demandés dans le sujet
+INSERT INTO Users VALUES ('admin', 'sys', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'sys_admin');
 INSERT INTO Users VALUES ('tec1', 'tec1', 'tec1', '73f7a2f5b9bd744ab54cd1d307975868fc93a844', 'tech');
 INSERT INTO Users VALUES ('tec2', 'tec2', 'tec2', '73f7a2f5b9bd744ab54cd1d307975868fc93a844', 'tech');
+
+-- Ajout d'un admin web
+INSERT INTO Users VALUES ('webadmin', 'web', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'web_admin');
 
 DROP USER IF EXISTS 'ticket_app'@'localhost';
 CREATE USER 'ticket_app'@'localhost' IDENTIFIED BY 'ticket_s301';
