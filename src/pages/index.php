@@ -35,14 +35,14 @@
             <th>Problème</th>
             <th>Demandeur</th>
             <th>Date</th>
+            <th>État</th>
         </tr>
 
 <?php
     $mysqli = new mysqli($host, $user, $passwd, $db);
-    $stmt = $mysqli->prepare("SELECT emergency, room, title, first_name, last_name, creation_date FROM Tickets, Users
+    $stmt = $mysqli->prepare("SELECT emergency, room, title, first_name, last_name, creation_date, status FROM Tickets, Users
                                 WHERE Users.login = Tickets.user_login
-                                AND status = 'open'
-                                ORDER BY creation_date DESC");
+                                ORDER BY creation_date DESC, ticket_id DESC");
     $stmt->execute();
     $data = $stmt->get_result();
     $long = mysqli_num_rows($data);
@@ -54,12 +54,27 @@
     for ($i=0; $i < $long; $i++){
         $row = mysqli_fetch_array($data);
         echo '<tr>';
-        for ($j=0; $j < 6; $j++){
+        for ($j=0; $j < 7; $j++){
             if ($j == 0)
                 echo '<td class="ticket_case_'.$row[$j].'">'.$row[$j].'</td>';
             else if ($j == 3){
                 echo '<td>'.$row[$j].' '.$row[$j+1].'</td>';
                 $j++;
+            }
+            else if ($j == 6){
+                switch ($row[$j]){
+                    case 'open':
+                        echo '<td>Ouvert</td>';
+                        break;
+                    case 'in_progress':
+                        echo '<td>En cours</td>';
+                        break;
+                    case 'closed':
+                        echo '<td>Fermé</td>';
+                        break;
+                    default:
+                        echo '<td>Inconnu</td>';
+                }
             }
             else
                 echo '<td>'.$row[$j].'</td>';
