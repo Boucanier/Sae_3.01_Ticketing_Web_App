@@ -72,6 +72,7 @@
                         else if ($_GET['function'] == 'close'){
                             echo '<input type="submit" value="Clore" name="close" class="submit_buttons">';
                         }
+                        echo '<input name="ticket_id" type="hidden" value="'.$ticket_id.'"/>';
                     }
                 ?>
             </div>
