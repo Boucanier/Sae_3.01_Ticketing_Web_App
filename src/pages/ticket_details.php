@@ -26,7 +26,7 @@
 
     $mysqli = new mysqli($host, $user, $passwd, $db);
 
-    $stmt = $mysqli->prepare("SELECT creation_date, description, title, room, emergency, status FROM Tickets WHERE ticket_id = ?");
+    $stmt = $mysqli->prepare("SELECT DATE_FORMAT(creation_date,'%d/%m/%Y'), description, title, room, emergency, status FROM Tickets WHERE ticket_id = ?");
     $stmt->bind_param("i", $ticket_id);
     $stmt->execute();
     $stmt->bind_result($creation_date, $description, $title, $room, $emergency, $status);

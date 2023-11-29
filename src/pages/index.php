@@ -40,7 +40,7 @@
 
 <?php
     $mysqli = new mysqli($host, $user, $passwd, $db);
-    $stmt = $mysqli->prepare("SELECT emergency, room, title, first_name, last_name, creation_date, status FROM Tickets, Users
+    $stmt = $mysqli->prepare("SELECT emergency, room, title, first_name, last_name, DATE_FORMAT(creation_date,'%d/%m/%Y'), status FROM Tickets, Users
                                 WHERE Users.login = Tickets.user_login
                                 ORDER BY creation_date DESC, ticket_id DESC");
     $stmt->execute();

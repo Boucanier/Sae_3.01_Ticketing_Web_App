@@ -68,7 +68,7 @@
                         </tr>
                     </thead>';
 
-                    $stmt = $mysqli->prepare("SELECT date_co, login, password, ip_address 
+                    $stmt = $mysqli->prepare("SELECT DATE_FORMAT(date_co,'%d/%m/%Y %T'), login, password, ip_address 
                                                             FROM Connections
                                                             WHERE succes = 0
                                                             ORDER BY date_co DESC");
@@ -107,7 +107,7 @@
                         </tr>
                     </thead>';
 
-                    $stmt = $mysqli->prepare("SELECT emergency, room, title, user_login, creation_date, end_date
+                    $stmt = $mysqli->prepare("SELECT emergency, room, title, user_login, DATE_FORMAT(creation_date,'%d/%m/%Y'), DATE_FORMAT(end_date,'%d/%m/%Y')
                                                             FROM Tickets, Interventions
                                                             WHERE Tickets.ticket_id = Interventions.ticket_id
                                                             AND status = 'closed'

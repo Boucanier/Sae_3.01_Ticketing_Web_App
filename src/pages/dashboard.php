@@ -50,7 +50,7 @@
 
         $test_col = array();
         foreach ($ticket_ids as $ticket_id){
-            $stmt2 = $mysqli->prepare("SELECT emergency, room, title, creation_date, status FROM Tickets WHERE ticket_id = ?");
+            $stmt2 = $mysqli->prepare("SELECT emergency, room, title, DATE_FORMAT(creation_date,'%d/%m/%Y'), status FROM Tickets WHERE ticket_id = ?");
             $stmt2->bind_param("s", $ticket_id);
             $stmt2->execute();
             $stmt2->bind_result($emergency, $room, $title, $creation_date, $status);
@@ -84,7 +84,7 @@
 
             $test_col = array();
             foreach ($ticket_ids as $ticket_id) {
-                $stmt2 = $mysqli->prepare("SELECT emergency, room, title, last_name, first_name, creation_date FROM Tickets T, Users U WHERE ticket_id = ? AND T.user_login = U.login");
+                $stmt2 = $mysqli->prepare("SELECT emergency, room, title, last_name, first_name, DATE_FORMAT(creation_date,'%d/%m/%Y') FROM Tickets T, Users U WHERE ticket_id = ? AND T.user_login = U.login");
                 $stmt2->bind_param("s", $ticket_id);
                 $stmt2->execute();
                 $stmt2->bind_result($emergency, $room, $title, $nom, $prenom, $creation_date);
@@ -114,7 +114,7 @@
 
             $test_col = array();
             foreach ($ticket_ids as $ticket_id){
-                $stmt2 = $mysqli->prepare("SELECT emergency, room, title, last_name, first_name, creation_date FROM Tickets T, Users U WHERE ticket_id = ? AND T.user_login = U.login");
+                $stmt2 = $mysqli->prepare("SELECT emergency, room, title, last_name, first_name, DATE_FORMAT(creation_date,'%d/%m/%Y') FROM Tickets T, Users U WHERE ticket_id = ? AND T.user_login = U.login");
                 $stmt2->bind_param("s", $ticket_id);
                 $stmt2->execute();
                 $stmt2->bind_result($emergency, $room, $title, $nom, $prenom, $creation_date);
@@ -148,7 +148,7 @@
 
         $test_col = array();
         foreach ($ticket_ids as $ticket_id){
-            $stmt2 = $mysqli->prepare("SELECT emergency, room, title, creation_date, last_name, first_name, status FROM Tickets T, Users U WHERE ticket_id = ? AND U.login = T.user_login");
+            $stmt2 = $mysqli->prepare("SELECT emergency, room, title, DATE_FORMAT(creation_date,'%d/%m/%Y'), last_name, first_name, status FROM Tickets T, Users U WHERE ticket_id = ? AND U.login = T.user_login");
             $stmt2->bind_param("s", $ticket_id);
             $stmt2->execute();
             $stmt2->bind_result($emergency, $room, $title, $creation_date, $nom, $prenom, $status);
