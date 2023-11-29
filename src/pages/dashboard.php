@@ -180,11 +180,16 @@
             if ($i == 0) {
                 echo '<td class="ticket_case_'.$row[$i].'">'.$row[$i].'</td>';
             }
+            else if ($i == 1 && $row[$i] == 'other'){
+                echo '<td>Autre</td>';
+            }
             else if (($i == 3 && $role == 'tech') || ($i == 4 && $role == 'web_admin') || ($i == 6 && $role == 'web_admin')){
-                if ($role == 'web_admin' && $row[$i] == '' && $row[$i+1] == '')
+                if ($role == 'web_admin' && $row[$i] == '' && $row[$i+1] == ''){
                     echo '<td>Non attribué</td>';
-                else
+                }
+                else {
                     echo '<td>'.$row[$i].' '.$row[$i+1].'</td>';
+                }
                 $i ++;
             }
             else if (($i == 4 && $role == 'user') || ($i == 8 && $role == 'web_admin')) {
