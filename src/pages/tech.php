@@ -57,6 +57,21 @@
 
         <div class="sign_up">
             <h2>Ajouter un technicien</h2>
+            <?php
+                if (isset($_GET['error'])){
+                    switch ($_GET['error']){
+                        case 11:
+                            echo '<div class="error"><p>Login invalide</p></div>';
+                            break;
+                        case 12:
+                            echo '<div class="error"><p>Les mots de passe ne correspondent pas</p></div>';
+                            break;
+                        case 13:
+                            echo '<div class="error"><p>Formulaire incomplet</p></div>';
+                            break;
+                    }
+                }
+            ?>
             <form action="account.php" method="get">
                 <div class="user_info">
                     <div class="form_group">

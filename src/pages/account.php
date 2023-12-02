@@ -10,6 +10,14 @@
         $mysqli = new mysqli($host, $user, $passwd, $db);
         $role = $_GET['role'];
 
+        # On définit sur quelle page une erreur redirige en fonction du rôle
+        if ($role == 'tech'){
+            $error_link = 'Location: tech.php?error=';
+        }
+        else {
+            $error_link = 'Location: connection.php?error=';
+        }
+
         if ($role == "tech" || isset($_GET['captcha'])){
 
             if (isset($_GET['captcha'])){
@@ -30,7 +38,7 @@
                     $stmt->close();
         
                     if ($taille > 0 || substr($login, 0, 4) == 'rmv-'){
-                        header('Location: connection.php?error=11');
+                        header($error_link.'11');
                         # Login invalide
                     }
         
@@ -45,7 +53,7 @@
                             $conf_pwd = sha1($_GET['conf_pwd']);
         
                             if (!($pwd == $conf_pwd)){
-                                header('Location: connection.php?error=12');
+                                header($error_link.'12');
                                 # Mots de passe différents
                             }
                             
@@ -72,7 +80,7 @@
                         }
         
                         else {
-                            header('Location: connection.php?error=13');
+                            header($error_link.'13');
                             # Champs vides
                         }
                     }
@@ -85,7 +93,7 @@
             }
             else{
                 # le captcha n'est pas bon
-                header('Location: connection.php?error=14');
+                header($error_link.'14');
             }
         }
     }
