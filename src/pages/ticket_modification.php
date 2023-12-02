@@ -11,26 +11,37 @@
 ?>
 <main>
     <?php
-    # TODO: Remplacer ce tableau par une requête SQL
-    $data = array(
-        "Voici un problème tres particulier pour lequel je n'ai pas de réponse",
-        "Probleme avec le projecteur",
-        "G23",
-        "UnRandom",
-        "JJ Le sang",
-        4,
-        "En cours"
-    );
+    if (isset($_GET['id']) && !empty($_GET['id'])){
+        $ticket_id = $_GET['id'];
+    }
+    else {
+        header('Location: dashboard.php');
+    }
 
-    # TODO: Remplacer ce tableau par une requête SQL
-    # liste de tout les techniciens
-    $techniciens = array(
-        array("tech1", "Jean", "Dujardin"),
-        array("tech2", "Matis", "Rod"),
-        array("tech3", "Jules", "Chi"),
-        array("tech4", "Thomas", "God"),
-        array("tech5", "Couscous", "Merguez"),
-    );
+    $user = "ticket_app";
+    $passwd = "ticket_s301";
+    $db = "ticket_app";
+    $host = "localhost";
+    $mysqli = new mysqli($host, $user, $passwd,$db);
+
+    $stmt1 = $mysqli->prepare("SELECT description, title, room, user_login, tech_login, emergency, status FROM Tickets T, Interventions I WHERE T.ticket_id = ? AND T.ticket_id = I.ticket_id");
+    $stmt1->bind_param("i", $ticket_id);
+    $stmt1->execute();
+    $stmt1->bind_result($description, $title, $room, $user_login, $tech_login, $emergency, $status);
+    $stmt1->fetch();
+    $data = array($description, $title, $room, $user_login, $tech_login, $emergency, $status);
+    $stmt1->close();
+
+
+    $stmt2 = $mysqli->prepare("SELECT login, first_name, last_name FROM Users WHERE role LIKE 'tech'");
+    $stmt2->execute();
+    $stmt2->bind_result($login, $first_name, $last_name);
+    $techniciens = array();
+    while ($stmt2->fetch()) {
+        $result = array($login, $first_name, $last_name);
+        $techniciens[] = $result;
+    }
+    $stmt2->close();
 
     echo '
     <div id="form_modification_ticket">
