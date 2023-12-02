@@ -42,8 +42,8 @@ Pour la page footer nous vérifions pour chaque lien que celui-ci renvoie bien v
 
 | Classe | Donnée 1 |   Résultat attendu    |
 |:------:|:--------:|:----------------:|
-|   P1   |         ‘Nous contacter’           |          connection.php         |
-|   P2   |        ‘Changer la langue’           |          index.php            |
+|   P1   |         ‘Nous contacter’           |          contact.php          |
+|   P2   |        ‘Changer la langue’         |          index.php            |
 |   P2   |        ‘Police dyslexie’           |          index.php            |
 
 ### 3. Résultats de tests

@@ -78,7 +78,7 @@ Partitions d'équivalence :
 |:------:|:----------:|:-----------:|:----------------:|:--------------------:|
 |   P1   | mauvais    |      a      |      b = a       | profile.php?error=31 |
 |   P2   | mauvais    |      a      |     b != a       | profile.php?error=33 |
-|   P2   | correct    |      a      |     b != a       | profile.php?error=33 |
-|   P1   | correct    |      a      |      b = a       | profile.php?success=1|
+|   P3   | correct    |      a      |     b != a       | profile.php?error=33 |
+|   P4   | correct    |      a      |      b = a       | profile.php?success=1|
 
 ### 3. Résultats de tests
