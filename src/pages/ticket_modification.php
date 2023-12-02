@@ -97,7 +97,7 @@
                         </div>
                     </div>
                 </div>
-                <form id="modification_ticket_valeur_a_modifier" action="" method="get">
+                <form id="modification_ticket_valeur_a_modifier" action="action_ticket.php" method="get">
                     <div class="modif_form_input">
                         <label for="new_libelle">Nouveau libellé&nbsp:</label>
                         <input type="text" id="new_libelle" name="new_libelle"/>
@@ -132,7 +132,12 @@
             </div>
                     <div class="resetSubmitButtons">
                         <input type="reset" value="Effacer" id="reset_modification_ticket" name="reset_modification_ticket" class="reset_buttons"/>
-                        <input type="submit" value="Modifier" id="modifier_ticket" name="modifier_ticket"  class="submit_buttons"/>
+                        <input type="submit" value="Modifier" id="edit_ticket" name="edit_ticket"  class="submit_buttons"/>
+                        <input name="ticket_id" type="hidden" value="'.$ticket_id.'"/>
+                        <input name="previous_libelle" type="hidden" value="'.$data[1].'"/>
+                        <input name="previous_emergency" type="hidden" value="'.$data[5].'"/>
+                        <input name="previous_status" type="hidden" value="'.$data[6].'"/>
+                        <input name="previous_tech" type="hidden" value="'.$data[4].'"/>
                     </div>
         </div>
     </form>';

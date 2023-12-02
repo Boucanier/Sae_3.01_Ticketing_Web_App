@@ -25,4 +25,37 @@
         $stmt1->execute();
         $stmt1->close();
     }
+
+    elseif (isset($_GET["edit_ticket"])){
+        $newLibelle = $_GET["new_libelle"];
+        $newEmergency = $_GET["new_emergency"];
+        $newStatus = $_GET["new_status"];
+        $newTech = $_GET["new_tech"];
+
+        $previous_libelle = $_GET["previous_libelle"];
+        $previous_emergency = $_GET["previous_emergency"];
+        $previous_status = $_GET["previous_status"];
+        $previous_tech = $_GET["previous_tech"];
+
+        $dataToInsert = array();
+
+        if ($newLibelle == "") $dataToInsert[] = $previous_libelle;
+        else $dataToInsert[] = $newLibelle;
+        
+        if ($newEmergency == "") $dataToInsert[] = $previous_emergency;
+        else $dataToInsert[] = $newEmergency;
+
+        if ($newStatus == "Vide") $dataToInsert[] = $previous_status;
+        else $dataToInsert[] = $newStatus;
+
+        if ($newTech != "Vide"){
+            // TODO : ajouter le technicien dans les interventions
+        }
+
+        $stmt1 = $mysqli->prepare("UPDATE Tickets SET title = ?, emergency = ?, status = ? WHERE ticket_id = ?");
+        $stmt1->bind_param("sisi", $dataToInsert[0], $dataToInsert[1], $dataToInsert[2], $ticket_id);
+        $stmt1->execute();
+        $stmt1->close();
+    }
+
     header("Location: dashboard.php");
