@@ -20,7 +20,7 @@ Pour la page footer nous vérifions pour chaque lien que celui-ci renvoie bien v
 
 ### 1. Campagne de test
 
-| Produit testé : header.php                                 |
+| Produit testé : footer.php                                 |
 |-------------------------------------------------------------------------|
 | Configuration logicielle : Apache2, Google Chrome, Firefox, Brave                   |
 | Configuration matérielle : Ubuntu 23.10, Windows 11                     |
