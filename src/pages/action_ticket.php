@@ -48,14 +48,19 @@
         if ($newStatus == "Vide") $dataToInsert[] = $previous_status;
         else $dataToInsert[] = $newStatus;
 
-        if ($newTech != "Vide"){
-            // TODO : ajouter le technicien dans les interventions
-        }
-
+        // les updates nécessaire pour le ticket en question
         $stmt1 = $mysqli->prepare("UPDATE Tickets SET title = ?, emergency = ?, status = ? WHERE ticket_id = ?");
         $stmt1->bind_param("sisi", $dataToInsert[0], $dataToInsert[1], $dataToInsert[2], $ticket_id);
         $stmt1->execute();
         $stmt1->close();
+
+        if ($newTech != "Vide"){
+            // TODO : ajouter le technicien dans les interventions
+            $stmt1 = $mysqli->prepare("INSERT INTO Interventions (ticket_id, tech_login) VALUES (?, ?)");
+            $stmt1->bind_param("is", $ticket_id, $newTech);
+            $stmt1->execute();
+            $stmt1->close();
+        }
     }
 
     header("Location: dashboard.php");
