@@ -24,15 +24,27 @@
     $host = "localhost";
     $mysqli = new mysqli($host, $user, $passwd,$db);
 
-    $stmt1 = $mysqli->prepare("SELECT description, title, room, user_login, tech_login, emergency, status FROM Tickets T, Interventions I WHERE T.ticket_id = ? AND T.ticket_id = I.ticket_id");
+    // préparation de la liste de toutes les informations nécessaire a l'affichage des informations du ticket sélectionné
+    $stmt1 = $mysqli->prepare("SELECT description, title, room, user_login, emergency, status FROM Tickets WHERE ticket_id = ?");
     $stmt1->bind_param("i", $ticket_id);
     $stmt1->execute();
-    $stmt1->bind_result($description, $title, $room, $user_login, $tech_login, $emergency, $status);
+    $stmt1->bind_result($description, $title, $room, $user_login, $emergency, $status);
     $stmt1->fetch();
-    $data = array($description, $title, $room, $user_login, $tech_login, $emergency, $status);
+    $data = array($description, $title, $room, $user_login, "", $emergency, $status);
     $stmt1->close();
 
+    //on regarde si le ticket a déja un technicien d'attribué
+    $stmt3 = $mysqli->prepare("SELECT tech_login FROM Interventions WHERE ticket_id = ?");
+    $stmt3->bind_param("i", $ticket_id);
+    $stmt3->execute();
+    $stmt3->bind_result($tech_login);
+    $stmt3->fetch();
+    if (!is_null($tech_login)){
+        $data[4] = $tech_login;
+    }
+    $stmt3->close();
 
+    // liste de tous les techniciens avec leur login, prenom et nom de famille
     $stmt2 = $mysqli->prepare("SELECT login, first_name, last_name FROM Users WHERE role LIKE 'tech'");
     $stmt2->execute();
     $stmt2->bind_result($login, $first_name, $last_name);
@@ -65,8 +77,13 @@
                             <input type="text" id="ticket_demandeur" name="ticket_demandeur" value="'.$data[3].'" readonly/>
                         </div>
                         <div id="modification_ticket_technicien">
-                            <label for="ticket_technicien">Technicien</label>
-                            <input type="text" id="ticket_technicien" name="ticket_technicien" value="'.$data[4].'" readonly/>
+                            <label for="ticket_technicien">Technicien</label>';
+                            if ($data[4] == ""){
+                                echo '<input type="text" id="ticket_technicien" name="ticket_technicien" value="'.$data[4].'" disabled/>';
+                            }
+                            else 
+                                echo '<input type="text" id="ticket_technicien" name="ticket_technicien" value="'.$data[4].'" readonly/>';
+                        echo '
                         </div>
                     </div>
                     <div id="modification_ticket_niveauUrgence_etat">
