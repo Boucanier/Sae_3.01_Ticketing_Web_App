@@ -45,7 +45,7 @@
     $stmt3->close();
 
     // liste de tous les techniciens avec leur login, prenom et nom de famille
-    $stmt2 = $mysqli->prepare("SELECT login, first_name, last_name FROM Users WHERE role LIKE 'tech'");
+    $stmt2 = $mysqli->prepare("SELECT login, first_name, last_name FROM Users WHERE role LIKE 'tech' AND login NOT LIKE 'rmv-%'");
     $stmt2->execute();
     $stmt2->bind_result($login, $first_name, $last_name);
     $techniciens = array();
