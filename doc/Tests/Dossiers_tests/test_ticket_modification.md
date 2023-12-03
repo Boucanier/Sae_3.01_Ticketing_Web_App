@@ -14,13 +14,13 @@ Nous testerons toutes les pages possiblement à afficher.
 
 ## 2. Description de la procédure de test
 
-Pour la page ticket nous vérifions que chaque lien en fonction de l'utilisateur, il redirige vers la bonne page.
+Pour la page ticket_modification nous vérifions que chaque lien en fonction de l'utilisateur, il redirige vers la bonne page.
 
 ## 3. Description des informations à enregistrer pour les tests
 
 ### 1. Campagne de test
 
-| Produit testé : ticket_details.php                                 |
+| Produit testé : ticket_modification.php                                 |
 |-------------------------------------------------------------------------|
 | Configuration logicielle : Apache2, Google Chrome, Firefox, Brave                   |
 | Configuration matérielle : Ubuntu 23.10, Windows 11                     |
@@ -42,7 +42,7 @@ Pour la page ticket nous vérifions que chaque lien en fonction de l'utilisateur
 
 | Classe | Donnée 1 |   Résultat attendu    |
 |:------:|:--------:|:----------------:|
-|   P1   |         ‘Créer un ticket’      |     create_ticket.php    |
+|   P1   |         'Modifier le ticket'      |     action_ticket.php    |
 
 | Identification du test : 0               |
 |------------------------------------------|
@@ -53,13 +53,13 @@ Pour la page ticket nous vérifions que chaque lien en fonction de l'utilisateur
 
 #### Cas de test
 
-La donnée 1 correspond au fait qu'un type d'utilisateur accède à la page ticket.php. Si cet utilisateur y accède, alors il est renvoyé sur la page de la colonne "Résultat attendu".
+La donnée 1 correspond au fait qu'un type d'utilisateur accède à la page ticket_modification.php. Si cet utilisateur y accède, alors il est renvoyé sur la page de la colonne "Résultat attendu".
 
 | Classe | Donnée 1 |   Résultat attendu    |
 |:------:|:--------:|:----------------:|
 |   P1   |        visiteur      |   index.php  |
 |   P2   |        admin system      |   index.php  |
 |   P3   |        technicien      |   index.php  |
-|   P4   |        admin web      |   index.php  |
+|   P4   |        user      |   index.php  |
 
 ### 3. Résultats de tests
