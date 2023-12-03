@@ -74,11 +74,8 @@ Partitions d'équivalence :
 
 #### Cas de test
 
-| Classe | Mdp actuel | Nouveau mdp | Confirmation mdp | Résultat attendu     |
-|:------:|:----------:|:-----------:|:----------------:|:--------------------:|
-|   P1   | mauvais    |      a      |      b = a       | profile.php?error=31 |
-|   P2   | mauvais    |      a      |     b != a       | profile.php?error=33 |
-|   P3   | correct    |      a      |     b != a       | profile.php?error=33 |
-|   P4   | correct    |      a      |      b = a       | profile.php?success=1|
+| Classe | Donnée 1 | Résultat attendu |
+|:------:|:--------:|:----------------:|
+|   P1   | 'Changer le mot de passe' | account.php |
 
 ### 3. Résultats de tests
