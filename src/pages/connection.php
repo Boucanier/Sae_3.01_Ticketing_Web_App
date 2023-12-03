@@ -87,8 +87,15 @@
 
         <div class="log_in">
             <?php
-                if (isset($_GET['error']) && $_GET['error'] == 21){
-                    echo '<div class="error"><p>Erreur d\'identifiants</p></div>';
+                if (isset($_GET['error'])){
+                    switch ($_GET['error']){
+                        case 21:
+                            echo '<div class="error"><p>Login invalide</p></div>';
+                            break;
+                        case 23:
+                            echo '<div class="error"><p>Formulaire incomplet</p></div>';
+                            break;
+                    }
                 }
             ?>
             <form action="account.php" method="get">
