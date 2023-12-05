@@ -31,7 +31,7 @@ La [figure 1](#figure1) représente la conception architecturale du projet globa
 
 ## Base de données
 
-Cette section est la conception architecturale du projet à l'abstraction au domaine de la base de données. On définit tout d'abord deux tables :
+Cette section est la conception architecturale du projet à l'abstraction au domaine de la base de données. On définit tout d'abord trois tables :
 
 - **Users** : Table qui contient tous les utilisateurs
 - **Tickets** : Table qui contient tous les tickets
@@ -39,7 +39,7 @@ Cette section est la conception architecturale du projet à l'abstraction au dom
 
 Les tables **User** et **Tickets** sont reliées par une relation d'**association**. Un utilisateur peut avoir le nombre de tickets qu'il veut, mais un ticket n'a qu'un utilisateur. La table **Connections** est en association avec la table **User**.
 
-Mais en revenant au [cahier des charges](../Analyse/cahier_des_charges.md), on s'aperçoit qu'on doit utiliser une troisième table **Interventions** qui est une classe association entre Users et Tickets. En effet, cette table correspond à la prise en charge d'un ticket par un technicien. Elle n'existe que s'il y a un ticket à traiter et un technicien.
+Mais en revenant au [cahier des charges](../Analyse/cahier_des_charges.md), on s'aperçoit qu'on doit utiliser une table **Interventions** qui est une classe association entre Users et Tickets. En effet, cette table correspond à la prise en charge d'un ticket par un technicien. Elle n'existe que s'il y a un ticket à traiter et un technicien.
 
 On obtient donc la représentation présentée par la [figure 2](#figure2).
 

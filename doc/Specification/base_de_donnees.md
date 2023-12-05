@@ -150,6 +150,42 @@ Voici les différentes contraintes que nous avons définies pour les différente
 - **Connections** :
   - **login** référence la colonne **login** de la table **Users** -> la tentative de connexion doit référencer un utilisateur.
 
+## Déclencheurs (triggers)
+
+Certaines actions sur une table la base de données entrainent des changements implicites sur une autre table.
+Pour cette raison, nous avons écrit des déclencheurs qui vont réaliser ces changements automatiquement.
+Chaque changement s'effectue **avant** ou **apres** chaque changement correspondant aux critères du déclencheur.
+Il y a également des déclencheurs permettant de vérifier la possibilité d'un changement.
+
+Voici les différents déclencheurs que nous avons :
+
+- **check_interventions_user** : Permet de verifier que la prise en charge d'un ticket est effectué par un utillisateur existant et qui est un technicien.
+  - La vérification va s'effectuer *avant* l'ajout de l'intervention.
+  - Pour cela, il vérifie que le login existe dans la table *User*. 
+    - Si ce n'est pas le cas, une erreur est renvoyée et la prise en charge du ticket ne se fait pas.
+  - Il vérifie que l'utilisateur en question a le rôle *tech*.
+    - Si ce n'est pas le cas, une erreur est renvoyée et la prise en charge du ticket ne se fait pas.
+  - Si l'utilisateur existe et a le role technicien, alors la prise en charge est effectuée.
+
+- **check_ticket_id_intervention** : Permet de vérifier que le ticket pris en charge existe.
+  - La vérification va s'effectuer *avant* l'ajout de l'intervention.
+  - Pour cela, il vérifie que le ticket existe dans la table *Tickets*.
+    - Si ce n'est pas le cas, une erreur est renvoyée et la prise en charge du ticket ne se fait pas.
+  - Si le ticket existe, alors la prise en charge est effectuée.
+
+- **check_interventions_ticket_open** : Permet de vérifier que le ticket pris en charge a le status "ouvert"
+  - La vérification va s'effectuer *avant* l'ajout de l'intervention.
+  - Pour cela, il vérifie que le status du ticket est *ouvert*.
+    - Si ce n'est pas le cas, une erreur est renvoyée et la prise en charge du ticket ne se fait pas.
+  - Si le ticket est *ouvert*, alors la prise en charge est effectuée.
+
+- **update_login_references** : Actualise la base de données lors d'un changement de login.
+  - S'effectue après le changement du login.
+  - Dans chacune des autres tables, soit *Connections*, *Interventions* et *Tickets*, il remplace, pour chaque ligne correspondante à l'ancien login, l'ancien login par le nouveau.
+
+- **update_ticket_status_in_progress** : Actualise le status d'un ticket à "in_progress" lors de sa prise en charge
+  - S'effectue **après** la prise en charge du ticket
+
 ## Conclusion
 
 Nous avons présenté dans ce rapport les différentes tables de la base de données ainsi que leurs colonnes, leurs types et leurs contraintes. Nous avons également présenté le modèle logique de données qui permet de représenter les tables et leurs colonnes en précisant les clés primaires et étrangères. Cette spécification nous permettra de créer la base de données et de l'utiliser dans notre application.
