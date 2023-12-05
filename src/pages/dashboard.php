@@ -20,6 +20,10 @@
         $dispo = false;
     }
 
+    # TODO : success = 1 pour ticket clos,
+    # TODO : success = 2 pour ticket pris
+    # TODO :success = 3 pour ticket étider
+
     $user = "ticket_app";
     $passwd = "ticket_s301";
     $db = "ticket_app";

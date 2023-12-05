@@ -18,7 +18,7 @@
     }
 
     elseif (isset($_GET["close"])){
-        // TODO : update du statut (closed)
+        // TODO : update du statut (in_progress -> closed)
         $stmt1 = $mysqli->prepare("UPDATE Tickets SET status = ? WHERE ticket_id = ?");
         $status = "closed";
         $stmt1->bind_param("si", $status, $ticket_id);
@@ -41,7 +41,7 @@
 
         if ($newLibelle == "") $dataToInsert[] = $previous_libelle;
         else $dataToInsert[] = $newLibelle;
-        
+
         if ($newEmergency == "") $dataToInsert[] = $previous_emergency;
         else $dataToInsert[] = $newEmergency;
 
