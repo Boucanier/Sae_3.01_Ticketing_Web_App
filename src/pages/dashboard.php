@@ -36,7 +36,7 @@
         <button type="button" onclick="location.href=\'ticket.php\'">Créer un ticket</button></div>';
         $header = array('Niveau', 'Salle', 'Problème', 'Date', 'État');
 
-        $stmt1 = $mysqli->prepare("SELECT ticket_id FROM Tickets WHERE user_login LIKE ? ORDER BY creation_date DESC");
+        $stmt1 = $mysqli->prepare("SELECT ticket_id FROM Tickets WHERE user_login LIKE ? ORDER BY creation_date DESC, ticket_id DESC");
         $stmt1->bind_param("s", $actual_user);
         $stmt1->execute();
         $stmt1->bind_result($ticket_id);
@@ -71,7 +71,7 @@
         if ($dispo) {
             echo '<h2>Tickets disponibles</h2>';
 
-            $stmt1 = $mysqli->prepare("SELECT ticket_id FROM Tickets WHERE status LIKE 'open' ORDER BY creation_date DESC");
+            $stmt1 = $mysqli->prepare("SELECT ticket_id FROM Tickets WHERE status LIKE 'open' ORDER BY creation_date DESC, ticket_id DESC");
             $stmt1->execute();
             $stmt1->bind_result($ticket_id);
 
@@ -100,7 +100,7 @@
         else {
             echo '<h2>Mes interventions en cours</h2>';
             $status = "in_progress";
-            $stmt1 = $mysqli->prepare("SELECT I.ticket_id FROM Interventions I, Tickets T WHERE tech_login LIKE ? AND I.ticket_id = T.ticket_id AND status LIKE ? ORDER BY end_date DESC");
+            $stmt1 = $mysqli->prepare("SELECT I.ticket_id FROM Interventions I, Tickets T WHERE tech_login LIKE ? AND I.ticket_id = T.ticket_id AND status LIKE ? ORDER BY creation_date DESC, ticket_id DESC");
             $stmt1->bind_param("ss", $actual_user, $status);
             $stmt1->execute();
             $stmt1->bind_result($ticket_id);
@@ -134,7 +134,7 @@
             </div>';
         $header = array('Niveau', 'Salle', 'Problème', 'Date', 'Demandeur', 'Technicien', 'État');
 
-        $stmt1 = $mysqli->prepare("SELECT ticket_id FROM Tickets WHERE status LIKE 'open' OR status LIKE 'in_progress' ORDER BY creation_date DESC");
+        $stmt1 = $mysqli->prepare("SELECT ticket_id FROM Tickets WHERE status LIKE 'open' OR status LIKE 'in_progress' ORDER BY creation_date DESC, ticket_id DESC");
         $stmt1->execute();
         $stmt1->bind_result($ticket_id);
 
@@ -154,9 +154,29 @@
             $stmt2->bind_result($emergency, $room, $title, $creation_date, $nom, $prenom, $status);
             
             $stmt2->fetch();
-            $demandeur = "";
-            $test_col[] = array($emergency, $room, $title, $creation_date, $nom, $prenom, $demandeur, $status);
             $stmt2->close();
+
+            if ($status == 'in_progress'){
+                $stmt3 = $mysqli->prepare("SELECT last_name, first_name FROM Users WHERE login IN (SELECT tech_login FROM Interventions WHERE ticket_id = ?)");
+                $stmt3->bind_param("s", $ticket_id);
+                $stmt3->execute();
+                $stmt3->bind_result($nom_tech, $prenom_tech);
+
+                $stmt3->fetch();
+                $stmt3->close();
+
+                if ((substr($tech_login, 0, 4) == 'rmv-') || ($nom_tech == NULL && $prenom_tech == NULL)){
+                    $nom_tech = 'attribué';
+                    $prenom_tech = 'Non';
+                }
+            }
+
+            else {
+                $nom_tech = 'attribué';
+                $prenom_tech = 'Non';
+            }
+
+            $test_col[] = array($emergency, $room, $title, $creation_date, $nom, $prenom, $nom_tech, $prenom_tech, $status);
         }
     }
 
@@ -184,12 +204,7 @@
                 echo '<td>Autre</td>';
             }
             else if (($i == 3 && $role == 'tech') || ($i == 4 && $role == 'web_admin') || ($i == 6 && $role == 'web_admin')){
-                if ($role == 'web_admin' && $row[$i] == '' && $row[$i+1] == ''){
-                    echo '<td>Non attribué</td>';
-                }
-                else {
-                    echo '<td>'.$row[$i].' '.$row[$i+1].'</td>';
-                }
+                    echo '<td>'.$row[$i+1].' '.$row[$i].'</td>';
                 $i ++;
             }
             else if (($i == 4 && $role == 'user') || ($i == 8 && $role == 'web_admin')) {
