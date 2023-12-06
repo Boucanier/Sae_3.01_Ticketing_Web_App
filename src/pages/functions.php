@@ -267,6 +267,8 @@
             }
         }
         $mysqli->close();
+        // redirection : tout c'est bien passé
+        header("Location: dashboard.php");
     }
 
     function take_ticket($ticket_id){
@@ -281,6 +283,8 @@
         $stmt->close();
 
         $mysqli->close();
+        // redirection : tout c'est bien passé
+        header("Location: dashboard.php");
     }
 
     function close_ticket($ticket_id){
@@ -294,5 +298,7 @@
         $stmt->close();
 
         $mysqli->close();
+        // redirection : tout c'est bien passé
+        header("Location: dashboard.php");
     }
 ?>

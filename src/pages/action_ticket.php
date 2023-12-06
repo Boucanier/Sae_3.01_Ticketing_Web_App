@@ -28,5 +28,3 @@
             $previous_libelle, $previous_emergency, $previous_status, $previous_tech
         );
     }
-
-    header("Location: dashboard.php");
