@@ -179,12 +179,17 @@ Voici les différents déclencheurs que nous avons :
     - Si ce n'est pas le cas, une erreur est renvoyée et la prise en charge du ticket ne se fait pas.
   - Si le ticket est *ouvert*, alors la prise en charge est effectuée.
 
-- **update_login_references** : Actualise la base de données lors d'un changement de login.
-  - S'effectue après le changement du login.
-  - Dans chacune des autres tables, soit *Connections*, *Interventions* et *Tickets*, il remplace, pour chaque ligne correspondante à l'ancien login, l'ancien login par le nouveau.
-
 - **update_ticket_status_in_progress** : Actualise le status d'un ticket à "in_progress" lors de sa prise en charge
-  - S'effectue **après** la prise en charge du ticket
+  - S'effectue *après* la prise en charge du ticket.
+  - Change dans la table *Tickets* le status d'un ticket pris à "in_progress"
+
+- **update_end_date** : Ajoute la date de résolution d'un ticket lors de la fermeture de celui-ci
+  - S'effectue *après* la fermeture d'un ticket
+  - Change met la valeur de *end_date* dans la table *intervention* lorsque l'état du ticket est mis à 'closed'
+
+- **closed_tickets_for_deleted_account** : Ferme les tickets d'un compte supprimé
+  - S'effectue *après* la suppression du compte
+  - Met le *status* de tous les tickets appartenant à l'utilisateur supprimé à "closed"
 
 ## Conclusion
 
