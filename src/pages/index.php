@@ -57,6 +57,7 @@
     $mysqli = new mysqli($host, $user, $passwd, $db);
     $stmt = $mysqli->prepare("SELECT emergency, room, title, first_name, last_name, DATE_FORMAT(creation_date,'%d/%m/%Y'), status FROM Tickets, Users
                                 WHERE Users.login = Tickets.user_login
+                                AND Users.login NOT LIKE 'rmv-%'
                                 ORDER BY creation_date DESC, ticket_id DESC");
     $stmt->execute();
     $data = $stmt->get_result();
