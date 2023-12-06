@@ -37,6 +37,26 @@
         $previous_status = $_GET["previous_status"];
         $previous_tech = $_GET["previous_tech"];
 
+        if ($newTech != "Vide"){
+            if ($previous_tech == ""){
+                echo "INSERT INTO Interventions (ticket_id, tech_login) VALUES ($ticket_id, $newTech)";
+                // ajouter le technicien dans les interventions si il y en avait pas avant
+                $stmt1 = $mysqli->prepare("INSERT INTO Interventions (ticket_id, tech_login) VALUES (?, ?)");
+                $stmt1->bind_param("is", $ticket_id, $newTech);
+                $stmt1->execute();
+                $stmt1->close();
+                $newStatus = "in_progress";
+            }
+            else {
+                // update la base en en mofifiant le technicien actuel dans les interventions en le remplacant
+                $stmt1 = $mysqli->prepare("UPDATE Interventions SET tech_login = ? WHERE ticket_id = ?");
+                $stmt1->bind_param("si", $newTech, $ticket_id);
+                $stmt1->execute();
+                $stmt1->close();
+                $newStatus = "in_progress";
+            }
+        }
+
         $dataToInsert = array();
 
         if ($newLibelle == "") $dataToInsert[] = $previous_libelle;
@@ -47,24 +67,6 @@
 
         if ($newStatus == "Vide") $dataToInsert[] = $previous_status;
         else $dataToInsert[] = $newStatus;
-
-        if ($newTech != "Vide"){
-            if ($previous_tech == ""){
-                echo "INSERT INTO Interventions (ticket_id, tech_login) VALUES ($ticket_id, $newTech)";
-                // ajouter le technicien dans les interventions si il y en avait pas avant
-                $stmt1 = $mysqli->prepare("INSERT INTO Interventions (ticket_id, tech_login) VALUES (?, ?)");
-                $stmt1->bind_param("is", $ticket_id, $newTech);
-                $stmt1->execute();
-                $stmt1->close();
-            }
-            else {
-                // update la base en en mofifiant le technicien actuel dans les interventions en le remplacant
-                $stmt1 = $mysqli->prepare("UPDATE Interventions SET tech_login = ? WHERE ticket_id = ?");
-                $stmt1->bind_param("si", $newTech, $ticket_id);
-                $stmt1->execute();
-                $stmt1->close();
-            }
-        }
 
         // les updates nécessaire pour le ticket en question
         $stmt1 = $mysqli->prepare("UPDATE Tickets SET title = ?, emergency = ?, status = ? WHERE ticket_id = ?");
