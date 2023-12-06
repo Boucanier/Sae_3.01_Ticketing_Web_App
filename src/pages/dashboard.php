@@ -99,8 +99,8 @@
 
         else {
             echo '<h2>Mes interventions en cours</h2>';
-            $status = "closed";
-            $stmt1 = $mysqli->prepare("SELECT I.ticket_id FROM Interventions I, Tickets T WHERE tech_login LIKE ? AND I.ticket_id = T.ticket_id AND status != ? ORDER BY end_date DESC");
+            $status = "in_progress";
+            $stmt1 = $mysqli->prepare("SELECT I.ticket_id FROM Interventions I, Tickets T WHERE tech_login LIKE ? AND I.ticket_id = T.ticket_id AND status LIKE ? ORDER BY end_date DESC");
             $stmt1->bind_param("ss", $actual_user, $status);
             $stmt1->execute();
             $stmt1->bind_result($ticket_id);

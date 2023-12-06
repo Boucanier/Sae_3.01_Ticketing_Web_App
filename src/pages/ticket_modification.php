@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Ticket</title>
     <link rel="stylesheet" type="text/css" href="../style/style.css">
+    <script src="../scripts/ticket.js"></script>
 </head>
 <body>
 <?php
@@ -108,7 +109,7 @@
                     </div>
                     <div class="modif_form_input">
                         <label for="new_status">Nouvel état&nbsp:</label>
-                        <select id="new_status" name="new_status">
+                        <select id="new_status" name="new_status" onchange="changeTechForStatus()">
                             <option value="Vide"></option>
                             <option value="open">Ouvert</option>
                             <option value="in_progress">En cours</option>
@@ -120,7 +121,7 @@
                         <select id="new_tech" name="new_tech">';
                             ?>
                             <?php
-                            echo '<option value="Vide"></option>';
+                            echo '<option value="Vide" id="tech_vide"></option>';
                             foreach($techniciens as $tech){
                                 echo '<option value="'.$tech[0].'">'.$tech[1].' '.$tech[2].'</option>';
                             }
@@ -131,7 +132,7 @@
                 </div>
             </div>
                     <div class="resetSubmitButtons">
-                        <input type="reset" value="Effacer" id="reset_modification_ticket" name="reset_modification_ticket" class="reset_buttons"/>
+                        <input type="reset" value="Effacer" id="reset_modification_ticket" name="reset_modification_ticket" class="reset_buttons" onclick="resetForm()"/>
                         <input type="submit" value="Modifier" id="edit_ticket" name="edit_ticket"  class="submit_buttons"/>
                         <input name="ticket_id" type="hidden" value="'.$ticket_id.'"/>
                         <input name="previous_libelle" type="hidden" value="'.$data[1].'"/>

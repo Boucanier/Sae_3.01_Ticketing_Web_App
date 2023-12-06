@@ -10,7 +10,7 @@
     $ticket_id = $_GET['ticket_id'];
 
     if (isset($_GET["take"])){
-        // TODO : ajouter le technicien (SESSION) dans les interventions avec le ticket en question
+        // ajouter le technicien (SESSION) dans les interventions avec le ticket en question
         $stmt1 = $mysqli->prepare("INSERT INTO Interventions (ticket_id, tech_login) VALUES (?, ?)");
         $stmt1->bind_param("is", $ticket_id, $actual_user);
         $stmt1->execute();
@@ -18,7 +18,7 @@
     }
 
     elseif (isset($_GET["close"])){
-        // TODO : update du statut (closed)
+        // update du statut (closed)
         $stmt1 = $mysqli->prepare("UPDATE Tickets SET status = ? WHERE ticket_id = ?");
         $status = "closed";
         $stmt1->bind_param("si", $status, $ticket_id);
@@ -48,28 +48,29 @@
         if ($newStatus == "Vide") $dataToInsert[] = $previous_status;
         else $dataToInsert[] = $newStatus;
 
-        // les updates nécessaire pour le ticket en question
-        $stmt1 = $mysqli->prepare("UPDATE Tickets SET title = ?, emergency = ?, status = ? WHERE ticket_id = ?");
-        $stmt1->bind_param("sisi", $dataToInsert[0], $dataToInsert[1], $dataToInsert[2], $ticket_id);
-        $stmt1->execute();
-        $stmt1->close();
-
         if ($newTech != "Vide"){
             if ($previous_tech == ""){
-                // TODO : ajouter le technicien dans les interventions si il y en avait pas avant
+                echo "INSERT INTO Interventions (ticket_id, tech_login) VALUES ($ticket_id, $newTech)";
+                // ajouter le technicien dans les interventions si il y en avait pas avant
                 $stmt1 = $mysqli->prepare("INSERT INTO Interventions (ticket_id, tech_login) VALUES (?, ?)");
                 $stmt1->bind_param("is", $ticket_id, $newTech);
                 $stmt1->execute();
                 $stmt1->close();
             }
-            else{
-                // TODO : update la base en en mofifiant le technicien actuel dans les interventions en le remplacant
+            else {
+                // update la base en en mofifiant le technicien actuel dans les interventions en le remplacant
                 $stmt1 = $mysqli->prepare("UPDATE Interventions SET tech_login = ? WHERE ticket_id = ?");
                 $stmt1->bind_param("si", $newTech, $ticket_id);
                 $stmt1->execute();
                 $stmt1->close();
             }
         }
+
+        // les updates nécessaire pour le ticket en question
+        $stmt1 = $mysqli->prepare("UPDATE Tickets SET title = ?, emergency = ?, status = ? WHERE ticket_id = ?");
+        $stmt1->bind_param("sisi", $dataToInsert[0], $dataToInsert[1], $dataToInsert[2], $ticket_id);
+        $stmt1->execute();
+        $stmt1->close();
     }
 
     header("Location: dashboard.php");
