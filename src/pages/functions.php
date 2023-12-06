@@ -227,4 +227,72 @@
         $mysqli->close();
         header('Location: out.php?sup_acc=true');
     }
+
+    function edit_ticket($ticket_id, $newLibelle, $newEmergency, $newStatus, $newTech, $previous_libelle, $previous_emergency, $previous_status, $previous_tech){
+        $actual_user = $_SESSION['login'];
+
+        $mysqli = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB);
+
+        $dataToInsert = array();
+
+        if ($newLibelle == "") $dataToInsert[] = $previous_libelle;
+        else $dataToInsert[] = $newLibelle;
+        
+        if ($newEmergency == "") $dataToInsert[] = $previous_emergency;
+        else $dataToInsert[] = $newEmergency;
+
+        if ($newStatus == "Vide") $dataToInsert[] = $previous_status;
+        else $dataToInsert[] = $newStatus;
+
+        // les updates nécessaires pour le ticket en question
+        $stmt = $mysqli->prepare("UPDATE Tickets SET title = ?, emergency = ?, status = ? WHERE ticket_id = ?");
+        $stmt->bind_param("sisi", $dataToInsert[0], $dataToInsert[1], $dataToInsert[2], $ticket_id);
+        $stmt->execute();
+        $stmt->close();
+
+        if ($newTech != "Vide"){
+            if ($previous_tech == ""){
+                // ajouter le technicien dans les interventions si il y en avait pas avant
+                $stmt = $mysqli->prepare("INSERT INTO Interventions (ticket_id, tech_login) VALUES (?, ?)");
+                $stmt->bind_param("is", $ticket_id, $newTech);
+                $stmt->execute();
+                $stmt->close();
+            }
+            else{
+                // update la base en en mofifiant le technicien actuel dans les interventions en le remplacant
+                $stmt = $mysqli->prepare("UPDATE Interventions SET tech_login = ? WHERE ticket_id = ?");
+                $stmt->bind_param("si", $newTech, $ticket_id);
+                $stmt->execute();
+                $stmt->close();
+            }
+        }
+        $mysqli->close();
+    }
+
+    function take_ticket($ticket_id){
+        $actual_user = $_SESSION['login'];
+
+        $mysqli = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB);
+
+        // ajouter le technicien (SESSION) dans les interventions avec le ticket en question
+        $stmt = $mysqli->prepare("INSERT INTO Interventions (ticket_id, tech_login) VALUES (?, ?)");
+        $stmt->bind_param("is", $ticket_id, $actual_user);
+        $stmt->execute();
+        $stmt->close();
+
+        $mysqli->close();
+    }
+
+    function close_ticket($ticket_id){
+        $mysqli = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB);
+
+        // update du status (closed)
+        $stmt = $mysqli->prepare("UPDATE Tickets SET status = ? WHERE ticket_id = ?");
+        $status = "closed";
+        $stmt->bind_param("si", $status, $ticket_id);
+        $stmt->execute();
+        $stmt->close();
+
+        $mysqli->close();
+    }
 ?>
