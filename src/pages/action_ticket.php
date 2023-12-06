@@ -55,11 +55,20 @@
         $stmt1->close();
 
         if ($newTech != "Vide"){
-            // TODO : ajouter le technicien dans les interventions
-            $stmt1 = $mysqli->prepare("INSERT INTO Interventions (ticket_id, tech_login) VALUES (?, ?)");
-            $stmt1->bind_param("is", $ticket_id, $newTech);
-            $stmt1->execute();
-            $stmt1->close();
+            if ($previous_tech == ""){
+                // TODO : ajouter le technicien dans les interventions si il y en avait pas avant
+                $stmt1 = $mysqli->prepare("INSERT INTO Interventions (ticket_id, tech_login) VALUES (?, ?)");
+                $stmt1->bind_param("is", $ticket_id, $newTech);
+                $stmt1->execute();
+                $stmt1->close();
+            }
+            else{
+                // TODO : update la base en en mofifiant le technicien actuel dans les interventions en le remplacant
+                $stmt1 = $mysqli->prepare("UPDATE Interventions SET tech_login = ? WHERE ticket_id = ?");
+                $stmt1->bind_param("si", $newTech, $ticket_id);
+                $stmt1->execute();
+                $stmt1->close();
+            }
         }
     }
 
