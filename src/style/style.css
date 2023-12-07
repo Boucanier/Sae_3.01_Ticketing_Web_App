@@ -622,6 +622,10 @@ th {
     margin-top: 40px;
 }
 
+.submit_buttons:disabled{
+    background-color: rgb(226, 226, 226);
+}
+
 .activity_log_parts{
     text-align: center; /* Centre le contenu horizontalement */
     margin-top: 60px;
