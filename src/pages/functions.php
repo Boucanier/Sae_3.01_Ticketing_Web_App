@@ -278,29 +278,75 @@
 
         $mysqli = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB);
 
-        // ajouter le technicien (SESSION) dans les interventions avec le ticket en question
-        $stmt = $mysqli->prepare("INSERT INTO Interventions (ticket_id, tech_login) VALUES (?, ?)");
-        $stmt->bind_param("is", $ticket_id, $actual_user);
+        $stmt = $mysqli->prepare("SELECT status FROM Tickets WHERE ticket_id = ?");
+        $stmt->bind_param("s", $ticket_id);
         $stmt->execute();
+        $stmt->bind_result($status);
+        $stmt->fetch();
         $stmt->close();
 
-        $mysqli->close();
-        // redirection : tout c'est bien passé
-        header("Location: dashboard.php");
+        if ($status != "open"){
+            // On vérifie que le ticket est bien ouvert
+            $mysqli->close();
+            header("Location: dashboard.php");
+        }
+
+        else {
+            // ajouter le technicien (SESSION) dans les interventions avec le ticket en question
+            $stmt = $mysqli->prepare("INSERT INTO Interventions (ticket_id, tech_login) VALUES (?, ?)");
+            $stmt->bind_param("is", $ticket_id, $actual_user);
+            $stmt->execute();
+            $stmt->close();
+
+            $mysqli->close();
+            // redirection : tout c'est bien passé
+            header("Location: dashboard.php");
+        }
     }
 
     function close_ticket($ticket_id){
+        $actual_user = $_SESSION['login'];
         $mysqli = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB);
 
-        // update du status (closed)
-        $stmt = $mysqli->prepare("UPDATE Tickets SET status = ? WHERE ticket_id = ?");
-        $status = "closed";
-        $stmt->bind_param("si", $status, $ticket_id);
+        $stmt = $mysqli->prepare("SELECT status FROM Tickets WHERE ticket_id = ?");
+        $stmt->bind_param("s", $ticket_id);
         $stmt->execute();
+        $stmt->bind_result($status);
+        $stmt->fetch();
         $stmt->close();
 
-        $mysqli->close();
-        // redirection : tout c'est bien passé
-        header("Location: dashboard.php");
+        if ($status != "in_progress"){
+            // On vérifie que le ticket est bien ouvert
+            $mysqli->close();
+            header("Location: dashboard.php");
+        }
+
+        else {
+            $stmt = $mysqli->prepare("SELECT tech_login FROM Interventions WHERE ticket_id = ?");
+            $stmt->bind_param("s", $ticket_id);
+            $stmt->execute();
+            $stmt->bind_result($user_tech);
+            $stmt->fetch();
+            $stmt->close();
+
+            if ($user_tech != $actual_user){
+                // On vérifie que le technicien qui ferme le ticket est bien celui qui l'a pris en charge
+                $mysqli->close();
+                header("Location: dashboard.php");
+            }
+
+            else {
+                // update du status (closed)
+                $stmt = $mysqli->prepare("UPDATE Tickets SET status = ? WHERE ticket_id = ?");
+                $status = "closed";
+                $stmt->bind_param("si", $status, $ticket_id);
+                $stmt->execute();
+                $stmt->close();
+
+                $mysqli->close();
+                // redirection : tout c'est bien passé
+                header("Location: dashboard.php");
+            }
+        }
     }
 ?>

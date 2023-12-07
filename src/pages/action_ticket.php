@@ -3,15 +3,15 @@
 
     $ticket_id = $_GET['ticket_id'];
 
-    if (isset($_GET["take"])){
+    if (isset($_GET["take"]) && ($_SESSION['role'] == 'tech')){
         take_ticket($ticket_id);
     }
 
-    elseif (isset($_GET["close"])){
+    elseif (isset($_GET["close"]) && ($_SESSION['role'] == 'tech')){
         close_ticket($ticket_id);
     }
 
-    elseif (isset($_GET["edit_ticket"])){
+    elseif (isset($_GET["edit_ticket"]) && ($_SESSION['role'] == 'web_admin')){
         $newLibelle = $_GET["new_libelle"];
         $newEmergency = $_GET["new_emergency"];
         $newStatus = $_GET["new_status"];
@@ -28,3 +28,5 @@
             $previous_libelle, $previous_emergency, $previous_status, $previous_tech
         );
     }
+
+    ?>
