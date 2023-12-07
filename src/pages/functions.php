@@ -229,9 +229,27 @@
     }
 
     function edit_ticket($ticket_id, $newLibelle, $newEmergency, $newStatus, $newTech, $previous_libelle, $previous_emergency, $previous_status, $previous_tech){
-        $actual_user = $_SESSION['login'];
-
         $mysqli = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB);
+
+        if ($newTech != "Vide"){
+            if ($previous_tech == ""){
+                echo "INSERT INTO Interventions (ticket_id, tech_login) VALUES ($ticket_id, $newTech)";
+                // ajouter le technicien dans les interventions si il y en avait pas avant
+                $stmt1 = $mysqli->prepare("INSERT INTO Interventions (ticket_id, tech_login) VALUES (?, ?)");
+                $stmt1->bind_param("is", $ticket_id, $newTech);
+                $stmt1->execute();
+                $stmt1->close();
+                $newStatus = "in_progress";
+            }
+            else {
+                // update la base en en mofifiant le technicien actuel dans les interventions en le remplacant
+                $stmt1 = $mysqli->prepare("UPDATE Interventions SET tech_login = ? WHERE ticket_id = ?");
+                $stmt1->bind_param("si", $newTech, $ticket_id);
+                $stmt1->execute();
+                $stmt1->close();
+                $newStatus = "in_progress";
+            }
+        }
 
         $dataToInsert = array();
 
@@ -250,22 +268,6 @@
         $stmt->execute();
         $stmt->close();
 
-        if ($newTech != "Vide"){
-            if ($previous_tech == ""){
-                // ajouter le technicien dans les interventions si il y en avait pas avant
-                $stmt = $mysqli->prepare("INSERT INTO Interventions (ticket_id, tech_login) VALUES (?, ?)");
-                $stmt->bind_param("is", $ticket_id, $newTech);
-                $stmt->execute();
-                $stmt->close();
-            }
-            else{
-                // update la base en en mofifiant le technicien actuel dans les interventions en le remplacant
-                $stmt = $mysqli->prepare("UPDATE Interventions SET tech_login = ? WHERE ticket_id = ?");
-                $stmt->bind_param("si", $newTech, $ticket_id);
-                $stmt->execute();
-                $stmt->close();
-            }
-        }
         $mysqli->close();
         // redirection : tout c'est bien passé
         header("Location: dashboard.php");
