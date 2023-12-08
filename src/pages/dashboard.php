@@ -8,6 +8,12 @@
 <body>
 <?php
     include "header.php";
+    if (!isset($_SESSION['login'])){
+        header('Location: connection.php');
+    }
+    else if ($_SESSION('role') == 'sys_admin'){
+        header('Location: index.php');
+    }
 ?>
 
 <?php
@@ -22,12 +28,8 @@
 
     # TODO : success = 1 pour ticket clos,
     # TODO : success = 2 pour ticket pris
-    # TODO :success = 3 pour ticket étider
+    # TODO : success = 3 pour ticket éditer
 
-    $user = "ticket_app";
-    $passwd = "ticket_s301";
-    $db = "ticket_app";
-    $host = "localhost";
     $mysqli = new mysqli($host, $user, $passwd,$db);
 
     $actual_user = $_SESSION['login'];

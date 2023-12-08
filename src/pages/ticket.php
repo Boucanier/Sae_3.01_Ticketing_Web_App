@@ -8,6 +8,12 @@
 <body>
 <?php
     include "header.php";
+    if (!isset($_SESSION['login'])){
+        header('Location: connection.php');
+    }
+    else if ($_SESSION['role'] != 'user'){
+        header('Location: index.php');
+    }
 ?>
 <main>
     <div id="part_top">

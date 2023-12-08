@@ -9,6 +9,12 @@
 <body>
 <?php
     include "header.php";
+    if (!isset($_SESSION['login'])){
+        header('Location: connection.php');
+    }
+    else if ($_SESSION['role'] != 'web_admin'){
+        header('Location: dashboard.php');
+    }
 ?>
 <main>
     <?php

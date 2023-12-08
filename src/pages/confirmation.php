@@ -9,7 +9,7 @@
 <body>
 <?php
     include "header.php";
-    if (!isset($_SESSION['login']) || !isset($_GET['sup_acc'])){
+    if (!isset($_SESSION['login']) && !isset($_GET['sup_acc'])){
         header('Location: index.php');
     }
 ?>
