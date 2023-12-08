@@ -35,9 +35,9 @@
                             
                             $mysqli->close();
 
-                            echo "<p>Nom : ".$result[0]."</p>";
-                            echo "<p>Prénom : ".$result[1]."</p>";
-                            echo "<p>Login : ".$result[2]."</p>";
+                            echo "<p>Nom : ".htmlentities($result[0])."</p>";
+                            echo "<p>Prénom : ".htmlentities($result[1])."</p>";
+                            echo "<p>Login : ".htmlentities($result[2])."</p>";
                         ?>
                     </div>
                 </div>

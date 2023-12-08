@@ -72,13 +72,13 @@
         echo '<tr>';
         for ($j=0; $j < 7; $j++){
             if ($j == 0){
-                echo '<td class="ticket_case_'.$row[$j].'">'.$row[$j].'</td>';
+                echo '<td class="ticket_case_'.htmlentities($row[$j]).'">'.htmlentities($row[$j]).'</td>';
             }
             else if ($j == 1 && $row[$j] == 'other'){
                 echo '<td>Autre</td>';
             }
             else if ($j == 3){
-                echo '<td>'.$row[$j].' '.$row[$j+1].'</td>';
+                echo '<td>'.htmlentities($row[$j]).' '.htmlentities($row[$j+1]).'</td>';
                 $j++;
             }
             else if ($j == 6){
@@ -97,7 +97,7 @@
                 }
             }
             else
-                echo '<td>'.$row[$j].'</td>';
+                echo '<td>'.htmlentities($row[$j]).'</td>';
         }
         echo '</tr>';
     }

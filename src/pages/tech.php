@@ -51,7 +51,7 @@
 
                                 echo '<tr>';
                                 for ($i = 0; $i < count($row); $i++) {
-                                    echo '<td>' . $row[$i] . '</td>';
+                                    echo '<td>' . htmlentities($row[$i]) . '</td>';
                                 }
                                 echo '</tr>';
                             }

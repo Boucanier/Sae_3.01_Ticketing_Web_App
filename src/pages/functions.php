@@ -233,7 +233,6 @@
 
         if ($newTech != "Vide"){
             if ($previous_tech == ""){
-                echo "INSERT INTO Interventions (ticket_id, tech_login) VALUES ($ticket_id, $newTech)";
                 // ajouter le technicien dans les interventions si il y en avait pas avant
                 $stmt1 = $mysqli->prepare("INSERT INTO Interventions (ticket_id, tech_login) VALUES (?, ?)");
                 $stmt1->bind_param("is", $ticket_id, $newTech);

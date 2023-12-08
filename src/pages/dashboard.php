@@ -11,7 +11,7 @@
     if (!isset($_SESSION['login'])){
         header('Location: connection.php');
     }
-    else if ($_SESSION('role') == 'sys_admin'){
+    else if ($_SESSION['role'] == 'sys_admin'){
         header('Location: index.php');
     }
 ?>
@@ -204,13 +204,13 @@
         echo '<tr>';
         for ($i = 0; $i < count($row); $i++) {
             if ($i == 0) {
-                echo '<td class="ticket_case_'.$row[$i].'">'.$row[$i].'</td>';
+                echo '<td class="ticket_case_'.htmlentities($row[$i]).'">'.htmlentities($row[$i]).'</td>';
             }
             else if ($i == 1 && $row[$i] == 'other'){
                 echo '<td>Autre</td>';
             }
             else if (($i == 3 && $role == 'tech') || ($i == 4 && $role == 'web_admin') || ($i == 6 && $role == 'web_admin')){
-                    echo '<td>'.$row[$i+1].' '.$row[$i].'</td>';
+                    echo '<td>'.htmlentities($row[$i+1]).' '.htmlentities($row[$i]).'</td>';
                 $i ++;
             }
             else if (($i == 4 && $role == 'user') || ($i == 8 && $role == 'web_admin')) {
@@ -229,7 +229,7 @@
                 }
             }
             else {
-                echo '<td>' . $row[$i] . '</td>';
+                echo '<td>' . htmlentities($row[$i]) . '</td>';
             }
         }
         echo '</tr>';   

@@ -47,9 +47,9 @@
                         echo '<tr>';
                         for ($j = 0; $j < 4; $j++) {
                             if ($j == 3)
-                                echo '<td class="ticket_case_'.$row[$j].'">'.$row[$j].'</td>';
+                                echo '<td class="ticket_case_'.htmlentities($row[$j]).'">'.htmlentities($row[$j]).'</td>';
                             else
-                                echo '<td>'.$row[$j].'</td>';
+                                echo '<td>'.htmlentities($row[$j]).'</td>';
                         }
                         echo '</tr>';
                     }
@@ -82,11 +82,11 @@
                     $data = $stmt->get_result();
 
                     echo '<tbody>';
-                    for ($i=0; $i<mysqli_num_rows($data); $i++) {
+                    for ($i=0; $i < mysqli_num_rows($data); $i++) {
                         $row = mysqli_fetch_array($data);
                         echo '<tr>';
                         for ($j = 0; $j < 4; $j++) {
-                            echo '<td>'.$row[$j].'</td>';
+                            echo '<td>'.htmlentities($row[$j]).'</td>';
                         }
                         echo '</tr>';
                     }
@@ -127,13 +127,13 @@
                         echo '<tr>';
                         for ($j = 0; $j < 6; $j++) {
                             if ($j == 0){
-                                echo '<td class="ticket_case_'.$row[$j].'">'.$row[$j].'</td>';
+                                echo '<td class="ticket_case_'.htmlentities($row[$j]).'">'.htmlentities($row[$j]).'</td>';
                             }
                             else if ($j == 1 && $row[$j] == 'other'){
                                 echo '<td>Autre</td>';
                             }
                             else {
-                                echo '<td>'.$row[$j].'</td>';
+                                echo '<td>'.htmlentities($row[$j]).'</td>';
                             }
                         }
                         echo '</tr>';

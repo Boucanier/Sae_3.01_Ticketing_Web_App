@@ -47,17 +47,17 @@
     $stmt->close();
 
     echo '<div id="part_top">
-        <h2>Ticket du '.$creation_date.'</h2>
+        <h2>Ticket du '.htmlentities($creation_date).'</h2>
     </div>
     <form id="ticket_about" action="action_ticket.php" method="GET">
         <div id="ticket_description">
             <h3>Description du problème</h3>
-            <p>'.$description.'</p>
+            <p>'.htmlentities($description).'</p>
         </div>
         <div id="ticket_details">
-            <p>'.$title.'</p>
-            <p>Salle : '.$room.'</p>
-            <p>Niveau d\'urgence : '.$emergency.'</p>';
+            <p>'.htmlentities($title).'</p>
+            <p>Salle : '.htmlentities($room).'</p>
+            <p>Niveau d\'urgence : '.htmlentities($emergency).'</p>';
 
             switch ($status){
                 case 'open':

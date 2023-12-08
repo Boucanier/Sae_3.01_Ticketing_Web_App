@@ -78,36 +78,36 @@
                     <div id="modification_ticket_libelle_salle">
                         <div id="modification_ticket_libelle">
                             <label for="ticket_libelle">Libellé</label>
-                            <input type="text" id="ticket_libelle" name="ticket_libelle" value="'.$data[1].'" readonly/>
+                            <input type="text" id="ticket_libelle" name="ticket_libelle" value="'.htmlentities($data[1]).'" readonly/>
                         </div>
                         <div id="modification_ticket_salle">
                             <label for="ticket_salle">Salle</label>
-                            <input type="text" id="ticket_salle" name="ticket_salle" value="'.$data[2].'" readonly/>
+                            <input type="text" id="ticket_salle" name="ticket_salle" value="'.htmlentities($data[2]).'" readonly/>
                         </div>
                     </div>
                     <div id="modification_ticket_demandeur_technicien">
                         <div id="modification_ticket_demandeur">
                             <label for="ticket_demandeur">Demandeur</label>
-                            <input type="text" id="ticket_demandeur" name="ticket_demandeur" value="'.$data[3].'" readonly/>
+                            <input type="text" id="ticket_demandeur" name="ticket_demandeur" value="'.htmlentities($data[3]).'" readonly/>
                         </div>
                         <div id="modification_ticket_technicien">
                             <label for="ticket_technicien">Technicien</label>';
                             if ($data[4] == ""){
-                                echo '<input type="text" id="ticket_technicien" name="ticket_technicien" value="'.$data[4].'" disabled/>';
+                                echo '<input type="text" id="ticket_technicien" name="ticket_technicien" value="'.htmlentities($data[4]).'" disabled/>';
                             }
                             else 
-                                echo '<input type="text" id="ticket_technicien" name="ticket_technicien" value="'.$data[4].'" readonly/>';
+                                echo '<input type="text" id="ticket_technicien" name="ticket_technicien" value="'.htmlentities($data[4]).'" readonly/>';
                         echo '
                         </div>
                     </div>
                     <div id="modification_ticket_niveauUrgence_etat">
                         <div id="modification_ticket_niveauUrgence">
                             <label for="ticket_niveauUrgence">Niveau d\'urgence</label>
-                            <input type="text" class="ticket_case_'.$data[5].'" id="ticket_niveauUrgence" name="ticket_niveauUrgence" value="'.$data[5].'" readonly/>
+                            <input type="text" class="ticket_case_'.htmlentities($data[5]).'" id="ticket_niveauUrgence" name="ticket_niveauUrgence" value="'.htmlentities($data[5]).'" readonly/>
                         </div>
                         <div id="modification_ticket_etat">
                             <label for="ticket_etat">État</label>
-                            <input type="text" id="ticket_etat" name="ticket_etat" value="'.$data[6].'" readonly/>
+                            <input type="text" id="ticket_etat" name="ticket_etat" value="'.htmlentities($data[6]).'" readonly/>
                         </div>
                     </div>
                 </div>
@@ -136,7 +136,7 @@
                             <?php
                             echo '<option value="Vide" id="tech_vide"></option>';
                             foreach($techniciens as $tech){
-                                echo '<option value="'.$tech[0].'">'.$tech[1].' '.$tech[2].'</option>';
+                                echo '<option value="'.htmlentities($tech[0]).'">'.htmlentities($tech[1]).' '.htmlentities($tech[2]).'</option>';
                             }
                             echo '
                             <!-- Afficher la liste de tous les techniciens, valeur = login, affichage = prénom + nom -->
@@ -147,11 +147,11 @@
                     <div class="resetSubmitButtons">
                         <input type="reset" value="Effacer" id="reset_modification_ticket" name="reset_modification_ticket" class="reset_buttons" onclick="resetForm()"/>
                         <input type="submit" value="Modifier" id="edit_ticket" name="edit_ticket"  class="submit_buttons"/>
-                        <input name="ticket_id" type="hidden" value="'.$ticket_id.'"/>
-                        <input name="previous_libelle" type="hidden" value="'.$data[1].'"/>
-                        <input name="previous_emergency" type="hidden" value="'.$data[5].'"/>
-                        <input name="previous_status" type="hidden" value="'.$data[6].'"/>
-                        <input name="previous_tech" type="hidden" value="'.$data[4].'"/>
+                        <input name="ticket_id" type="hidden" value="'.htmlentities($ticket_id).'"/>
+                        <input name="previous_libelle" type="hidden" value="'.htmlentities($data[1]).'"/>
+                        <input name="previous_emergency" type="hidden" value="'.htmlentities($data[5]).'"/>
+                        <input name="previous_status" type="hidden" value="'.htmlentities($data[6]).'"/>
+                        <input name="previous_tech" type="hidden" value="'.htmlentities($data[4]).'"/>
                     </div>
         </div>
     </form>';

@@ -51,7 +51,7 @@
                         );
                         echo '<option value="other">Autre</option>';
                         foreach($salles as $salle){
-                            echo '<option value="'.$salle.'">'.$salle.'</option>';
+                            echo '<option value="'.htmlentities($salle).'">'.htmlentities($salle).'</option>';
                         }
                     ?>
                 </select>
