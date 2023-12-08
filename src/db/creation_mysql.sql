@@ -128,6 +128,11 @@ FOR EACH ROW
 BEGIN
     IF (NEW.login LIKE 'rmv-%') THEN
         UPDATE Tickets SET status = 'closed' WHERE user_login = NEW.login;
+        IF (NEW.login IN (SELECT DISTINCT tech_login FROM Interventions)) THEN
+            UPDATE Tickets SET status = 'open'
+            WHERE status = 'in_progress'
+            AND ticket_id IN (SELECT ticket_id FROM Interventions WHERE tech_login = NEW.login);
+        END IF;
     END IF ;
 END //
 delimiter ;

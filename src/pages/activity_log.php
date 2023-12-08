@@ -28,7 +28,7 @@
                     </thead>';
 
                     $mysqli = new mysqli($host, $user, $passwd, $db);
-                    $stmt = $mysqli->prepare("SELECT creation_date, user_login, ip_address, emergency 
+                    $stmt = $mysqli->prepare("SELECT DATE_FORMAT(creation_date,'%d/%m/%Y'), user_login, ip_address, emergency 
                                                         FROM Tickets
                                                         WHERE status != 'closed'
                                                         ORDER BY creation_date DESC");
