@@ -20,14 +20,22 @@
         <h2>Créer un ticket</h2>
     </div>
     <?php
-    if (isset($_GET["error"])){
-        if($_GET['error'] == "e0"){
-            echo '<div class="ticketPageError"><p>Le libelle ne doit pas être vide !</p></div>';
+        if (isset($_GET["error"])){
+            switch ($_GET['error']){
+                case "e0":
+                    echo '<div class="error"><p>Le libellé ne doit pas être vide !</p></div>';
+                    break;
+                case "e1":
+                    echo '<div class="error"><p>La description ne doit pas être vide !</p></div>';
+                    break;
+                case "e2":
+                    echo '<div class="error"><p>Le libellé ne doit pas dépasser 40 caractères !</p></div>';
+                    break;
+                case "e3":
+                    echo '<div class="error"><p>La description ne doit pas dépasser 65535 caractères !</p></div>';
+                    break;
+            }
         }
-        elseif ($_GET['error'] == "e1"){
-            echo '<div class="ticketPageError"><p>La description ne doit pas être vide !</p></div>';
-        }
-    }
     ?>
     <form action="create_ticket.php" method="get" id="ticket_form">
         <div id="ticket_creation">
