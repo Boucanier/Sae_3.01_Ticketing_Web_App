@@ -30,12 +30,12 @@ Nous vérifions que les utilisateurs sont redirigés vers la bonne page en fonct
 
 ### 2. Tests
 
-| Identification du test : 0               |
-|------------------------------------------|
-| Version : 0                              |
-| Description du test : acces              |
-| Ressources requises : Apache2, Google Chrome, Firefox, Brave   |
-| Responsable : Jules CHIRON               |
+| Identification du test : 0                                   |
+|--------------------------------------------------------------|
+| Version : 0                                                  |
+| Description du test : acces                                  |
+| Ressources requises : Apache2, Google Chrome, Firefox, Brave |
+| Responsable : Jules CHIRON                                   |
 
 #### Cas de test
 
@@ -43,10 +43,23 @@ Partitions d'équivalence :
 
 - _other = {user, tech, sys_admin}_
 
-| Classe | Donnée 1 |   Résultat attendu    |
-|:------:|:--------:|:----------------:|
-|   P1   |   a ∈ other  | dashboard.php |
-|   P2   |   a = 'sys\_admin'  | activity_log.php |
-|   P3   |   a = 'visit'  | connection.php |
+| Classe |     Donnée 1     | Résultat attendu |
+|:------:|:----------------:|:----------------:|
+|   P1   |    a ∈ other     |  dashboard.php   |
+|   P2   | a = 'sys\_admin' | activity_log.php |
+|   P3   |   a = 'visit'    |  connection.php  |
 
 ### 3. Résultats de tests
+
+| Référence du test appliqué : 0             |
+|--------------------------------------------|
+| Responsable : Matis RODIER                 |
+| Date de l'application du test : 08/12/2023 |
+| Résultat de test : OK                      |
+| Occurrence des résultats : systématique    |
+
+| Classe |     Donnée 1     | Résultat attendu | Résultat observé | Résultat test  |
+|:------:|:----------------:|:----------------:|------------------|----------------|
+|   P1   |    a ∈ other     |  dashboard.php   | dashboard.php    | OK             |
+|   P2   | a = 'sys\_admin' | activity_log.php | activity_log.php | OK             |
+|   P3   |   a = 'visit'    |  connection.php  | connection.php   | OK             |
