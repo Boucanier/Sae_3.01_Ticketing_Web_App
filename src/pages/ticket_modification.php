@@ -19,6 +19,11 @@
         header('Location: dashboard.php');
     }
 
+    # TODO : error = 1, le libelle doit etre compris 1 et 30 caractères
+    # TODO : error = 2, le niveau d'urgence doit etre compris entre 1 et 4
+    # TODO : error = 3, le status doit etre open, in_progress ou closed
+    # TODO : error = 4, le technicien doit etre dans la liste des users ayant le role technicien
+
     $user = "ticket_app";
     $passwd = "ticket_s301";
     $db = "ticket_app";
