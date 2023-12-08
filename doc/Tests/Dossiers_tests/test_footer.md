@@ -40,10 +40,27 @@ Pour la page footer nous vérifions pour chaque lien que celui-ci renvoie bien v
 
 #### Cas de test
 
-| Classe | Donnée 1 |   Résultat attendu    |
-|:------:|:--------:|:----------------:|
-|   P1   |         ‘Nous contacter’           |          contact.php          |
-|   P2   |        ‘Changer la langue’         |          index.php            |
-|   P2   |        ‘Police dyslexie’           |          index.php            |
+| Classe |         Donnée 1         |  Résultat attendu   |
+|:------:|:------------------------:|:-------------------:|
+|   P1   |     ‘Nous contacter’     |     contact.php     |
+|   P2   |   ‘Changer la langue’    |      index.php      |
+|   P2   | ‘Police dyslexie’        | index.php           |
 
 ### 3. Résultats de tests
+
+| Référence du test appliqué : 0             |
+|--------------------------------------------|
+| Responsable : Matis RODIER                 |
+| Date de l'application du test : 08/12/2023 |
+| Résultat de test : OK                      |
+| Occurrence des résultats : systématique    |
+
+| Classe |      Donnée 1       | Résultat attendu | Résultat attendu | Résultat test |
+|:------:|:-------------------:|:----------------:|:----------------:|:-------------:|
+|   P1   |  ‘Nous contacter’   |   contact.php    |   contact.php    |      OK       |
+|   P2   | ‘Changer la langue’ |    index.php     |    index.php     |      OK       |
+|   P2   |  ‘Police dyslexie’  |    index.php     |    index.php     |      OK       |
+
+### 4. Conclusion
+
+Tous les tests que nous avons effectués pour la page footer sont OK.
