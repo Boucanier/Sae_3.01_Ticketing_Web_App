@@ -46,25 +46,29 @@ dashboard_tech_dispo contient tous les tickets disponibles pour un technicien. I
 
 "id=ticket_id" signifie que l'on envoie à la prochaine page le ticket sélectionner "ticket_id" dans la variable "id" que l'on pourra accéder grâce à un $_GET.
 
-| Classe | Donnée 1 |   Résultat attendu    |
-|:------:|:--------:|:----------------:|
-|   P1   |         ‘Créer un ticket’           |          ticket.php         |
-|   P2   |        ‘Détails’           |          ticket_details.php?id=ticket_id            |
+| Classe |        Donnée 1         |        Résultat attendu         |
+|:------:|:-----------------------:|:-------------------------------:|
+|   P1   | ‘Créer un ticket’       |              ticket.php         |
+|   P2   |        ‘Détails’        | ticket_details.php?id=ticket_id |
 
-| Identification du test : 1               |
-|------------------------------------------|
-| Version : 0                              |
-| Description du test : dashboard_tech     |
-| Ressources requises : Apache2, Google Chrome, Firefox, Brave   |
-| Responsable : Matis  RODIER             |
+---
+
+| Identification du test : 1                                   |
+|--------------------------------------------------------------|
+| Version : 0                                                  |
+| Description du test : dashboard_tech                         |
+| Ressources requises : Apache2, Google Chrome, Firefox, Brave |
+| Responsable : Matis  RODIER                                  |
 
 #### Cas de test
 
 "id=ticket_id" signifie que l'on envoie à la prochaine page le ticket sélectionner "ticket_id" dans la variable "id" que l'on pourra accéder grâce à un $_GET.
 
-| Classe | Donnée 1 |   Résultat attendu    |
-|:------:|:--------:|:----------------:|
-|   P1   |        ‘Détails’           |     ticket_details.php?id=ticket_id&function=take      |
+| Classe |      Donnée 1       |                 Résultat attendu                 |
+|:------:|:-------------------:|:------------------------------------------------:|
+|   P1   | ‘Détails’           |    ticket_details.php?id=ticket_id&function=take |
+
+---
 
 | Identification du test : 2               |
 |------------------------------------------|
@@ -77,9 +81,11 @@ dashboard_tech_dispo contient tous les tickets disponibles pour un technicien. I
 
 "id=ticket_id" signifie que l'on envoie à la prochaine page le ticket sélectionner "ticket_id" dans la variable "id" que l'on pourra accéder grâce à un $_GET.
 
-| Classe | Donnée 1 |   Résultat attendu    |
-|:------:|:--------:|:----------------:|
-|   P1   |        'Prendre en charge'           |     ticket_details.php?id=ticket_id&function=close       |
+| Classe |          Donnée 1           |                 Résultat attendu                 |
+|:------:|:---------------------------:|:------------------------------------------------:|
+|   P1   | 'Prendre en charge'         |   ticket_details.php?id=ticket_id&function=close |
+
+---
 
 | Identification du test : 3               |
 |------------------------------------------|
@@ -92,9 +98,11 @@ dashboard_tech_dispo contient tous les tickets disponibles pour un technicien. I
 
 "id=ticket_id" signifie que l'on envoie à la prochaine page le ticket sélectionner "ticket_id" dans la variable "id" que l'on pourra accéder grâce à un $_GET.
 
-| Classe | Donnée 1 |   Résultat attendu    |
-|:------:|:--------:|:----------------:|
-|   P1   |        'Modifier ticket'      |   ticket_modification.php?id=ticket_id  |
+| Classe |        Donnée 1        |            Résultat attendu            |
+|:------:|:----------------------:|:--------------------------------------:|
+|   P1   | 'Modifier ticket'      |   ticket_modification.php?id=ticket_id |
+
+---
 
 | Identification du test : 4               |
 |------------------------------------------|
@@ -109,9 +117,78 @@ dashboard_tech_dispo contient tous les tickets disponibles pour un technicien. I
 
 La donnée 1 correspond au fait qu'un type d'utilisateur accède à la page dashboard.php. Si cet utilisateur y accède, alors il est renvoyé sur la page de la colonne "Résultat attendu".
 
-| Classe | Donnée 1 |   Résultat attendu    |
-|:------:|:--------:|:----------------:|
-|   P1   |        visiteur      |   index.php  |
-|   P2   |        admin system      |   index.php  |
+| Classe |     Donnée 1     | Résultat attendu |
+|:------:|:----------------:|:----------------:|
+|   P1   |     visiteur     |    index.php     |
+|   P2   | admin system     |   index.php      |
 
 ### 3. Résultats de tests
+
+| Référence du test appliqué : 0             |
+|--------------------------------------------|
+| Responsable : Matis RODIER                 |
+| Date de l'application du test : 08/12/2023 |
+| Résultat de test : OK                      |
+| Occurrence des résultats : systématique    |
+
+| Classe |      Donnée 1      |        Résultat attendu         |        Résultat attendu         | Résultat test |
+|:------:|:------------------:|:-------------------------------:|:-------------------------------:|:-------------:|
+|   P1   | ‘Créer un ticket’  |           ticket.php            |           ticket.php            |      OK       |
+|   P2   |     ‘Détails’      | ticket_details.php?id=ticket_id | ticket_details.php?id=ticket_id |      OK       |
+
+---
+
+| Référence du test appliqué : 1             |
+|--------------------------------------------|
+| Responsable : Matis RODIER                 |
+| Date de l'application du test : 08/12/2023 |
+| Résultat de test : OK                      |
+| Occurrence des résultats : systématique    |
+
+| Classe |      Donnée 1       |                 Résultat attendu                 |                 Résultat attendu                 | Résultat test |
+|:------:|:-------------------:|:------------------------------------------------:|:------------------------------------------------:|:-------------:|
+|   P1   | ‘Détails’           |    ticket_details.php?id=ticket_id&function=take |    ticket_details.php?id=ticket_id&function=take |      OK       |
+
+---
+
+| Référence du test appliqué : 2             |
+|--------------------------------------------|
+| Responsable : Matis RODIER                 |
+| Date de l'application du test : 08/12/2023 |
+| Résultat de test : OK                      |
+| Occurrence des résultats : systématique    |
+
+| Classe |          Donnée 1           |                 Résultat attendu                 |                 Résultat attendu                 | Résultat test |
+|:------:|:---------------------------:|:------------------------------------------------:|:------------------------------------------------:|:-------------:|
+|   P1   | 'Prendre en charge'         |   ticket_details.php?id=ticket_id&function=close |   ticket_details.php?id=ticket_id&function=close |      OK       |
+
+---
+
+| Référence du test appliqué : 3             |
+|--------------------------------------------|
+| Responsable : Matis RODIER                 |
+| Date de l'application du test : 08/12/2023 |
+| Résultat de test : OK                      |
+| Occurrence des résultats : systématique    |
+
+| Classe |        Donnée 1        |            Résultat attendu            |            Résultat attendu            | Résultat test |
+|:------:|:----------------------:|:--------------------------------------:|:--------------------------------------:|:-------------:|
+|   P1   | 'Modifier ticket'      |   ticket_modification.php?id=ticket_id |   ticket_modification.php?id=ticket_id |      OK       |
+
+---
+
+| Référence du test appliqué : 4             |
+|--------------------------------------------|
+| Responsable : Matis RODIER                 |
+| Date de l'application du test : 08/12/2023 |
+| Résultat de test : OK                      |
+| Occurrence des résultats : systématique    |
+
+| Classe |   Donnée 1    | Résultat attendu | Résultat attendu | Résultat test |
+|:------:|:-------------:|:----------------:|:----------------:|:-------------:|
+|   P1   |   visiteur    |    index.php     |    index.php     |      OK       |
+|   P2   | admin system  |   index.php      |   index.php      |      OK       |
+
+### 4. Conclusion
+
+Tous les tests que nous avons effectués pour la page dashboard sont OK.
