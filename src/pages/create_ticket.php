@@ -19,7 +19,7 @@ if (isset($_GET['create_ticket'])){
             // erreur qui dit que l'on doit décrire notre problème
             header('Location: ticket.php?error=e1');
         }
-        else if (strlen($libelle) > 40){
+        else if (strlen($libelle) > 30){
             header('Location: ticket.php?error=e2');
         }
         else if (strlen($descriptionPrbl) > 65535){

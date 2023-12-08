@@ -232,7 +232,18 @@
         $mysqli = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB);
 
         if ($newTech != "Vide"){
-            if ($previous_tech == ""){
+            $stmt =  $mysqli->prepare("SELECT login FROM Users WHERE role = tech");
+            $stmt->execute();
+            $stmt->bind_result($techs);
+            $techs = $stmt->get_result()->fetch_all();
+            $stmt->close();
+
+            $techs = array_column($techs, 0);
+
+            if (!in_array($newTech, $techs)){
+                header('Location: dashboard.php?error=e4');
+            }
+            else if ($previous_tech == ""){
                 // ajouter le technicien dans les interventions si il y en avait pas avant
                 $stmt1 = $mysqli->prepare("INSERT INTO Interventions (ticket_id, tech_login) VALUES (?, ?)");
                 $stmt1->bind_param("is", $ticket_id, $newTech);
@@ -261,15 +272,26 @@
         if ($newStatus == "Vide") $dataToInsert[] = $previous_status;
         else $dataToInsert[] = $newStatus;
 
-        // les updates nécessaires pour le ticket en question
-        $stmt = $mysqli->prepare("UPDATE Tickets SET title = ?, emergency = ?, status = ? WHERE ticket_id = ?");
-        $stmt->bind_param("sisi", $dataToInsert[0], $dataToInsert[1], $dataToInsert[2], $ticket_id);
-        $stmt->execute();
-        $stmt->close();
+        if (strlen($newStatus) > 30){
+            header('Location: dashboard.php?error=e1');
+        }
+        else if ($newEmergency > 4 || $newEmergency < 0){
+            header('Location: dashboard.php?error=e2');
+        }
+        else if ($newStatus != "open" && $newStatus != "in_progress" && $newStatus != "closed"){
+            header('Location: dashboard.php?error=e3');
+        }
+        else {
+            // les updates nécessaires pour le ticket en question
+            $stmt = $mysqli->prepare("UPDATE Tickets SET title = ?, emergency = ?, status = ? WHERE ticket_id = ?");
+            $stmt->bind_param("sisi", $dataToInsert[0], $dataToInsert[1], $dataToInsert[2], $ticket_id);
+            $stmt->execute();
+            $stmt->close();
 
-        $mysqli->close();
-        // redirection : tout c'est bien passé
-        header("Location: dashboard.php");
+            $mysqli->close();
+            // redirection : tout c'est bien passé
+            header("Location: dashboard.php");
+        }
     }
 
     function take_ticket($ticket_id){

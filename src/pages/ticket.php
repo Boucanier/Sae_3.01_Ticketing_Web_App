@@ -29,7 +29,7 @@
                     echo '<div class="error"><p>La description ne doit pas être vide !</p></div>';
                     break;
                 case "e2":
-                    echo '<div class="error"><p>Le libellé ne doit pas dépasser 40 caractères !</p></div>';
+                    echo '<div class="error"><p>Le libellé ne doit pas dépasser 30 caractères !</p></div>';
                     break;
                 case "e3":
                     echo '<div class="error"><p>La description ne doit pas dépasser 65535 caractères !</p></div>';
