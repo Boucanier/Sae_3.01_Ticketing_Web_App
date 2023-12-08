@@ -18,8 +18,23 @@
         <div id="texte_explicatif">
             <h2>Texte explicatif</h2>
             <p>
-                Sed (saepe enim redeo ad Scipionem, cuius omnis sermo erat de amicitia) querebatur, quod omnibus in rebus homines diligentiores essent; capras et oves quot quisque haberet, dicere posse, amicos quot haberet, non posse dicere et in illis quidem parandis adhibere curam, in amicis eligendis neglegentis esse nec habere quasi signa quaedam et notas, quibus eos qui ad amicitias essent idonei, iudicarent. Sunt igitur firmi et stabiles et constantes eligendi; cuius generis est magna penuria. Et iudicare difficile est sane nisi expertum; experiendum autem est in ipsa amicitia. Ita praecurrit amicitia iudicium tollitque experiendi potestatem.
-                Sed (saepe enim redeo ad Scipionem, cuius omnis sermo erat de amicitia) querebatur, quod omnibus in rebus homines diligentiores essent; capras et oves quot quisque haberet, dicere posse, amicos quot haberet, non posse dicere et in illis quidem parandis adhibere curam, in amicis eligendis neglegentis esse nec habere quasi signa quaedam et notas, quibus eos qui ad amicitias essent idonei, iudicarent. Sunt igitur firmi et stabiles et constantes eligendi; cuius generis est magna penuria. Et iudicare difficile est sane nisi expertum; experiendum autem est in ipsa amicitia. Ita praecurrit amicitia iudicium tollitque experiendi potestatem.
+                Bonjour et bienvenue sur notre application de ticketing, nous allons ici vous la présenter.
+            </p>
+            <p>
+                Cette application est un site de ticketing avec sa base de données.
+                C'est-à-dire que les utilisateurs créent des tickets dans lesquels ils énoncent le problème rencontré.
+                Ces tickets contiennent un titre descriptif du problème, la description de celui-ci, un niveau d'urgence, la salle du problème, la date de création d'un ticket.
+                Une fois créé, le ticket sera pris en charge par un technicien pour être résolu.
+                Pour pouvoir créer un ticket, il vous faut vous connecter à votre compte ou en créer un si vous n'en possédez pas.
+                Il faut pour cela cliquer sur le bouton à droite sur la barre de navigation et remplir le formulaire correspondant.
+                Ensuite vous accédez à votre tableau de bord (accessible depuis la barre de navigation).
+                De là, vous pourrez voir les différents tickets que vous avez créés. Il y a un bouton pour pouvoir créer un ticket.
+            </p>
+            <p>
+            Vous avez à droite une vidéo de présentation du site.
+            </p>
+            <p>
+                Vous avez ci-dessous les dix derniers tickets créés.
             </p>
         </div>
         <div id="video_explicative">
@@ -42,6 +57,7 @@
     $mysqli = new mysqli($host, $user, $passwd, $db);
     $stmt = $mysqli->prepare("SELECT emergency, room, title, first_name, last_name, DATE_FORMAT(creation_date,'%d/%m/%Y'), status FROM Tickets, Users
                                 WHERE Users.login = Tickets.user_login
+                                AND Users.login NOT LIKE 'rmv-%'
                                 ORDER BY creation_date DESC, ticket_id DESC");
     $stmt->execute();
     $data = $stmt->get_result();
