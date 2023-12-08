@@ -14,22 +14,24 @@
     <?php
     if (isset($_GET['id']) && !empty($_GET['id'])){
         $ticket_id = $_GET['id'];
+
+        $mysqli = new mysqli($host, $user, $passwd, $db);
+
+        $stmt = $mysqli->prepare("SELECT ticket_id = ? FROM Tickets WHERE ticket_id = ?");
+        $stmt->bind_param("ii", $ticket_id, $ticket_id);
+        $stmt->execute();
+        $stmt->bind_result($ticket_exist);
+        $stmt->fetch();
+        $stmt->close();
+
+        if (!$ticket_exist){
+            header('Location: dashboard.php');
+        }
     }
     else {
         header('Location: dashboard.php');
     }
-
-    # TODO : error = 1, le libelle doit etre compris 1 et 30 caractères
-    # TODO : error = 2, le niveau d'urgence doit etre compris entre 1 et 4
-    # TODO : error = 3, le status doit etre open, in_progress ou closed
-    # TODO : error = 4, le technicien doit etre dans la liste des users ayant le role technicien
-
-    $user = "ticket_app";
-    $passwd = "ticket_s301";
-    $db = "ticket_app";
-    $host = "localhost";
-    $mysqli = new mysqli($host, $user, $passwd,$db);
-
+  
     // préparation de la liste de toutes les informations nécessaire a l'affichage des informations du ticket sélectionné
     $stmt1 = $mysqli->prepare("SELECT description, title, room, user_login, emergency, status FROM Tickets WHERE ticket_id = ?");
     $stmt1->bind_param("i", $ticket_id);
