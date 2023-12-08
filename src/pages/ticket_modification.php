@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Ticket</title>
-    <link rel="stylesheet" type="text/css" href="../style/style.css">
-    <script src="../scripts/ticket.js"></script>
+    <link rel="stylesheet" type="text/css" href="style/style.css">
+    <script src="scripts/ticket.js"></script>
 </head>
 <body>
 <?php

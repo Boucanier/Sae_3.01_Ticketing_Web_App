@@ -1,8 +1,8 @@
     <header>
         <div id="top">
-            <img src="../resources/logo.png" alt="logo de la plateforme" id="image1">
+            <img src="resources/logo.png" alt="logo de la plateforme" id="image1">
             <h1>Ticket App</h1>
-            <img src="../resources/logo_UVSQ.png" alt="logo de l\'UVSQ" id="image2">
+            <img src="resources/logo_UVSQ.png" alt="logo de l\'UVSQ" id="image2">
         </div>
 
 <?php
