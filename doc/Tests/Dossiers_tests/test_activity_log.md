@@ -59,11 +59,11 @@ Partitions d'équivalence :
 | Occurrence des résultats : systématique    |
 
 | Classe |     Donnée 1     | Résultat attendu | Résultat observé | Résultat test  |
-|:------:|:----------------:|:----------------:|------------------|----------------|
-|   P1   |    a ∈ other     |  dashboard.php   | dashboard.php    | OK             |
-|   P2   | a = 'sys\_admin' | activity_log.php | activity_log.php | OK             |
-|   P3   |   a = 'visit'    |  connection.php  | connection.php   | OK             |
+|:------:|:----------------:|:----------------:|:----------------:|:--------------:|
+|   P1   |    a ∈ other     |  dashboard.php   |  dashboard.php   |       OK       |
+|   P2   | a = 'sys\_admin' | activity_log.php | activity_log.php |       OK       |
+|   P3   |   a = 'visit'    |  connection.php  |  connection.php  |       OK       |
 
 ### 4. Conclusion
 
-Tous les tests que nous avons effectués pour la page test_activity_log sont OK.
+Tous les tests que nous avons effectués pour la page activity_log sont OK.
