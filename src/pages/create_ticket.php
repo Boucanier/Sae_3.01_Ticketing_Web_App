@@ -15,11 +15,17 @@ if (isset($_GET['create_ticket'])){
             // erreur qui dit que l'on doit mettre un libelle au problème
             header('Location: ticket.php?error=e0');
         }
-        elseif ($descriptionPrbl == ''){
+        else if ($descriptionPrbl == ''){
             // erreur qui dit que l'on doit décrire notre problème
             header('Location: ticket.php?error=e1');
         }
-        else{
+        else if (strlen($libelle) > 40){
+            header('Location: ticket.php?error=e2');
+        }
+        else if (strlen($descriptionPrbl) > 65535){
+            header('Location: ticket.php?error=e3');
+        }
+        else {
             $mysqli = new mysqli($host, $user, $passwd,$db);
 
             $ip_address = $_SERVER['REMOTE_ADDR'];
