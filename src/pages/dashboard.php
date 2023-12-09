@@ -171,7 +171,7 @@
                 $stmt3->fetch();
                 $stmt3->close();
 
-                if ((substr($tech_login, 0, 4) == 'rmv-') || ($nom_tech == NULL && $prenom_tech == NULL)){
+                if ($nom_tech == NULL && $prenom_tech == NULL){
                     $nom_tech = 'attribué';
                     $prenom_tech = 'Non';
                 }
