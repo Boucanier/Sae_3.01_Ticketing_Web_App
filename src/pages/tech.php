@@ -78,7 +78,7 @@
                     }
                 }
             ?>
-            <form action="account.php" method="get">
+            <form action="account.php" method="post">
                 <div class="user_info">
                     <div class="form_group">
                         <label for="login">Login&nbsp;:</label>

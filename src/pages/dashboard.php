@@ -238,16 +238,34 @@
     echo '</table>';
     echo '<div id="details_button">';
     for ($i = 0; $i < count($test_col); $i++) {
-        if ($role == 'user')
-            echo '<button type="button" onclick="location.href=\'ticket_details.php?id='.$ticket_ids[$i].'\'">Détails</button>';
-        else if ($role == 'tech'){
-            if ($dispo)
-                echo '<button type="button" onclick="location.href=\'ticket_details.php?id='.$ticket_ids[$i].'&function=take\'">Prendre en charge</button>';
-            else
-                echo '<button type="button" onclick="location.href=\'ticket_details.php?id='.$ticket_ids[$i].'&function=close\'">Détails</button>';
+        if ($role == 'user'){
+            echo '<form action="ticket_details.php" method="post">
+                    <input type="hidden" name="id" value="'.$ticket_ids[$i].'">
+                    <input type="submit" value="Détails">
+                </form>';
         }
-        else if ($role == 'web_admin')
-            echo '<button type="button" onclick="location.href=\'ticket_modification.php?id='.$ticket_ids[$i].'\'">Modifier</button>';
+        else if ($role == 'tech'){
+            if ($dispo){
+                echo '<form action="ticket_details.php" method="post">
+                        <input type="hidden" name="id" value="'.$ticket_ids[$i].'">
+                        <input type="hidden" name="function" value="take">
+                        <input type="submit" value="Prendre en charge">
+                    </form>';
+            }
+            else {
+                echo '<form action="ticket_details.php" method="post">
+                        <input type="hidden" name="id" value="'.$ticket_ids[$i].'">
+                        <input type="hidden" name="function" value="close">
+                        <input type="submit" value="Détails">
+                    </form>';
+            }
+        }
+        else if ($role == 'web_admin'){
+            echo '<form action="ticket_modification.php" method="post">
+                    <input type="hidden" name="id" value="'.$ticket_ids[$i].'">
+                    <input type="submit" value="Modifier">
+                </form>';
+        }
     }
     echo '</div>';
 

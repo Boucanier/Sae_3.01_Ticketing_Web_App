@@ -331,7 +331,7 @@ th {
     margin-left: 10px;
 }
 
-#details_button > button {
+#details_button > form > input {
     height: 35px;
     background-color: #fff;
     border-radius: 4px;
@@ -339,9 +339,10 @@ th {
     font-size: 16px;
     margin-top: 5px;
     margin-bottom: 5px;
+    min-width: 120px;
 }
 
-#details_button > button:hover {
+#details_button > form > input:hover {
     background-color: rgb(226, 226, 226);
 }
 

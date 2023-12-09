@@ -37,7 +37,7 @@
             }
         }
     ?>
-    <form action="create_ticket.php" method="get" id="ticket_form">
+    <form action="create_ticket.php" method="post" id="ticket_form">
         <div id="ticket_creation">
             <div id="ticket_label">
                 <label for="libelle">Libellé&nbsp;:&nbsp;</label>

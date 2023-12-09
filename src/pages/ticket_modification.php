@@ -18,8 +18,8 @@
 ?>
 <main>
     <?php
-    if (isset($_GET['id']) && !empty($_GET['id'])){
-        $ticket_id = $_GET['id'];
+    if (isset($_POST['id']) && !empty($_POST['id'])){
+        $ticket_id = $_POST['id'];
 
         $mysqli = new mysqli($host, $user, $passwd, $db);
 
@@ -128,7 +128,7 @@
                         echo '</div>
                     </div>
                 </div>
-                <form id="modification_ticket_valeur_a_modifier" action="action_ticket.php" method="get">
+                <form id="modification_ticket_valeur_a_modifier" action="action_ticket.php" method="post">
                     <div class="modif_form_input">
                         <label for="new_libelle">Nouveau libellé&nbsp:</label>
                         <input type="text" id="new_libelle" name="new_libelle"/>

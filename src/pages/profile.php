@@ -48,7 +48,7 @@
             </div>
         </div>
 
-        <form class="user_info" action="account.php" method="get">
+        <form class="user_info" action="account.php" method="post">
             <?php
                 if (isset($_GET['error'])){
                     switch ($_GET['error']){

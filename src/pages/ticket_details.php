@@ -18,8 +18,8 @@
 <main>
     <?php
     
-    if (isset($_GET['id']) && !empty($_GET['id'])){
-        $ticket_id = $_GET['id'];
+    if (isset($_POST['id']) && !empty($_POST['id'])){
+        $ticket_id = $_POST['id'];
 
         $mysqli = new mysqli($host, $user, $passwd, $db);
 
@@ -49,7 +49,7 @@
     echo '<div id="part_top">
         <h2>Ticket du '.htmlentities($creation_date).'</h2>
     </div>
-    <form id="ticket_about" action="action_ticket.php" method="GET">
+    <form id="ticket_about" action="action_ticket.php" method="post">
         <div id="ticket_description">
             <h3>Description du problème</h3>
             <p>'.htmlentities($description).'</p>
@@ -77,12 +77,12 @@
             <div class="resetSubmitButtons">
                 <input type="button" value="Annuler" class="reset_buttons" onclick="history.back();">';
 
-                    if (isset($_GET['function']) && !empty($_GET['function']) && $_SESSION['role'] == 'tech'){
-                        if (($_GET['function'] == 'take') && ($status == 'open')){
+                    if (isset($_POST['function']) && !empty($_POST['function']) && $_SESSION['role'] == 'tech'){
+                        if (($_POST['function'] == 'take') && ($status == 'open')){
                             echo '<input type="submit" value="Prendre en charge" name="take" class="submit_buttons">';
                         }
                         
-                        else if (($_GET['function'] == 'close') && ($status == 'in_progress')){
+                        else if (($_POST['function'] == 'close') && ($status == 'in_progress')){
                             $stmt = $mysqli->prepare("SELECT tech_login FROM Interventions WHERE ticket_id = ?");
                             $stmt->bind_param("i", $ticket_id);
                             $stmt->execute();

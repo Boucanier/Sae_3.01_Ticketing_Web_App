@@ -5,12 +5,12 @@ $passwd = "ticket_s301";
 $db = "ticket_app";
 $host = "localhost";
 
-if (isset($_GET['create_ticket'])){
-    if (isset($_GET['libelle']) && isset($_GET['choix']) && isset($_GET['niveauUrgence']) && isset($_GET['descriptionPrbl'])){
-        $libelle = $_GET['libelle'];
-        $salle = $_GET['choix'];
-        $niveauUrgence = $_GET['niveauUrgence'];
-        $descriptionPrbl = $_GET['descriptionPrbl'];
+if (isset($_POST['create_ticket'])){
+    if (isset($_POST['libelle']) && isset($_POST['choix']) && isset($_POST['niveauUrgence']) && isset($_POST['descriptionPrbl'])){
+        $libelle = $_POST['libelle'];
+        $salle = $_POST['choix'];
+        $niveauUrgence = $_POST['niveauUrgence'];
+        $descriptionPrbl = $_POST['descriptionPrbl'];
         if ($libelle == ''){
             // erreur qui dit que l'on doit mettre un libelle au problème
             header('Location: ticket.php?error=e0');
@@ -42,4 +42,8 @@ if (isset($_GET['create_ticket'])){
     }
 }
 
+else {
+    header('Location: dashboard.php');
+}
 
+?>

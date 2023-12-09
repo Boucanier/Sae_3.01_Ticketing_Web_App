@@ -33,7 +33,7 @@
                     }
                 }
             ?>
-            <form action="account.php" method="get">
+            <form action="account.php" method="post">
                 <div class="user_info">
                     <div class="form_group">
                         <label for="login">Login&nbsp;:</label>
@@ -101,7 +101,7 @@
                     }
                 }
             ?>
-            <form action="account.php" method="get">
+            <form action="account.php" method="post">
                 <div class="form_group2">
                     <label for="login_connect">Login :</label>
                     <input type="text" id="login_connect" name="login_connect"/>
