@@ -232,7 +232,7 @@
         $mysqli = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB);
 
         if ($newTech != "Vide"){
-            $stmt =  $mysqli->prepare("SELECT login FROM Users WHERE role = tech");
+            $stmt = $mysqli->prepare("SELECT login FROM Users WHERE role = 'tech'");
             $stmt->execute();
             $stmt->bind_result($techs);
             $techs = $stmt->get_result()->fetch_all();
