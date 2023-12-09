@@ -10,6 +10,8 @@ Groupe : **INF2 - FI A**
 
 Ce document présente les choix que nous avons fait pour créer la base de données, conformément à sa conception dans la [conception architecturale](../Conception/conception_architecturale.md). Ce rapport présente les différentes tables de la base de données ainsi que leurs colonnes, leurs types et leurs contraintes.
 
+Les fichiers de création de la base de données sont disponibles dans le dossier [src/db](../../src/db), il y a un fichier de création pour une base de données MySQL et son équivalent pour une base de données MariaDB, respectivement [creation_mysql.sql](../../src/db/creation_mysql.sql) et [creation_mariadb.sql](../../src/db/creation_mariadb.sql).
+
 ## Description des tables
 
 ### Tables
@@ -128,7 +130,6 @@ Connections :
 - succes
 - date_co
 
-
 **Légende** : Les champs précédés d'un **$** sont les clés primaires et ceux précédés d'un **#** sont des clés étrangères.
 
 ## Contraintes
@@ -161,7 +162,7 @@ Voici les différents déclencheurs que nous avons :
 
 - **check_interventions_user** : Permet de verifier que la prise en charge d'un ticket est effectué par un utillisateur existant et qui est un technicien.
   - La vérification va s'effectuer *avant* l'ajout de l'intervention.
-  - Pour cela, il vérifie que le login existe dans la table *User*. 
+  - Pour cela, il vérifie que le login existe dans la table *User*.
     - Si ce n'est pas le cas, une erreur est renvoyée et la prise en charge du ticket ne se fait pas.
   - Il vérifie que l'utilisateur en question a le rôle *tech*.
     - Si ce n'est pas le cas, une erreur est renvoyée et la prise en charge du ticket ne se fait pas.
