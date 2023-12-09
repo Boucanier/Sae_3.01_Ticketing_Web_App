@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Journaux d'activité</title>
-    <link rel="stylesheet" type="text/css" href="../style/style.css">
+    <link rel="stylesheet" type="text/css" href="style/style.css">
 </head>
 
 <body>
