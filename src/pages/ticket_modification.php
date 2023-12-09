@@ -39,24 +39,28 @@
     }
   
     // préparation de la liste de toutes les informations nécessaire a l'affichage des informations du ticket sélectionné
-    $stmt1 = $mysqli->prepare("SELECT description, title, room, user_login, emergency, status FROM Tickets WHERE ticket_id = ?");
+    $stmt1 = $mysqli->prepare("SELECT description, title, room, first_name, last_name, emergency, status FROM Tickets, Users WHERE ticket_id = ? AND Users.login = Tickets.user_login");
     $stmt1->bind_param("i", $ticket_id);
     $stmt1->execute();
-    $stmt1->bind_result($description, $title, $room, $user_login, $emergency, $status);
+    $stmt1->bind_result($description, $title, $room, $first_name, $last_name, $emergency, $status);
     $stmt1->fetch();
-    $data = array($description, $title, $room, $user_login, "", $emergency, $status);
+    $data = array($description, $title, $room, $first_name, $last_name, "", "", $emergency, $status, "");
     $stmt1->close();
 
     //on regarde si le ticket a déja un technicien d'attribué
-    $stmt3 = $mysqli->prepare("SELECT tech_login FROM Interventions WHERE ticket_id = ?");
-    $stmt3->bind_param("i", $ticket_id);
-    $stmt3->execute();
-    $stmt3->bind_result($tech_login);
-    $stmt3->fetch();
-    if (!is_null($tech_login)){
-        $data[4] = $tech_login;
+    if ($data[8] == 'in_progress'){
+        $stmt3 = $mysqli->prepare("SELECT tech_login, first_name, last_name FROM Interventions, Users WHERE ticket_id = ? AND login = tech_login");
+        $stmt3->bind_param("i", $ticket_id);
+        $stmt3->execute();
+        $stmt3->bind_result($tech_login, $first_name, $last_name);
+        $stmt3->fetch();
+        if (!is_null($tech_login)){
+            $data[5] = $first_name;
+            $data[6] = $last_name;
+            $data[9] = $tech_login;
+        }
+        $stmt3->close();
     }
-    $stmt3->close();
 
     // liste de tous les techniciens avec leur login, prenom et nom de famille
     $stmt2 = $mysqli->prepare("SELECT login, first_name, last_name FROM Users WHERE role LIKE 'tech' AND login NOT LIKE 'rmv-%'");
@@ -81,34 +85,47 @@
                             <input type="text" id="ticket_libelle" name="ticket_libelle" value="'.htmlentities($data[1]).'" readonly/>
                         </div>
                         <div id="modification_ticket_salle">
-                            <label for="ticket_salle">Salle</label>
-                            <input type="text" id="ticket_salle" name="ticket_salle" value="'.htmlentities($data[2]).'" readonly/>
-                        </div>
+                            <label for="ticket_salle">Salle</label>';
+                            if ($data[2] == "other")
+                                echo '<input type="text" id="ticket_salle" name="ticket_salle" value="Autre" readonly/>';
+                            else
+                                echo '<input type="text" id="ticket_salle" name="ticket_salle" value="'.htmlentities($data[2]).'" readonly/>';
+                        echo '</div>
                     </div>
                     <div id="modification_ticket_demandeur_technicien">
                         <div id="modification_ticket_demandeur">
                             <label for="ticket_demandeur">Demandeur</label>
-                            <input type="text" id="ticket_demandeur" name="ticket_demandeur" value="'.htmlentities($data[3]).'" readonly/>
+                            <input type="text" id="ticket_demandeur" name="ticket_demandeur" value="'.htmlentities($data[3]).' '.htmlentities($data[4]).'" readonly/>
                         </div>
                         <div id="modification_ticket_technicien">
                             <label for="ticket_technicien">Technicien</label>';
-                            if ($data[4] == ""){
-                                echo '<input type="text" id="ticket_technicien" name="ticket_technicien" value="'.htmlentities($data[4]).'" disabled/>';
+                            if ($data[5] == "" && $data[6] == ""){
+                                echo '<input type="text" id="ticket_technicien" name="ticket_technicien" value="'.htmlentities($data[5]).'" disabled/>';
                             }
                             else 
-                                echo '<input type="text" id="ticket_technicien" name="ticket_technicien" value="'.htmlentities($data[4]).'" readonly/>';
+                                echo '<input type="text" id="ticket_technicien" name="ticket_technicien" value="'.htmlentities($data[5]).' '.htmlentities($data[6]).'" readonly/>';
                         echo '
                         </div>
                     </div>
                     <div id="modification_ticket_niveauUrgence_etat">
                         <div id="modification_ticket_niveauUrgence">
                             <label for="ticket_niveauUrgence">Niveau d\'urgence</label>
-                            <input type="text" class="ticket_case_'.htmlentities($data[5]).'" id="ticket_niveauUrgence" name="ticket_niveauUrgence" value="'.htmlentities($data[5]).'" readonly/>
+                            <input type="text" class="ticket_case_'.htmlentities($data[7]).'" id="ticket_niveauUrgence" name="ticket_niveauUrgence" value="'.htmlentities($data[7]).'" readonly/>
                         </div>
                         <div id="modification_ticket_etat">
-                            <label for="ticket_etat">État</label>
-                            <input type="text" id="ticket_etat" name="ticket_etat" value="'.htmlentities($data[6]).'" readonly/>
-                        </div>
+                            <label for="ticket_etat">État</label>';
+                            switch ($data[8]){
+                                case 'open':
+                                    echo '<input type="text" class="ticket_case_open" id="ticket_etat" name="ticket_etat" value="Ouvert" readonly/>';
+                                    break;
+                                case 'in_progress':
+                                    echo '<input type="text" class="ticket_case_in_progress" id="ticket_etat" name="ticket_etat" value="En cours" readonly/>';
+                                    break;
+                                case 'closed':
+                                    echo '<input type="text" class="ticket_case_closed" id="ticket_etat" name="ticket_etat" value="Fermé" readonly/>';
+                                    break;
+                            }
+                        echo '</div>
                     </div>
                 </div>
                 <form id="modification_ticket_valeur_a_modifier" action="action_ticket.php" method="get">
@@ -132,8 +149,6 @@
                     <div class="modif_form_input">
                         <label for="new_tech">Affecter un technicien&nbsp:</label>
                         <select id="new_tech" name="new_tech">';
-                            ?>
-                            <?php
                             echo '<option value="Vide" id="tech_vide"></option>';
                             foreach($techniciens as $tech){
                                 echo '<option value="'.htmlentities($tech[0]).'">'.htmlentities($tech[1]).' '.htmlentities($tech[2]).'</option>';
@@ -144,15 +159,15 @@
                     </div>
                 </div>
             </div>
-                    <div class="resetSubmitButtons">
-                        <input type="reset" value="Effacer" id="reset_modification_ticket" name="reset_modification_ticket" class="reset_buttons" onclick="resetForm()"/>
-                        <input type="submit" value="Modifier" id="edit_ticket" name="edit_ticket"  class="submit_buttons"/>
-                        <input name="ticket_id" type="hidden" value="'.htmlentities($ticket_id).'"/>
-                        <input name="previous_libelle" type="hidden" value="'.htmlentities($data[1]).'"/>
-                        <input name="previous_emergency" type="hidden" value="'.htmlentities($data[5]).'"/>
-                        <input name="previous_status" type="hidden" value="'.htmlentities($data[6]).'"/>
-                        <input name="previous_tech" type="hidden" value="'.htmlentities($data[4]).'"/>
-                    </div>
+            <div class="resetSubmitButtons">
+                <input type="reset" value="Effacer" id="reset_modification_ticket" name="reset_modification_ticket" class="reset_buttons" onclick="resetForm()"/>
+                <input type="submit" value="Modifier" id="edit_ticket" name="edit_ticket"  class="submit_buttons"/>
+                <input name="ticket_id" type="hidden" value="'.htmlentities($ticket_id).'"/>
+                <input name="previous_libelle" type="hidden" value="'.htmlentities($data[1]).'"/>
+                <input name="previous_emergency" type="hidden" value="'.htmlentities($data[7]).'"/>
+                <input name="previous_status" type="hidden" value="'.htmlentities($data[8]).'"/>
+                <input name="previous_tech" type="hidden" value="'.htmlentities($data[9]).'"/>
+            </div>
         </div>
     </form>';
     ?>
