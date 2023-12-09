@@ -172,6 +172,10 @@ input {
     background-color: #f65959;
 }
 
+#account_sup{
+    min-width: 60%;
+}
+
 .reset_buttons:hover{
     background-color: rgb(226, 226, 226);
 }

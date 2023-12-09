@@ -38,10 +38,13 @@
                             echo "<p>Nom : ".htmlentities($result[0])."</p>";
                             echo "<p>Prénom : ".htmlentities($result[1])."</p>";
                             echo "<p>Login : ".htmlentities($result[2])."</p>";
-                        ?>
-                    </div>
-                </div>
-                <button style="min-width: 60%" id="account_sup" onclick="location.href='confirmation.php?sup_acc=true'">Supprimer le compte</button>
+                            echo '</div></div>';
+
+                        if ($_SESSION['role'] == 'user' || $_SESSION['role'] == 'tech')
+                            echo '<button id="account_sup" onclick="location.href=\'confirmation.php?sup_acc=true\'">Supprimer le compte</button>';
+                        else
+                            echo '<button id="account_sup" onclick="location.href=\'confirmation.php?sup_acc=true\'" disabled>Supprimer le compte</button>';
+                    ?>
             </div>
         </div>
 
