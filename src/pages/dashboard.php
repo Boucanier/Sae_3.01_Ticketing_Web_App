@@ -190,6 +190,21 @@
         echo '</div>';
     }
 
+    if ($role == 'web_admin' & isset($_GET['error'])){
+        if ($_GET['error'] == 'e1'){
+            echo "<div class='ticketPageError'><p>Le libelle doît être compris entre 1 et 30 caractères</p></div>";
+        }
+        else if ($_GET['error'] == 'e2'){
+            echo "<div class='ticketPageError'><p>Niveau d'urgence compris entre 1 et 4</p></div>";
+        }
+        else if ($_GET['error'] == 'e3'){
+            echo "<div class='ticketPageError'><p>Le status doît être open, in_progress ou closed</p></div>";
+        }
+        else if ($_GET['error'] == 'e4'){
+            echo "<div class='ticketPageError'><p>Le login du technicien doit avoir le rôle de technicien</p></div>";
+        }
+    }
+
     echo '<div id="ticket_table">
         <table>
         <tr>';

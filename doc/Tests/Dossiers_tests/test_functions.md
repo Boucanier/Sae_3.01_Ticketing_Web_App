@@ -176,10 +176,10 @@ Il faudra trouver un id correspond au success et a l'error (x et y)
 | Classe |     User      | newLibelle | newEmergency | newStatus | newTech | previousLibelle | previousEmergency | previousStatus | previousTech |        Résultat attendu         |
 |:------:|:-------------:|:----------:|:------------:|:---------:|:-------:|:---------------:|:-----------------:|:--------------:|:------------:|:-------------------------------:|
 |   P1   | a ∈ web_admin |   a ∈ E1   |    a ∈ E2    |  a ∈ E3   | a ∈ E4  |        Q        |         Q         |       Q        |      Q       |     dashboard.php?success=3     |
-|   P1   | a ∈ web_admin |   a ∉ E1   |      Q       |     Q     |    Q    |        Q        |         Q         |       Q        |      Q       | ticket_modification.php?error=1 |
-|   P1   | a ∈ web_admin |     Q      |    a ∉ E2    |     Q     |    Q    |        Q        |         Q         |       Q        |      Q       | ticket_modification.php?error=2 |
-|   P1   | a ∈ web_admin |     Q      |      Q       |  a ∉ E3   |    Q    |        Q        |         Q         |       Q        |      Q       | ticket_modification.php?error=3 |
-|   P1   | a ∈ web_admin |     Q      |      Q       |     Q     | a ∉ E4  |        Q        |         Q         |       Q        |      Q       | ticket_modification.php?error=4 |
+|   P1   | a ∈ web_admin |   a ∉ E1   |      Q       |     Q     |    Q    |        Q        |         Q         |       Q        |      Q       | dashboard.php?error=1 |
+|   P1   | a ∈ web_admin |     Q      |    a ∉ E2    |     Q     |    Q    |        Q        |         Q         |       Q        |      Q       | dashboard.php?error=2 |
+|   P1   | a ∈ web_admin |     Q      |      Q       |  a ∉ E3   |    Q    |        Q        |         Q         |       Q        |      Q       | dashboard.php?error=3 |
+|   P1   | a ∈ web_admin |     Q      |      Q       |     Q     | a ∉ E4  |        Q        |         Q         |       Q        |      Q       | dashboard.php?error=4 |
 |   P2   |   a ∈ other   |     Q      |      Q       |     Q     |    Q    |        Q        |         Q         |       Q        |      Q       |            index.php            |
 
 ### 3. Résultats de tests
