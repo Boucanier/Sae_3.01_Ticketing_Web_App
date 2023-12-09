@@ -36,7 +36,7 @@
         }
     }
 
-    else if (isset($_GET['sup_acc']) && $_GET['sup_acc'] == true){
+    else if (isset($_POST['sup_acc']) && $_POST['sup_acc'] == true){
         if (isset($_SESSION['login'])){
             del_acc($_SESSION['login']);
         }

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Profil</title>
     <link rel="stylesheet" type="text/css" href="style/style.css">
+    <script src="scripts/profile.js"></script>
 </head>
 
 <body>
@@ -41,12 +42,16 @@
                             echo '</div></div>';
 
                         if ($_SESSION['role'] == 'user' || $_SESSION['role'] == 'tech')
-                            echo '<button id="account_sup" onclick="location.href=\'confirmation.php?sup_acc=true\'">Supprimer le compte</button>';
+                            echo '<button id="account_sup" onclick="supAccount()">Supprimer le compte</button>';
                         else
-                            echo '<button id="account_sup" onclick="location.href=\'confirmation.php?sup_acc=true\'" disabled>Supprimer le compte</button>';
+                            echo '<button id="account_sup" onclick="supAccount()" disabled>Supprimer le compte</button>';
                     ?>
             </div>
         </div>
+        
+        <form action="account.php" method="post" id="formSupAccount" type="hidden">
+            <input type="hidden" name="sup_acc" value="true">
+        </form>
 
         <form class="user_info" action="account.php" method="post">
             <?php
