@@ -272,13 +272,13 @@
         if ($newStatus == "Vide") $dataToInsert[] = $previous_status;
         else $dataToInsert[] = $newStatus;
 
-        if (strlen($newStatus) > 30){
+        if (strlen($dataToInsert[0]) > 30){
             header('Location: dashboard.php?error=e1');
         }
-        else if ($newEmergency > 4 || $newEmergency < 0){
+        else if ($dataToInsert[1] > 4 || $dataToInsert[1] < 0){
             header('Location: dashboard.php?error=e2');
         }
-        else if ($newStatus != "open" && $newStatus != "in_progress" && $newStatus != "closed"){
+        else if ($dataToInsert[2] != "open" && $dataToInsert[2] != "in_progress" && $dataToInsert[2] != "closed"){
             header('Location: dashboard.php?error=e3');
         }
         else {
