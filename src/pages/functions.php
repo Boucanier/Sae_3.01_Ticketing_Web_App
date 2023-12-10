@@ -241,7 +241,7 @@
             $techs = array_column($techs, 0);
 
             if (!in_array($newTech, $techs)){
-                header('Location: dashboard.php?error=e4');
+                header('Location: dashboard.php?error=4');
             }
             else if ($previous_tech == ""){
                 // ajouter le technicien dans les interventions si il y en avait pas avant
@@ -273,13 +273,13 @@
         else $dataToInsert[] = $newStatus;
 
         if (strlen($dataToInsert[0]) > 30){
-            header('Location: dashboard.php?error=e1');
+            header('Location: dashboard.php?error=1');
         }
         else if ($dataToInsert[1] > 4 || $dataToInsert[1] < 0){
-            header('Location: dashboard.php?error=e2');
+            header('Location: dashboard.php?error=2');
         }
         else if ($dataToInsert[2] != "open" && $dataToInsert[2] != "in_progress" && $dataToInsert[2] != "closed"){
-            header('Location: dashboard.php?error=e3');
+            header('Location: dashboard.php?error=3');
         }
         else {
             // les updates nécessaires pour le ticket en question
@@ -290,7 +290,7 @@
 
             $mysqli->close();
             // redirection : tout c'est bien passé
-            header("Location: dashboard.php");
+            header("Location: dashboard.php?success=3");
         }
     }
 
@@ -320,8 +320,8 @@
             $stmt->close();
 
             $mysqli->close();
-            // redirection : tout c'est bien passé
-            header("Location: dashboard.php");
+            // redirection : tout c'est bien passé pour take
+            header("Location: dashboard.php?success=2");
         }
     }
 
@@ -365,8 +365,8 @@
                 $stmt->close();
 
                 $mysqli->close();
-                // redirection : tout c'est bien passé
-                header("Location: dashboard.php");
+                // redirection : tout c'est bien passé pour close
+                header("Location: dashboard.php?success=1");
             }
         }
     }

@@ -190,19 +190,35 @@
         echo '</div>';
     }
 
+    // les erreurs et les succes :
+    // du web admin :
     if ($role == 'web_admin' & isset($_GET['error'])){
-        if ($_GET['error'] == 'e1'){
+        if ($_GET['error'] == '1'){
             echo "<div class='ticketPageError'><p>Le libelle doît être compris entre 1 et 30 caractères</p></div>";
         }
-        else if ($_GET['error'] == 'e2'){
+        else if ($_GET['error'] == '2'){
             echo "<div class='ticketPageError'><p>Niveau d'urgence compris entre 1 et 4</p></div>";
         }
-        else if ($_GET['error'] == 'e3'){
+        else if ($_GET['error'] == '3'){
             echo "<div class='ticketPageError'><p>Le status doît être open, in_progress ou closed</p></div>";
         }
-        else if ($_GET['error'] == 'e4'){
+        else if ($_GET['error'] == '4'){
             echo "<div class='ticketPageError'><p>Le login du technicien doit avoir le rôle de technicien</p></div>";
         }
+    }
+    else if ($role == 'web_admin' & isset($_GET['success'])){
+        if($_GET['success'] == '3'){
+            echo "<div class='success'><p>Vous avez bien édité le ticket</p></div>";
+        }
+    }
+    // du technicien
+    else if ($role == 'tech' & isset($_GET['success'])){
+        if($_GET['success'] == '1'){
+            echo "<div class='success'><p>Vous avez bien clos le ticket</p></div>";
+        }
+        if($_GET['success'] == '2'){
+            echo "<div class='success'><p>Vous avez bien pris le ticket</p></div>";
+        }   
     }
 
     echo '<div id="ticket_table">
