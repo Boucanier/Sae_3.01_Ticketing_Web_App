@@ -7,7 +7,6 @@
 ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 
-
 ![logo_uvsq](doc/annexes/logo_uvsq.png)
 
 **Godineau Thomas**, **Rodier Matis**, **Chiron Jules**
@@ -36,6 +35,7 @@ Les fichiers de code source sont disponibles dans le dossier [src](src/) :
 - [Scripts SQL](src/db/):
   - [Création de la base de données](src/db/creation_mariadb.sql) (pour mariaDB)
   - [Création de la base de données](src/db/creation_mysql.sql) (pour mysql)
+  - [Insertion de données de test](src/db/insert.sql)
 - [Fichiers du site](src/pages/):
   - Fichiers PHP
   - [Feuilles de style](src/pages/style/)
