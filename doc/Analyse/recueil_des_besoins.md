@@ -74,13 +74,13 @@ Ce glossaire définit les mots complexes utilisés dans le cahier des charges.
 
 ### Tableaux de définition des cas d’utilisation
 
-| 🪁 (Niveau Stratégique) 🔲 |
+| 🪁 (Niveau Stratégique) 🔲|
 |----------------------------|
 | Gérer les utilisateurs     |
 | Configuration du système   |
 | Gérer les tickets          |
 
-| 🌊 (Niveau Utilisateur) ⬛                                                       |
+| 🌊 (Niveau Utilisateur) ⬛                                                     |
 |---------------------------------------------------------------------------------|
 | Créer ticket                                                                    |
 | Accéder à son profil                                                            |
@@ -100,6 +100,8 @@ Ce glossaire définit les mots complexes utilisés dans le cahier des charges.
 | Changer son mdp           |
 | Supprimer un compte       |
 | Afficher un page          |
+| Changer la police         |
+| Changer la langue         |
 
 On peut représenter les différents cas d'utilisation et leur correspondances.
 
@@ -150,6 +152,22 @@ On peut représenter les différents cas d'utilisation et leur correspondances.
 | **Niveau** : Sous-fonction                                                        |
 | **Acteurs principaux** : Utilisateur                                              |
 | **Scénario** : <ol><li>L'utilisateur clique sur un lien de la page html</li></ol> |
+
+| Cas d'utilisation 19 : Changer la police d'écriture |
+|--------------------------------------------------|
+| **Nom** : Changer la police |
+| **Portée** : Application web |
+| **Niveau** : Sous-fonction |
+| **Acteurs principaux** : visiteurs, utilisateurs, techniciens, admins |
+| **Scénario** : <ol><li>L'acteur accède au site</li><li>L'utilisateur peut changer la police du site</li></ol> |
+
+| Cas d'utilisation 20 : Changer la langue |
+|--------------------------------------------------|
+| **Nom** : Changer la langue |
+| **Portée** : Application web |
+| **Niveau** : Sous-fonction |
+| **Acteurs principaux** : visiteurs, utilisateurs, techniciens, admins |
+| **Scénario** : <ol><li>L'acteur accède au site</li><li>L'utilisateur peut changer la langue d'affichage du site</li></ol> |
 
 ### Niveau utilisateur
 
