@@ -44,7 +44,7 @@ Pour la page ticket_modification nous vérifions que chaque lien en fonction de 
 |:------:|:--------:|:----------------:|
 |   P1   |         'Modifier le ticket'      |     action_ticket.php    |
 
-| Identification du test : 0               |
+| Identification du test : 1               |
 |------------------------------------------|
 | Version : 1                              |
 | Description du test : access |
@@ -63,3 +63,34 @@ La donnée 1 correspond au fait qu'un type d'utilisateur accède à la page tick
 |   P4   |        user      |   index.php  |
 
 ### 3. Résultats de tests
+
+| Référence du test appliqué : 0             |
+|--------------------------------------------|
+| Responsable : Matis RODIER                 |
+| Date de l'application du test : 08/12/2023 |
+| Résultat de test : OK                      |
+| Occurrence des résultats : systématique    |
+
+| Classe | Donnée 1 |   Résultat attendu    |Résultat attendu | Résultat test |
+|:------:|:--------:|:----------------:|:----------------:|:----------------:|
+|   P1   |         'Modifier le ticket'      |     action_ticket.php    |action_ticket.php    |OK|
+
+---
+
+| Référence du test appliqué : 1             |
+|--------------------------------------------|
+| Responsable : Matis RODIER                 |
+| Date de l'application du test : 08/12/2023 |
+| Résultat de test : OK                      |
+| Occurrence des résultats : systématique    |
+
+| Classe | Donnée 1 |   Résultat attendu    |Résultat attendu | Résultat test |
+|:------:|:--------:|:----------------:|:----------------:|:----------------:|
+|   P1   |        visiteur      |   index.php  |index.php  |OK|
+|   P2   |        admin system      |   index.php  |index.php  |OK|
+|   P3   |        technicien      |   index.php  |index.php  |OK|
+|   P4   |        user      |   index.php  |index.php  |OK|
+
+### 4. Conclusion
+
+Tous les tests que nous avons effectués pour la page de la modification des tickets pour l'admin web sont OK.
