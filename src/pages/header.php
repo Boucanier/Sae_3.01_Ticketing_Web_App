@@ -4,9 +4,14 @@
             <h1>Ticket App</h1>
             <img src="resources/logo_UVSQ.png" alt="logo de l\'UVSQ" id="image2">
         </div>
-
+        
 <?php
     session_start();
+
+    if (isset($_SESSION['font']) && $_SESSION['font'] == "dyslexic"){
+        echo '<link rel="stylesheet" type="text/css" href="style/dys_style.css">';
+    }
+
     $type = 'visit';
 
     $user = "ticket_app";
