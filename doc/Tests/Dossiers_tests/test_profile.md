@@ -65,7 +65,7 @@ Partitions d'équivalence :
 
 ---
 
-| Identification du test : 1               |
+| Identification du test : 2               |
 |------------------------------------------|
 | Version : 0                              |
 | Description du test : changement_mdp     |
@@ -79,3 +79,45 @@ Partitions d'équivalence :
 |   P1   | 'Changer le mot de passe' | account.php |
 
 ### 3. Résultats de tests
+
+| Référence du test appliqué : 0             |
+|--------------------------------------------|
+| Responsable : Matis RODIER                 |
+| Date de l'application du test : 08/12/2023 |
+| Résultat de test : OK                      |
+| Occurrence des résultats : systématique    |
+
+| Classe | Donnée 1 |   Résultat attendu    |Résultat attendu | Résultat test |
+|:------:|:--------:|:----------------:|:----------------:|:----------------:|
+|   P1   |   a ∉ roles  | connection.php |connection.php |OK|
+|   P2   |   a ∈ roles  | profile.php |profile.php |OK|
+
+---
+
+| Référence du test appliqué : 1             |
+|--------------------------------------------|
+| Responsable : Matis RODIER                 |
+| Date de l'application du test : 08/12/2023 |
+| Résultat de test : OK                      |
+| Occurrence des résultats : systématique    |
+
+| Classe | Donnée 1 | Résultat attendu |Résultat attendu | Résultat test |
+|:------:|:--------:|:----------------:|:----------------:|:----------------:|
+|   P1   | 'Supprimer le compte' | confirmation.php?sup_acc=true |confirmation.php?sup_acc=true |OK|
+
+---
+
+| Référence du test appliqué : 2             |
+|--------------------------------------------|
+| Responsable : Matis RODIER                 |
+| Date de l'application du test : 08/12/2023 |
+| Résultat de test : OK                      |
+| Occurrence des résultats : systématique    |
+
+| Classe | Donnée 1 | Résultat attendu |Résultat attendu | Résultat test |
+|:------:|:--------:|:----------------:|:----------------:|:----------------:|
+|   P1   | 'Changer le mot de passe' | account.php |account.php |OK|
+
+### 4. Conclusion
+
+Tous les tests que nous avons effectués pour la page profile sont OK.
