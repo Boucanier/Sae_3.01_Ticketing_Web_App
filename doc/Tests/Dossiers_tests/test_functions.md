@@ -293,4 +293,4 @@ Il faudra trouver un id correspond au success et a l'error (x et y)
 
 ### 4. Conclusion
 
-Tous les tests que nous avons effectués pour la page footer sont OK.
+Tous les tests que nous avons effectués pour la page qui gere les fonctions sont OK.

@@ -36,7 +36,7 @@ Pour chaque type d'utilisateur possible, nous testons les liens présents dans l
 | Version : 0                              |
 | Description du test : header_visit |
 | Ressources requises : Apache2, Google Chrome, Firefox, Brave   |
-| Responsable : Jules CHIRON               |
+| Responsable : Jules CHIRON|
 
 #### Cas de test
 
@@ -121,3 +121,86 @@ Pour chaque type d'utilisateur possible, nous testons les liens présents dans l
 |   P5   |        ‘Déconnexion’           |          out.php            |
 
 ### 3. Résultats de tests
+
+| Référence du test appliqué : 0             |
+|--------------------------------------------|
+| Responsable : Matis RODIER                 |
+| Date de l'application du test : 08/12/2023 |
+| Résultat de test : OK                      |
+| Occurrence des résultats : systématique    |
+
+| Classe | Donnée 1 |   Résultat attendu    |Résultat obtenu| Résultat test|
+|:------:|:--------:|:----------------:|:----------------:|:----------------:|
+|   P1   |         ‘Se connecter’           |          connection.php            | connection.php | OK |
+|   P2   |        ‘Accueil’           |          index.php            | index.php | OK |
+
+---
+
+| Référence du test appliqué : 1             |
+|--------------------------------------------|
+| Responsable : Matis RODIER                 |
+| Date de l'application du test : 08/12/2023 |
+| Résultat de test : OK                      |
+| Occurrence des résultats : systématique    |
+
+| Classe | Donnée 1 |   Résultat attendu    |Résultat obtenu|Résultat test|
+|:------:|:--------:|:----------------:|:----------------:|:----------------:|
+|   P1   |         ‘Accueil’         |          index.php            |index.php||
+|   P2   |        ‘Tableau de bord’’           |          dashboard.php            |dashboard.php|OK|
+|   P3   |        ‘Profil’          |          profile.php            |profile.php|OK|
+|   P4   |        ‘Déconnexion’          |          out.php            |out.php|OK|
+
+---
+
+| Référence du test appliqué : 2             |
+|--------------------------------------------|
+| Responsable : Matis RODIER                 |
+| Date de l'application du test : 08/12/2023 |
+| Résultat de test : OK                      |
+| Occurrence des résultats : systématique    |
+
+| Classe | Donnée 1 |   Résultat attendu    |Résultat obtenu|Résultat test|
+|:------:|:--------:|:----------------:|:----------------:|:----------------:|
+|   P1   |         ‘Tableau de bord’           |          dashboard.php            |dashboard.php|OK|
+|   P2   |        ‘Accueil’           |          index.php            |index.php|OK|
+|   P3   |        ‘Gestion des techniciens’           |          tech.php            |tech.php|OK|
+|   P4   |        ‘Profil’           |          profile.php            |profile.php|OK|
+|   P5   |        ‘Déconnexion’           |          out.php            |out.php|OK|
+
+---
+
+| Référence du test appliqué : 3             |
+|--------------------------------------------|
+| Responsable : Matis RODIER                 |
+| Date de l'application du test : 08/12/2023 |
+| Résultat de test : OK                      |
+| Occurrence des résultats : systématique    |
+
+| Classe | Donnée 1 |   Résultat attendu    |Résultat obtenu|Résultat test|
+|:------:|:--------:|:----------------:|:----------------:|:----------------:|
+|   P1   |        ‘Accueil’           |          index.php            |index.php|OK|
+|   P2   |        ‘Tableau de bord’          |          dashboard.php            |dashboard.php|OK|
+|   P3   |        ‘Gestion des techniciens’’           |         tech.php            |tech.php|OK|
+|   P4   |        ‘Profil’           |          profile.php            |profile.php|OK|
+|   P5   |        ‘Déconnexion’           |          out.php            |out.php|OK|
+
+---
+
+| Référence du test appliqué : 4             |
+|--------------------------------------------|
+| Responsable : Matis RODIER                 |
+| Date de l'application du test : 08/12/2023 |
+| Résultat de test : OK                      |
+| Occurrence des résultats : systématique    |
+
+| Classe | Donnée 1 |   Résultat attendu    |Résultat obtenu|Résultat test|
+|:------:|:--------:|:----------------:|:----------------:|:----------------:|
+|   P1   |         ‘Tableau de bord’           |          dashboard.php            |dashboard.php  |OK|
+|   P2   |        ‘Accueil’           |          index.php            |index.php            |OK|
+|   P3   |        ‘Tickets disponibles’   |   dashboard.php?dispo=true   |dashboard.php?dispo=true   |OK|
+|   P4   |        ‘Profil’           |          profile.php            |profile.php            |OK|
+|   P5   |        ‘Déconnexion’           |          out.php            | out.php            |OK
+
+### 4. Conclusion
+
+Tous les tests que nous avons effectués pour la page header sont OK.
