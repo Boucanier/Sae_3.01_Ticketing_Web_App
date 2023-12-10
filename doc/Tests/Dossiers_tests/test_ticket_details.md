@@ -44,7 +44,7 @@ Pour la page ticket_details nous vérifions que pour chaque lien en fonction des
 |:------:|:--------:|:----------------:|
 |   P1   |         ‘Prendre en charge’           |     ticket.php |
 
-| Identification du test : 0               |
+| Identification du test : 1               |
 |------------------------------------------|
 | Version : 1                              |
 | Description du test : ticket_details_clore_ticket |
@@ -57,7 +57,7 @@ Pour la page ticket_details nous vérifions que pour chaque lien en fonction des
 |:------:|:--------:|:----------------:|
 |   P1   |         'Clore'           |     ticket.php   |
 
-| Identification du test : 0               |
+| Identification du test : 2               |
 |------------------------------------------|
 | Version : 2                              |
 | Description du test : access |
@@ -76,3 +76,47 @@ La donnée 1 correspond au fait qu'un type d'utilisateur accède à la page tick
 |   P4   |        admin web      |   index.php  |
 
 ### 3. Résultats de tests
+
+| Référence du test appliqué : 0             |
+|--------------------------------------------|
+| Responsable : Matis RODIER                 |
+| Date de l'application du test : 10/12/2023 |
+| Résultat de test : OK                      |
+| Occurrence des résultats : systématique    |
+
+| Classe | Donnée 1 |   Résultat attendu    |Résultat attendu | Résultat test |
+|:------:|:--------:|:----------------:|:----------------:|:----------------:|
+|   P1   |         ‘Prendre en charge’           |     ticket.php | ticket.php |OK|
+
+---
+
+| Référence du test appliqué : 1             |
+|--------------------------------------------|
+| Responsable : Matis RODIER                 |
+| Date de l'application du test : 10/12/2023 |
+| Résultat de test : OK                      |
+| Occurrence des résultats : systématique    |
+
+| Classe | Donnée 1 |   Résultat attendu    |Résultat attendu | Résultat test |
+|:------:|:--------:|:----------------:|:----------------:|:----------------:|
+|   P1   |         'Clore'           |     ticket.php   |ticket.php   |OK|
+
+---
+
+| Référence du test appliqué : 2             |
+|--------------------------------------------|
+| Responsable : Matis RODIER                 |
+| Date de l'application du test : 10/12/2023 |
+| Résultat de test : OK                      |
+| Occurrence des résultats : systématique    |
+
+| Classe | Donnée 1 |   Résultat attendu    |Résultat attendu | Résultat test |
+|:------:|:--------:|:----------------:|:--------:|:----------------:|
+|   P1   |        visiteur      |   index.php  |index.php  |OK|
+|   P2   |        admin system      |   index.php  | index.php  |OK|
+|   P3   |        user      |   index.php  | index.php  |OK|
+|   P4   |        admin web      |   index.php  | index.php  |OK|
+
+### 4. Conclusion
+
+Tous les tests que nous avons effectués pour la page des détails des tickets sont OK.
