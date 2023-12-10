@@ -183,3 +183,114 @@ Il faudra trouver un id correspond au success et a l'error (x et y)
 |   P2   |   a ∈ other   |     Q      |      Q       |     Q     |    Q    |        Q        |         Q         |       Q        |      Q       |            index.php            |
 
 ### 3. Résultats de tests
+
+| Référence du test appliqué : 0             |
+|--------------------------------------------|
+| Responsable : Matis RODIER                 |
+| Date de l'application du test : 08/12/2023 |
+| Résultat de test : OK                      |
+| Occurrence des résultats : systématique    |
+
+| Classe |   Login    | Mot de passe | Rôle       | Résultat attendu        |     Résultat obtenu     | Résultat test |
+|:------:|:----------:|:------------:|:----------:|:-----------------------:|:-----------------------:|:-------------:|
+|   P1   | existe     | correct      | a ∈ sys    | index.php               |        index.php        |      OK       |
+|   P2   | existe     | correct      | a ∈ other  | dashboard.php           |      dashboard.php      |      OK       |
+|   P3   | existe     | incorrect    | a ∈ all    | connection.php?error=21 | connection.php?error=21 |      OK       |
+|   P4   | existe     | vide         | a ∈ all    | connection.php?error=23 | connection.php?error=23 |      OK       |
+|   P5   | existe pas | quelconque   | a ∈ all    | connection.php?error=21 | connection.php?error=21 |      OK       |
+|   P6   | existe pas | vide         | a ∈ all    | connection.php?error=23 | connection.php?error=23 |      OK       |
+|   P7   | vide       | quelconque   | a ∈ all    | connection.php?error=23 | connection.php?error=23 |      OK       |
+
+---
+
+| Référence du test appliqué : 1             |
+|--------------------------------------------|
+| Responsable : Matis RODIER                 |
+| Date de l'application du test : 08/12/2023 |
+| Résultat de test : OK                      |
+| Occurrence des résultats : systématique    |
+
+| Classe | Login  |  Nom   | Prénom |  Mdp   | Confirmation mdp | Captcha attendu | Captcha donné |  Role   |    Résultat attendu     |     Résultat obtenu     | Résultat test |
+|:------:|:------:|:------:|:------:|:------:|:----------------:|:---------------:|:-------------:|:-------:|:-----------------------:|:-----------------------:|:-------------:|
+|   P1   | a ∉ E8 | b ∉ E7 | c ∉ E7 |   d    |      e = d       |        f        |     h = f     | 'user'  |      dashboard.php      |      dashboard.php      |      OK       |
+|   P2   |   Q    |   Q    |   Q    |   Q    |        Q         |        f        |     h ≠ f     | i ∈ E10 | connection.php?error=14 | connection.php?error=14 |      OK       |
+|   P3   | a ∈ E1 |   Q    |   Q    |   Q    |        Q         |        f        |     h = f     | i ∈ E10 | connection.php?error=11 | connection.php?error=11 |      OK       |
+|   P4   | a ∈ E2 |   Q    |   Q    |   Q    |        Q         |        f        |     h = f     | i ∈ E10 | connection.php?error=11 | connection.php?error=11 |      OK       |
+|   P5   | a ∈ E3 |   Q    |   Q    |   Q    |        Q         |        f        |     h = f     | i ∈ E10 | connection.php?error=11 | connection.php?error=11 |      OK       |
+|   P6   | a ∈ E5 |   Q    |   Q    |   Q    |        Q         |        f        |     h = f     | i ∈ E10 | connection.php?error=11 | connection.php?error=11 |      OK       |
+|   P7   | a ∈ E4 |   Q    |   Q    |   Q    |        Q         |        f        |     h = f     | i ∈ E10 | connection.php?error=13 | connection.php?error=13 |      OK       |
+|   P8   | a ∉ E9 | b ∈ E4 |   Q    |   Q    |        Q         |        f        |     h = f     | i ∈ E10 | connection.php?error=13 | connection.php?error=13 |      OK       |
+|   P9   | a ∉ E9 |   Q    | c ∈ E4 |   Q    |        Q         |        f        |     h = f     | i ∈ E10 | connection.php?error=13 | connection.php?error=13 |      OK       |
+|  P10   | a ∉ E9 |   Q    |   Q    | d ∈ E4 |        Q         |        f        |     h = f     | i ∈ E10 | connection.php?error=13 | connection.php?error=13 |      OK       |
+|  P11   | a ∉ E9 |   Q    |   Q    |   Q    |      e ∈ E4      |        f        |     h = f     | i ∈ E10 | connection.php?error=13 | connection.php?error=13 |      OK       |
+|  P12   | a ∉ E8 | b ∈ E3 | c ∉ E6 | d ∉ E6 |      e ∉ E6      |        f        |     h = f     | i ∈ E10 | connection.php?error=15 | connection.php?error=15 |      OK       |
+|  P13   | a ∉ E8 | b ∉ E6 | c ∈ E3 | d ∉ E6 |      e ∉ E4      |        f        |     h = f     | i ∈ E10 | connection.php?error=16 | connection.php?error=16 |      OK       |
+|  P14   | a ∉ E8 | b ∉ E6 | c ∉ E6 | d ∈ E3 |      e ∉ E4      |        f        |     h = f     | i ∈ E10 | connection.php?error=17 | connection.php?error=17 |      OK       |
+
+---
+
+| Référence du test appliqué : 2             |
+|--------------------------------------------|
+| Responsable : Matis RODIER                 |
+| Date de l'application du test : 08/12/2023 |
+| Résultat de test : OK                      |
+| Occurrence des résultats : systématique    |
+
+| Classe | Mdp actuel | Nouveau mdp | Confirmation mdp | Résultat attendu     |    Résultat obtenu     | Résultat test |
+|:------:|:----------:|:-----------:|:----------------:|:--------------------:|:---------------------:|:-------------:|
+|   P1   | mauvais    |      a      |      b = a       | profile.php?error=31 | profile.php?error=31  |      OK       |
+|   P2   | mauvais    |      a      |     b != a       | profile.php?error=33 | profile.php?error=33  |      OK       |
+|   P3   | correct    |      a      |     b != a       | profile.php?error=33 | profile.php?error=33  |      OK       |
+|   P4   | correct    |      a      |      b = a       | profile.php?success=1| profile.php?success=1 |      OK       |
+
+---
+
+| Référence du test appliqué : 3             |
+|--------------------------------------------|
+| Responsable : Matis RODIER                 |
+| Date de l'application du test : 08/12/2023 |
+| Résultat de test : OK                      |
+| Occurrence des résultats : systématique    |
+
+| Classe |   User    | Ticket clos |    Résultat attendu     |     Résultat obtenu     | Résultat test |
+|:------:|:---------:|:-----------:|:-----------------------:|:-----------------------:|:-------------:|
+|   P1   | a ∈ tech  |     non     | dashboard.php?success=1 | dashboard.php?success=1 |      OK       |
+|   P2   | a ∈ tech  |     oui     |      dashboard.php      |      dashboard.php      |      OK       |
+|   P3   | a ∈ other |  oui U non  |        index.php        |        index.php        |      OK       |
+
+---
+
+| Référence du test appliqué : 4             |
+|--------------------------------------------|
+| Responsable : Matis RODIER                 |
+| Date de l'application du test : 08/12/2023 |
+| Résultat de test : OK                      |
+| Occurrence des résultats : systématique    |
+
+| Classe |   User    | Ticket pris |    Résultat attendu     |     Résultat obtenu     | Résultat test |
+|:------:|:---------:|:-----------:|:-----------------------:|:-----------------------:|:-------------:|
+|   P1   | a ∈ tech  |     non     | dashboard.php?success=2 | dashboard.php?success=2 |      OK       |
+|   P2   | a ∈ tech  |     oui     |      dashboard.php      |      dashboard.php      |      OK       |
+|   P3   | a ∈ other |  oui U non  |        index.php        |        index.php        |      OK       |
+
+---
+
+| Référence du test appliqué : 5             |
+|--------------------------------------------|
+| Responsable : Matis RODIER                 |
+| Date de l'application du test : 08/12/2023 |
+| Résultat de test : OK                      |
+| Occurrence des résultats : systématique    |
+
+| Classe |User| newLibelle | newEmergency | newStatus | newTech | previousLibelle | previousEmergency | previousStatus | previousTech |Résultat attendu|Résultat obtenu| Résultat test |
+|:------:|:-------------:|:----------:|:------------:|:---------:|:-------:|:---------------:|:-----------------:|:--------------:|:------------:|:-------------------------------:|:-------------------------------:|:-------------:|
+|   P1   | a ∈ web_admin |   a ∈ E1   |    a ∈ E2    |  a ∈ E3   | a ∈ E4  |        Q        |         Q         |       Q        |      Q       |     dashboard.php?success=3     |     dashboard.php?success=3     |      OK       |
+|   P1   | a ∈ web_admin |   a ∉ E1   |      Q       |     Q     |    Q    |        Q        |         Q         |       Q        |      Q       | dashboard.php?error=1 | ticket_modification.php?error=1 |      OK       |
+|   P1   | a ∈ web_admin |     Q      |    a ∉ E2    |     Q     |    Q    |        Q        |         Q         |       Q        |      Q       | dashboard.php?error=2 | ticket_modification.php?error=2 |      OK       |
+|   P1   | a ∈ web_admin |     Q      |      Q       |  a ∉ E3   |    Q    |        Q        |         Q         |       Q        |      Q       | dashboard.php?error=3 | ticket_modification.php?error=3 |      OK       |
+|   P1   | a ∈ web_admin |     Q      |      Q       |     Q     | a ∉ E4  |        Q        |         Q         |       Q        |      Q       | dashboard.php?error=4 | ticket_modification.php?error=4 |      OK       |
+|   P2   |   a ∈ other   |     Q      |      Q       |     Q     |    Q    |        Q        |         Q         |       Q        |      Q       |index.php| index.php|OK|
+
+### 4. Conclusion
+
+Tous les tests que nous avons effectués pour la page footer sont OK.
