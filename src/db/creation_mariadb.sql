@@ -1,3 +1,4 @@
+DROP DATABASE IF EXISTS ticket_app;
 CREATE DATABASE IF NOT EXISTS ticket_app;
 USE ticket_app;
 
