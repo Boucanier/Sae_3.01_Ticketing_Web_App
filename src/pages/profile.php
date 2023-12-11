@@ -13,13 +13,14 @@
     if (!isset($_SESSION['login'])){
         header('Location: index.php');
     }
-?>
 
-<main>
-    <?php
-        if (isset($_GET['success'])) {
-            echo '<div class="success"><p>Mot de passe changé avec succès !</p></div>';
-        }
+    echo '<main>';
+
+    $success = array('fr' => 'Mot de passe changé avec succès !', 'en' => 'Password changed successfully !');
+
+    if (isset($_GET['success'])) {
+        echo '<div class="success"><p>'.$success[$lang].'</p></div>';
+    }
     ?>
     <div id="profile">
         <div id="profile_part1">
@@ -36,15 +37,19 @@
                             
                             $mysqli->close();
 
-                            echo "<p>Nom : ".htmlentities($result[0])."</p>";
-                            echo "<p>Prénom : ".htmlentities($result[1])."</p>";
-                            echo "<p>Login : ".htmlentities($result[2])."</p>";
+                            $presProfile_fr = array('Nom', 'Prénom', 'Login', 'Supprimer le compte');
+                            $presProfile_en = array('Last name', 'First name', 'Login', 'Delete account');
+                            $presProfile = array('fr' => $presProfile_fr, 'en' => $presProfile_en);
+
+                            echo '<p>'.$presProfile[$lang][0].' : '.htmlentities($result[0])."</p>";
+                            echo '<p>'.$presProfile[$lang][1].' : '.htmlentities($result[1])."</p>";
+                            echo '<p>'.$presProfile[$lang][2].' : '.htmlentities($result[2])."</p>";
                             echo '</div></div>';
 
                         if ($_SESSION['role'] == 'user' || $_SESSION['role'] == 'tech')
-                            echo '<button id="account_sup" onclick="supAccount()">Supprimer le compte</button>';
+                            echo '<button id="account_sup" onclick="supAccount()">'.$presProfile[$lang][3].'</button>';
                         else
-                            echo '<button id="account_sup" onclick="supAccount()" disabled>Supprimer le compte</button>';
+                            echo '<button id="account_sup" onclick="supAccount()" disabled>'.$presProfile[$lang][3].'</button>';
                     ?>
             </div>
         </div>
@@ -55,34 +60,40 @@
 
         <form class="user_info" action="account.php" method="post">
             <?php
+                $error_fr = array('Erreur d\'identifiants', 'Mots de passe différents');
+                $error_en = array('Wrong credentials', 'Different passwords');
+                $error = array('fr' => $error_fr, 'en' => $error_en);
                 if (isset($_GET['error'])){
                     switch ($_GET['error']){
                         case 31:
-                            echo '<div class="error"><p>Erreur d\'identifiants</p></div>';
+                            echo '<div class="error"><p>'.$error[$lang][0].'</p></div>';
                             break;
                         case 33:
-                            echo '<div class="error"><p>Mots de passe différents</p></div>';
+                            echo '<div class="error"><p>'.$error[$lang][1].'</p></div>';
                             break;
                     }
                 }
-            ?>
-            <label for="actual_pwd">Mot de passe actuel :</label>
-            <input type="password" id="actual_pwd" name="actual_pwd"/>
-            <br>
-            <label for="new_pwd">Nouveau mot de passe :</label>
-            <input type="password" id="new_pwd" name="new_pwd"/>
-            <br>
-            <label for="conf_pwd">Confirmer le nouveau mot de passe :</label>
-            <input type="password" id="conf_pwd" name="conf_pwd"/>
-            <br>
-            <div class="resetSubmitButtons">
-                <input class="reset_buttons" type="reset" value="Effacer">
-                <input class="submit_buttons" type="submit" value="Changer le mot de passe"  style="min-width: 250px" name="update_acc">
-            </div>
-        </form>
-    </div>
-</main>
-<?php
+
+            $updateProfile_fr = array('Mot de passe actuel', 'Nouveau mot de passe', 'Confirmer le nouveau mot de passe', 'Effacer', 'Changer&nbsp;le&nbsp;mot&nbsp;de&nbsp;passe');
+            $updateProfile_en = array('Current password', 'New password', 'Confirm new password', 'Reset', 'Change&nbsp;password');
+            $updateProfile = array('fr' => $updateProfile_fr, 'en' => $updateProfile_en);
+            
+            echo '<label for="actual_pwd">'.$updateProfile[$lang][0].' :</label>
+                <input type="password" id="actual_pwd" name="actual_pwd"/>
+                <br>
+                <label for="new_pwd">'.$updateProfile[$lang][1].' :</label>
+                <input type="password" id="new_pwd" name="new_pwd"/>
+                <br>
+                <label for="conf_pwd">'.$updateProfile[$lang][2].' :</label>
+                <input type="password" id="conf_pwd" name="conf_pwd"/>
+                <br>
+                <div class="resetSubmitButtons">
+                    <input class="reset_buttons" type="reset" value='.$updateProfile[$lang][3].'>
+                    <input class="submit_buttons" type="submit" value='.$updateProfile[$lang][4].' style="min-width: 250px" name="update_acc">
+                </div>
+            </form>
+        </div>
+    </main>';
     include "footer.php";
 ?>
 </body>
