@@ -3,6 +3,6 @@
     src: url('fonts/OpenDyslexic-Regular.otf') format('opentype');
 }
 
-html, #descriptionPrbl, #description_prbl_modification_page {
+html, #descriptionPrbl, #description_prbl_modification_page, button, input {
     font-family: Dys_police;
 }
