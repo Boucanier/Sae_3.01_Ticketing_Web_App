@@ -14,6 +14,9 @@
         <meta charset="UTF-8">
         <title>'.$tab[$lang].'</title>
         <link rel="stylesheet" type="text/css" href="style/style.css">
+        <script src="scripts/languages.js"></script>
+        <script src="scripts/profile.js"></script>
+        <script src="scripts/ticket.js"></script>
     </head>
 
     <body>

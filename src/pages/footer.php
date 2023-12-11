@@ -1,5 +1,4 @@
 <footer>
-    <script src="scripts/languages.js"></script>
     <?php
         $contact = array('fr' => 'Nous contacter', 'en' => 'Contact us');
 
