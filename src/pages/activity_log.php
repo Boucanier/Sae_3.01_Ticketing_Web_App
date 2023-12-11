@@ -15,22 +15,29 @@
     else if ($_SESSION['role'] != 'sys_admin'){
         header('Location: index.php');
     }
+
+    $lang = 'en';
 ?>
 <body>
     <main>
         <div class="activity_log_parts">
-            <h2>Journal des tickets</h2>
-            <div id="scrollable-table">
-                <?php
-                    echo '
+            <?php
+                $infoTop = array('fr' => 'Journal des tickets', 'en' => 'Ticket log');
+                echo '<h2>'.$infoTop[$lang].'</h2>
+                <div id="scrollable-table">
                     <table id="ticket_log_table">
                     <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Login</th>
-                            <th>Ip</th>
-                            <th class="short_cell">Niveau d\'urgence</th>
-                        </tr>
+                        <tr>';
+
+                        $header_en = array('Date', 'User', 'Ip address', 'Level');
+                        $header_fr = array('Date', 'Demandeur', 'Adresse Ip', 'Niveau d\'urgence');
+                        $header = array('en' => $header_en, 'fr' => $header_fr);
+
+                        echo '<th>'.$header[$lang][0].'</th>';
+                        echo '<th>'.$header[$lang][1].'</th>';
+                        echo '<th>'.$header[$lang][2].'</th>';
+                        echo '<th class=short_cell>'.$header[$lang][3].'</th>';
+                        echo '</tr>
                     </thead>';
 
                     $mysqli = new mysqli($host, $user, $passwd, $db);
@@ -60,18 +67,23 @@
         </div>
 
         <div class="activity_log_parts">
-            <h2>Journal des connexions échouées</h2>
-            <div id="scrollable-table">
                 <?php
-                    echo '
+                    $infoTop = array('fr' => 'Journal des connexions échouées', 'en' => 'Failed connection log');
+                    echo '<h2>'.$infoTop[$lang].'</h2>
+                    <div id="scrollable-table">
                     <table id="ticket_log_table">
                     <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Login</th>
-                            <th>Mot de passe tenté</th>
-                            <th>Ip</th>
-                        </tr>
+                        <tr>';
+
+                        $header_en = array('Date', 'Login', 'Tried password', 'Ip address');
+                        $header_fr = array('Date', 'Login', 'Mot de passe essayé', 'Adresse Ip');
+                        $header = array('en' => $header_en, 'fr' => $header_fr);
+
+                        foreach ($header[$lang] as $value){
+                            echo '<th>'.$value.'</th>';
+                        }
+
+                        echo '</tr>
                     </thead>';
 
                     $stmt = $mysqli->prepare("SELECT DATE_FORMAT(date_co,'%d/%m/%Y %T'), login, password, ip_address 
@@ -97,20 +109,22 @@
         </div>
 
         <div class="activity_log_parts">
-            <h2>Historique des tickets fermés</h2>
-            <div id="scrollable-table">
                 <?php
-                    echo '
+                    $infoTop = array('fr' => 'Historique des tickets fermés', 'en' => 'Closed ticket log');
+                    echo '<h2>'.$infoTop[$lang].'</h2>
+                    <div id="scrollable-table">
                     <table id="ticket_log_table">
                     <thead>
-                        <tr>
-                            <th>Niveau</th>
-                            <th>Salle</th>
-                            <th>Problème</th>
-                            <th>Login</th>
-                            <th>Date</th>
-                            <th>Date fin</th>
-                        </tr>
+                        <tr>';
+
+                        $header_en = array('Level', 'Room', 'Title', 'User', 'Creation date', 'End date');
+                        $header_fr = array('Niveau', 'Salle', 'Problème', 'Demandeur', 'Date de création', 'Date de fin');
+                        $header = array('en' => $header_en, 'fr' => $header_fr);
+                        
+                        foreach ($header[$lang] as $value){
+                            echo '<th>'.$value.'</th>';
+                        }
+                        echo '</tr>
                     </thead>';
 
                     $stmt = $mysqli->prepare("SELECT emergency, room, title, user_login, DATE_FORMAT(creation_date,'%d/%m/%Y'), DATE_FORMAT(end_date,'%d/%m/%Y')
@@ -130,7 +144,14 @@
                                 echo '<td class="ticket_case_'.htmlentities($row[$j]).'">'.htmlentities($row[$j]).'</td>';
                             }
                             else if ($j == 1 && $row[$j] == 'other'){
-                                echo '<td>Autre</td>';
+                                switch ($lang) {
+                                    case 'fr':
+                                        echo '<td>Autre</td>';
+                                        break;
+                                    case 'en':
+                                        echo '<td>Other</td>';
+                                        break;
+                                }
                             }
                             else {
                                 echo '<td>'.htmlentities($row[$j]).'</td>';
