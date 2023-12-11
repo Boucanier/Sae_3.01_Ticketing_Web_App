@@ -18,7 +18,6 @@
 
 <?php
     $role = $type;
-    $lang = 'en';
 
     if (isset($_GET['dispo']) && $_GET['dispo'] == "true"){
         $dispo = true;
@@ -36,8 +35,9 @@
 
     if ($role == "user") {
         $infoTop = array('fr' => 'Mes tickets', 'en' => 'My tickets');
+        $createButtonValue = array('fr' => 'Créer un ticket', 'en' => 'Create a ticket');
         echo '<h2>'.$infoTop[$lang].'</h2>
-        <button type="button" onclick="location.href=\'ticket.php\'">Créer un ticket</button></div>';
+        <button type="button" onclick="location.href=\'ticket.php\'">'.$createButtonValue[$lang].'</button></div>';
         $header_eng = array('Level', 'Room', 'Title', 'Date', 'Status');
         $header_fr = array('Niveau', 'Salle', 'Problème', 'Date', 'État');
         $header = array('fr' => $header_fr, 'en' => $header_eng);
