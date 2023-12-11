@@ -18,6 +18,7 @@
 
 <?php
     $role = $type;
+    $lang = 'en';
 
     if (isset($_GET['dispo']) && $_GET['dispo'] == "true"){
         $dispo = true;
@@ -25,10 +26,6 @@
     else {
         $dispo = false;
     }
-
-    # TODO : success = 1 pour ticket clos,
-    # TODO : success = 2 pour ticket pris
-    # TODO : success = 3 pour ticket éditer
 
     $mysqli = new mysqli($host, $user, $passwd,$db);
 
@@ -38,9 +35,12 @@
         <div id="part_top">';
 
     if ($role == "user") {
-        echo '<h2>Mes tickets</h2>
+        $infoTop = array('fr' => 'Mes tickets', 'en' => 'My tickets');
+        echo '<h2>'.$infoTop[$lang].'</h2>
         <button type="button" onclick="location.href=\'ticket.php\'">Créer un ticket</button></div>';
-        $header = array('Niveau', 'Salle', 'Problème', 'Date', 'État');
+        $header_eng = array('Level', 'Room', 'Title', 'Date', 'Status');
+        $header_fr = array('Niveau', 'Salle', 'Problème', 'Date', 'État');
+        $header = array('fr' => $header_fr, 'en' => $header_eng);
 
         $stmt1 = $mysqli->prepare("SELECT ticket_id FROM Tickets WHERE user_login LIKE ? ORDER BY creation_date DESC, ticket_id DESC");
         $stmt1->bind_param("s", $actual_user);
@@ -72,10 +72,13 @@
     }
 
     else if ($role == "tech") {
-        $header = array('Niveau', 'Salle', 'Problème', 'Demandeur', 'Date');
+        $header_eng = array('Level', 'Room', 'Title', 'User', 'Date');
+        $header_fr = array('Niveau', 'Salle', 'Problème', 'Demandeur', 'Date');
+        $header = array('fr' => $header_fr, 'en' => $header_eng);
 
         if ($dispo) {
-            echo '<h2>Tickets disponibles</h2>';
+            $infoTop = array('fr' => 'Tickets disponibles', 'en' => 'Available tickets');
+            echo '<h2>'.$infoTop[$lang].'</h2>';
 
             $stmt1 = $mysqli->prepare("SELECT ticket_id FROM Tickets WHERE status LIKE 'open' ORDER BY creation_date DESC, ticket_id DESC");
             $stmt1->execute();
@@ -104,7 +107,8 @@
         }
 
         else {
-            echo '<h2>Mes interventions en cours</h2>';
+            $infoTop = array('fr' => 'Mes interventions en cours', 'en' => 'My interventions in progress');
+            echo '<h2>'.$infoTop[$lang].'</h2>';
             $status = "in_progress";
             $stmt1 = $mysqli->prepare("SELECT I.ticket_id FROM Interventions I, Tickets T WHERE tech_login LIKE ? AND I.ticket_id = T.ticket_id AND status LIKE ? ORDER BY creation_date DESC, ticket_id DESC");
             $stmt1->bind_param("ss", $actual_user, $status);
@@ -136,9 +140,12 @@
     }
 
     if ($role == "web_admin") {
-        echo '<h2>Liste des tickets</h2>
-            </div>';
-        $header = array('Niveau', 'Salle', 'Problème', 'Date', 'Demandeur', 'Technicien', 'État');
+        $infoTop = array('fr' => 'Liste des tickets', 'en' => 'Tickets list');
+        echo '<h2>'.$infoTop[$lang].'</h2></div>';
+        
+        $header_eng = array('Level', 'Room', 'Title', 'Date', 'User', 'Technician', 'Status');
+        $header_fr = array('Niveau', 'Salle', 'Problème', 'Date', 'Demandeur', 'Technicien', 'État');
+        $header = array('fr' => $header_fr, 'en' => $header_eng);
 
         $stmt1 = $mysqli->prepare("SELECT ticket_id FROM Tickets WHERE status LIKE 'open' OR status LIKE 'in_progress' ORDER BY creation_date DESC, ticket_id DESC");
         $stmt1->execute();
@@ -178,8 +185,16 @@
             }
 
             else {
-                $nom_tech = 'attribué';
-                $prenom_tech = 'Non';
+                switch ($lang) {
+                    case 'fr':
+                        $nom_tech = 'Attribué';
+                        $prenom_tech = 'Non';
+                        break;
+                    case 'en':
+                        $nom_tech = 'Assigned';
+                        $prenom_tech = 'Not';
+                        break;
+                }
             }
 
             $test_col[] = array($emergency, $room, $title, $creation_date, $nom, $prenom, $nom_tech, $prenom_tech, $status);
@@ -189,35 +204,43 @@
     else {
         echo '</div>';
     }
+    $error_fr = array('Le libellé doît être compris entre 1 et 30 caractères', 'Niveau d\'urgence compris entre 1 et 4', 'Le status doît être ouvert, en cours ou résolu', 'Vous pouvez attribué des tickets uniquement à des technicien');
+    $error_en = array('The label must be between 1 and 30 characters', 'Emergency level must be between 1 and 4', 'Status must be open, in progress or closed', 'You can only assign tickets to technicians');
+    $error = array('fr' => $error_fr, 'en' => $error_en);
+
+    $success_fr = array('Vous avez bien clos le ticket', 'Vous avez bien pris le ticket', 'Vous avez bien édité le ticket');
+    $success_en = array('You have successfully closed the ticket', 'You have successfully taken the ticket', 'You have successfully edited the ticket');
+    $success = array('fr' => $success_fr, 'en' => $success_en);
 
     // les erreurs et les succes :
     // du web admin :
     if ($role == 'web_admin' & isset($_GET['error'])){
         if ($_GET['error'] == '1'){
-            echo "<div class='ticketPageError'><p>Le libelle doît être compris entre 1 et 30 caractères</p></div>";
+            echo "<div class='ticketPageError'><p>".$error[$lang][0]."</p></div>";
         }
         else if ($_GET['error'] == '2'){
-            echo "<div class='ticketPageError'><p>Niveau d'urgence compris entre 1 et 4</p></div>";
+            echo "<div class='ticketPageError'><p>".$error[$lang][1]."</p></div>";
         }
         else if ($_GET['error'] == '3'){
-            echo "<div class='ticketPageError'><p>Le status doît être open, in_progress ou closed</p></div>";
+            echo "<div class='ticketPageError'><p>".$error[$lang][2]."</p></div>";
         }
         else if ($_GET['error'] == '4'){
-            echo "<div class='ticketPageError'><p>Le login du technicien doit avoir le rôle de technicien</p></div>";
+            echo "<div class='ticketPageError'><p>".$error[$lang][3]."</p></div>";
         }
     }
+
     else if ($role == 'web_admin' & isset($_GET['success'])){
         if($_GET['success'] == '3'){
-            echo "<div class='success'><p>Vous avez bien édité le ticket</p></div>";
+            echo "<div class='success'><p>".$success[$lang][2]."</p></div>";
         }
     }
     // du technicien
     else if ($role == 'tech' & isset($_GET['success'])){
         if($_GET['success'] == '1'){
-            echo "<div class='success'><p>Vous avez bien clos le ticket</p></div>";
+            echo "<div class='success'><p>".$success[$lang][0]."</p></div>";
         }
         if($_GET['success'] == '2'){
-            echo "<div class='success'><p>Vous avez bien pris le ticket</p></div>";
+            echo "<div class='success'><p>".$success[$lang][1]."</p></div>";
         }   
     }
 
@@ -225,11 +248,15 @@
         <table>
         <tr>';
     
-    foreach ($header as $h) {
+    foreach ($header[$lang] as $h) {
         echo '<th>' . $h . '</th>';
     }
 
     echo '</tr>';
+
+    $status_fr = array('open' => 'Ouvert', 'in_progress' => 'En cours', 'closed' => 'Résolu');
+    $status_en = array('open' => 'Open', 'in_progress' => 'In progress', 'closed' => 'Closed');
+    $status = array('fr' => $status_fr, 'en' => $status_en);
 
     foreach ($test_col as $row) {
         echo '<tr>';
@@ -245,19 +272,7 @@
                 $i ++;
             }
             else if (($i == 4 && $role == 'user') || ($i == 8 && $role == 'web_admin')) {
-                switch ($row[$i]){
-                    case 'open':
-                        echo '<td>Ouvert</td>';
-                        break;
-                    case 'in_progress':
-                        echo '<td>En cours</td>';
-                        break;
-                    case 'closed':
-                        echo '<td>Fermé</td>';
-                        break;
-                    default:
-                        echo '<td>Inconnu</td>';
-                }
+                echo '<td>'.$status[$lang][$row[$i]].'</td>';
             }
             else {
                 echo '<td>' . htmlentities($row[$i]) . '</td>';
@@ -268,11 +283,16 @@
 
     echo '</table>';
     echo '<div id="details_button">';
+
+    $buttonValue_fr = array('Détails', 'Prendre en charge', 'Modifier');
+    $buttonValue_en = array('Details', 'Take', 'Edit');
+    $buttonValue = array('fr' => $buttonValue_fr, 'en' => $buttonValue_en);
+
     for ($i = 0; $i < count($test_col); $i++) {
         if ($role == 'user'){
             echo '<form action="ticket_details.php" method="post">
                     <input type="hidden" name="id" value="'.$ticket_ids[$i].'">
-                    <input type="submit" value="Détails">
+                    <input type="submit" value='.$buttonValue[$lang][0].'>
                 </form>';
         }
         else if ($role == 'tech'){
@@ -280,21 +300,21 @@
                 echo '<form action="ticket_details.php" method="post">
                         <input type="hidden" name="id" value="'.$ticket_ids[$i].'">
                         <input type="hidden" name="function" value="take">
-                        <input type="submit" value="Prendre en charge">
+                        <input type="submit" value='.$buttonValue[$lang][1].'>
                     </form>';
             }
             else {
                 echo '<form action="ticket_details.php" method="post">
                         <input type="hidden" name="id" value="'.$ticket_ids[$i].'">
                         <input type="hidden" name="function" value="close">
-                        <input type="submit" value="Détails">
+                        <input type="submit" value='.$buttonValue[$lang][0].'>
                     </form>';
             }
         }
         else if ($role == 'web_admin'){
             echo '<form action="ticket_modification.php" method="post">
                     <input type="hidden" name="id" value="'.$ticket_ids[$i].'">
-                    <input type="submit" value="Modifier">
+                    <input type="submit" value='.$buttonValue[$lang][2].'>
                 </form>';
         }
     }
