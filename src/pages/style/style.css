@@ -24,29 +24,29 @@ nav {
     background-color: rgb(200, 250, 220);
 }
 
-#nav1 > a, #nav2 > a, footer> a {
+#nav1 > a, #nav2 > a, footer > a, footer > div > a {
     padding: 10px;
     color: black;
     text-align: center;
     text-decoration: none;
 }
 
-#nav1 > a:visited, #nav2 > a:visited, footer> a:visited {
+#nav1 > a:visited, #nav2 > a:visited, footer > a:visited, footer > div > a:visited {
     color: black;
 }
-header > nav > div > a:hover, footer > a:hover {
+header > nav > div > a:hover, footer > a:hover, footer > div > a:hover {
     background-color: rgb(150, 205, 250);
     border-radius: 20px;
     transition: 0.15s;
 }
 
-header > nav > div > a:focus, footer > a:focus {
+header > nav > div > a:focus, footer > a:focus, footer > div > a:hover {
     background-color: rgb(150, 205, 250);
     border-radius: 5px;
     border: none;
 }
 
-#nav1,#nav2{
+#nav1, #nav2{
     display: flex;
     flex-direction: row;
 }
@@ -74,10 +74,37 @@ header > nav > div > a:focus, footer > a:focus {
 footer {
     margin-top: 70px;
     display: flex;
+    flex-direction: row;
     justify-content: center;
     background-color: rgb(200, 250, 220);
 }
-  
+
+#languages {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#languages > a {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#languages > a > img {
+    height: 20px;
+    width: 30;
+}
+
+#fr_flag {
+    margin-left: 10px;
+}
+
+#en_flag {
+    margin-right: 10px;
+}
+
 main {
     padding: 10px
 }
@@ -561,7 +588,7 @@ th {
     text-align: center;
 }
 
-#description_prbl_modification_page{
+#description_prbl_modification_page {
     font-size: 20pt;
     resize: none;
     font-family: Verdana, Geneva, Tahoma, sans-serif;

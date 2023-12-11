@@ -174,3 +174,15 @@ Le cas d'utilisation 18 "Gérer les tickets", permet aux utilisateurs ou à l'ad
 
 Pour cela, un utilisateur doit se connecter s'il ne l'a pas déjà fait puis il pourra enfin accéder à son tableau de bord contenant tous les tickets qu'il a déjà créés. De plus, depuis cette page l'utilisateur peut avoir accès aux détails de son ticket en plus de pouvoir en créer un nouveau.
 L'administrateur web quant à lui doit être connecté et aller sur son tableau afin d'avoir accès à tous les tickets ouverts et en cours. Depuis son tableau de bord, il peut aussi avoir accès à des détails plus précis des tickets.
+
+## Cas 19
+
+Le cas d'utilisation 19 "Changer la police", permet à n'importe quel utilisateur de changer la police du site web.
+
+Quand l'utilisateur accède au site web, il peut sélectionner la police qu'il souhaite pour afficher le site dans le footer. Cette police est soit la police par défaut, soit la police "Open Dyslexic", adaptée pour les personnes dyslexiques.
+
+## Cas 20
+
+Le cas d'utilisation 20 "Changer la langue", permet à n'importe quel utilisateur de changer la langue du site web.
+
+Quand l'utilisateur accède au site web, il peut sélectionner la langue qu'il souhaite pour afficher le site dans le footer. Cette langue est soit le français, soit l'anglais.

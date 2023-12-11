@@ -1,13 +1,6 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Ticket</title>
-    <link rel="stylesheet" type="text/css" href="style/style.css">
-    <script src="scripts/ticket.js"></script>
-</head>
-<body>
 <?php
+    $tab = array('fr' => 'Ticket', 'en' => 'Ticket');
+
     include "header.php";
     if (!isset($_SESSION['login'])){
         header('Location: connection.php');
@@ -15,9 +8,9 @@
     else if ($_SESSION['role'] != 'web_admin'){
         header('Location: dashboard.php');
     }
-?>
-<main>
-    <?php
+
+    echo '<main>';
+
     if (isset($_POST['id']) && !empty($_POST['id'])){
         $ticket_id = $_POST['id'];
 
@@ -72,6 +65,15 @@
         $techniciens[] = $result;
     }
     $stmt2->close();
+    $mysqli->close();
+
+    $formValue_fr = array('Libellé', 'Salle', 'Demandeur', 'Technicien', 'Niveau d\'urgence', 'État', 'Nouveau libellé', 'Niveau d\'urgence', 'Nouvel état', 'Affecter un technicien', 'Effacer', 'Modifier');
+    $formValue_en = array('Title', 'Room', 'User', 'Technician', 'Emergency level', 'Status', 'New title', 'Emergency level', 'New status', 'Assign a technician', 'Reset', 'Edit');
+    $formValue = array('fr' => $formValue_fr, 'en' => $formValue_en);
+    $otherValue = array('fr' => 'Autre', 'en' => 'Other');
+    $status_fr = array('Ouvert', 'En&nbsp;cours', 'Fermé');
+    $status_en = array('Open', 'In&nbsp;progress', 'Closed');
+    $status = array('fr' => $status_fr, 'en' => $status_en);
 
     echo '
     <div id="form_modification_ticket">
@@ -81,24 +83,24 @@
                 <div id="modification_ticket_valeur_actuelle">
                     <div id="modification_ticket_libelle_salle">
                         <div id="modification_ticket_libelle">
-                            <label for="ticket_libelle">Libellé</label>
+                            <label for="ticket_libelle">'.$formValue[$lang][0].'</label>
                             <input type="text" id="ticket_libelle" name="ticket_libelle" value="'.htmlentities($data[1]).'" readonly/>
                         </div>
                         <div id="modification_ticket_salle">
-                            <label for="ticket_salle">Salle</label>';
+                            <label for="ticket_salle">'.$formValue[$lang][1].'</label>';
                             if ($data[2] == "other")
-                                echo '<input type="text" id="ticket_salle" name="ticket_salle" value="Autre" readonly/>';
+                                echo '<input type="text" id="ticket_salle" name="ticket_salle" value='.$otherValue[$lang].' readonly/>';
                             else
                                 echo '<input type="text" id="ticket_salle" name="ticket_salle" value="'.htmlentities($data[2]).'" readonly/>';
                         echo '</div>
                     </div>
                     <div id="modification_ticket_demandeur_technicien">
                         <div id="modification_ticket_demandeur">
-                            <label for="ticket_demandeur">Demandeur</label>
+                            <label for="ticket_demandeur">'.$formValue[$lang][2].'</label>
                             <input type="text" id="ticket_demandeur" name="ticket_demandeur" value="'.htmlentities($data[3]).' '.htmlentities($data[4]).'" readonly/>
                         </div>
                         <div id="modification_ticket_technicien">
-                            <label for="ticket_technicien">Technicien</label>';
+                            <label for="ticket_technicien">'.$formValue[$lang][3].'</label>';
                             if ($data[5] == "" && $data[6] == ""){
                                 echo '<input type="text" id="ticket_technicien" name="ticket_technicien" value="'.htmlentities($data[5]).'" disabled/>';
                             }
@@ -109,20 +111,20 @@
                     </div>
                     <div id="modification_ticket_niveauUrgence_etat">
                         <div id="modification_ticket_niveauUrgence">
-                            <label for="ticket_niveauUrgence">Niveau d\'urgence</label>
+                            <label for="ticket_niveauUrgence">'.$formValue[$lang][4].'</label>
                             <input type="text" class="ticket_case_'.htmlentities($data[7]).'" id="ticket_niveauUrgence" name="ticket_niveauUrgence" value="'.htmlentities($data[7]).'" readonly/>
                         </div>
                         <div id="modification_ticket_etat">
-                            <label for="ticket_etat">État</label>';
+                            <label for="ticket_etat">'.$formValue[$lang][5].'</label>';
                             switch ($data[8]){
                                 case 'open':
-                                    echo '<input type="text" class="ticket_case_open" id="ticket_etat" name="ticket_etat" value="Ouvert" readonly/>';
+                                    echo '<input type="text" class="ticket_case_open" id="ticket_etat" name="ticket_etat" value='.$status[$lang][0].' readonly/>';
                                     break;
                                 case 'in_progress':
-                                    echo '<input type="text" class="ticket_case_in_progress" id="ticket_etat" name="ticket_etat" value="En cours" readonly/>';
+                                    echo '<input type="text" class="ticket_case_in_progress" id="ticket_etat" name="ticket_etat" value='.$status[$lang][1].' readonly/>';
                                     break;
                                 case 'closed':
-                                    echo '<input type="text" class="ticket_case_closed" id="ticket_etat" name="ticket_etat" value="Fermé" readonly/>';
+                                    echo '<input type="text" class="ticket_case_closed" id="ticket_etat" name="ticket_etat" value='.$status[$lang][2].' readonly/>';
                                     break;
                             }
                         echo '</div>
@@ -130,15 +132,15 @@
                 </div>
                 <form id="modification_ticket_valeur_a_modifier" action="action_ticket.php" method="post">
                     <div class="modif_form_input">
-                        <label for="new_libelle">Nouveau libellé&nbsp:</label>
+                        <label for="new_libelle">'.$formValue[$lang][6].'&nbsp:</label>
                         <input type="text" id="new_libelle" name="new_libelle"/>
                     </div>
                     <div class="modif_form_input">
-                        <label for="new_emergency">Niveau d\'urgence&nbsp:</label>
+                        <label for="new_emergency">'.$formValue[$lang][7].'&nbsp:</label>
                         <input type="number" id="new_emergency" max="4" min="1" name="new_emergency"/>
                     </div>
                     <div class="modif_form_input">
-                        <label for="new_status">Nouvel état&nbsp:</label>
+                        <label for="new_status">'.$formValue[$lang][8].'&nbsp:</label>
                         <select id="new_status" name="new_status" onchange="changeTechForStatus()">
                             <option value="Vide"></option>
                             <option value="open">Ouvert</option>
@@ -147,7 +149,7 @@
                         </select>
                     </div>
                     <div class="modif_form_input">
-                        <label for="new_tech">Affecter un technicien&nbsp:</label>
+                        <label for="new_tech">'.$formValue[$lang][9].'&nbsp:</label>
                         <select id="new_tech" name="new_tech">';
                             echo '<option value="Vide" id="tech_vide"></option>';
                             foreach($techniciens as $tech){
@@ -160,8 +162,8 @@
                 </div>
             </div>
             <div class="resetSubmitButtons">
-                <input type="reset" value="Effacer" id="reset_modification_ticket" name="reset_modification_ticket" class="reset_buttons" onclick="resetForm()"/>
-                <input type="submit" value="Modifier" id="edit_ticket" name="edit_ticket"  class="submit_buttons"/>
+                <input type="reset" value='.$formValue[$lang][10].' id="reset_modification_ticket" name="reset_modification_ticket" class="reset_buttons" onclick="resetForm()"/>
+                <input type="submit" value='.$formValue[$lang][11].' id="edit_ticket" name="edit_ticket"  class="submit_buttons"/>
                 <input name="ticket_id" type="hidden" value="'.htmlentities($ticket_id).'"/>
                 <input name="previous_libelle" type="hidden" value="'.htmlentities($data[1]).'"/>
                 <input name="previous_emergency" type="hidden" value="'.htmlentities($data[7]).'"/>
@@ -169,10 +171,8 @@
                 <input name="previous_tech" type="hidden" value="'.htmlentities($data[9]).'"/>
             </div>
         </div>
-    </form>';
-    ?>
-</main>
-<?php
+    </form>
+</main>';
     include "footer.php";
 ?>
 </body>

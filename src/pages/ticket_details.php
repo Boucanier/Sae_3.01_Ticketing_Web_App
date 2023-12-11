@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Ticket</title>
-    <link rel="stylesheet" type="text/css" href="style/style.css">
-</head>
-<body>
 <?php
+    $tab = array('fr' => 'Ticket', 'en' => 'Ticket');
+    
     include "header.php";
     if (!isset($_SESSION['login'])){
         header('Location: connection.php');
@@ -14,9 +8,8 @@
     else if (($_SESSION['role'] != 'user') && ($_SESSION['role'] != 'tech')){
         header('Location: dashboard.php');
     }
-?>
-<main>
-    <?php
+
+    echo '<main>';
     
     if (isset($_POST['id']) && !empty($_POST['id'])){
         $ticket_id = $_POST['id'];
@@ -46,40 +39,52 @@
     $stmt->fetch();
     $stmt->close();
 
+    $description_fr = array('Ticket du ', 'Descritpion du problème', 'Salle : ', 'Niveau d\'urgence : ');
+    $description_en = array('Ticket from ', 'Probleme description', 'Room : ', 'Emergency level : ');
+    $description_lang = array('fr' => $description_fr, 'en' => $description_en);
+
     echo '<div id="part_top">
-        <h2>Ticket du '.htmlentities($creation_date).'</h2>
+        <h2>'.$description_lang[$lang][0].htmlentities($creation_date).'</h2>
     </div>
     <form id="ticket_about" action="action_ticket.php" method="post">
         <div id="ticket_description">
-            <h3>Description du problème</h3>
+            <h3>'.$description_lang[$lang][1].'</h3>
             <p>'.htmlentities($description).'</p>
         </div>
         <div id="ticket_details">
             <p>'.htmlentities($title).'</p>
-            <p>Salle : '.htmlentities($room).'</p>
-            <p>Niveau d\'urgence : '.htmlentities($emergency).'</p>';
+            <p>'.$description_lang[$lang][2].htmlentities($room).'</p>
+            <p>'.$description_lang[$lang][3].htmlentities($emergency).'</p>';
+
+    $status_fr = array('État : Ouvert', 'État : En cours', 'État : Fermé', 'État : Inconnu');
+    $status_en = array('Status : Open', 'Status : In progress', 'Status : Closed', 'Status : Unknown');
+    $status_lang = array('fr' => $status_fr, 'en' => $status_en);
 
             switch ($status){
                 case 'open':
-                    echo '<p>État : Ouvert</p>';
+                    echo '<p>'.$status_lang[$lang][0].'</p>';
                     break;
                 case 'in_progress':
-                    echo '<p>État : En cours</p>';
+                    echo '<p>'.$status_lang[$lang][1].'</p>';
                     break;
                 case 'closed':
-                    echo '<p>État : Fermé</p>';
+                    echo '<p>'.$status_lang[$lang][2].'</p>';
                     break;
                 default:
-                    echo '<p>État : Inconnu</p>';
+                    echo '<p>'.$status_lang[$lang][3].'</p>';
             }
+
+            $button_fr = array('Annuler', 'Prendre en charge', 'Clore');
+            $button_en = array('Cancel', 'Take ticket', 'Close');
+            $button_lang = array('fr' => $button_fr, 'en' => $button_en);
 
             echo '<br>
             <div class="resetSubmitButtons">
-                <input type="button" value="Annuler" class="reset_buttons" onclick="history.back();">';
+                <input type="button" value="'.$button_lang[$lang][0].'" class="reset_buttons" onclick="history.back();">';
 
                     if (isset($_POST['function']) && !empty($_POST['function']) && $_SESSION['role'] == 'tech'){
                         if (($_POST['function'] == 'take') && ($status == 'open')){
-                            echo '<input type="submit" value="Prendre en charge" name="take" class="submit_buttons">';
+                            echo '<input type="submit" value="'.$button_lang[$lang][1].'" name="take" class="submit_buttons">';
                         }
                         
                         else if (($_POST['function'] == 'close') && ($status == 'in_progress')){
@@ -91,20 +96,15 @@
                             $stmt->close();
 
                             if ($user_tech == $_SESSION['login']){
-                                echo '<input type="submit" value="Clore" name="close" class="submit_buttons">';
+                                echo '<input type="submit" value="'.$button_lang[$lang][2].'" name="close" class="submit_buttons">';
                             }
                             else {
-                                echo '<input type="submit" value="Clore" name="close" class="submit_buttons" disabled>';
+                                echo '<input type="submit" value="'.$button_lang[$lang][2].'" name="close" class="submit_buttons" disabled>';
                             }
                         }
                         echo '<input name="ticket_id" type="hidden" value="'.$ticket_id.'"/>';
                     }
-                ?>
-            </div>
-        </div>
-    </form>
-</main>
-<?php
+    echo '</div></div></form></main>';
     include "footer.php";
 ?>
 </body>
