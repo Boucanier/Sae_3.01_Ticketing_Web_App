@@ -7,8 +7,8 @@
 
         $language = array('fr' => 'Switch to english', 'en' => 'Passer en français');
 
-        $altValue_fr = array('drapeau français', 'drapeau anglais');
-        $altValue_en = array('french flag', 'english flag');
+        $altValue_fr = array('drapeau&nbsp;français', 'drapeau&nbsp;anglais');
+        $altValue_en = array('french&nbsp;flag', 'english&nbsp;flag');
         $altValue = array('fr' => $altValue_fr, 'en' => $altValue_en);
 
         echo '<div id=languages><a href="footer_switch.php?lang=fr" id="change_fr"><div id=fr_text></div><img src="resources/fr_flag.png" alt='.$altValue[$lang][0].' id="fr_flag"></a>';
