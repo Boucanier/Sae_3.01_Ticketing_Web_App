@@ -70,6 +70,10 @@
     $formValue_fr = array('Libellé', 'Salle', 'Demandeur', 'Technicien', 'Niveau d\'urgence', 'État', 'Nouveau libellé', 'Niveau d\'urgence', 'Nouvel état', 'Affecter un technicien', 'Effacer', 'Modifier');
     $formValue_en = array('Title', 'Room', 'User', 'Technician', 'Emergency level', 'Status', 'New title', 'Emergency level', 'New status', 'Assign a technician', 'Reset', 'Edit');
     $formValue = array('fr' => $formValue_fr, 'en' => $formValue_en);
+    $otherValue = array('fr' => 'Autre', 'en' => 'Other');
+    $status_fr = array('Ouvert', 'En&nbsp;cours', 'Fermé');
+    $status_en = array('Open', 'In&nbsp;progress', 'Closed');
+    $status = array('fr' => $status_fr, 'en' => $status_en);
 
     echo '
     <div id="form_modification_ticket">
@@ -85,7 +89,7 @@
                         <div id="modification_ticket_salle">
                             <label for="ticket_salle">'.$formValue[$lang][1].'</label>';
                             if ($data[2] == "other")
-                                echo '<input type="text" id="ticket_salle" name="ticket_salle" value="Autre" readonly/>';
+                                echo '<input type="text" id="ticket_salle" name="ticket_salle" value='.$otherValue[$lang].' readonly/>';
                             else
                                 echo '<input type="text" id="ticket_salle" name="ticket_salle" value="'.htmlentities($data[2]).'" readonly/>';
                         echo '</div>
@@ -114,13 +118,13 @@
                             <label for="ticket_etat">'.$formValue[$lang][5].'</label>';
                             switch ($data[8]){
                                 case 'open':
-                                    echo '<input type="text" class="ticket_case_open" id="ticket_etat" name="ticket_etat" value="Ouvert" readonly/>';
+                                    echo '<input type="text" class="ticket_case_open" id="ticket_etat" name="ticket_etat" value='.$status[$lang][0].' readonly/>';
                                     break;
                                 case 'in_progress':
-                                    echo '<input type="text" class="ticket_case_in_progress" id="ticket_etat" name="ticket_etat" value="En cours" readonly/>';
+                                    echo '<input type="text" class="ticket_case_in_progress" id="ticket_etat" name="ticket_etat" value='.$status[$lang][1].' readonly/>';
                                     break;
                                 case 'closed':
-                                    echo '<input type="text" class="ticket_case_closed" id="ticket_etat" name="ticket_etat" value="Fermé" readonly/>';
+                                    echo '<input type="text" class="ticket_case_closed" id="ticket_etat" name="ticket_etat" value='.$status[$lang][2].' readonly/>';
                                     break;
                             }
                         echo '</div>
