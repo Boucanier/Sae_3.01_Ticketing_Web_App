@@ -12,7 +12,12 @@
         echo '<link rel="stylesheet" type="text/css" href="style/dys_style.css">';
     }
 
-    $lang = 'en';
+    if (isset($_SESSION['lang'])){
+        $lang = $_SESSION['lang'];
+    }
+    else {
+        $lang = 'fr';
+    }
 
     $type = 'visit';
 

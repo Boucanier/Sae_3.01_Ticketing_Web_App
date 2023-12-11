@@ -1,25 +1,20 @@
 <footer>
     <?php
-        $lang = 'en';
+        $contact = array('fr' => 'Nous contacter', 'en' => 'Contact us');
 
-        $contact = array('fr' => '<a href="contact.php">Nous contacter</a>',
-            'en' => '<a href="contact.php">Contact us</a>');
+        echo '<a href="contact.php">'.$contact[$lang].'</a>';
 
-        $language = array('fr' => ' <a href="">Change language</a>',
-            'en' => '<a href="">Changer la langue</a>');
+        $language = array('fr' => 'Switch to english', 'en' => 'Passer en français');
 
-        echo $contact[$lang];
-        echo $language[$lang];
+        echo '<a href="footer_switch.php?lang=switch">'.$language[$lang].'</a>';
 
         if (isset($_SESSION['font']) && $_SESSION['font'] == "dyslexic"){
-            $dys_on = array('fr' => '<a href="font_switch.php?font=normal">Passer en police normale</a>',
-                'en' => '<a href="font_switch.php?font=normal">Change to normal font</a>');
-            echo $dys_on[$lang];
+            $dys_on = array('fr' => 'Passer en police normale', 'en' => 'Change to normal font');
+            echo '<a href="footer_switch.php?font=normal">'.$dys_on[$lang].'</a>';
         }
         else {
-            $dys_off = array('fr' => '<a href="font_switch.php?font=dyslexic">Passer en police dyslexie</a>',
-                'en' => '<a href="font_switch.php?font=dyslexic">Change to dyslexic font</a>');
-            echo $dys_off[$lang];
+            $dys_off = array('fr' => 'Passer en police dyslexie', 'en' => 'Change to dyslexic font');
+            echo '<a href="footer_switch.php?font=dyslexic">'.$dys_off[$lang].'</a>';
         }
     ?>
 </footer>

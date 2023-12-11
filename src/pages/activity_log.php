@@ -15,8 +15,6 @@
     else if ($_SESSION['role'] != 'sys_admin'){
         header('Location: index.php');
     }
-
-    $lang = 'en';
 ?>
 <body>
     <main>

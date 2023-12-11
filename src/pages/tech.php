@@ -15,8 +15,6 @@
     else if ($_SESSION['role'] != 'web_admin'){
         header('Location: dashboard.php');
     }
-
-    $lang = 'en';
 ?>
 
 <main>

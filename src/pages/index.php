@@ -13,8 +13,6 @@
         echo '<div class="success"><p>Votre compte a bien été supprimé</p></div>';
     }
 
-    $lang = 'en';
-
     $pres_fr = 'Cette application est un site de ticketing avec sa base de données.
     C\'est-à-dire que les utilisateurs créent des tickets dans lesquels ils énoncent le problème rencontré.
     Ces tickets contiennent un titre descriptif du problème, la description de celui-ci, un niveau d\'urgence, la salle du problème, la date de création d\'un ticket.

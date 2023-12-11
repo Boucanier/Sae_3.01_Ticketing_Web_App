@@ -14,9 +14,7 @@
     else if ($_SESSION['role'] == 'sys_admin'){
         header('Location: index.php');
     }
-?>
-
-<?php
+    
     $role = $type;
 
     if (isset($_GET['dispo']) && $_GET['dispo'] == "true"){

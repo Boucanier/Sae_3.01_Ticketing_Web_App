@@ -8,7 +8,6 @@
 <body>
 <?php
     include "header.php";
-    $lang = 'en';
     $mail = array('fr' => 'Si vous souhaitez nous contacter, cliquez sur ce <a href="mailto:?to=contact.golemcorp@gmail.com" target="_blank" class="link_on_page">lien</a>.',
         'en' => 'If you want to contact us, please click on this <a href="mailto:?to=contact.golemcorp@gmail.com" target="_blank" class="link_on_page">link</a>.');
 
