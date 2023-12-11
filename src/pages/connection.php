@@ -1,13 +1,6 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Connexion</title>
-    <link rel="stylesheet" type="text/css" href="style/style.css">
-</head>
-
-<body>
 <?php
+    $tab = array('fr' => 'Connexion', 'en' => 'Connection');
+    
     include "header.php";
     if (isset($_SESSION['login'])){
         header('Location: dashboard.php');

@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Accueil</title>
-    <link rel="stylesheet" type="text/css" href="style/style.css">
-</head>
-<body>
 <?php
+    $tab = array('fr' => 'Accueil', 'en' => 'Home');
+    
     include "header.php";
 
     if (isset($_GET['success']) && $_GET['success'] == 1){

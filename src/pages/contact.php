@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Contact</title>
-    <link rel="stylesheet" type="text/css" href="style/style.css">
-</head>
-<body>
 <?php
+    $tab = array('fr' => 'Contact', 'en' => 'Contact');
+    
     include "header.php";
     $mail = array('fr' => 'Si vous souhaitez nous contacter, cliquez sur ce <a href="mailto:?to=contact.golemcorp@gmail.com" target="_blank" class="link_on_page">lien</a>.',
         'en' => 'If you want to contact us, please click on this <a href="mailto:?to=contact.golemcorp@gmail.com" target="_blank" class="link_on_page">link</a>.');

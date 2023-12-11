@@ -1,22 +1,31 @@
-    <header>
-        <div id="top">
-            <img src="resources/logo.png" alt="logo de la plateforme" id="image1">
-            <h1>Ticket App</h1>
-            <img src="resources/logo_UVSQ.png" alt="logo de l\'UVSQ" id="image2">
-        </div>
-        
 <?php
     session_start();
-
-    if (isset($_SESSION['font']) && $_SESSION['font'] == "dyslexic"){
-        echo '<link rel="stylesheet" type="text/css" href="style/dys_style.css">';
-    }
 
     if (isset($_SESSION['lang'])){
         $lang = $_SESSION['lang'];
     }
     else {
         $lang = 'fr';
+    }
+
+    echo '<!DOCTYPE html>
+    <html lang='.$lang.'>
+    <head>
+        <meta charset="UTF-8">
+        <title>'.$tab[$lang].'</title>
+        <link rel="stylesheet" type="text/css" href="style/style.css">
+    </head>
+
+    <body>
+        <header>
+        <div id="top">
+            <img src="resources/logo.png" alt="logo de la plateforme" id="image1">
+            <h1>Ticket App</h1>
+            <img src="resources/logo_UVSQ.png" alt="logo de l\'UVSQ" id="image2">
+        </div>';
+
+    if (isset($_SESSION['font']) && $_SESSION['font'] == "dyslexic"){
+        echo '<link rel="stylesheet" type="text/css" href="style/dys_style.css">';
     }
 
     $type = 'visit';

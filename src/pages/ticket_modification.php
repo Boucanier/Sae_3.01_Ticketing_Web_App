@@ -1,13 +1,6 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Ticket</title>
-    <link rel="stylesheet" type="text/css" href="style/style.css">
-    <script src="scripts/ticket.js"></script>
-</head>
-<body>
 <?php
+    $tab = array('fr' => 'Ticket', 'en' => 'Ticket');
+
     include "header.php";
     if (!isset($_SESSION['login'])){
         header('Location: connection.php');

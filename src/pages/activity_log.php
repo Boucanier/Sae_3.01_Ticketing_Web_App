@@ -1,13 +1,6 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Journaux d'activité</title>
-    <link rel="stylesheet" type="text/css" href="style/style.css">
-</head>
-
-<body>
 <?php
+    $tab = array('fr' => 'Journaux d\'activité', 'en' => 'Activity logs');
+    
     include "header.php";
     if (!isset($_SESSION['login'])){
         header('Location: connection.php');

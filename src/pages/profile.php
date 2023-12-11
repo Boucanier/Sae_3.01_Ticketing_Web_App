@@ -1,14 +1,6 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Profil</title>
-    <link rel="stylesheet" type="text/css" href="style/style.css">
-    <script src="scripts/profile.js"></script>
-</head>
-
-<body>
 <?php
+    $tab = array('fr' => 'Profil', 'en' => 'Profile');
+    
     include "header.php";
     if (!isset($_SESSION['login'])){
         header('Location: index.php');
