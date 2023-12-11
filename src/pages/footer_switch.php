@@ -12,13 +12,8 @@
         header("Location: index.php");
     }
 
-    if (isset($_GET['lang']) && $_GET['lang'] == "switch"){
-        if ($_SESSION['lang'] == "fr"){
-            $_SESSION['lang'] = "en";
-        }
-        else {
-            $_SESSION['lang'] = "fr";
-        }
+    if (isset($_GET['lang']) && in_array($_GET['lang'], array('fr', 'en'))){
+        $_SESSION['lang'] = $_GET['lang'];
         header("Location: ".$_SERVER['HTTP_REFERER']);
     }
     else {
