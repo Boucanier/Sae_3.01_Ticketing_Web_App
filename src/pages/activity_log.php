@@ -89,7 +89,22 @@
                         $row = mysqli_fetch_array($data);
                         echo '<tr>';
                         for ($j = 0; $j < 4; $j++) {
-                            echo '<td>'.htmlentities($row[$j]).'</td>';
+                            if ($j == 1){
+                                $stmt = $mysqli->prepare("SELECT * 
+                                                                FROM Users
+                                                                WHERE login LIKE '%$row[$j]%'");
+                                $stmt->execute();
+                                $exist_logins = $stmt->get_result();
+                                if (mysqli_num_rows($exist_logins) == 1){
+                                    echo '<td style="color: green">'.htmlentities($row[$j]).'</td>';
+                                }
+                                else{
+                                    echo '<td style="color: red">'.htmlentities($row[$j]).'</td>';
+                                }
+                            }
+                            else{
+                                echo '<td>'.htmlentities($row[$j]).'</td>';
+                            }
                         }
                         echo '</tr>';
                     }
