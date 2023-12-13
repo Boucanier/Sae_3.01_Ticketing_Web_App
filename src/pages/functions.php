@@ -22,8 +22,14 @@
             $taille = $stmt->get_result()->fetch_row()[0];
 
             if ($taille == 0){
+                $stmt = $mysqli->prepare("INSERT INTO Connections(login, ip_address, password, succes, date_co) VALUES (?, ?, ?, 0, ?)");
+                $stmt->bind_param("ssss", $login, $ip_address, $pwd, $date);
+                $stmt->execute();
+
+                $mysqli->close();
                 header('Location: connection.php?error=21');
                 # Erreur d'identifiants
+
             }
 
             else if ($taille > 1){
