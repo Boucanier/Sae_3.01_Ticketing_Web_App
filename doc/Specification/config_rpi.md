@@ -31,7 +31,7 @@ La distribution que nous utilisons est basée sur Debian, nous avons donc utilis
 
 ## Configuration de la base de données
 
-Afin de créer la base de données, nous avons exécuté le script SQL situé dans [ce fichier](../../src/db/creation_mariadb.sql) (*branche en cours : website*). Ce script crée la base de données, les tables nécessaires au fonctionnement de la plateforme et l'utilisateur qui sera utilisé par la plateforme pour accéder à la base de données. Il insère également dans les tables les utilisateurs nécessaires au fonctionnement de la plateforme (*admin web* et *admin système*) ainsi que deux techniciens. Pour plus de détails : [Rapport de base de données](base_de_donnees.md)
+Afin de créer la base de données, nous avons exécuté le script SQL situé dans [ce fichier](../../src/db/creation_mariadb.sql). Ce script crée la base de données, les tables nécessaires au fonctionnement de la plateforme et l'utilisateur qui sera utilisé par la plateforme pour accéder à la base de données. Il insère également dans les tables les utilisateurs nécessaires au fonctionnement de la plateforme (*admin web* et *admin système*) ainsi que deux techniciens. Pour plus de détails : [Rapport de base de données](base_de_donnees.md)
 
 ## Configuration du serveur web
 
@@ -43,9 +43,20 @@ Pour que nous accédions directement à la plateforme depuis l'adresse ***raspb0
 
 - Premièrement, nous modifions le fichier **/etc/apache2/sites-available/000-default.conf**. Dans ce fichier, nous modifions *DocumentRoot*. Nous remplaçons */var/www/html* par */home/pisae/sae/src/pages* (répertoire contenant le site web). Ainsi, notre site web devient le site par défaut à l'adresse de notre Raspberry Pi.
 
-- Deuxièmement, nous modifions le fichier **/etc/apache2/apache2.conf**. Comme nous avons remplacé le répertoire de base pour l'accès au serveur, nous remplaçons */var/www/* par */home/pisae/sae/src/pages*. Enfin, nous supprimons la ligne indiquant "Options Indexes FollowSymLinks" afin que les personnes accédant à notre site ne puissent pas lister les fichiers présents sur le serveur.
+- Deuxièmement, nous créons un fichier de configuration **saeconf.conf** dans le répertoire **/etc/apache2/conf-available**. Dans ce fichier, nous ajoutons les lignes suivantes :
 
-Pour que ces modifications soient prises en compte, nous redémarrons le serveur Apache avec la commande *`systemctl restart apache2`*.
+  ```apache
+  <Directory /home/pisae/sae/src/pages>
+    AllowOverride None
+    Require all granted
+  </Directory>
+  ```
+
+  Ces lignes permettent de définir les paramètres du répertoire contenant le site web. Nous n'ajoutons pas l'option *Options Indexes* car nous ne souhaitons pas que les personnes accédant à notre site puissent lister les fichiers présents sur le serveur.
+
+- Troisièmement, nous activons le fichier de configuration avec la commande *`a2enconf saeconf.conf`*.
+
+Pour que ces modifications soient prises en compte, nous rechargeons le serveur Apache avec la commande *`systemctl reload apache2`*.
 
 ## Configuration du Raspberry Pi
 
@@ -53,4 +64,4 @@ Afin de pouvoir accéder au Raspberry Pi depuis l'extérieur, nous avons activé
 
 La configuration réseau du Raspberry Pi dans le réseau de l'IUT a été assurée par M. Hoguin. Nous pouvons donc accéder à notre Raspberry Pi à distance. Cependant, on ne peut y accéder que depuis le réseau de l'IUT. Nous copions donc les fichiers de la plateforme sur le Raspberry Pi depuis un ordinateur de l'IUT. Ainsi, il se peut que le site ne soit pas tout le temps à jour sur le Raspberry Pi.
 
-Afin de prévenir tout problème avec la carte SD, nous avons créé une copie du système chez nous. De plus, nous avons créé [un script bash](../../installation.sh) qui effectue les actions décrites dans ce rapport afin de faciliter la configuration du Raspberry Pi en cas de problème sur la carte sd ou si on souhaite installer installer le serveur pour faire des tests chez nous. Ce script est exécutable sur une distribution de linux basé sur Debian avec la commande *`bash installation.sh`* depuis la racine du projet. **Attention**, ce script réinstalle entièrement apache2, il faut donc enregistrer une copie de ses fichiers de configuration avant de l'exécuter.
+Afin de prévenir tout problème avec la carte SD, nous avons créé une copie du système chez nous. De plus, nous avons créé [un script bash](../../installation.sh) qui effectue les actions décrites dans ce rapport afin de faciliter la configuration du Raspberry Pi en cas de problème sur la carte sd ou si on souhaite installer installer le serveur pour faire des tests chez nous. Ce script est exécutable en root sur une distribution de linux basée sur Debian avec la commande *`sudo bash installation.sh`* depuis la racine du projet. **Attention**, ce script supprime toutes les versions de PHP existantes sur le système avant d'installer PHP 8.2 et les modules que nous utilisons. Il faut donc faire attention à ne pas l'exécuter sur un système qui utilise PHP pour d'autres applications.
