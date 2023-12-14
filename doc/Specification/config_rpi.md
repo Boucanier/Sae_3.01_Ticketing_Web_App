@@ -10,7 +10,7 @@ Groupe : **INF2 - FI A**
 
 La plateforme de ticketing qui fait l'objet de ce projet est destinée à être hébergée sur un Raspberry Pi. Ce document présente les choix que nous avons fait pour configurer le Raspberry Pi, conformément à sa conception dans la [conception architecturale](../Conception/conception_architecturale.md). Ce rapport présente les différentes étapes de configuration du Raspberry Pi.
 
-Note : l'adresse ip du Raspberry Pi est ***192.168.1.163*** et son nom est ***raspb03***.
+**Note** : l'adresse ip du Raspberry Pi est ***192.168.1.163*** et son nom est ***raspb03***.
 
 ## Distribution du Raspberry Pi
 
@@ -60,8 +60,32 @@ Pour que ces modifications soient prises en compte, nous rechargeons le serveur 
 
 ## Configuration du Raspberry Pi
 
+### Gestions des connexions
+
+#### Connexion SSH
+
 Afin de pouvoir accéder au Raspberry Pi depuis l'extérieur, nous avons activé le service ssh dès le démarrage du Raspberry Pi avec la commande *`systemctl enable ssh.service`*.
 
+#### Système fail2ban
+
+Afin de sécuriser un minimum le Raspberry Pi, nous avons installé le système **fail2ban** avec la commande *`sudo apt install fail2ban`*. Pour cela, nous devons aussi installé les modules *rsyslog* et *iptables* avec la commande *`sudo apt install rsyslog iptables`*. Nous avons ensuite activé le service fail2ban avec la commande *`sudo systemctl enable fail2ban`*.
+
+Pour configurer fail2ban, nous avons créé le fichier */etc/fail2ban/jail.d/saeban.conf* avec le contenu suivant :
+
+```conf
+[DEFAULT]
+ignoreip = 127.0.0.1 192.168.1.163
+findtime = 1h
+bantime = 24h
+maxretry = 3
+```
+
+Ce fichier permet de définir les paramètres par défaut de fail2ban. Nous avons ajouté l'adresse ip du Raspberry Pi dans la liste des adresses ip ignorées afin de ne pas être banni de notre propre serveur. Nous avons aussi défini le temps de bannissement à 24h et le nombre de tentatives de connexion avant bannissement à 3, toutes les heures.
+
+#### Versions du site
+
 La configuration réseau du Raspberry Pi dans le réseau de l'IUT a été assurée par M. Hoguin. Nous pouvons donc accéder à notre Raspberry Pi à distance. Cependant, on ne peut y accéder que depuis le réseau de l'IUT. Nous copions donc les fichiers de la plateforme sur le Raspberry Pi depuis un ordinateur de l'IUT. Ainsi, il se peut que le site ne soit pas tout le temps à jour sur le Raspberry Pi.
+
+### Script d'installation
 
 Afin de prévenir tout problème avec la carte SD, nous avons créé une copie du système chez nous. De plus, nous avons créé [un script bash](../../installation.sh) qui effectue les actions décrites dans ce rapport afin de faciliter la configuration du Raspberry Pi en cas de problème sur la carte sd ou si on souhaite installer installer le serveur pour faire des tests chez nous. Ce script est exécutable en root sur une distribution de linux basée sur Debian avec la commande *`sudo bash installation.sh`* depuis la racine du projet. **Attention**, ce script supprime toutes les versions de PHP existantes sur le système avant d'installer PHP 8.2 et les modules que nous utilisons. Il faut donc faire attention à ne pas l'exécuter sur un système qui utilise PHP pour d'autres applications.
