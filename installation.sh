@@ -119,5 +119,10 @@ fi
 sudo systemctl reload apache2
 echo -e '\nConfiguration mise à jour'
 
+
+# On met à jour les droits des fichiers pour qu'ils appartiennent à la bonne personne
+sudo chown -R $SUDO_USER $saePath
+
+
 echo -e '\nInstallation du serveur terminée, vous pouvez supprimer le dossier '$(pwd)
 exit 0
