@@ -31,12 +31,12 @@ echo '<main>
                     }
                 }
 
-            $formValue_fr = array('Login', 'Nom', 'Prénom', 'Mot de passe', 'Confirmer le mot de passe', 'Effacer', 'Créer', 'Seconnecter');
-            $formValue_en = array('Login', 'Name', 'First name', 'Password', 'Confirm password', 'Reset', 'Create', 'Sign&nbsp;in');
+            $formValue_fr = array('Login', 'Nom', 'Prénom', 'Mot de passe', 'Confirmer le mot de passe', 'Effacer', 'Créer', 'Se&nbsp;connecter', 'J\'ai oublié mon mot de passe');
+            $formValue_en = array('Login', 'Name', 'First name', 'Password', 'Confirm password', 'Reset', 'Create', 'Sign&nbsp;in', 'I forgot my password');
             $formValue = array('fr' => $formValue_fr, 'en' => $formValue_en);
             
             echo '<form action="account.php" method="post">
-                <div class="user_info">
+                <div class="user_info">$formValue[$lang][0]
                     <div class="form_group">
                         <label for="login">'.$formValue[$lang][0].'&nbsp;:</label>
                         <input type="text" id="login" name="login"/>
@@ -107,6 +107,7 @@ echo '<main>
                 <div class="form_group2">
                     <label for="pwd_connect">'.$formValue[$lang][3].'&nbsp;:</label>
                     <input type="password" id="pwd_connect" name="pwd_connect"/>
+                    <a href="construction.php">'.$formValue[$lang][8].'</a>
                 </div>
                 <br>
                 <div class="resetSubmitButtons">
