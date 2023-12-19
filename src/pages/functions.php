@@ -376,4 +376,37 @@
             }
         }
     }
+
+    function afficherDifferenceDate($date) {
+        $dateTimestamp = strtotime($date);
+
+        $difference = time() - $dateTimestamp;
+
+        $jours = floor($difference / (60 * 60 * 24));
+        $semaines = floor($jours / 7);
+        $mois = floor($jours / 30);
+        $annees = floor($jours / 365);
+
+        if ($annees >= 1){
+            if ($annees == 1)
+                return "Il y a $annees année";
+            else
+                return "Il y a $annees années";
+        }
+        else if ($mois >= 1){
+            return "Il y a $mois mois";
+        }
+        else if($semaines >= 1){
+            if ($semaines == 1)
+                return "Il y a $semaines semaine";
+            else
+                return "Il y a $semaines semaines";
+        }
+        else{
+            if ($jours == 1)
+                return "il y a $jours jour";
+            else
+                return "il y a $jours jours";
+        }
+    }
 ?>
