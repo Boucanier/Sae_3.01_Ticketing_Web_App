@@ -26,6 +26,7 @@ Afin de pouvoir utiliser le Raspberry Pi pour héberger notre plateforme, nous a
 - **php 8.2** : pour interpréter le code PHP de nos pages web
 - **php 8.2-mysql** : pour pouvoir effectuer des requêtes SQL sur notre base de données depuis les pages web
 - **MariaDB** : pour héberger la base de données
+- **r-base** : pour la page R shiny
 
 La distribution que nous utilisons est basée sur Debian, nous avons donc utilisé le gestionnaire de paquets **apt** pour installer ces paquets. Par exemple, pour installer le paquet apache2 : *`sudo apt install apache2`*.
 
