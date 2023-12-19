@@ -21,7 +21,11 @@ sudo apt purge -y php*
 
 # Installation des dépendances nécessaires
 sudo apt update
-sudo apt install -y apache2 php8.2 php8.2-mysql mariadb-common mariadb-server
+sudo apt install -y apache2 php8.2 php8.2-mysql mariadb-common mariadb-server r-base
+
+
+# Installation de R avec le module shiny
+sudo Rscript -e 'install.packages("shiny")'
 
 
 # Déplacement des fichiers
@@ -47,7 +51,7 @@ lline=$(grep --line-number '</Directory>' "$confFile" | cut -f1 -d:)
 	# On supprime les lignes pour ce dossier si elles existent
 if [[ -z fline ]]
 then
-	echo -e '\nConfiguration trouvée\nSuppression de cette configurations'
+	echo -e '\nConfiguration trouvée\nSuppression de cette configuration'
 	nline=$(echo $lline | grep -o ' ' | wc -l)
 	toCut=0
 
@@ -115,5 +119,5 @@ fi
 sudo systemctl reload apache2
 echo -e '\nConfiguration mise à jour'
 
-echo -e "\nInstallation du serveur terminée, vous pouvez supprimer le dossier "$(pwd)
+echo -e '\nInstallation du serveur terminée, vous pouvez supprimer le dossier '$(pwd)
 exit 0
