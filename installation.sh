@@ -25,7 +25,15 @@ sudo apt install -y apache2 php8.2 php8.2-mysql mariadb-common mariadb-server r-
 
 
 # Installation de R avec le module shiny
-sudo Rscript -e 'install.packages("shiny")'
+	# On vérifie si le package existe
+if [[ $(Rscript -e 'installed.packages()') != *"shiny"* ]]
+then
+	echo -e '\nInstallation du module shiny'
+	sudo Rscript -e "install.packages('shiny')"
+else
+	# Sinon on l'installe
+	echo -e '\nModule shiny déjà installé'
+fi
 
 
 # Déplacement des fichiers
