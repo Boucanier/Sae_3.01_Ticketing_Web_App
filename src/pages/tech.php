@@ -48,7 +48,7 @@
                                 $row[2] = $stmt->get_result()->fetch_row()[0];
                                 $stmt->close();
 
-                                echo '<tr>';
+                                echo '<tr id="fond_hover">';
                                 for ($i = 0; $i < count($row); $i++) {
                                     echo '<td>' . htmlentities($row[$i]) . '</td>';
                                 }

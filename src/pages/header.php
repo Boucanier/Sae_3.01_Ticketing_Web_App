@@ -1,5 +1,5 @@
 <?php
-    session_start();
+    include "functions.php";
 
     if (isset($_SESSION['lang'])){
         $lang = $_SESSION['lang'];
