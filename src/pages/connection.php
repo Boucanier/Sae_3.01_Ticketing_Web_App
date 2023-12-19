@@ -36,7 +36,7 @@ echo '<main>
             $formValue = array('fr' => $formValue_fr, 'en' => $formValue_en);
             
             echo '<form action="account.php" method="post">
-                <div class="user_info">$formValue[$lang][0]
+                <div class="user_info">
                     <div class="form_group">
                         <label for="login">'.$formValue[$lang][0].'&nbsp;:</label>
                         <input type="text" id="login" name="login"/>
