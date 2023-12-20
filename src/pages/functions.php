@@ -378,6 +378,14 @@
     }
 
     function afficherDifferenceDate($date) {
+
+        if (isset($_SESSION['lang']) && $_SESSION['lang'] == 'en'){
+            $lang = $_SESSION['lang'];
+        }
+        else {
+            $lang = 'fr';
+        }
+
         $dateTimestamp = strtotime($date);
 
         $difference = time() - $dateTimestamp;
@@ -387,26 +395,33 @@
         $mois = floor($jours / 30);
         $annees = floor($jours / 365);
 
+        $tab_fr = array('Il y a', 'année', 'années', 'mois', 'mois', 'semaine', 'semaines', 'jour', 'jours');
+        $tab_en = array('', 'year ago', 'years ago', 'month ago', 'months ago', 'week ago', 'weeks ago', 'day ago', 'days ago');
+        $tab_lang = array('fr' => $tab_fr, 'en' => $tab_en);
+
         if ($annees >= 1){
             if ($annees == 1)
-                return "Il y a $annees année";
+                return $tab_lang[$lang][0]." ".$annees." ".$tab_lang[$lang][1];
             else
-                return "Il y a $annees années";
+                return $tab_lang[$lang][0]." ".$annees." ".$tab_lang[$lang][2];
         }
         else if ($mois >= 1){
-            return "Il y a $mois mois";
+            if ($mois == 1)
+                return $tab_lang[$lang][0]." ".$mois." ".$tab_lang[$lang][3];
+            else
+                return $tab_lang[$lang][0]." ".$mois." ".$tab_lang[$lang][4];
         }
         else if($semaines >= 1){
             if ($semaines == 1)
-                return "Il y a $semaines semaine";
+                return $tab_lang[$lang][0]." ".$semaines." ".$tab_lang[$lang][5];
             else
-                return "Il y a $semaines semaines";
+                return $tab_lang[$lang][0]." ".$semaines." ".$tab_lang[$lang][2];
         }
         else{
             if ($jours == 1)
-                return "il y a $jours jour";
+                return $tab_lang[$lang][0]." ".$jours." ".$tab_lang[$lang][7];
             else
-                return "il y a $jours jours";
+                return $tab_lang[$lang][0]." ".$jours." ".$tab_lang[$lang][8];
         }
     }
 ?>
