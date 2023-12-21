@@ -167,8 +167,9 @@
                     }
                     echo '</tbody>';
                 ?>
-                </table>
+            </table>
             </div>
+        <iframe src="http://localhost:5875" style="border: none; width: 800px; height: 500px; margin-top: 30px;"></iframe>
         </div>
     </main>
 </body>
