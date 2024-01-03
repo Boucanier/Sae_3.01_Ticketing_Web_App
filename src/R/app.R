@@ -1,5 +1,7 @@
 library(shiny)
-runApp(app.R)
+
+# On utilise le port 3000
+options(shiny.port = 3000)
 
 # UI
 ui = fluidPage(
