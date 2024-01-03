@@ -1,6 +1,6 @@
 #! /bin/bash
 
-
+# On vérifie que le script est bien exécuté en root (Effective User ID = 0)
 if [[ $EUID != 0 ]]
 then
 	echo -e 'Ce script doit être exécuté en root\n\n Abandon'
@@ -24,7 +24,7 @@ sudo apt update
 sudo apt install -y apache2 php8.2 php8.2-mysql mariadb-common mariadb-server r-base
 
 
-# Installation de R avec le module shiny
+# Installation du module shiny
 	# On vérifie si le package existe
 if [[ $(Rscript -e 'installed.packages()') != *"shiny"* ]]
 then
@@ -34,6 +34,11 @@ else
 	# Sinon on l'installe
 	echo -e '\nModule shiny déjà installé'
 fi
+
+# On lance le serveur shiny
+cd src/R
+sudo Rscript app.R &
+cd ../..
 
 
 # Déplacement des fichiers
@@ -52,7 +57,10 @@ sudo mysql -e "source $saePath/src/db/creation_mariadb.sql"
 confSearch='<Directory /home/'$SUDO_USER'/sae*'
 confFile='/etc/apache2/apache2.conf'
 
+# On recherche la ligne où se trouve la configuration
 fline=$(grep --line-number "$confSearch" "$confFile" | cut -f1 -d:)
+
+# On recherche toutes les lignes de fin de configuration
 lline=$(grep --line-number '</Directory>' "$confFile" | cut -f1 -d:)
 
 
@@ -66,6 +74,8 @@ then
 	for (( i=1; i<=$nline+1; i++ ))
 	do
 		new=$(echo $lline | cut -f$i -d' ')
+
+		# On cherche la fin de la configuration qui nous intéresse
 		if [[ $new > $fline ]]
 		then
 			toCut=$new
@@ -73,6 +83,7 @@ then
 		fi
 	done
 
+	# On calcule le nombre de lignes à supprimer
 	diff=$(( $toCut-$fline ))
 	for (( i=0; i<=$diff; i++ ))
 	do
@@ -98,7 +109,10 @@ fileRoot='/etc/apache2/sites-available/000-default.conf'
 saeLine='DocumentRoot '$saePath'/src/pages'
 rootLine='\tDocumentRoot \/home\/'$SUDO_USER'\/sae\/src\/pages'
 
+# Ligne contenant DocumentRoot
 siteConfLine=$(grep --line-number 'DocumentRoot' $fileRoot | cut -f1 -d:)
+
+# Ligne contenant DocumentRoot pour notre site
 saeConfLine=$(grep --line-number "$saeLine" $fileRoot | cut -f1 -d:)
 
 # Si la ligne DocumentRoot n'esiste pas il y a un problème, il faut vérifier à la main
@@ -108,7 +122,7 @@ then
 	exit 1
 fi
 
-# On regarde quand même si le site par défaut n'est pas déjà celui de la plateforme
+# On regarde si le site par défaut n'est pas déjà celui de la plateforme
 if [[ -z $saeConfLine ]]
 then
 	# On crée une copie de l'ancien fichier de configuration en cas de problème
