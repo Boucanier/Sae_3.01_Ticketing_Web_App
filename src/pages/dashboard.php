@@ -48,7 +48,7 @@
 
         $test_col = array();
         foreach ($ticket_ids as $ticket_id){
-            $stmt2 = $mysqli->prepare("SELECT emergency, room, title, DATE_FORMAT(creation_date,'%d/%m/%Y'), status FROM Tickets WHERE ticket_id = ?");
+            $stmt2 = $mysqli->prepare("SELECT emergency, room, title, DATE_FORMAT(creation_date,'%Y/%m/%d'), status FROM Tickets WHERE ticket_id = ?");
             $stmt2->bind_param("s", $ticket_id);
             $stmt2->execute();
             $stmt2->bind_result($emergency, $room, $title, $creation_date, $status);
@@ -85,7 +85,7 @@
 
             $test_col = array();
             foreach ($ticket_ids as $ticket_id) {
-                $stmt2 = $mysqli->prepare("SELECT emergency, room, title, last_name, first_name, DATE_FORMAT(creation_date,'%d/%m/%Y') FROM Tickets T, Users U WHERE ticket_id = ? AND T.user_login = U.login");
+                $stmt2 = $mysqli->prepare("SELECT emergency, room, title, last_name, first_name, DATE_FORMAT(creation_date,'%Y/%m/%d') FROM Tickets T, Users U WHERE ticket_id = ? AND T.user_login = U.login");
                 $stmt2->bind_param("s", $ticket_id);
                 $stmt2->execute();
                 $stmt2->bind_result($emergency, $room, $title, $nom, $prenom, $creation_date);
@@ -116,7 +116,7 @@
 
             $test_col = array();
             foreach ($ticket_ids as $ticket_id){
-                $stmt2 = $mysqli->prepare("SELECT emergency, room, title, last_name, first_name, DATE_FORMAT(creation_date,'%d/%m/%Y') FROM Tickets T, Users U WHERE ticket_id = ? AND T.user_login = U.login");
+                $stmt2 = $mysqli->prepare("SELECT emergency, room, title, last_name, first_name, DATE_FORMAT(creation_date,'%Y/%m/%d') FROM Tickets T, Users U WHERE ticket_id = ? AND T.user_login = U.login");
                 $stmt2->bind_param("s", $ticket_id);
                 $stmt2->execute();
                 $stmt2->bind_result($emergency, $room, $title, $nom, $prenom, $creation_date);
@@ -153,7 +153,7 @@
 
         $test_col = array();
         foreach ($ticket_ids as $ticket_id){
-            $stmt2 = $mysqli->prepare("SELECT emergency, room, title, DATE_FORMAT(creation_date,'%d/%m/%Y'), last_name, first_name, status FROM Tickets T, Users U WHERE ticket_id = ? AND U.login = T.user_login");
+            $stmt2 = $mysqli->prepare("SELECT emergency, room, title, DATE_FORMAT(creation_date,'%Y/%m/%d'), last_name, first_name, status FROM Tickets T, Users U WHERE ticket_id = ? AND U.login = T.user_login");
             $stmt2->bind_param("s", $ticket_id);
             $stmt2->execute();
             $stmt2->bind_result($emergency, $room, $title, $creation_date, $nom, $prenom, $status);
@@ -251,7 +251,7 @@
     $status = array('fr' => $status_fr, 'en' => $status_en);
 
     foreach ($test_col as $row) {
-        echo '<tr>';
+        echo '<tr id="fond_hover">';
         for ($i = 0; $i < count($row); $i++) {
             if ($i == 0) {
                 echo '<td class="ticket_case_'.htmlentities($row[$i]).'">'.htmlentities($row[$i]).'</td>';
@@ -265,6 +265,9 @@
             }
             else if (($i == 4 && $role == 'user') || ($i == 8 && $role == 'web_admin')) {
                 echo '<td>'.$status[$lang][$row[$i]].'</td>';
+            }
+            else if(($i == 5 && $role == 'tech') || ($i == 3 && $role == 'user') || ($i == 3 && $role == 'web_admin')){
+                echo '<td>' .htmlentities(afficherDifferenceDate($row[$i])). '</td>';
             }
             else {
                 echo '<td>' . htmlentities($row[$i]) . '</td>';

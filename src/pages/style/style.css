@@ -24,6 +24,21 @@ nav {
     background-color: rgb(200, 250, 220);
 }
 
+#titre_tab{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#hr_index{
+    align-items: center;
+    width: 90%;
+}
+
+#fond_hover:hover{
+    background-color: rgb(200, 250, 220, 0.5);
+}
+
 #nav1 > a, #nav2 > a, footer > a, footer > div > a {
     padding: 10px;
     color: black;
@@ -34,6 +49,7 @@ nav {
 #nav1 > a:visited, #nav2 > a:visited, footer > a:visited, footer > div > a:visited {
     color: black;
 }
+
 header > nav > div > a:hover, footer > a:hover, footer > div > a:hover {
     background-color: rgb(150, 205, 250);
     border-radius: 20px;
