@@ -9,7 +9,7 @@
 \usepackage{listings}
 \usepackage{xcolor}
 \title{SAÉ 3.01 Rapport de cryptographie}
-\author{Jules CHIRON, Matis RODIER, Thomas GODINEAU / \textit{INF2 FI A}}
+\author{Jules CHIRON, Matis RODIER, Thomas GODINEAU | INF2 FI A}
 \date{4 janvier 2024}
 
 \usepackage[T1]{fontenc}
@@ -26,11 +26,11 @@
 
 Le but de cette SAÉ est de réaliser une \textbf{application web} de ticketing en PHP.\@
 Chaque utilisateur de cette plateforme peut créer un compte et se connecter.
-Afin de sécuriser les mots de passe des utilisateurs, nous chiffrons les mots de passe avec l'algorithme \textbf{RC4}.
+Afin de sécuriser les mots de passe des utilisateurs, nous les chiffrons avec l'algorithme \textbf{RC4}.
 \bigskip
 
 La \textbf{première partie} de ce rapport contient le code PHP commenté des modules de chiffrement et de déchiffrement.
-La \textbf{deuxième partie} contient une recherche docummentaire sur les fonctions de hachage cryptographique,
+La \textbf{deuxième partie} contient une recherche documentaire sur les fonctions de hachage cryptographique,
 l'algorithme MD5 et les applications de ces algorithmes en cryptographie.
 
 \section{Algorithme RC4}
@@ -182,24 +182,25 @@ function decypher($c, $k){
 Une fonction de hachage cryptographique est une fonction qui associe à un message d'entrée
 (chaîne de caractères, entier …) une valeur bien précise appelée “empreinte”.
 
-\subsection*{Propriétés}
+\subsection*{Propriétés}\label{hash_properties}
+
 Une fonction de hachage doit disposer de certaines propriétés afin d'être suffisamment sûre et efficace.
 Premièrement, la taille des empreintes doit être \textbf{indépendante de la longueur} du message.
 Deuxièmement, une fonction de hachage doit renvoyer \textbf{une seule et unique empreinte} pour chaque message possible.
 
 À l'inverse, elle doit renvoyer \textbf{deux empreintes différentes} pour deux messages différents.
 Si ce n'est pas le cas, il y a alors des \textbf{collisions} et l'algorithme n'est plus sûr
-car deux messages différents peuvent être utilisés alors qu'un seule est le bon (s'iols ont la même empreinte).
+car deux messages différents peuvent être utilisés alors qu'un seule est le bon (s'ils ont la même empreinte).
 Si ces messages ne diffèrent même que très peu, les empreintes des deux messages doivent être \textbf{très différentes}
  afin de ne pas pouvoir s'approcher de plus en plus du message en essayant de décrypter une empreinte.
 Enfin, il ne doit \textbf{pas être possible de retrouver un message} à partir de son empreinte (du moins sans la clé).
 
 \subsection{Chiffrement MD5}
 
-\subsubsection*{Présentation}
+\subsubsection*{Présentation}\label{md5_presentation}
 
 La \textbf{fonction de hachage MD5} est une fonction de hachage cryptographique.
-MD5 est l'acronyme de Message Digest 5 (équivalent d'\textit{empreinte} en français).
+MD5 est l'acronyme de Message Digest 5 (équivalent d'\textit{empreinte} en français et \textit{5} car il succède au \textbf{MD4}).
 Cette fonction a été inventée par \textbf{Ronald Rivest} (un des inventeurs du \textit{RSA}) en 1991,
 c'est l'amélioration de l'algorithme \textbf{MD4}.
 Cependant, de graves failles de sécurité ont été découvertes en 1996,
@@ -236,10 +237,10 @@ On définit également un tableau de 64 cases contenant des valeurs qui seront u
 \]
 On choisit 4 valeurs arbitraires de 32 bits (L, M, N et O) et on définit les 4 fonctions suivantes:
 \begin{itemize}
-    \item $F(X, Y, Z) = (X \wedge Y) \vee (\neg X \wedge Z)$
-    \item $G(X, Y, Z) = (X \wedge Z) \vee (Y \wedge \neg Z)$
+    \item $F(X, Y, Z) = (X \wedge Y) \vee (\bar X \wedge Z)$
+    \item $G(X, Y, Z) = (X \wedge Z) \vee (Y \wedge \bar Z)$
     \item $H(X, Y, Z) = X \oplus Y \oplus Z$
-    \item $I(X, Y, Z) = Y \oplus (X \vee \neg Z)$
+    \item $I(X, Y, Z) = Y \oplus (X \vee \bar Z)$
 \end{itemize}
 \bigskip
 En francais cela donne:
@@ -277,5 +278,23 @@ Enfin, on concatène L, M, N et O pour obtenir \textbf{l'empreinte finale du mes
 \end{figure}
 
 \subsection{Utilisation dans la cryptographie}
+
+Les \textbf{fonctions de hachage} telles que \textbf{MD5} trouvent un intérêt dans la cryptographie.
+Effectivement, ces fonctions transforme un \textbf{message} (chaîne de caractères, entier \ldots) en une \textbf{empreinte}
+(chaîne de caractères représentant une suite hexadécimale) dont la taille ne dépend pas de la taille du message.
+
+\noindent De plus, on peut observer que si on modifie un caractère du message, l'empreinte finale change complètement.
+On ne peut donc pas déchiffrer un message à partir de son empreinte (\textit{à tatillon}).
+
+\noindent Enfin, (\textit{pour l'algorithme MD5}) il existe théoriquement \textbf{plus de $\mathbf{3\times 10^{38}}$}
+empreintes différentes pouvant être possiblement générées
+($2^{128} = 3,402823669 \times 10^{38}$).
+Il est donc très peu probable de trouver deux messages différents ayant la même empreinte
+(\textit{outre les collisions découvertes en 2004 (cf~\ref{md5_presentation})}).
+
+\bigskip
+Ainsi, des fonctions telles que \textbf{MD5} ou encore \textbf{SHA-256} vérifient les différentes propriétés
+que nous avons énoncées dans la partie~\ref{hash_properties}. C'est pourquoi de telles fonctions sont utilisées
+dans la cryptographie.
 
 \end{document}
