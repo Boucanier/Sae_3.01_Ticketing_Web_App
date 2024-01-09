@@ -1,5 +1,7 @@
 <?php
-    $keyFile = fopen("../../security/key.txt", "r") or die ("Impossible d'ouvrir le fichier key.txt");
+    const KEY_PATH = "../../security/key.txt";
+
+    $keyFile = fopen(KEY_PATH, "r") or die ("Impossible d'ouvrir en lecture le fichier key.txt");
     $key = fgets($keyFile);
     $key = substr($key,0,strlen($key)-1);
     fclose($keyFile);
@@ -109,5 +111,37 @@
         }
     
         return implode('', $m);
+    }
+
+
+    function change_key($old_key, $new_key, $key){
+        if ($old_key != $key){
+            echo "Clé incorrecte";
+        }
+        else {
+            $keyFile = fopen(KEY_PATH, "w") or die ("Impossible d'ouvrir en écriture le fichier key.txt");
+            fwrite($keyFile, $new_key);
+            fclose($keyFile);
+
+            echo "Clé modifiée";
+            
+            $mysqli = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB);
+            $stmt = $mysqli->prepare("SELECT login, password FROM Users");
+            $stmt->execute();
+            $stmt->bind_result($login, $password);
+            $stmt->store_result();
+
+            while ($stmt->fetch()){
+                $password = decypher($password, $old_key);
+                $password = cypher($password, $new_key);
+
+                echo "<br>".$login." - ".$password;
+
+                $stmt2 = $mysqli->prepare("UPDATE Users SET password = ? WHERE login = ?");
+                $stmt2->bind_param("ss", $password, $login);
+                $stmt2->execute();
+                $stmt2->close();
+            }
+        }
     }
 ?>

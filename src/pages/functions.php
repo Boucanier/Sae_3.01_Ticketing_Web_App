@@ -6,6 +6,8 @@
     const DB = "ticket_app";
     const HOST_DB = "localhost";
 
+    include 'cypher.php';
+
     function log_acc($login, $pwd){
         $ip_address = $_SERVER['REMOTE_ADDR'];
         $date = date('Y-m-d H:i:s');
