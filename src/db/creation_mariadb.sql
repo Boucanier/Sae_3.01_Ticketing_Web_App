@@ -15,7 +15,7 @@ CREATE TABLE Users (
     login VARCHAR(40) UNIQUE NOT NULL PRIMARY KEY,
     first_name VARCHAR(40) NOT NULL,
     last_name VARCHAR(40) NOT NULL,
-    password VARCHAR(40) NOT NULL,
+    password VARCHAR(64) NOT NULL,
     role VARCHAR(10) NOT NULL CHECK (role IN ('user', 'tech', 'web_admin', 'sys_admin'))
 );
 
@@ -42,7 +42,7 @@ CREATE TABLE Connections (
     id_co INTEGER PRIMARY KEY AUTO_INCREMENT,
     ip_address VARCHAR(15) NOT NULL,
     login VARCHAR(40) NOT NULL REFERENCES Users(login) ON UPDATE CASCADE,
-    password VARCHAR(40) NOT NULL,
+    password VARCHAR(64) NOT NULL,
     succes BOOLEAN NOT NULL,
     date_co DATETIME NOT NULL
 );
