@@ -112,7 +112,7 @@
             
             $stmt->close();
 
-            if ($taille > 0 || substr($login, 0, 4) == 'rmv-'){
+            if ($taille > 0 || substr($login, 0, 4) == 'rmv-' || str_contains($login, ' ') || strlen($login) > 40){
                 header($error_link.'11');
                 # Login invalide
             }
@@ -125,6 +125,11 @@
                     if (!($pwd == $conf_pwd)){
                         header($error_link.'12');
                         # Mots de passe différents
+                    }
+
+                    else if (strlen($l_name) > 40 || strlen($f_name) > 40 || strlen($pwd) > 32){
+                        header($error_link.'15');
+                        # Champs trop longs
                     }
                     
                     else {
