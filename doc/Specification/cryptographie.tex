@@ -176,6 +176,48 @@ function decypher($c, $k){
 }
 \end{lstlisting}
 
+\subsection*{Changement de clé}
+
+Afin de pouvoir changer la clé de chiffrement des mots de passe de notre base de données,
+nous avons créé une fonction permettant de changer la clé de chiffrement
+et de changer les mots de passe chiffrés avec l'ancienne clé.
+
+\begin{lstlisting}[name=Fonction de changement de clé]
+function change_key($old_key, $new_key, $key){
+    if ($old_key != $key){
+        echo "Clé incorrecte";
+    }
+    else {
+        $keyFile = fopen(KEY_PATH, "w")
+        fwrite($keyFile, $new_key);
+        fclose($keyFile);
+
+        echo "Clé modifiée";
+        
+        $mysqli = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB);
+        $req = "SELECT login, password FROM Users";
+        $stmt = $mysqli->prepare($req);
+        $stmt->execute();
+        $stmt->bind_result($login, $password);
+        $stmt->store_result();
+
+        while ($stmt->fetch()){
+            $password = decypher($password, $old_key);
+            $password = cypher($password, $new_key);
+
+            echo "<br>".$login." - ".$password;
+
+            $req = "UPDATE Users SET password = ? WHERE login = ?";
+            $stmt2 = $mysqli->prepare($req);
+            $stmt2->bind_param("ss", $password, $login);
+            $stmt2->execute();
+            $stmt2->close();
+        }
+    }
+}
+\end{lstlisting}
+
+
 \section{Travail de recherche}
 
 \subsection{Fonction de hachage cryptographique}
