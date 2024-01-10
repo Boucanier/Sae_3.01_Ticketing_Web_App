@@ -32,7 +32,7 @@ Cette table contient les colonnes suivantes :
 - **login** : champ de type *varchar(40)* qui est un identifiant unique à chaque l'utilisateur, c'est la ***clé primaire*** de la table
 - **first_name** : prénom de l'utilisateur de type *varchar(40)*
 - **last_name** : nom de l'utilisateur de type *varchar(40)*
-- **password** : mot de passe de l'utilisateur de type *varchar(64)*, nous autorisons des mots de passe de 32 caractères maximum et la fonction **RC4** que nous utilisons renvoie le nombre de caractères du mot de passe multiplié par 2, d'où la taille de 64
+- **password** : mot de passe de l'utilisateur de type *varchar(64)*, nous autorisons des mots de passe de 32 caractères maximum et la fonction **RC4** que nous utilisons renvoie une empreinte dont la taille est de $2 \times$ la taille du mdp $+$ la taille du mdp (sur 2 octets) ($2 \times 32 + 4 = 68$)
 - **role** : rôle de l'utilisateur de type *varchar(10)* qui peut prendre les valeurs suivantes :
 
   - *user* : utilisateur

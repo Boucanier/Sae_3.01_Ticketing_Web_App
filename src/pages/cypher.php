@@ -78,6 +78,17 @@
             // On récupère le code ASCII de chaque caractère du message
             $m[$i] = intval(ord($m[$i]));
         }
+
+        $size = strval(intval(count($m) / 10)).strval(count($m) % 10);
+
+        while (count($m) < 32){
+            // On ajoute à la fin du message le caractère NULL
+            $m[] = intval(ord('0'));
+        }
+        
+        $m[] = intval(ord($size[0]));
+        $m[] = intval(ord($size[1]));
+
     
         $c = array();
         for ($i = 0; $i < count($m); $i++){
@@ -112,6 +123,10 @@
             // On effectue un XOR entre le message chiffré et la suite
             $m[] = chr($c[$i] ^ $s[$i]);
         }
+
+        $size = intval($m[count($m) - 2].$m[count($m) - 1]);
+
+        $m = array_slice($m, 0, $size);
     
         return implode('', $m);
     }
@@ -125,8 +140,6 @@
             $keyFile = fopen(KEY_PATH, "w") or die ("Impossible d'ouvrir en écriture le fichier key.txt");
             fwrite($keyFile, $new_key);
             fclose($keyFile);
-
-            echo "Clé modifiée";
 
             $tables = array('Users', 'Connections');
             
@@ -145,8 +158,8 @@
 
                     echo "<br>".$login." - ".$password;
 
-                    $stmt2 = $mysqli->prepare("UPDATE Users SET password = ? WHERE login = ?");
-                    $stmt2->bind_param("ss", $password, $login);
+                    $stmt2 = $mysqli->prepare("UPDATE ? SET password = ? WHERE login = ?");
+                    $stmt2->bind_param("sss", $tables[$i], $password, $login);
                     $stmt2->execute();
                     $stmt2->close();
                 }

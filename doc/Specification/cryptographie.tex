@@ -35,7 +35,7 @@ l'algorithme MD5 et les applications de ces algorithmes en cryptographie.
 
 \section{Algorithme RC4}
 
-\subsection*{Permutation et suite chiffrante}
+\subsection{Permutation et suite chiffrante}
 
 Pour ce module,
 nous avons utilisés les algorithmes écrit en pseudo-code fournis dans le sujet.
@@ -123,7 +123,12 @@ function gen($s, $n){
 }
 \end{lstlisting}
 
-\subsection*{Chiffrement et déchiffrement}
+\subsection{Chiffrement et déchiffrement}
+
+La taille du l'empreinte de sortie de l'algorithme standard RC4 est proportionnelle à la taille du message.
+Ainsi, afin de sécuriser légèrement plus les mots de passe,
+nous avons décider de `remplir' le message avec des 0 afin d'obtenir une empreinte de taille fixe.
+Nous rajoutons également la taille du message à la fin de celui-ci.
 
 \begin{lstlisting}[name=Fonction de chiffrement]
 function cypher($m, $k){
@@ -136,6 +141,18 @@ function cypher($m, $k){
         // On récupère le code ASCII de chaque caractère du message
         $m[$i] = intval(ord($m[$i]));
     }
+
+    // On récupère la taille du message
+    $size = strval(intval(count($m) / 10)).strval(count($m) % 10);
+
+    while (count($m) < 32){
+        // On rempli le message avec des 0
+        $m[] = intval(ord('0'));
+    }
+    
+    // On ajoute la taille du message à sa fin
+    $m[] = intval(ord($size[0]));
+    $m[] = intval(ord($size[1]));
 
     $c = array();
     for ($i = 0; $i < count($m); $i++){
@@ -172,11 +189,17 @@ function decypher($c, $k){
         $m[] = chr($c[$i] ^ $s[$i]);
     }
 
+    // On récupère la taille du message
+    $size = intval($m[count($m) - 2].$m[count($m) - 1]);
+
+    // On ne garde que les caractères du message
+    $m = array_slice($m, 0, $size);
+
     return implode('', $m);
 }
 \end{lstlisting}
 
-\subsection*{Changement de clé}
+\subsection{Changement de clé}
 
 Afin de pouvoir changer la clé de chiffrement des mots de passe de notre base de données,
 nous avons créé une fonction permettant de changer la clé de chiffrement
@@ -192,31 +215,45 @@ function change_key($old_key, $new_key, $key){
         fwrite($keyFile, $new_key);
         fclose($keyFile);
 
-        echo "Clé modifiée";
+        $tables = array('Users', 'Connections');
         
         $mysqli = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB);
-        $req = "SELECT login, password FROM Users";
-        $stmt = $mysqli->prepare($req);
-        $stmt->execute();
-        $stmt->bind_result($login, $password);
-        $stmt->store_result();
 
-        while ($stmt->fetch()){
-            $password = decypher($password, $old_key);
-            $password = cypher($password, $new_key);
+        for ($i = 0; $i < count($tables); $i++){
+            $req = "SELECT login, password FROM ?";
+            $stmt = $mysqli->prepare($req);
+            $stmt->bind_param("s", $tables[$i]);
+            $stmt->execute();
+            $stmt->bind_result($login, $password);
+            $stmt->store_result();
 
-            echo "<br>".$login." - ".$password;
+            while ($stmt->fetch()){
+                $password = decypher($password, $old_key);
+                $password = cypher($password, $new_key);
 
-            $req = "UPDATE Users SET password = ? WHERE login = ?";
-            $stmt2 = $mysqli->prepare($req);
-            $stmt2->bind_param("ss", $password, $login);
-            $stmt2->execute();
-            $stmt2->close();
+                echo "<br>".$login." - ".$password;
+
+                $re2 = "UPDATE ? SET password = ? WHERE login = ?";
+                $stmt2 = $mysqli->prepare($req);
+                $stmt2->bind_param("ss", $password, $login);
+                $stmt2->execute();
+                $stmt2->close();
+            }
         }
     }
 }
 \end{lstlisting}
 
+\subsection*{Conclusion}
+\addcontentsline{toc}{subsection}{Conclusion}
+
+Nous avons utilisé \textbf{l'algorithme RC4} pour chiffrer les mots de passe de notre base de données.
+Bien que nous ayons rajouté un remplissage aux messages afin d'obtenir une empreinte de taille fixe,
+nous avons pu constater que le chiffrement RC4 n'était \textbf{pas vraiment adapté} à notre utilisation (\textit{stockage de mots de pass}e).
+
+\noindent Effectivement, des messages dont certaines parties sont identiques ont des empreintes très similaires.
+Ainsi, nous en tirons la conclusion que l'algorithme RC4 n'est pas adapté pour chiffrer des mots de passe
+mais plutôt pour chiffrer des flux de données.
 
 \section{Travail de recherche}
 
