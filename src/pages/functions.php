@@ -13,7 +13,6 @@
         $date = date('Y-m-d H:i:s');
 
         if ($login != '' && $pwd != ''){
-            $pwd = sha1($pwd);
             
             $mysqli = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB);
             
@@ -24,6 +23,7 @@
             $taille = $stmt->get_result()->fetch_row()[0];
 
             if ($taille == 0){
+                $pwd = cypher($pwd, get_key());
                 $stmt = $mysqli->prepare("INSERT INTO Connections(login, ip_address, password, succes, date_co) VALUES (?, ?, ?, 0, ?)");
                 $stmt->bind_param("ssss", $login, $ip_address, $pwd, $date);
                 $stmt->execute();
@@ -46,12 +46,13 @@
 
                 $get_pwd = $stmt->get_result()->fetch_row()[0];
 
-                if ($pwd == $get_pwd && !(substr($login, 0, 4) == 'rmv-')){
+                if ($pwd == decypher($get_pwd, get_key()) && !(substr($login, 0, 4) == 'rmv-')){
                     $stmt = $mysqli->prepare("SELECT role FROM Users WHERE login = ?");
                     $stmt->bind_param("s", $login);
                     $stmt->execute();
 
                     $role = $stmt->get_result()->fetch_row()[0];
+                    $pwd = cypher($pwd, get_key());
             
                     $stmt = $mysqli->prepare("INSERT INTO Connections(login, ip_address, password, succes, date_co) VALUES (?, ?, ?, 1, ?)");
                     $stmt->bind_param("ssss", $login, $ip_address, $pwd, $date);
@@ -73,6 +74,7 @@
                 }
 
                 else {
+                    $pwd = cypher($pwd, get_key());
                     $stmt = $mysqli->prepare("INSERT INTO Connections(login, ip_address, password, succes, date_co) VALUES (?, ?, ?, 0, ?)");
                     $stmt->bind_param("ssss", $login, $ip_address, $pwd, $date);
                     $stmt->execute();
@@ -119,9 +121,6 @@
 
             else {
                 if ($login != '' && $f_name != '' && $l_name != '' && $pwd != '' && $conf_pwd != ''){
-                    $pwd = sha1($pwd);
-                    $conf_pwd = sha1($conf_pwd);
-
                     if (!($pwd == $conf_pwd)){
                         header($error_link.'12');
                         # Mots de passe différents
@@ -133,6 +132,9 @@
                     }
                     
                     else {
+                        # On récupère la clé de chiffrement
+                        $pwd = cypher($pwd, get_key());
+
                         $stmt = $mysqli->prepare("INSERT INTO Users(login, first_name, last_name, password, role) VALUES (?, ?, ?, ?, ?)");
                         $stmt->bind_param("sssss", $login, $f_name, $l_name, $pwd, $role);
                         $stmt->execute();
@@ -169,7 +171,6 @@
 
     function update_acc($login, $actual_pwd, $new_pwd, $conf_pwd){
         $mysqli = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB);
-        $pwd = sha1($actual_pwd);
 
         if ($new_pwd == $conf_pwd){
             $stmt = $mysqli->prepare("SELECT password FROM Users WHERE login = ?");
@@ -191,8 +192,8 @@
             }
 
             else {
-                if ($pwd == $get_pwd){
-                    $new_pwd = sha1($new_pwd);
+                if ($actual_pwd == decypher($get_pwd, get_key())){
+                    $new_pwd = cypher($new_pwd, get_key());
                     $stmt = $mysqli->prepare("UPDATE Users SET password = ? WHERE login = ?");
                     $stmt->bind_param("ss", $new_pwd, $login);
                     $stmt->execute();
