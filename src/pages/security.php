@@ -1,6 +1,14 @@
 <?php
     $tab = array('fr' => 'Sécurité', 'en' => 'Security');
-    include 'header.php';
+    
+    include "header.php";
+    
+    if (!isset($_SESSION['login'])){
+        header('Location: connection.php');
+    }
+    else if ($_SESSION['role'] != 'sys_admin'){
+        header('Location: index.php');
+    }
 
     $infoTop = array('fr' => 'Mise à jour de  la clé de chiffrement', 'en' => 'Cypher key update');
 
