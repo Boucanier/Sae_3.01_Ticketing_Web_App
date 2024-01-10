@@ -24,6 +24,11 @@
         else if ($old_key != $get_key){
             header('Location: security.php?error=2');
         }
+
+        else if (str_contains($new_key, ' ')){
+            header('Location: security.php?error=3');
+        }
+
         else {
             change_key($old_key, $new_key);
             header('Location: security.php?success=1');

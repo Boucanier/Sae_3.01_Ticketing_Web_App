@@ -5,7 +5,7 @@
         $keyFile = fopen(KEY_PATH, "r") or die ("Impossible d'ouvrir en lecture le fichier key.txt");
         $key = fgets($keyFile);
         fclose($keyFile);
-        return $key;
+        return trim($key);
     }
 
     function ksa($k){

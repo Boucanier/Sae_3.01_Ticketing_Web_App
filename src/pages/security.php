@@ -9,8 +9,8 @@
     $formValue = array('fr' => $formValue_fr, 'en' => $formValue_en);
 
     $success = array('fr' => 'La clé de chiffrement a bien été changé', 'en' => 'Cypher key has been updated');
-    $error_fr = array('Les deux clés ne correspondent pas', 'Clé incorrecte');
-    $error_en = array('Keys do not match', 'Incorrect key');
+    $error_fr = array('Les deux clés ne correspondent pas', 'Clé incorrecte', 'Clé invalide');
+    $error_en = array('Keys do not match', 'Incorrect key', 'Invalid key');
     $error = array('fr' => $error_fr, 'en' => $error_en);
 
     echo '<main><div id="part_top"><h2>'.$infoTop[$lang].'</h2></div>';
@@ -26,6 +26,9 @@
                 break;
             case 2:
                 echo '<div class="error"><p>'.$error[$lang][1].'</p></div>';
+                break;
+            case 3:
+                echo '<div class="error"><p>'.$error[$lang][2].'</p></div>';
                 break;
         }
     }
