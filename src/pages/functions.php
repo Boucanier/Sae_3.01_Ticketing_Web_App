@@ -14,75 +14,82 @@
 
         if ($login != '' && $pwd != ''){
             
-            $mysqli = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB);
-            
-            $stmt = $mysqli->prepare("SELECT COUNT(*) FROM Users WHERE login = ?");
-            $stmt->bind_param("s", $login);
-            $stmt->execute();
-
-            $taille = $stmt->get_result()->fetch_row()[0];
-
-            if ($taille == 0){
-                $pwd = cypher($pwd, get_key());
-                $stmt = $mysqli->prepare("INSERT INTO Connections(login, ip_address, password, succes, date_co) VALUES (?, ?, ?, 0, ?)");
-                $stmt->bind_param("ssss", $login, $ip_address, $pwd, $date);
-                $stmt->execute();
-
-                $mysqli->close();
+            if (strlen($login) > 40 || strlen($pwd) > 32){
                 header('Location: connection.php?error=21');
-                # Erreur d'identifiants
-
+                # Champs trop longs - identifiants invalides
             }
-
-            else if ($taille > 1){
-                header('Location: connection.php?error=22');
-                # Erreur de base de données
-            }
-
+            
             else {
-                $stmt = $mysqli->prepare("SELECT password FROM Users WHERE login = ?");
+                $mysqli = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB);
+                
+                $stmt = $mysqli->prepare("SELECT COUNT(*) FROM Users WHERE login = ?");
                 $stmt->bind_param("s", $login);
                 $stmt->execute();
 
-                $get_pwd = $stmt->get_result()->fetch_row()[0];
+                $taille = $stmt->get_result()->fetch_row()[0];
 
-                if ($pwd == decypher($get_pwd, get_key()) && !(substr($login, 0, 4) == 'rmv-')){
-                    $stmt = $mysqli->prepare("SELECT role FROM Users WHERE login = ?");
-                    $stmt->bind_param("s", $login);
-                    $stmt->execute();
-
-                    $role = $stmt->get_result()->fetch_row()[0];
-                    $pwd = cypher($pwd, get_key());
-            
-                    $stmt = $mysqli->prepare("INSERT INTO Connections(login, ip_address, password, succes, date_co) VALUES (?, ?, ?, 1, ?)");
-                    $stmt->bind_param("ssss", $login, $ip_address, $pwd, $date);
-                    $stmt->execute();
-
-                    $mysqli->close();
-                    
-                    $_SESSION['login'] = $login;
-                    $_SESSION['role'] = $role;
-                    $_SESSION['date'] = $date;
-
-                    if ($role == 'sys_admin'){
-                        header('Location: index.php');
-                    }
-
-                    else {
-                        header('Location: dashboard.php');
-                    }
-                }
-
-                else {
+                if ($taille == 0){
                     $pwd = cypher($pwd, get_key());
                     $stmt = $mysqli->prepare("INSERT INTO Connections(login, ip_address, password, succes, date_co) VALUES (?, ?, ?, 0, ?)");
                     $stmt->bind_param("ssss", $login, $ip_address, $pwd, $date);
                     $stmt->execute();
-                    
-                    $mysqli->close();
 
+                    $mysqli->close();
                     header('Location: connection.php?error=21');
                     # Erreur d'identifiants
+
+                }
+
+                else if ($taille > 1){
+                    header('Location: connection.php?error=22');
+                    # Erreur de base de données
+                }
+
+                else {
+                    $stmt = $mysqli->prepare("SELECT password FROM Users WHERE login = ?");
+                    $stmt->bind_param("s", $login);
+                    $stmt->execute();
+
+                    $get_pwd = $stmt->get_result()->fetch_row()[0];
+
+                    if ($pwd == decypher($get_pwd, get_key()) && !(substr($login, 0, 4) == 'rmv-')){
+                        $stmt = $mysqli->prepare("SELECT role FROM Users WHERE login = ?");
+                        $stmt->bind_param("s", $login);
+                        $stmt->execute();
+
+                        $role = $stmt->get_result()->fetch_row()[0];
+                        $pwd = cypher($pwd, get_key());
+                
+                        $stmt = $mysqli->prepare("INSERT INTO Connections(login, ip_address, password, succes, date_co) VALUES (?, ?, ?, 1, ?)");
+                        $stmt->bind_param("ssss", $login, $ip_address, $pwd, $date);
+                        $stmt->execute();
+
+                        $mysqli->close();
+                        
+                        $_SESSION['login'] = $login;
+                        $_SESSION['role'] = $role;
+                        $_SESSION['date'] = $date;
+
+                        if ($role == 'sys_admin'){
+                            header('Location: index.php');
+                        }
+
+                        else {
+                            header('Location: dashboard.php');
+                        }
+                    }
+
+                    else {
+                        $pwd = cypher($pwd, get_key());
+                        $stmt = $mysqli->prepare("INSERT INTO Connections(login, ip_address, password, succes, date_co) VALUES (?, ?, ?, 0, ?)");
+                        $stmt->bind_param("ssss", $login, $ip_address, $pwd, $date);
+                        $stmt->execute();
+                        
+                        $mysqli->close();
+
+                        header('Location: connection.php?error=21');
+                        # Erreur d'identifiants
+                    }
                 }
             }
         }
