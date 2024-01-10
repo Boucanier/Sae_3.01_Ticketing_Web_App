@@ -38,10 +38,8 @@ l'algorithme MD5 et les applications de ces algorithmes en cryptographie.
 \subsection{Permutation et suite chiffrante}
 
 Pour ce module,
-nous avons utilisés les algorithmes écrit en pseudo-code fournis dans le sujet.
-Il y a juste un changement dans la fonction \textit{gen} (ligne 11).
-
-\noindent Dans le cadre de ce projet, nous utilisons une clé générée aléatoirement de 40 caractères.
+nous avons utilisé les algorithmes écrits en pseudo-code fournis dans le sujet.
+Nous avons juste changé la condition d'une boucle dans la fonction \textit{gen} (ligne 11).
 
 \lstset{
     language        = php,
@@ -127,7 +125,7 @@ function gen($s, $n){
 
 La taille du l'empreinte de sortie de l'algorithme standard RC4 est proportionnelle à la taille du message.
 Ainsi, afin de sécuriser légèrement plus les mots de passe,
-nous avons décider de `remplir' le message avec des 0 afin d'obtenir une empreinte de taille fixe.
+nous avons décidé de `remplir' le message avec des 0 afin d'obtenir une empreinte de taille fixe.
 Nous rajoutons également la taille du message à la fin de celui-ci.
 
 \begin{lstlisting}[name=Fonction de chiffrement]
@@ -253,7 +251,7 @@ function change_key($old_key, $new_key){
 
 Nous avons utilisé \textbf{l'algorithme RC4} pour chiffrer les mots de passe de notre base de données.
 Bien que nous ayons rajouté un remplissage aux messages afin d'obtenir une empreinte de taille fixe,
-nous avons pu constater que le chiffrement RC4 n'était \textbf{pas vraiment adapté} à notre utilisation (\textit{stockage de mots de pass}e).
+nous avons pu constater que le chiffrement RC4 n'était \textbf{pas vraiment adapté} à notre utilisation (\textit{stockage de mots de passe}).
 
 \noindent Effectivement, des messages dont certaines parties sont identiques ont des empreintes très similaires.
 Ainsi, nous en tirons la conclusion que l'algorithme RC4 n'est pas adapté pour chiffrer des mots de passe
@@ -275,7 +273,7 @@ Deuxièmement, une fonction de hachage doit renvoyer \textbf{une seule et unique
 
 À l'inverse, elle doit renvoyer \textbf{deux empreintes différentes} pour deux messages différents.
 Si ce n'est pas le cas, il y a alors des \textbf{collisions} et l'algorithme n'est plus sûr
-car deux messages différents peuvent être utilisés alors qu'un seule est le bon (s'ils ont la même empreinte).
+car deux messages différents peuvent être utilisés alors qu'un seul est le bon (s'ils ont la même empreinte).
 Si ces messages ne diffèrent même que très peu, les empreintes des deux messages doivent être \textbf{très différentes}
  afin de ne pas pouvoir s'approcher de plus en plus du message en essayant de décrypter une empreinte.
 Enfin, il ne doit \textbf{pas être possible de retrouver un message} à partir de son empreinte (du moins sans la clé).
@@ -328,7 +326,7 @@ On choisit 4 valeurs arbitraires de 32 bits (L, M, N et O) et on définit les 4 
     \item $I(X, Y, Z) = Y \oplus (X \vee \bar Z)$
 \end{itemize}
 \bigskip
-En francais cela donne:
+En français cela donne:
 \begin{itemize}
     \item $F(X, Y, Z) = (X \ ET \ Y) \ OU \ (NON \ X \ ET \ Z)$
     \item $G(X, Y, Z) = (X \ ET \ Z) \ OU \ (Y \ ET \ NON \ Z)$
@@ -345,7 +343,7 @@ Puis, \textbf{chaque bloc} est traité de la manière suivante:
         \item On applique la fonction (\textit{F, G, H ou I}) aux variables B, C et D
         \item On ajoute le résultat de la fonction à la variable A
         \item On ajoute aussi à A la valeur du message à l'indice \textit{i} (le tour de boucle) et $K[i]$
-        \item On effecture une rotation de A de $S[i]$ bits vers la gauche
+        \item On effectue une rotation de A de $S[i]$ bits vers la gauche
         \item On ajoute B à A
         \item On applique modulo $2^{32}$ à A
         \item Enfin, On effectue une rotation des variables A, B, C et D ($A \rightarrow B, \ B \rightarrow C, \ C \rightarrow D, \ D \rightarrow A$)
