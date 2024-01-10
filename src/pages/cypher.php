@@ -1,10 +1,13 @@
 <?php
     const KEY_PATH = "../../security/key.txt";
 
-    $keyFile = fopen(KEY_PATH, "r") or die ("Impossible d'ouvrir en lecture le fichier key.txt");
-    $key = fgets($keyFile);
-    $key = substr($key,0,strlen($key)-1);
-    fclose($keyFile);
+    function get_key(){
+        $keyFile = fopen(KEY_PATH, "r") or die ("Impossible d'ouvrir en lecture le fichier key.txt");
+        $key = fgets($keyFile);
+        $key = substr($key,0,strlen($key)-1);
+        fclose($keyFile);
+        return $key;
+    }
 
     function ksa($k){
         // On crée un tableau de caractères à partir de la clé
