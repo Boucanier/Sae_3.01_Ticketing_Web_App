@@ -169,7 +169,6 @@
                 ?>
             </table>
             </div>
-        <iframe src="http://localhost:3000" style="border: none; width: 900px; height: 500px; margin-top: 30px;"></iframe>
         </div>
     </main>
 </body>

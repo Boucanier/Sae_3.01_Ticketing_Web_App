@@ -43,8 +43,8 @@
         $type = $_SESSION['role'];
     }
 
-    $headerValue_fr = array('Accueil', 'Se connecter', 'Tableau de bord', 'Profil', 'Déconnexion', 'Gestion des techniciens', 'Journaux d\'activités', 'Tickets disponibles');
-    $headerValue_en = array('Home', 'Sign in', 'Dashboard', 'Profile', 'Sign out', 'Technicians management', 'Activity logs', 'Available tickets');
+    $headerValue_fr = array('Accueil', 'Se connecter', 'Tableau de bord', 'Profil', 'Déconnexion', 'Gestion des techniciens', 'Journaux d\'activités', 'Tickets disponibles', 'Statistiques');
+    $headerValue_en = array('Home', 'Sign in', 'Dashboard', 'Profile', 'Sign out', 'Technicians management', 'Activity logs', 'Available tickets', 'Statistics');
     $headerValue = array('fr' => $headerValue_fr, 'en' => $headerValue_en);
 
     if ($type == 'visit'){
@@ -108,6 +108,7 @@
                     <div id="nav1">
                         <a href="index.php">'.$headerValue[$lang][0].'</a>
                         <a href="activity_log.php">'.$headerValue[$lang][6].'</a>
+                        <a href="stats.php">'.$headerValue[$lang][8].'</a>
                     </div>
                     <div id="nav2">
                         <a href="profile.php">'.$headerValue[$lang][3].'</a>

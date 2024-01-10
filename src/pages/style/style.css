@@ -663,6 +663,18 @@ th {
     margin-top: 60px;
 }
 
+.stat_part{
+    text-align: center; /* Centre le contenu horizontalement */
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#stat_frame{
+    width: 80%;
+    height: 600px;
+    border: 2px solid black;
+}
+
 #scrollable-table {
     max-height: 300px;
     overflow-y: auto;
