@@ -131,38 +131,39 @@
     }
 
 
-    function change_key($old_key, $new_key, $key){
-        if ($old_key != $key){
-            echo "Clé incorrecte";
-        }
-        else {
-            $keyFile = fopen(KEY_PATH, "w") or die ("Impossible d'ouvrir en écriture le fichier key.txt");
-            fwrite($keyFile, $new_key);
-            fclose($keyFile);
+    function change_key($old_key, $new_key){
+        $keyFile = fopen(KEY_PATH, "w") or die ("Impossible d'ouvrir en écriture le fichier key.txt");
+        fwrite($keyFile, $new_key);
+        fclose($keyFile);
 
-            $tables = array('Users', 'Connections');
-            
-            $mysqli = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB) or die ("Impossible de se connecter à la base de données");
+        $tables = array('Users', 'Connections');
+        
+        $mysqli = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB) or die ("Impossible de se connecter à la base de données");
 
-            for ($i = 0; $i < count($tables); $i++){
-                $stmt = $mysqli->prepare("SELECT login, password FROM ?");
-                $stmt->bind_param("s", $tables[$i]);
-                $stmt->execute();
-                $stmt->bind_result($login, $password);
-                $stmt->store_result();
+        for ($i = 0; $i < count($tables); $i++){
+            $stmt = $mysqli->prepare("SELECT login, password FROM ".$tables[$i]." WHERE login NOT LIKE 'rmv-%'");
+            $stmt->execute();
+            $stmt->bind_result($login, $password);
+            $saveLogin = array();
+            $savePassword = array();
 
-                while ($stmt->fetch()){
-                    $password = decypher($password, $old_key);
-                    $password = cypher($password, $new_key);
+            while ($stmt->fetch()){
+                $password = decypher($password, $old_key);
+                $password = cypher($password, $new_key);
+                $savePassword[] = $password;
+                $saveLogin[] = $login;
+            }
+            $stmt->close();
 
-                    echo "<br>".$login." - ".$password;
-
-                    $stmt2 = $mysqli->prepare("UPDATE ? SET password = ? WHERE login = ?");
-                    $stmt2->bind_param("sss", $tables[$i], $password, $login);
-                    $stmt2->execute();
-                    $stmt2->close();
-                }
+            for ($j = 0; $j < count($saveLogin); $j++){
+                echo $saveLogin[$j].' : '.$savePassword[$j].'<br>';
+                $stmt2 = $mysqli->prepare("UPDATE ".$tables[$i]." SET password = ? WHERE login = ?");
+                $stmt2->bind_param("ss", $savePassword[$j], $saveLogin[$j]);
+                $stmt2->execute();
+                $stmt2->close();
             }
         }
+
+        $mysqli->close();
     }
 ?>

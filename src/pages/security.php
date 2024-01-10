@@ -13,15 +13,15 @@
     echo '<form action="key.php" method="post" id="key_form">
         <div id="key_change">
             <div id="key_label">
-                <label for="libelle">'.$formValue[$lang][0].'&nbsp;:&nbsp;</label>
+                <label for="old_key">'.$formValue[$lang][0].'&nbsp;:&nbsp;</label>
                 <br>
-                <label for="salle">'.$formValue[$lang][1].'&nbsp;:&nbsp;</label>
+                <label for="new_key">'.$formValue[$lang][1].'&nbsp;:&nbsp;</label>
                 <br>
                 <label for="conf_key">'.$formValue[$lang][2].'&nbsp;:&nbsp;</label>
                 <br>
             </div>
             <div id="key_input">
-                <input type="text" id="libelle" name="libelle"/>
+                <input type="text" id="old_key" name="old_key"/>
                 <br>
                 <input type="text" name="new_key" id="new_key"/>
                 <br>
