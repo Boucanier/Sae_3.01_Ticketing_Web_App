@@ -84,7 +84,7 @@ Cette table contient les colonnes suivantes :
 
 - **id_co** : champ de type *integer* qui est un identifiant unique à chaque tentative, c'est la ***clé primaire*** de la table
 - **ip_adress** : adresse ip de l'utilisateur *varchar(15)*
-- **login** : login de l'utilisateur de type *varchar(40)*, c'est une ***clé étrangère*** de la table qui fait référence à la colonne *login* de la table **Users**
+- **login** : login de l'utilisateur de type *varchar(40)*, stocke les login des utilisateurs qui ont tenté de se connecter
 - **password** : mot de passe tenté de type *varchar(64)*
 - **succes** : *booleen* qui indique si l'utilisateur à pu se connecter
 - **date_co** : de type *datetime*, indique la date et l'heure de la tentative de connexion
@@ -125,7 +125,7 @@ Connections :
 
 - $id_co
 - ip_adress
-- #login
+- login
 - password
 - succes
 - date_co
@@ -147,9 +147,6 @@ Voici les différentes contraintes que nous avons définies pour les différente
 - **Interventions** :
   - **ticket_id** : référence la colonne **ticket_id** de la table **Tickets** -> une intervention sur un ticket ne peut être créée que si son état est *open*
   - **tech_login** : référence la colonne **login** de la table **Users** -> l'utilisateur qui prend en charge un ticket doit être du type *tech*
-
-- **Connections** :
-  - **login** référence la colonne **login** de la table **Users** -> la tentative de connexion doit référencer un utilisateur.
 
 ## Déclencheurs (triggers)
 

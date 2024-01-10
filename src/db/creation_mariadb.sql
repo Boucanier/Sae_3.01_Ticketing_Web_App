@@ -41,7 +41,7 @@ CREATE TABLE Interventions (
 CREATE TABLE Connections (
     id_co INTEGER PRIMARY KEY AUTO_INCREMENT,
     ip_address VARCHAR(15) NOT NULL,
-    login VARCHAR(40) NOT NULL REFERENCES Users(login) ON UPDATE CASCADE,
+    login VARCHAR(40) NOT NULL,
     password VARCHAR(68) NOT NULL,
     succes BOOLEAN NOT NULL,
     date_co DATETIME NOT NULL
