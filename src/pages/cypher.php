@@ -4,7 +4,6 @@
     function get_key(){
         $keyFile = fopen(KEY_PATH, "r") or die ("Impossible d'ouvrir en lecture le fichier key.txt");
         $key = fgets($keyFile);
-        $key = substr($key,0,strlen($key)-1);
         fclose($keyFile);
         return $key;
     }
