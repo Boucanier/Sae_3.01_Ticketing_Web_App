@@ -127,23 +127,29 @@
             fclose($keyFile);
 
             echo "Clé modifiée";
+
+            $tables = array('Users', 'Connections');
             
-            $mysqli = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB);
-            $stmt = $mysqli->prepare("SELECT login, password FROM Users");
-            $stmt->execute();
-            $stmt->bind_result($login, $password);
-            $stmt->store_result();
+            $mysqli = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB) or die ("Impossible de se connecter à la base de données");
 
-            while ($stmt->fetch()){
-                $password = decypher($password, $old_key);
-                $password = cypher($password, $new_key);
+            for ($i = 0; $i < count($tables); $i++){
+                $stmt = $mysqli->prepare("SELECT login, password FROM ?");
+                $stmt->bind_param("s", $tables[$i]);
+                $stmt->execute();
+                $stmt->bind_result($login, $password);
+                $stmt->store_result();
 
-                echo "<br>".$login." - ".$password;
+                while ($stmt->fetch()){
+                    $password = decypher($password, $old_key);
+                    $password = cypher($password, $new_key);
 
-                $stmt2 = $mysqli->prepare("UPDATE Users SET password = ? WHERE login = ?");
-                $stmt2->bind_param("ss", $password, $login);
-                $stmt2->execute();
-                $stmt2->close();
+                    echo "<br>".$login." - ".$password;
+
+                    $stmt2 = $mysqli->prepare("UPDATE Users SET password = ? WHERE login = ?");
+                    $stmt2->bind_param("ss", $password, $login);
+                    $stmt2->execute();
+                    $stmt2->close();
+                }
             }
         }
     }
