@@ -9,7 +9,6 @@
         header('Location: index.php');
     }
 ?>
-<body>
     <main>
         <div class="activity_log_parts">
             <?php
@@ -171,8 +170,8 @@
             </div>
         </div>
     </main>
-</body>
 <?php
     include "footer.php";
 ?>
+</body>
 </html>
