@@ -2,13 +2,33 @@
     $tab = array('fr' => 'Sécurité', 'en' => 'Security');
     include 'header.php';
 
-    $infoTop = array('fr' => 'Mise à jour la clé de chiffrement', 'en' => 'Cypher key update');
+    $infoTop = array('fr' => 'Mise à jour de  la clé de chiffrement', 'en' => 'Cypher key update');
 
     $formValue_fr = array('Clé actuelle', 'Nouvelle clé', 'Confirmer la nouvelle clé', 'Effacer', 'Mettre&nbsp;à&nbsp;jour');
     $formValue_en = array('Current key', 'New key', 'Confirm new key', 'Reset', 'Update');
     $formValue = array('fr' => $formValue_fr, 'en' => $formValue_en);
 
+    $success = array('fr' => 'La clé de chiffrement a bien été changé', 'en' => 'Cypher key has been updated');
+    $error_fr = array('Les deux clés ne correspondent pas', 'Clé incorrecte');
+    $error_en = array('Keys do not match', 'Incorrect key');
+    $error = array('fr' => $error_fr, 'en' => $error_en);
+
     echo '<main><div id="part_top"><h2>'.$infoTop[$lang].'</h2></div>';
+
+    if (isset($_GET['success']) && $_GET['success'] == 1){
+        echo '<div class="success"><p>'.$success[$lang].'</p></div>';
+    }
+
+    else if (isset($_GET['error'])){
+        switch ($_GET['error']){
+            case 1:
+                echo '<div class="error"><p>'.$error[$lang][0].'</p></div>';
+                break;
+            case 2:
+                echo '<div class="error"><p>'.$error[$lang][1].'</p></div>';
+                break;
+        }
+    }
 
     echo '<form action="key.php" method="post" id="key_form">
         <div id="key_change">
