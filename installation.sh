@@ -49,6 +49,14 @@ mkdir $saePath
 cp -r src $saePath/src
 
 
+# On crée le fichier contenant la clé de chiffrement des mdp
+	# On rend ce fichier accessible en écriture au serveur apache
+	# Il faut impérativement changer la clé de chiffrement par défaut depuis un compte d'admin système
+mkdir -p $saePath/security
+echo "default" > $saePath/security/key.txt
+sudo chmod 666 $saePath/security/key.txt
+
+
 # Création de la base de données
 sudo mysql -e "source $saePath/src/db/creation_mariadb.sql" 
 

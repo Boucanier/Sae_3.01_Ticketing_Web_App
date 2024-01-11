@@ -1,3 +1,12 @@
 .idea/
 .vscode/
 Thumbs.db
+*.aux
+*.fls
+*.log
+*.fdb_latexmk
+*.toc
+*.synctex.gz
+*.synctex(busy)
+*.pyg
+security/
