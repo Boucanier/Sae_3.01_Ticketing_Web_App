@@ -166,7 +166,7 @@
                     }
                     echo '</tbody>';
                 ?>
-                </table>
+            </table>
             </div>
         </div>
     </main>
