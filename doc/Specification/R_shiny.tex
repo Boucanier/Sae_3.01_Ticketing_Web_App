@@ -1,0 +1,106 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{enumitem}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{listings}
+\usepackage{xcolor}
+\title{SAÉ 3.01 Rapport de probas/stats}
+\author{Jules CHIRON, Matis RODIER, Thomas GODINEAU | INF2 FI A}
+\date{12 janvier 2024}
+
+\NewDocumentCommand{\codeword}{v}{%
+\texttt{\textcolor{blue}{#1}}%
+}
+
+\usepackage[T1]{fontenc}
+\begin{document}
+\maketitle
+
+\begin{figure}[h]
+    \includegraphics[width=0.6\textwidth]{../annexes/logo_uvsq}
+\end{figure}
+
+\tableofcontents{}
+
+\section*{Introduction}
+\addcontentsline{toc}{section}{Introduction}
+
+\section{Présentation}
+
+\section{Notre page}
+
+Notre page shiny contient 3 principaux éléments:
+\begin{itemize}
+    \item L'interface utilisateur (\textit{ui})
+    \item La partie serveur (fonction) (\textit{server})
+    \item ShinyApp
+\end{itemize}
+
+\subsection*{Ordre du programme}
+
+Nous commençons notre programme en chargeant la bibliothèque \textbf{shiny} avec la commande \codeword{library(shiny)}.
+Puis on règle le port par défaut de l'application pour qu'elle soit toujours accessible sur le même port (\textit{port 3000})
+avec la commande \codeword{options(shiny.port = 3000)}.
+\bigskip
+
+Nous ajoutons ensuite les éléments \textit{ui} et \textit{server}.
+Puis on lance l'application avec la commande \codeword{shinyApp(ui, server)}.
+
+\subsection*{Interface utilisateur}
+
+L'élément \textbf{ui} correspond à une \textbf{fluidPage} qui contient l'interface utilisateur de notre application.
+Notre \textbf{fluidPage} contient 3 éléments:
+\begin{itemize}
+    \item Un \textbf{titlePanel}: titre
+    \item Deux \textbf{sidebarLayout}: choix des \textit{paramètres} et représentation des \textit{résultats}
+\end{itemize}
+L'élément \textbf{titlePanel} permet de mettre un titre à notre page, on l'a appelée ici `Statistiques'.
+Nos \textbf{sidebarLayout} contiennent chacun un \textbf{sidebarPanel} et un \textbf{mainPanel}.
+\bigskip
+
+Le premier \textbf{sidebarLayout} sert à choisir les paramètres pour la première statistique (le pourcentage de tickets selon leur status).
+Son \textbf{sidebarPanel} contient un \textbf{titlePanel} permettant de donner un titre au panel, ainsi que deux \textbf{inputs} (\textit{élément de choix}):
+\begin{itemize}
+    \item Le premier input est un \textit{selectInput} qui permet de choisir entre les différents status de ticket
+    (open (\textit{ouvert}), in\_progress (\textit{en cours}), closed (\textit{fermé}))
+    \item Le deuxième input est un \textit{numericInput} qui permet de choisir le nombre de tickets à étudier (entre 1 et 40)
+\end{itemize}
+Son \textbf{mainPanel} contient deux outputs (\textit{sorties}):
+\begin{itemize}
+    \item Le premier est de type \textit{verbatimTextOutput} > la sortie sera sous forme de texte
+    \item Le deuxième est de type \textit{plotOutput} > la sortie sera un graphique
+\end{itemize}
+\bigskip
+
+Le deuxième \textbf{sidebarLayout} sert aux choix des paramètres de la seconde statistique (le pourcentage de connexions réussies).
+Son \textbf{sidebarPanel} contient un \textbf{titlePanel} et un seul input:
+\begin{itemize}
+    \item L'input est un \textit{numericInput}  qui permet de choisir le nombre de connexions que l'on souhaite étudier.
+\end{itemize}
+Son \textbf{mainPanel} contient deux \textit{outputs}:
+\begin{itemize}
+    \item Les deux sont de type \textit{plotOutput} > il y aura donc deux graphiques.
+\end{itemize}
+
+\subsection*{Partie serveur}
+
+Notre fonction \textbf{server} commence par récupérer les données des fichiers csv (\textit{tickets.csv} et \textit{connexions.csv}).
+Nous avons créés ces deux fichiers en s'inspirant des données présentes dans la base de données de l'application.
+
+\noindent Nous paramétrons ensuite les représentations de nos différents \textit{outputs}.
+Ils sont listés dans l'ordre décrit dans la partie précédente:
+
+\begin{itemize}
+    \item Le premier est une zone de texte contenant le pourcentage de ticket selon le type choisis dans le \textit{selectInput}.
+    \item Le deuxième est un graphique en camembert dont chaque partie représente le pourcentage de chaque status de ticket.
+    \item Le troisième est encore un graphique en camembert dont chaque partie représente le pourcentage de connexions réussies ou échouées.
+    \item Le quatrième graphique est la représentation du pourcentage de connexions réussies sous forme de points.
+\end{itemize}
+
+\section{Hébergement}
+
+\end{document}

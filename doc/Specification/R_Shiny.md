@@ -47,9 +47,9 @@ Nous avons décidé de représenter 2 statistiques :
 
 ### Le code
 
-Notre page commence par charger la library
+Notre page commence par charger la bibliothèque **shiny**.
 
-On a également la commande **options(shiny.port = 3000)** qui nous permet de toujours lancer la page sur le port 3000.
+Nous avons également la commande **options(shiny.port = 3000)** qui nous permet de toujours lancer la page sur le port 3000.
 
 ### UI
 
