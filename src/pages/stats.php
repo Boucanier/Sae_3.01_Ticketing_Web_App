@@ -15,7 +15,7 @@
     echo '<main><div id="part_top"><h2>'.$infoTop[$lang].'</h2></div>';
     echo '<div class="stat_part">';
 
-    echo '<iframe src="http://localhost:3000" id="stat_frame"></iframe>
+    echo '<iframe src="https://boucanier.shinyapps.io/proba/" id="stat_frame"></iframe>
         </div>
     </main>';
 
