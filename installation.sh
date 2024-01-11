@@ -1,5 +1,17 @@
 #! /bin/bash
 
+
+# On récupère l'option passée en paramètre
+option=$1
+
+# On vérifie que l'option est bien -shiny ou vide
+if [[ $option != "-shiny" ]] && [[ -n $option ]]
+then
+	echo -e 'Option `'$option'` invalide\n\n Abandon'
+	exit 1
+fi
+
+
 # On vérifie que le script est bien exécuté en root (Effective User ID = 0)
 if [[ $EUID != 0 ]]
 then
@@ -21,24 +33,33 @@ sudo apt purge -y php*
 
 # Installation des dépendances nécessaires
 sudo apt update
-sudo apt install -y apache2 php8.2 php8.2-mysql mariadb-common mariadb-server r-base
+sudo apt install -y apache2 php8.2 php8.2-mysql mariadb-common mariadb-server
 
 
-# Installation du module shiny
-	# On vérifie si le package existe
-if [[ $(Rscript -e 'installed.packages()') != *"shiny"* ]]
+# Installation du serveur shiny (si l'option -shiny est passée en paramètre)
+if [[ $option == "-shiny" ]]
 then
-	echo -e '\nInstallation du module shiny'
-	sudo Rscript -e "install.packages('shiny')"
-else
-	# Sinon on l'installe
-	echo -e '\nModule shiny déjà installé'
-fi
+	# Installation de R
+	sudo apt install -y r-base
 
-# On lance le serveur shiny
-cd src/R
-sudo Rscript app.R &
-cd ../..
+
+	# Installation du module shiny
+		# On vérifie si le package existe
+	if [[ $(Rscript -e 'installed.packages()') != *"shiny"* ]]
+	then
+		echo -e '\nInstallation du module shiny'
+		sudo Rscript -e "install.packages('shiny')"
+	else
+		# Sinon on l'installe
+		echo -e '\nModule shiny déjà installé'
+	fi
+
+
+	# On lance le serveur shiny
+	cd src/stats
+	sudo Rscript app.R &
+	cd ../..
+fi
 
 
 # Déplacement des fichiers
