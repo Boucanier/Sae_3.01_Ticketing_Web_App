@@ -44,7 +44,7 @@ Les fichiers de code source sont disponibles dans le dossier [src](src/) :
 
 ## Installation
 
-Pour installer le serveur web sur une machine Linux (basé sur Debian), il faut exécuter la script [installation.sh](installation.sh) depuis la racine du projet avec la commande *`bash installation.sh`*. Ce script va installer les paquets nécessaires au fonctionnement du serveur web, puis va configurer le serveur web et la base de données (cf [rapport de configuration du RPi](doc/Specification/config_rpi.md)).
+Pour installer le serveur web sur une machine Linux (basé sur Debian), il faut exécuter la script [installation.sh](installation.sh) depuis la racine du projet avec la commande *`sudo bash installation.sh`*. Ce script va installer les paquets nécessaires au fonctionnement du serveur web, puis va configurer le serveur web, le serveur shiny et la base de données (cf [rapport de configuration du RPi](doc/Specification/config_rpi.md)).
 
 ## Crédits
 

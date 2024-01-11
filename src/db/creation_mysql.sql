@@ -14,7 +14,7 @@ CREATE TABLE Users (
     login VARCHAR(40) UNIQUE NOT NULL PRIMARY KEY,
     first_name VARCHAR(40) NOT NULL,
     last_name VARCHAR(40) NOT NULL,
-    password VARCHAR(40) NOT NULL,
+    password VARCHAR(68) NOT NULL,
     role VARCHAR(10) NOT NULL CHECK (role IN ('user', 'tech', 'web_admin', 'sys_admin'))
 );
 
@@ -40,8 +40,8 @@ CREATE TABLE Interventions (
 CREATE TABLE Connections (
     id_co INTEGER PRIMARY KEY AUTO_INCREMENT,
     ip_address VARCHAR(15) NOT NULL,
-    login VARCHAR(40) NOT NULL REFERENCES Users(login),
-    password VARCHAR(40) NOT NULL,
+    login VARCHAR(40),
+    password VARCHAR(68) NOT NULL,
     succes BOOLEAN NOT NULL,
     date_co DATETIME NOT NULL
 );
@@ -139,12 +139,12 @@ delimiter ;
 
 
 -- Ajout des utilisateurs demandés dans le sujet
-INSERT INTO Users VALUES ('admin', 'sys', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'sys_admin');
-INSERT INTO Users VALUES ('tec1', 'tec1', 'tec1', '73f7a2f5b9bd744ab54cd1d307975868fc93a844', 'tech');
-INSERT INTO Users VALUES ('tec2', 'tec2', 'tec2', '73f7a2f5b9bd744ab54cd1d307975868fc93a844', 'tech');
+INSERT INTO Users VALUES ('admin', 'sys', 'admin', '6bd8bb4221632a0f5fea05e0bdee4fcbe935e7ec2b5a1fb209336f2d589710e3d593', 'sys_admin');
+INSERT INTO Users VALUES ('tec1', 'tec1', 'tec1', '7ed9b51b7f632a0f5fea05e0bdee4fcbe935e7ec2b5a1fb209336f2d589710e3d595', 'tech');
+INSERT INTO Users VALUES ('tec2', 'tec2', 'tec2', '7ed9b51b7f632a0f5fea05e0bdee4fcbe935e7ec2b5a1fb209336f2d589710e3d595', 'tech');
 
 -- Ajout d'un admin web
-INSERT INTO Users VALUES ('webadmin', 'web', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'web_admin');
+INSERT INTO Users VALUES ('webadmin', 'web', 'admin', '6bd8bb4221632a0f5fea05e0bdee4fcbe935e7ec2b5a1fb209336f2d589710e3d593', 'web_admin');
 
 DROP USER IF EXISTS 'ticket_app'@'localhost';
 CREATE USER 'ticket_app'@'localhost' IDENTIFIED BY 'ticket_s301';

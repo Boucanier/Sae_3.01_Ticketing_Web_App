@@ -48,7 +48,7 @@
                                 $row[2] = $stmt->get_result()->fetch_row()[0];
                                 $stmt->close();
 
-                                echo '<tr>';
+                                echo '<tr id="fond_hover">';
                                 for ($i = 0; $i < count($row); $i++) {
                                     echo '<td>' . htmlentities($row[$i]) . '</td>';
                                 }
@@ -65,8 +65,8 @@
                 $infoTop = array('fr' => 'Ajouter un technicien', 'en' => 'Add a technician');
                 echo '<h2>'.$infoTop[$lang].'</h2>';
 
-                $error_fr = array('Login invalide', 'Les mots de passe ne correspondent pas', 'Formulaire incomplet');
-                $error_en = array('Invalid login', 'Passwords do not match', 'Incomplete form');
+                $error_fr = array('Login invalide', 'Les mots de passe ne correspondent pas', 'Formulaire incomplet', 'Champ(s) trop long(s)');
+                $error_en = array('Invalid login', 'Passwords do not match', 'Incomplete form', 'Field(s) too long');
                 $error = array('fr' => $error_fr, 'en' => $error_en);
                 if (isset($_GET['error'])){
                     switch ($_GET['error']){
@@ -78,6 +78,9 @@
                             break;
                         case 13:
                             echo '<div class="error"><p>'.$error[$lang][2].'</p></div>';
+                            break;
+                        case 15:
+                            echo '<div class="error"><p>'.$error[$lang][3].'</p></div>';
                             break;
                     }
                 }

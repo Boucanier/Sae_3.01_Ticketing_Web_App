@@ -6,79 +6,90 @@
     const DB = "ticket_app";
     const HOST_DB = "localhost";
 
+    include 'cypher.php';
+
     function log_acc($login, $pwd){
         $ip_address = $_SERVER['REMOTE_ADDR'];
         $date = date('Y-m-d H:i:s');
 
         if ($login != '' && $pwd != ''){
-            $pwd = sha1($pwd);
             
-            $mysqli = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB);
-            
-            $stmt = $mysqli->prepare("SELECT COUNT(*) FROM Users WHERE login = ?");
-            $stmt->bind_param("s", $login);
-            $stmt->execute();
-
-            $taille = $stmt->get_result()->fetch_row()[0];
-
-            if ($taille == 0){
-                $stmt = $mysqli->prepare("INSERT INTO Connections(login, ip_address, password, succes, date_co) VALUES (?, ?, ?, 0, ?)");
-                $stmt->bind_param("ssss", $login, $ip_address, $pwd, $date);
-                $stmt->execute();
-
-                $mysqli->close();
+            if (strlen($login) > 40 || strlen($pwd) > 32){
                 header('Location: connection.php?error=21');
-                # Erreur d'identifiants
-
+                # Champs trop longs - identifiants invalides
             }
-
-            else if ($taille > 1){
-                header('Location: connection.php?error=22');
-                # Erreur de base de données
-            }
-
+            
             else {
-                $stmt = $mysqli->prepare("SELECT password FROM Users WHERE login = ?");
+                $mysqli = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB);
+                
+                $stmt = $mysqli->prepare("SELECT COUNT(*) FROM Users WHERE login = ?");
                 $stmt->bind_param("s", $login);
                 $stmt->execute();
 
-                $get_pwd = $stmt->get_result()->fetch_row()[0];
+                $taille = $stmt->get_result()->fetch_row()[0];
 
-                if ($pwd == $get_pwd && !(substr($login, 0, 4) == 'rmv-')){
-                    $stmt = $mysqli->prepare("SELECT role FROM Users WHERE login = ?");
-                    $stmt->bind_param("s", $login);
-                    $stmt->execute();
-
-                    $role = $stmt->get_result()->fetch_row()[0];
-            
-                    $stmt = $mysqli->prepare("INSERT INTO Connections(login, ip_address, password, succes, date_co) VALUES (?, ?, ?, 1, ?)");
-                    $stmt->bind_param("ssss", $login, $ip_address, $pwd, $date);
-                    $stmt->execute();
-
-                    $mysqli->close();
-                    
-                    $_SESSION['login'] = $login;
-                    $_SESSION['role'] = $role;
-                    $_SESSION['date'] = $date;
-
-                    if ($role == 'sys_admin'){
-                        header('Location: index.php');
-                    }
-
-                    else {
-                        header('Location: dashboard.php');
-                    }
-                }
-
-                else {
+                if ($taille == 0){
+                    $pwd = cypher($pwd, get_key());
                     $stmt = $mysqli->prepare("INSERT INTO Connections(login, ip_address, password, succes, date_co) VALUES (?, ?, ?, 0, ?)");
                     $stmt->bind_param("ssss", $login, $ip_address, $pwd, $date);
                     $stmt->execute();
-                    
-                    $mysqli->close();
 
+                    $mysqli->close();
                     header('Location: connection.php?error=21');
                     # Erreur d'identifiants
+
+                }
+
+                else if ($taille > 1){
+                    header('Location: connection.php?error=22');
+                    # Erreur de base de données
+                }
+
+                else {
+                    $stmt = $mysqli->prepare("SELECT password FROM Users WHERE login = ?");
+                    $stmt->bind_param("s", $login);
+                    $stmt->execute();
+
+                    $get_pwd = $stmt->get_result()->fetch_row()[0];
+
+                    if ($pwd == decypher($get_pwd, get_key()) && !(substr($login, 0, 4) == 'rmv-')){
+                        $stmt = $mysqli->prepare("SELECT role FROM Users WHERE login = ?");
+                        $stmt->bind_param("s", $login);
+                        $stmt->execute();
+
+                        $role = $stmt->get_result()->fetch_row()[0];
+                        $pwd = cypher($pwd, get_key());
+                
+                        $stmt = $mysqli->prepare("INSERT INTO Connections(login, ip_address, password, succes, date_co) VALUES (?, ?, ?, 1, ?)");
+                        $stmt->bind_param("ssss", $login, $ip_address, $pwd, $date);
+                        $stmt->execute();
+
+                        $mysqli->close();
+                        
+                        $_SESSION['login'] = $login;
+                        $_SESSION['role'] = $role;
+                        $_SESSION['date'] = $date;
+
+                        if ($role == 'sys_admin'){
+                            header('Location: index.php');
+                        }
+
+                        else {
+                            header('Location: dashboard.php');
+                        }
+                    }
+
+                    else {
+                        $pwd = cypher($pwd, get_key());
+                        $stmt = $mysqli->prepare("INSERT INTO Connections(login, ip_address, password, succes, date_co) VALUES (?, ?, ?, 0, ?)");
+                        $stmt->bind_param("ssss", $login, $ip_address, $pwd, $date);
+                        $stmt->execute();
+                        
+                        $mysqli->close();
+
+                        header('Location: connection.php?error=21');
+                        # Erreur d'identifiants
+                    }
                 }
             }
         }
@@ -110,22 +121,27 @@
             
             $stmt->close();
 
-            if ($taille > 0 || substr($login, 0, 4) == 'rmv-'){
+            if ($taille > 0 || substr($login, 0, 4) == 'rmv-' || str_contains($login, ' ') || strlen($login) > 40){
                 header($error_link.'11');
                 # Login invalide
             }
 
             else {
                 if ($login != '' && $f_name != '' && $l_name != '' && $pwd != '' && $conf_pwd != ''){
-                    $pwd = sha1($pwd);
-                    $conf_pwd = sha1($conf_pwd);
-
                     if (!($pwd == $conf_pwd)){
                         header($error_link.'12');
                         # Mots de passe différents
                     }
+
+                    else if (strlen($l_name) > 40 || strlen($f_name) > 40 || strlen($pwd) > 32){
+                        header($error_link.'15');
+                        # Champs trop longs
+                    }
                     
                     else {
+                        # On récupère la clé de chiffrement
+                        $pwd = cypher($pwd, get_key());
+
                         $stmt = $mysqli->prepare("INSERT INTO Users(login, first_name, last_name, password, role) VALUES (?, ?, ?, ?, ?)");
                         $stmt->bind_param("sssss", $login, $f_name, $l_name, $pwd, $role);
                         $stmt->execute();
@@ -162,7 +178,6 @@
 
     function update_acc($login, $actual_pwd, $new_pwd, $conf_pwd){
         $mysqli = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB);
-        $pwd = sha1($actual_pwd);
 
         if ($new_pwd == $conf_pwd){
             $stmt = $mysqli->prepare("SELECT password FROM Users WHERE login = ?");
@@ -184,8 +199,8 @@
             }
 
             else {
-                if ($pwd == $get_pwd){
-                    $new_pwd = sha1($new_pwd);
+                if ($actual_pwd == decypher($get_pwd, get_key())){
+                    $new_pwd = cypher($new_pwd, get_key());
                     $stmt = $mysqli->prepare("UPDATE Users SET password = ? WHERE login = ?");
                     $stmt->bind_param("ss", $new_pwd, $login);
                     $stmt->execute();
@@ -374,6 +389,54 @@
                 // redirection : tout c'est bien passé pour close
                 header("Location: dashboard.php?success=1");
             }
+        }
+    }
+
+    function afficherDifferenceDate($date) {
+
+        if (isset($_SESSION['lang']) && $_SESSION['lang'] == 'en'){
+            $lang = $_SESSION['lang'];
+        }
+        else {
+            $lang = 'fr';
+        }
+
+        $dateTimestamp = strtotime($date);
+
+        $difference = time() - $dateTimestamp;
+
+        $jours = floor($difference / (60 * 60 * 24));
+        $semaines = floor($jours / 7);
+        $mois = floor($jours / 30);
+        $annees = floor($jours / 365);
+
+        $tab_fr = array('Il y a', 'année', 'années', 'mois', 'mois', 'semaine', 'semaines', 'jour', 'jours');
+        $tab_en = array('', 'year ago', 'years ago', 'month ago', 'months ago', 'week ago', 'weeks ago', 'day ago', 'days ago');
+        $tab_lang = array('fr' => $tab_fr, 'en' => $tab_en);
+
+        if ($annees >= 1){
+            if ($annees == 1)
+                return $tab_lang[$lang][0]." ".$annees." ".$tab_lang[$lang][1];
+            else
+                return $tab_lang[$lang][0]." ".$annees." ".$tab_lang[$lang][2];
+        }
+        else if ($mois >= 1){
+            if ($mois == 1)
+                return $tab_lang[$lang][0]." ".$mois." ".$tab_lang[$lang][3];
+            else
+                return $tab_lang[$lang][0]." ".$mois." ".$tab_lang[$lang][4];
+        }
+        else if($semaines >= 1){
+            if ($semaines == 1)
+                return $tab_lang[$lang][0]." ".$semaines." ".$tab_lang[$lang][5];
+            else
+                return $tab_lang[$lang][0]." ".$semaines." ".$tab_lang[$lang][2];
+        }
+        else{
+            if ($jours == 1)
+                return $tab_lang[$lang][0]." ".$jours." ".$tab_lang[$lang][7];
+            else
+                return $tab_lang[$lang][0]." ".$jours." ".$tab_lang[$lang][8];
         }
     }
 ?>

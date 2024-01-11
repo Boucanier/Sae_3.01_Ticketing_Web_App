@@ -24,6 +24,21 @@ nav {
     background-color: rgb(200, 250, 220);
 }
 
+#titre_tab{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#hr_index{
+    align-items: center;
+    width: 90%;
+}
+
+#fond_hover:hover{
+    background-color: rgb(200, 250, 220, 0.5);
+}
+
 #nav1 > a, #nav2 > a, footer > a, footer > div > a {
     padding: 10px;
     color: black;
@@ -34,6 +49,7 @@ nav {
 #nav1 > a:visited, #nav2 > a:visited, footer > a:visited, footer > div > a:visited {
     color: black;
 }
+
 header > nav > div > a:hover, footer > a:hover, footer > div > a:hover {
     background-color: rgb(150, 205, 250);
     border-radius: 20px;
@@ -191,7 +207,7 @@ input {
     box-sizing: border-box;
 }
 
-.submit_buttons:hover{
+.submit_buttons:hover {
     background-color: #4CAF50;
 }
 
@@ -401,6 +417,17 @@ th {
     width: 20%;
 }
 
+#key_buttons > input {
+    height: 35px;
+    background-color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 20%;
+}
+
 #ticket_buttons > input {
     height: 35px;
     background-color: #fff;
@@ -420,8 +447,12 @@ th {
     background-color: rgb(226, 226, 226);
 }
 
-#ticket_buttons > #ticket_sub:hover {
+#ticket_buttons > #ticket_sub:hover, #key_sub:hover {
     background-color: #45a049;
+}
+
+#key_reset:hover{
+    background-color: rgb(226, 226, 226);
 }
 
 .ticket_case_1 {
@@ -519,13 +550,13 @@ th {
     transform: scaleX(1);
 }
 
-#ticket_label{
+#ticket_label, #key_label{
     display: flex;
     flex-direction: column;
     align-content: flex-end;
 }
 
-#ticket_label > label {
+#ticket_label > label, #key_label > label{
     width:100%;
     height: 35px;
     text-align: right;
@@ -535,12 +566,12 @@ th {
     padding: 0px;
 }
 
-#ticket_input{
+#ticket_input, #key_input {
     display: flex;
     flex-direction: column;
 }
 
-#ticket_input > input, #ticket_input > select{
+#ticket_input > input, #ticket_input > select, #key_input > input, #key_input > select {
     height: 35px;
     margin: 0px;
     font-size: 16px;
@@ -548,7 +579,7 @@ th {
     padding: 0px;
 }
 
-#ticket_creation {
+#ticket_creation, #key_change {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -562,7 +593,7 @@ th {
     resize:none;
 }
 
-#ticket_form {
+#ticket_form, #key_form {
     border: 1px solid black;
     display: flex;
     flex-direction: column;
@@ -573,7 +604,12 @@ th {
     padding-top: 1%;
 }
 
-#ticket_buttons {
+#key_form {
+    padding-top: 3%;
+    padding-bottom: 3%;
+}
+
+#ticket_buttons, #key_buttons {
     margin-top: 1%;
     margin-bottom: 1%;
     display: flex;

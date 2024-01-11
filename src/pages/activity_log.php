@@ -9,7 +9,6 @@
         header('Location: index.php');
     }
 ?>
-<body>
     <main>
         <div class="activity_log_parts">
             <?php
@@ -42,7 +41,7 @@
                     echo '<tbody>';
                     for ($i=0; $i<mysqli_num_rows($data); $i++) {
                         $row = mysqli_fetch_array($data);
-                        echo '<tr>';
+                        echo '<tr id="fond_hover">';
                         for ($j = 0; $j < 4; $j++) {
                             if ($j == 3)
                                 echo '<td class="ticket_case_'.htmlentities($row[$j]).'">'.htmlentities($row[$j]).'</td>';
@@ -87,7 +86,7 @@
                     echo '<tbody>';
                     for ($i=0; $i < mysqli_num_rows($data); $i++) {
                         $row = mysqli_fetch_array($data);
-                        echo '<tr>';
+                        echo '<tr id="fond_hover">';
                         for ($j = 0; $j < 4; $j++) {
                             if ($j == 1){
                                 $stmt = $mysqli->prepare("SELECT * 
@@ -144,7 +143,7 @@
                     echo '<tbody>';
                     for ($i=0; $i<mysqli_num_rows($data); $i++) {
                         $row = mysqli_fetch_array($data);
-                        echo '<tr>';
+                        echo '<tr id="fond_hover">';
                         for ($j = 0; $j < 6; $j++) {
                             if ($j == 0){
                                 echo '<td class="ticket_case_'.htmlentities($row[$j]).'">'.htmlentities($row[$j]).'</td>';
@@ -171,8 +170,8 @@
             </div>
         </div>
     </main>
-</body>
 <?php
     include "footer.php";
 ?>
+</body>
 </html>

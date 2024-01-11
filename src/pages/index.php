@@ -1,6 +1,5 @@
 <?php
     $tab = array('fr' => 'Accueil', 'en' => 'Home');
-    
     include "header.php";
 
     if (isset($_GET['success']) && $_GET['success'] == 1){
@@ -32,7 +31,7 @@
     $welcome = array('fr' => 'Bienvenue sur notre application de ticketing, voici une brève présentation de celle-ci.', 'en' => 'Welcome to our ticketing application, here\'s a brief presentation of it.');
     $videoText = array('fr' => 'Vous avez à droite une vidéo de présentation du site.', 'en' => 'You have a presentation video of the site on the right.');
     $video = array('fr' => 'Vidéo explicative', 'en' => 'Presentation video');
-    $ticketText = array('fr' => 'Vous avez ci-dessous les dix derniers tickets créés.', 'en' => 'You have below the last ten tickets created.');
+    $ticketText = array('fr' => 'Vous avez ci-dessous les dix derniers tickets créés', 'en' => 'You have below the last ten tickets created');
 
 echo '<main id="main_page">
     <div id="presentation">
@@ -47,79 +46,81 @@ echo '<main id="main_page">
             <p>
                 '.$videoText[$lang].'
             </p>
-            <p>
-                '.$ticketText[$lang].'
-            </p>
         </div>
         <div id="video_explicative">
             <h2>'.$video[$lang].'</h2>
             <iframe width="560" height="315" src="https://www.youtube.com/embed/xc1-O-0Q6Vs?si=qdxRL89HsM77pPEt" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
     </div>
+    <HR id="hr_index">
+    <div id="titre_tab">
+        <table id="derniers_tickets">';
+        echo "<h2>$ticketText[$lang]</h2>";
 
-    <table id="derniers_tickets">';
+        $header_en = array('Level', 'Room', 'Title', 'User', 'Date', 'Status');
+        $header_fr = array('Niveau', 'Salle', 'Problème', 'Demandeur', 'Date', 'État');
+        $header = array('fr' => $header_fr, 'en' => $header_en);
 
-    $header_en = array('Level', 'Room', 'Title', 'User', 'Date', 'Status');
-    $header_fr = array('Niveau', 'Salle', 'Problème', 'Demandeur', 'Date', 'État');
-    $header = array('fr' => $header_fr, 'en' => $header_en);
-
-    echo '<tr>';
-    foreach ($header[$lang] as $value){
-        echo '<th>'.$value.'</th>';
-    }
-    echo '</tr>';
-    $mysqli = new mysqli($host, $user, $passwd, $db);
-    $stmt = $mysqli->prepare("SELECT emergency, room, title, first_name, last_name, DATE_FORMAT(creation_date,'%d/%m/%Y'), status FROM Tickets, Users
-                                WHERE Users.login = Tickets.user_login
-                                AND Users.login NOT LIKE 'rmv-%'
-                                ORDER BY creation_date DESC, ticket_id DESC");
-    $stmt->execute();
-    $data = $stmt->get_result();
-    $long = mysqli_num_rows($data);
-
-    if ($long > 10){
-        $long = 10;
-    }
-
-    for ($i=0; $i < $long; $i++){
-        $row = mysqli_fetch_array($data);
         echo '<tr>';
-
-        $status_fr = array('open' => 'Ouvert', 'in_progress' => 'En cours', 'closed' => 'Résolu');
-        $status_en = array('open' => 'Open', 'in_progress' => 'In progress', 'closed' => 'Closed');
-        $status = array('fr' => $status_fr, 'en' => $status_en);
-
-        for ($j=0; $j < 7; $j++){
-            if ($j == 0){
-                echo '<td class="ticket_case_'.htmlentities($row[$j]).'">'.htmlentities($row[$j]).'</td>';
-            }
-            else if ($j == 1 && $row[$j] == 'other'){
-                switch ($lang) {
-                    case 'fr':
-                        echo '<td>Autre</td>';
-                        break;
-                    case 'en':
-                        echo '<td>Other</td>';
-                        break;
-                }
-            }
-            else if ($j == 3){
-                echo '<td>'.htmlentities($row[$j]).' '.htmlentities($row[$j+1]).'</td>';
-                $j++;
-            }
-            else if ($j == 6){
-                echo '<td>'.$status[$lang][$row[$j]].'</td>';
-            }
-            else
-                echo '<td>'.htmlentities($row[$j]).'</td>';
+        foreach ($header[$lang] as $value){
+            echo '<th>'.$value.'</th>';
         }
         echo '</tr>';
-    }
+        $mysqli = new mysqli($host, $user, $passwd, $db);
+        $stmt = $mysqli->prepare("SELECT emergency, room, title, first_name, last_name, DATE_FORMAT(creation_date,'%Y/%m/%d'), status FROM Tickets, Users
+                                    WHERE Users.login = Tickets.user_login
+                                    AND Users.login NOT LIKE 'rmv-%'
+                                    ORDER BY creation_date DESC, ticket_id DESC");
+        $stmt->execute();
+        $data = $stmt->get_result();
+        $long = mysqli_num_rows($data);
 
-    $stmt->close();
-    $mysqli->close();
-?>
-    </table>
+        if ($long > 10){
+            $long = 10;
+        }
+        for ($i=0; $i < $long; $i++){
+            $row = mysqli_fetch_array($data);
+            echo '<tr id="fond_hover">';
+
+            $status_fr = array('open' => 'Ouvert', 'in_progress' => 'En cours', 'closed' => 'Résolu');
+            $status_en = array('open' => 'Open', 'in_progress' => 'In progress', 'closed' => 'Closed');
+            $status = array('fr' => $status_fr, 'en' => $status_en);
+
+            for ($j=0; $j < 7; $j++){
+                if ($j == 0){
+                    echo '<td class="ticket_case_'.htmlentities($row[$j]).'">'.htmlentities($row[$j]).'</td>';
+                }
+                else if ($j == 1 && $row[$j] == 'other'){
+                    switch ($lang) {
+                        case 'fr':
+                            echo '<td>Autre</td>';
+                            break;
+                        case 'en':
+                            echo '<td>Other</td>';
+                            break;
+                    }
+                }
+                else if ($j == 3){
+                    echo '<td>'.htmlentities($row[$j]).' '.htmlentities($row[$j+1]).'</td>';
+                    $j++;
+                }
+                elseif ($j == 5){
+                    echo '<td>' .htmlentities(afficherDifferenceDate($row[$j])). '</td>';
+                }
+                else if ($j == 6){
+                    echo '<td>'.$status[$lang][$row[$j]].'</td>';
+                }
+                else
+                    echo '<td>'.htmlentities($row[$j]).'</td>';
+            }
+            echo '</tr>';
+        }
+
+        $stmt->close();
+        $mysqli->close();
+        ?>
+        </table>
+</div>
 
 </main>
 </body>

@@ -13,8 +13,8 @@ echo '<main>
                 $infoTop = array('fr' => '<h2>Créer un compte</h2>', 'en' => '<h2>Create an account</h2>');
                 echo '<h2>'.$infoTop[$lang].'</h2>';
 
-                $error_fr = array('Login invalide', 'Les mots de passe ne correspondent pas', 'Formulaire incomplet', 'Le captcha n\'est pas valide !', 'Erreurs d\'identifiants');
-                $error_en = array('Invalid login', 'Passwords do not match', 'Incomplete form', 'Invalid captcha !', 'Invalid credentials');
+                $error_fr = array('Login invalide', 'Les mots de passe ne correspondent pas', 'Formulaire incomplet', 'Le captcha n\'est pas valide !', 'Erreurs d\'identifiants', 'Champ(s) trop long(s)');
+                $error_en = array('Invalid login', 'Passwords do not match', 'Incomplete form', 'Invalid captcha !', 'Invalid credentials', 'Field(s) too long');
                 $error = array('fr' => $error_fr, 'en' => $error_en);
 
                 if (isset($_GET['error'])){
@@ -27,6 +27,9 @@ echo '<main>
                             break;
                         case 13:
                             echo '<div class="error"><p>'.$error[$lang][2].'</p></div>';
+                            break;
+                        case 15:
+                            echo '<div class="error"><p>'.$error[$lang][5].'</p></div>';
                             break;
                     }
                 }
