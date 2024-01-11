@@ -41,6 +41,10 @@
     $formValue_en = array('Title', 'Room', 'Estimated emergency level', 'Description', 'Reset', 'Submit', 'Other');
     $formValue = array('fr' => $formValue_fr, 'en' => $formValue_en);
 
+    $placeholder_fr = array('Max&nbsp;30&nbsp;caractères', 'Décrivez&nbsp;précisémment&nbsp;votre&nbsp;problème&nbsp;ici');
+    $placeholder_en = array('Max&nbsp;30&nbsp;characters', 'Describe&nbsp;your&nbsp;problem&nbsp;here');
+    $placeholder = array('fr' => $placeholder_fr, 'en' => $placeholder_en);
+
     echo '<form action="create_ticket.php" method="post" id="ticket_form">
         <div id="ticket_creation">
             <div id="ticket_label">
@@ -54,7 +58,7 @@
                 <br>
             </div>
             <div id="ticket_input">
-                <input type="text" id="libelle" name="libelle"/>
+                <input type="text" id="libelle" name="libelle" placeholder='.$placeholder[$lang][0].'>
                 <br>
                 <select id="salle" name="choix">';
                         $salles = array('I21', 'G21', 'G22', 'G23', 'G24', 'G25', 'G26');
@@ -66,7 +70,7 @@
                 <br>
                 <input type="number" id="niveauUrgence" name="niveauUrgence" max="4" min="1" value="1"/>
                 <br>
-                <textarea id="descriptionPrbl" name="descriptionPrbl" rows="5" cols="33"></textarea>
+                <textarea id="descriptionPrbl" name="descriptionPrbl" rows="5" cols="33" placeholder='.$placeholder[$lang][1].'></textarea>
                 <br>
             </div>
         </div>

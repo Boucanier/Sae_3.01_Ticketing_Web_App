@@ -32,14 +32,18 @@
     }
   
     // préparation de la liste de toutes les informations nécessaire a l'affichage des informations du ticket sélectionné
-    $stmt1 = $mysqli->prepare("SELECT description, title, room, first_name, last_name, emergency, status FROM Tickets, Users WHERE ticket_id = ? AND Users.login = Tickets.user_login");
+    $stmt1 = $mysqli->prepare("SELECT description, title, room, first_name, last_name, emergency, status, DATE_FORMAT(creation_date,'%d/%m/%Y') FROM Tickets, Users WHERE ticket_id = ? AND Users.login = Tickets.user_login");
     $stmt1->bind_param("i", $ticket_id);
     $stmt1->execute();
-    $stmt1->bind_result($description, $title, $room, $first_name, $last_name, $emergency, $status);
+    $stmt1->bind_result($description, $title, $room, $first_name, $last_name, $emergency, $status, $creation_date);
     $stmt1->fetch();
-    $data = array($description, $title, $room, $first_name, $last_name, "", "", $emergency, $status, "");
+    $data = array($description, $title, $room, $first_name, $last_name, "", "", $emergency, $status, "", $creation_date);
     $stmt1->close();
 
+    $infoTop = array('fr' => 'Ticket du ', 'en' => 'Ticket from ');
+
+    echo '<main><div id="part_top"><h2>'.$infoTop[$lang].$creation_date.'</h2></div>';
+    
     //on regarde si le ticket a déja un technicien d'attribué
     if ($data[8] == 'in_progress'){
         $stmt3 = $mysqli->prepare("SELECT tech_login, first_name, last_name FROM Interventions, Users WHERE ticket_id = ? AND login = tech_login");

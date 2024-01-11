@@ -37,33 +37,37 @@ echo '<main>
             $formValue_fr = array('Login', 'Nom', 'Prénom', 'Mot de passe', 'Confirmer le mot de passe', 'Effacer', 'Créer', 'Se&nbsp;connecter', 'J\'ai oublié mon mot de passe');
             $formValue_en = array('Login', 'Name', 'First name', 'Password', 'Confirm password', 'Reset', 'Create', 'Sign&nbsp;in', 'I forgot my password');
             $formValue = array('fr' => $formValue_fr, 'en' => $formValue_en);
+
+            $placeholder_fr = array('40&nbsp;caractères&nbsp;max', '40&nbsp;caractères&nbsp;max', '40&nbsp;caractères&nbsp;max', '32&nbsp;caractères&nbsp;max', 'Confirmez&nbsp;votre&nbsp;mot&nbsp;de&nbsp;passe');
+            $placeholder_en = array('Max&nbsp;40&nbsp;characters', 'Max&nbsp;40&nbsp;characters', 'Max&nbsp;40&nbsp;characters', 'Max&nbsp;32&nbsp;characters', 'Confirm&nbsp;your&nbsp;password');
+            $placeholder = array('fr' => $placeholder_fr, 'en' => $placeholder_en);
             
             echo '<form action="account.php" method="post">
                 <div class="user_info">
                     <div class="form_group">
                         <label for="login">'.$formValue[$lang][0].'&nbsp;:</label>
-                        <input type="text" id="login" name="login"/>
+                        <input type="text" id="login" name="login" placeholder='.$placeholder[$lang][0].'>
                     </div>
                     <br>
                     <div class="form_group">
                         <label for="name">'.$formValue[$lang][1].'&nbsp;:</label>
-                        <input type="text" id="name" name="name"/>
+                        <input type="text" id="name" name="name" placeholder='.$placeholder[$lang][1].'>
                     </div>
                     <br>
                     <div class="form_group">
                         <label for="f_name">'.$formValue[$lang][2].'&nbsp;:</label>
-                        <input type="text" id="f_name" name="f_name"/>
+                        <input type="text" id="f_name" name="f_name" placeholder='.$placeholder[$lang][2].'>
                     </div>
                     <br>
                     <div class="form_group">
                         <label for="pwd">'.$formValue[$lang][3].'&nbsp;:</label>
-                        <input type="password" id="pwd" name="pwd"/>
+                        <input type="password" id="pwd" name="pwd" placeholder='.$placeholder[$lang][3].'>
                     </div>
                     <input type="hidden" name="role" value="user"/>
                     <br>
                     <div class="form_group">
                         <label for="conf_pwd">'.$formValue[$lang][4].'&nbsp;:</label>
-                        <input type="password" id="conf_pwd" name="conf_pwd"/>
+                        <input type="password" id="conf_pwd" name="conf_pwd" placeholder='.$placeholder[$lang][4].'>
                     </div>
                     <br>
                 </div>';
