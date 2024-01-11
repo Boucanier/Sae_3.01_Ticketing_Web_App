@@ -11,7 +11,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: linear-gradient(#cffdff, rgb(200, 250, 220));
+    background: #a6a6c2;
 }
 
 body {
@@ -21,13 +21,16 @@ body {
 nav {
     display: flex;
     justify-content: space-between;
-    background-color: rgb(200, 250, 220);
+    background-color: #a6a6c2;
 }
 
 #titre_tab{
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: lavender;
+    border-radius: 40px;
+    margin: 20px 40px;
 }
 
 #hr_index{
@@ -92,7 +95,7 @@ footer {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    background-color: rgb(200, 250, 220);
+    background-color: #a6a6c2;
 }
 
 #languages {
@@ -135,8 +138,10 @@ main {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    margin-bottom: 60px;
     flex-wrap: wrap;
+    background-color: lavender;
+    border-radius: 40px;
+    margin: 20px 40px;
 }
 
 #texte_explicatif {
@@ -163,6 +168,7 @@ main {
 #derniers_tickets {
     align-self: center;
     margin: 30px;
+    background-color: white;
 }
 
 #profile_part1 {
