@@ -180,6 +180,9 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: lavender;
+    border-radius: 40px;
+    padding: 20px;
 }
 
 #information {
@@ -298,10 +301,16 @@ input {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: lavender;
+    border-radius: 40px;
+    border: lavender;
 }
 
 .log_in{
     width: 30%;
+    background-color: lavender;
+    border-radius: 40px;
+    padding: 20px;
 }
 
 .user_info{
@@ -309,6 +318,9 @@ input {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    background-color: lavender;
+    border-radius: 40px;
+    padding: 20px;
 }
 
 .form_group{
@@ -701,23 +713,36 @@ th {
 }
 
 .activity_log_parts{
-    text-align: center; /* Centre le contenu horizontalement */
+    text-align: center;
     margin-top: 60px;
+}
+
+#activity_log_page{
+    background-color: lavender;
+    border-radius: 40px;
+    width: 70%;
+    margin: 0 auto;
+    padding-bottom: 30px;
+    padding-top: 1px;
+    margin-top: 40px;
 }
 
 #scrollable-table {
     max-height: 300px;
     overflow-y: auto;
     border: 1px solid #ccc;
-    width: 50%;
     margin: auto;
     position: relative;
-    margin-top: 15px;
+    width: 80%;
 }
 
 #ticket_log_table {
     width: 100%;
     border-collapse: collapse;
+}
+
+table{
+    background-color: white;
 }
 
 .ticketPageError > p{
