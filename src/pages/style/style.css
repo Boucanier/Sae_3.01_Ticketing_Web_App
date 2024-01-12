@@ -537,10 +537,32 @@ th {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 50px;
+    background: lavender;
+    border-radius: 40px;
+    padding: 50px;
 }
 
 .contact_text{
     font-size: 3em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.contact_text > p > a {
+    font-weight: bold;
+}
+
+.contact_text > a > img{
+    width: 150px;
+    margin: 30px;
+    border-radius: 100px;
+}
+
+.contact_text > a > img:hover {
+    background-color: #a6a6c2;
+    transition: 0.3s;
 }
 
 .link_on_page {
