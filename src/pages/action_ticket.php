@@ -4,7 +4,7 @@
     $ticket_id = $_POST['ticket_id'];
 
     if (isset($_POST["take"]) && ($_SESSION['role'] == 'tech')){
-        take_ticket($ticket_id);
+        take_ticket($ticket_id, $_SESSION['login']);
     }
 
     elseif (isset($_POST["close"]) && ($_SESSION['role'] == 'tech')){
@@ -20,12 +20,11 @@
         $previous_libelle = $_POST["previous_libelle"];
         $previous_emergency = $_POST["previous_emergency"];
         $previous_status = $_POST["previous_status"];
-        $previous_tech = $_POST["previous_tech"];
 
         edit_ticket(
             $ticket_id,
             $newLibelle, $newEmergency, $newStatus, $newTech,
-            $previous_libelle, $previous_emergency, $previous_status, $previous_tech
+            $previous_libelle, $previous_emergency, $previous_status
         );
     }
 

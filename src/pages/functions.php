@@ -249,7 +249,7 @@
         header('Location: out.php?sup_acc=true');
     }
 
-    function edit_ticket($ticket_id, $newLibelle, $newEmergency, $newStatus, $newTech, $previous_libelle, $previous_emergency, $previous_status, $previous_tech){
+    function edit_ticket($ticket_id, $newLibelle, $newEmergency, $newStatus, $newTech, $previous_libelle, $previous_emergency, $previous_status){
         $mysqli = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB);
 
         if ($newTech != "Vide"){
@@ -264,22 +264,8 @@
             if (!in_array($newTech, $techs)){
                 header('Location: dashboard.php?error=4');
             }
-            else if ($previous_tech == ""){
-                // ajouter le technicien dans les interventions si il y en avait pas avant
-                $stmt1 = $mysqli->prepare("INSERT INTO Interventions (ticket_id, tech_login) VALUES (?, ?)");
-                $stmt1->bind_param("is", $ticket_id, $newTech);
-                $stmt1->execute();
-                $stmt1->close();
-                $newStatus = "in_progress";
-            }
-            else {
-                // update la base en en mofifiant le technicien actuel dans les interventions en le remplacant
-                $stmt1 = $mysqli->prepare("UPDATE Interventions SET tech_login = ? WHERE ticket_id = ?");
-                $stmt1->bind_param("si", $newTech, $ticket_id);
-                $stmt1->execute();
-                $stmt1->close();
-                $newStatus = "in_progress";
-            }
+            
+            take_ticket($ticket_id, $newTech);
         }
 
         $dataToInsert = array();
@@ -315,9 +301,7 @@
         }
     }
 
-    function take_ticket($ticket_id){
-        $actual_user = $_SESSION['login'];
-
+    function take_ticket($ticket_id, $actual_user){
         $mysqli = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB);
 
         $stmt = $mysqli->prepare("SELECT status FROM Tickets WHERE ticket_id = ?");

@@ -172,7 +172,6 @@
                 <input name="previous_libelle" type="hidden" value="'.htmlentities($data[1]).'"/>
                 <input name="previous_emergency" type="hidden" value="'.htmlentities($data[7]).'"/>
                 <input name="previous_status" type="hidden" value="'.htmlentities($data[8]).'"/>
-                <input name="previous_tech" type="hidden" value="'.htmlentities($data[9]).'"/>
             </div>
         </div>
     </form>
