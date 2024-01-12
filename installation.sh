@@ -28,8 +28,16 @@ then
 fi
 
 
-# On supprime toutes les versions de PHP possiblement existantes sur cette machine pour éviter tout problème
-sudo apt purge -y php*
+# On récupère la version de PHP installée sur la machine
+phpVersion=$(php -v | grep -o 'PHP [0-9]\.[0-9]' | cut -f2 -d' ')
+
+if [[ $phpVersion != "8.2" ]]
+then
+	echo -e '\n Désinstallation de PHP\n'
+
+	# On supprime toutes les versions de PHP possiblement existantes sur cette machine pour éviter tout problème
+	sudo apt purge -y php*
+fi
 
 # Installation des dépendances nécessaires
 sudo apt update
