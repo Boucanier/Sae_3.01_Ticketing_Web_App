@@ -113,7 +113,6 @@ footer {
 
 #languages > a > img {
     height: 20px;
-    width: 30;
 }
 
 #fr_flag {
@@ -218,10 +217,12 @@ input {
 
 .submit_buttons:hover {
     background-color: #4CAF50;
+    transition: 0.2s;
 }
 
 #account_sup:hover{
     background-color: #f65959;
+    transition: 0.2s;
 }
 
 #account_sup{
@@ -230,6 +231,7 @@ input {
 
 .reset_buttons:hover{
     background-color: rgb(226, 226, 226);
+    transition: 0.3s;
 }
 
 .reset_buttons, .submit_buttons, #account_sup{
@@ -405,6 +407,7 @@ th {
 
 #details_button > form > input:hover {
     background-color: rgb(226, 226, 226);
+    transition: 0.2s;
 }
 
 #ticket_table {
@@ -463,14 +466,17 @@ th {
 
 #part_top > button:hover {
     background-color: rgb(226, 226, 226);
+    transition: 0.2s;
 }
 
 #ticket_buttons > input:hover {
     background-color: rgb(226, 226, 226);
+    transition: 0.2s;
 }
 
 #ticket_buttons > #ticket_sub:hover, #key_sub:hover {
     background-color: #45a049;
+    transition: 0.2s;
 }
 
 #key_reset:hover{
