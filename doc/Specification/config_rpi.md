@@ -93,3 +93,8 @@ La configuration réseau du Raspberry Pi dans le réseau de l'IUT a été assur�
 ### Script d'installation
 
 Afin de prévenir tout problème avec la carte SD, nous avons créé une copie du système chez nous. De plus, nous avons créé [un script bash](../../installation.sh) qui effectue les actions décrites dans ce rapport afin de faciliter la configuration du Raspberry Pi en cas de problème sur la carte sd ou si on souhaite installer installer le serveur pour faire des tests chez nous. Ce script est exécutable en root sur une distribution de linux basée sur Debian avec la commande *`sudo bash installation.sh`* depuis la racine du projet. ***Attention***, ce script supprime **toutes les versions de PHP existantes** sur le système avant d'installer PHP 8.2 et les modules que nous utilisons. Il faut donc faire attention à ne pas l'exécuter sur un système qui utilise PHP pour d'autres applications.
+
+#### Remarque sur le script
+
+Comme expliqué dans le [rapport de R shiny](R_Shiny.md), nous n'avons pas installé le serveur shiny sur le Raspberry Pi.
+Cependant, il est quand même possible de lancer le serveur shiny sur le Raspberry Pi. Pour cela, il faut exécuter le script avec l'option *-shiny* : *`sudo bash installation.sh -shiny`*.

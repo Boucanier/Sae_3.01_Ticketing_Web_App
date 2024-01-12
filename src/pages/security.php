@@ -52,11 +52,11 @@
                 <br>
             </div>
             <div id="key_input">
-                <input type="text" id="old_key" name="old_key"/>
+                <input type="password" id="old_key" name="old_key"/>
                 <br>
-                <input type="text" name="new_key" id="new_key"/>
+                <input type="password" name="new_key" id="new_key"/>
                 <br>
-                <input type="text" id="conf_key" name="conf_key"/>
+                <input type="password" id="conf_key" name="conf_key"/>
                 <br>
             </div>
         </div>

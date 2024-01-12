@@ -608,6 +608,7 @@ th {
     display: flex;
     flex-direction: column;
     align-content: flex-end;
+    margin-top: 5px;
 }
 
 #ticket_label > label, #key_label > label{
@@ -615,7 +616,7 @@ th {
     height: 35px;
     text-align: right;
     margin: 0px;
-    margin-top: 5px;
+    margin-top: 3px;
     margin-bottom: 15px;
     padding: 0px;
 }
@@ -629,8 +630,7 @@ th {
     height: 35px;
     margin: 0px;
     font-size: 16px;
-    margin-bottom: 20px;
-    padding: 0px;
+    margin-bottom: 18px;
 }
 
 #ticket_creation, #key_change {
@@ -769,6 +769,18 @@ th {
     padding-bottom: 30px;
     padding-top: 1px;
     margin-top: 40px;
+}
+
+.stat_part{
+    text-align: center; /* Centre le contenu horizontalement */
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#stat_frame{
+    width: 80%;
+    height: 600px;
+    border: 2px solid black;
 }
 
 #scrollable-table {
