@@ -39,7 +39,7 @@ nav {
 }
 
 #fond_hover:hover{
-    background-color: rgb(200, 250, 220, 0.5);
+    background-color: #e0e0e8;
 }
 
 #nav1 > a, #nav2 > a, footer > a, footer > div > a {
