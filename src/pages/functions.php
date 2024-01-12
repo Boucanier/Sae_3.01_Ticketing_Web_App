@@ -327,6 +327,13 @@
         $stmt->fetch();
         $stmt->close();
 
+        $stmt = $mysqli->prepare("SELECT COUNT(*) FROM Interventions WHERE ticket_id = ?");
+        $stmt->bind_param("s", $ticket_id);
+        $stmt->execute();
+        $stmt->bind_result($ctTicket);
+        $stmt->fetch();
+        $stmt->close();
+
         if ($status != "open"){
             // On vérifie que le ticket est bien ouvert
             $mysqli->close();
@@ -334,12 +341,29 @@
         }
 
         else {
-            // ajouter le technicien (SESSION) dans les interventions avec le ticket en question
-            $stmt = $mysqli->prepare("INSERT INTO Interventions (ticket_id, tech_login) VALUES (?, ?)");
-            $stmt->bind_param("is", $ticket_id, $actual_user);
+            if ($ctTicket == 0){
+                // ajouter le technicien (SESSION) dans les interventions avec le ticket en question
+                $stmt = $mysqli->prepare("INSERT INTO Interventions (ticket_id, tech_login) VALUES (?, ?)");
+                $stmt->bind_param("is", $ticket_id, $actual_user);
+                $stmt->execute();
+                $stmt->close();
+            }
+
+            else {
+                // update la base en en mofifiant le technicien actuel dans les interventions en le remplacant
+                $stmt1 = $mysqli->prepare("UPDATE Interventions SET tech_login = ? WHERE ticket_id = ?");
+                $stmt1->bind_param("si", $actual_user, $ticket_id);
+                $stmt1->execute();
+                $stmt1->close();
+            }
+
+            // update du status (in_progress)
+            $stmt = $mysqli->prepare("UPDATE Tickets SET status = ? WHERE ticket_id = ?");
+            $status = "in_progress";
+            $stmt->bind_param("si", $status, $ticket_id);
             $stmt->execute();
             $stmt->close();
-
+    
             $mysqli->close();
             // redirection : tout c'est bien passé pour take
             header("Location: dashboard.php?success=2");
