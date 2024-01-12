@@ -117,7 +117,6 @@ footer {
 
 #languages > a > img {
     height: 20px;
-    width: 30;
 }
 
 #fr_flag {
@@ -222,10 +221,12 @@ input {
 
 .submit_buttons:hover {
     background-color: #4CAF50;
+    transition: 0.2s;
 }
 
 #account_sup:hover{
     background-color: #f65959;
+    transition: 0.2s;
 }
 
 #account_sup{
@@ -234,6 +235,7 @@ input {
 
 .reset_buttons:hover{
     background-color: rgb(226, 226, 226);
+    transition: 0.3s;
 }
 
 .reset_buttons, .submit_buttons, #account_sup{
@@ -409,6 +411,7 @@ th {
 
 #details_button > form > input:hover {
     background-color: rgb(226, 226, 226);
+    transition: 0.2s;
 }
 
 #ticket_table {
@@ -416,6 +419,10 @@ th {
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    background: lavender;
+    border-radius: 40px;
+    padding: 70px 0 70px 30px;
+    margin: 0 75px;
 }
 
 #part_top {
@@ -463,14 +470,17 @@ th {
 
 #part_top > button:hover {
     background-color: rgb(226, 226, 226);
+    transition: 0.2s;
 }
 
 #ticket_buttons > input:hover {
     background-color: rgb(226, 226, 226);
+    transition: 0.2s;
 }
 
 #ticket_buttons > #ticket_sub:hover, #key_sub:hover {
     background-color: #45a049;
+    transition: 0.2s;
 }
 
 #key_reset:hover{
@@ -541,10 +551,32 @@ th {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 50px;
+    background: lavender;
+    border-radius: 40px;
+    padding: 50px;
 }
 
 .contact_text{
     font-size: 3em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.contact_text > p > a {
+    font-weight: bold;
+}
+
+.contact_text > a > img{
+    width: 150px;
+    margin: 30px;
+    border-radius: 100px;
+}
+
+.contact_text > a > img:hover {
+    background-color: #a6a6c2;
+    transition: 0.3s;
 }
 
 .link_on_page {
