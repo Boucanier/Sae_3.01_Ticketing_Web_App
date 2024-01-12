@@ -412,6 +412,10 @@ th {
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    background: lavender;
+    border-radius: 40px;
+    padding: 70px 0 70px 30px;
+    margin: 0 75px;
 }
 
 #part_top {
