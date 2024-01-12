@@ -10,7 +10,7 @@ echo '<main>
     <div class="form_containers">
         <div class="sign_up">';
         
-                $infoTop = array('fr' => '<h2>Créer un compte</h2>', 'en' => '<h2>Create an account</h2>');
+                $infoTop = array('fr' => 'Créer un compte', 'en' => 'Create an account');
                 echo '<h2>'.$infoTop[$lang].'</h2>';
 
                 $error_fr = array('Login invalide', 'Les mots de passe ne correspondent pas', 'Formulaire incomplet', 'Le captcha n\'est pas valide !', 'Erreurs d\'identifiants', 'Champ(s) trop long(s)');
