@@ -410,8 +410,8 @@
         $mois = floor($jours / 30);
         $annees = floor($jours / 365);
 
-        $tab_fr = array('Il y a', 'année', 'années', 'mois', 'mois', 'semaine', 'semaines', 'jour', 'jours');
-        $tab_en = array('', 'year ago', 'years ago', 'month ago', 'months ago', 'week ago', 'weeks ago', 'day ago', 'days ago');
+        $tab_fr = array('Il y a', 'année', 'années', 'mois', 'mois', 'semaine', 'semaines', 'jour', 'jours', 'Aujourd\'hui');
+        $tab_en = array('', 'year ago', 'years ago', 'month ago', 'months ago', 'week ago', 'weeks ago', 'day ago', 'days ago', 'Today');
         $tab_lang = array('fr' => $tab_fr, 'en' => $tab_en);
 
         if ($annees >= 1){
@@ -432,11 +432,14 @@
             else
                 return $tab_lang[$lang][0]." ".$semaines." ".$tab_lang[$lang][2];
         }
-        else{
+        else if($jours >= 1){
             if ($jours == 1)
                 return $tab_lang[$lang][0]." ".$jours." ".$tab_lang[$lang][7];
             else
                 return $tab_lang[$lang][0]." ".$jours." ".$tab_lang[$lang][8];
+        }
+        else{
+            return $tab_lang[$lang][9];
         }
     }
 ?>
