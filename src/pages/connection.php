@@ -38,8 +38,8 @@ echo '<main>
             $formValue_en = array('Login', 'Name', 'First name', 'Password', 'Confirm password', 'Reset', 'Create', 'Sign&nbsp;in', 'I forgot my password');
             $formValue = array('fr' => $formValue_fr, 'en' => $formValue_en);
 
-            $placeholder_fr = array('40&nbsp;caractères&nbsp;max', '40&nbsp;caractères&nbsp;max', '40&nbsp;caractères&nbsp;max', '32&nbsp;caractères&nbsp;max', 'Confirmez&nbsp;votre&nbsp;mot&nbsp;de&nbsp;passe');
-            $placeholder_en = array('Max&nbsp;40&nbsp;characters', 'Max&nbsp;40&nbsp;characters', 'Max&nbsp;40&nbsp;characters', 'Max&nbsp;32&nbsp;characters', 'Confirm&nbsp;your&nbsp;password');
+            $placeholder_fr = array('40&nbsp;caractères&nbsp;max,&nbsp;sans&nbsp;espace', '40&nbsp;caractères&nbsp;max', '40&nbsp;caractères&nbsp;max', '32&nbsp;caractères&nbsp;max', 'Confirmez&nbsp;votre&nbsp;mot&nbsp;de&nbsp;passe');
+            $placeholder_en = array('Max&nbsp;40&nbsp;characters,&nbsp;no&nbsp;space', 'Max&nbsp;40&nbsp;characters', 'Max&nbsp;40&nbsp;characters', 'Max&nbsp;32&nbsp;characters', 'Confirm&nbsp;your&nbsp;password');
             $placeholder = array('fr' => $placeholder_fr, 'en' => $placeholder_en);
             
             echo '<form action="account.php" method="post">
@@ -108,12 +108,12 @@ echo '<main>
             echo '<form action="account.php" method="post">
                 <div class="form_group2">
                     <label for="login_connect">'.$formValue[$lang][0].'&nbsp;:</label>
-                    <input type="text" id="login_connect" name="login_connect"/>
+                    <input type="text" id="login_connect" name="login_connect" placeholder='.$placeholder[$lang][0].'>
                 </div>
                 <br>
                 <div class="form_group2">
                     <label for="pwd_connect">'.$formValue[$lang][3].'&nbsp;:</label>
-                    <input type="password" id="pwd_connect" name="pwd_connect"/>
+                    <input type="password" id="pwd_connect" name="pwd_connect" placeholder='.$placeholder[$lang][1].'>
                     <a href="construction.php">'.$formValue[$lang][8].'</a>
                 </div>
                 <br>
