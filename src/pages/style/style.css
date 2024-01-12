@@ -88,6 +88,10 @@ header > nav > div > a:focus, footer > a:focus, footer > div > a:hover {
     height: 70px;
     width: 150px;
     margin-right: 10px;
+    padding: 5px;
+    border-radius: 10px;
+    background-color: lavender;
+    border: 1px solid lavender;
 }
 
 footer {
@@ -182,7 +186,7 @@ main {
     align-items: center;
     background-color: lavender;
     border-radius: 40px;
-    padding: 20px;
+    padding: 50px;
 }
 
 #information {
@@ -320,7 +324,7 @@ input {
     justify-content: space-between;
     background-color: lavender;
     border-radius: 40px;
-    padding: 20px;
+    padding: 50px;
 }
 
 .form_group{
@@ -661,7 +665,7 @@ th {
     display: flex;
     flex-direction: row;
     align-items: center;
-    width: 50%;
+    width: 110%;
     justify-content: space-around;
 }
 
@@ -701,6 +705,14 @@ th {
     height: 35px;
     margin: 5px;
     margin-right: 0px;
+}
+
+#form_modification_ticket{
+    background-color: lavender;
+    border-radius: 40px;
+    padding: 30px;
+    width: 60%;
+    margin: 0 auto;
 }
 
 #form_modification_ticket > div > .reset_buttons, #form_modification_ticket > div > .submit_buttons{
