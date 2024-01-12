@@ -11,7 +11,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: linear-gradient(#cffdff, rgb(200, 250, 220));
+    background: #a6a6c2;
 }
 
 body {
@@ -21,13 +21,16 @@ body {
 nav {
     display: flex;
     justify-content: space-between;
-    background-color: rgb(200, 250, 220);
+    background-color: #a6a6c2;
 }
 
 #titre_tab{
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: lavender;
+    border-radius: 40px;
+    margin: 20px 40px;
 }
 
 #hr_index{
@@ -36,7 +39,7 @@ nav {
 }
 
 #fond_hover:hover{
-    background-color: rgb(200, 250, 220, 0.5);
+    background-color: #e0e0e8;
 }
 
 #nav1 > a, #nav2 > a, footer > a, footer > div > a {
@@ -85,6 +88,10 @@ header > nav > div > a:focus, footer > a:focus, footer > div > a:hover {
     height: 70px;
     width: 150px;
     margin-right: 10px;
+    padding: 5px;
+    border-radius: 10px;
+    background-color: lavender;
+    border: 1px solid lavender;
 }
 
 footer {
@@ -92,7 +99,7 @@ footer {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    background-color: rgb(200, 250, 220);
+    background-color: #a6a6c2;
 }
 
 #languages {
@@ -110,7 +117,6 @@ footer {
 
 #languages > a > img {
     height: 20px;
-    width: 30;
 }
 
 #fr_flag {
@@ -135,8 +141,10 @@ main {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    margin-bottom: 60px;
     flex-wrap: wrap;
+    background-color: lavender;
+    border-radius: 40px;
+    margin: 20px 40px;
 }
 
 #texte_explicatif {
@@ -163,6 +171,7 @@ main {
 #derniers_tickets {
     align-self: center;
     margin: 30px;
+    background-color: white;
 }
 
 #profile_part1 {
@@ -174,6 +183,9 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: lavender;
+    border-radius: 40px;
+    padding: 50px;
 }
 
 #information {
@@ -209,10 +221,12 @@ input {
 
 .submit_buttons:hover {
     background-color: #4CAF50;
+    transition: 0.2s;
 }
 
 #account_sup:hover{
     background-color: #f65959;
+    transition: 0.2s;
 }
 
 #account_sup{
@@ -221,6 +235,7 @@ input {
 
 .reset_buttons:hover{
     background-color: rgb(226, 226, 226);
+    transition: 0.3s;
 }
 
 .reset_buttons, .submit_buttons, #account_sup{
@@ -292,10 +307,16 @@ input {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: lavender;
+    border-radius: 40px;
+    border: lavender;
 }
 
 .log_in{
     width: 30%;
+    background-color: lavender;
+    border-radius: 40px;
+    padding: 20px;
 }
 
 .user_info{
@@ -303,6 +324,9 @@ input {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    background-color: lavender;
+    border-radius: 40px;
+    padding: 50px;
 }
 
 .form_group{
@@ -387,6 +411,7 @@ th {
 
 #details_button > form > input:hover {
     background-color: rgb(226, 226, 226);
+    transition: 0.2s;
 }
 
 #ticket_table {
@@ -394,6 +419,10 @@ th {
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    background: lavender;
+    border-radius: 40px;
+    padding: 70px 0 70px 30px;
+    margin: 0 75px;
 }
 
 #part_top {
@@ -441,14 +470,17 @@ th {
 
 #part_top > button:hover {
     background-color: rgb(226, 226, 226);
+    transition: 0.2s;
 }
 
 #ticket_buttons > input:hover {
     background-color: rgb(226, 226, 226);
+    transition: 0.2s;
 }
 
 #ticket_buttons > #ticket_sub:hover, #key_sub:hover {
     background-color: #45a049;
+    transition: 0.2s;
 }
 
 #key_reset:hover{
@@ -519,10 +551,32 @@ th {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 50px;
+    background: lavender;
+    border-radius: 40px;
+    padding: 50px;
 }
 
 .contact_text{
     font-size: 3em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.contact_text > p > a {
+    font-weight: bold;
+}
+
+.contact_text > a > img{
+    width: 150px;
+    margin: 30px;
+    border-radius: 100px;
+}
+
+.contact_text > a > img:hover {
+    background-color: #a6a6c2;
+    transition: 0.3s;
 }
 
 .link_on_page {
@@ -643,7 +697,7 @@ th {
     display: flex;
     flex-direction: row;
     align-items: center;
-    width: 50%;
+    width: 110%;
     justify-content: space-around;
 }
 
@@ -685,6 +739,14 @@ th {
     margin-right: 0px;
 }
 
+#form_modification_ticket{
+    background-color: lavender;
+    border-radius: 40px;
+    padding: 30px;
+    width: 60%;
+    margin: 0 auto;
+}
+
 #form_modification_ticket > div > .reset_buttons, #form_modification_ticket > div > .submit_buttons{
     width: 200%;
     margin-top: 40px;
@@ -695,8 +757,18 @@ th {
 }
 
 .activity_log_parts{
-    text-align: center; /* Centre le contenu horizontalement */
+    text-align: center;
     margin-top: 60px;
+}
+
+#activity_log_page{
+    background-color: lavender;
+    border-radius: 40px;
+    width: 70%;
+    margin: 0 auto;
+    padding-bottom: 30px;
+    padding-top: 1px;
+    margin-top: 40px;
 }
 
 .stat_part{
@@ -715,15 +787,18 @@ th {
     max-height: 300px;
     overflow-y: auto;
     border: 1px solid #ccc;
-    width: 50%;
     margin: auto;
     position: relative;
-    margin-top: 15px;
+    width: 80%;
 }
 
 #ticket_log_table {
     width: 100%;
     border-collapse: collapse;
+}
+
+table{
+    background-color: white;
 }
 
 .ticketPageError > p{

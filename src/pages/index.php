@@ -26,12 +26,12 @@
 
     $pres = array('fr' => $pres_fr, 'en' => $pres_en);
 
-    $text = array('fr' => 'Texte explicatif', 'en' => 'Presentation text');
+    $text = array('fr' => 'Présentation', 'en' => 'Presentation');
 
     $welcome = array('fr' => 'Bienvenue sur notre application de ticketing, voici une brève présentation de celle-ci.', 'en' => 'Welcome to our ticketing application, here\'s a brief presentation of it.');
-    $videoText = array('fr' => 'Vous avez à droite une vidéo de présentation du site.', 'en' => 'You have a presentation video of the site on the right.');
-    $video = array('fr' => 'Vidéo explicative', 'en' => 'Presentation video');
-    $ticketText = array('fr' => 'Vous avez ci-dessous les dix derniers tickets créés', 'en' => 'You have below the last ten tickets created');
+    $videoText = array('fr' => 'Vous avez à droite une vidéo de présentation du site', 'en' => 'You have a presentation video of the site on the right');
+    $video = array('fr' => 'Vidéo de présentation', 'en' => 'Presentation video');
+    $ticketText = array('fr' => 'Dix derniers tickets créés', 'en' => 'Last ten tickets created');
 
 echo '<main id="main_page">
     <div id="presentation">

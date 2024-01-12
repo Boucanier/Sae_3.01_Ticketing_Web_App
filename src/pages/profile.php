@@ -6,7 +6,9 @@
         header('Location: index.php');
     }
 
-    echo '<main>';
+    $infoTop = array('fr' => 'Mon profil', 'en' => 'My profile');
+
+    echo '<main><div id="part_top"><h2>'.$infoTop[$lang].'</h2></div>';
 
     $success = array('fr' => 'Mot de passe changé avec succès !', 'en' => 'Password changed successfully !');
 
