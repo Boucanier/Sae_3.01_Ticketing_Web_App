@@ -15,7 +15,7 @@ Groupe : **INF2 - FI A**
 
 ## Présentation
 
-Ce projet a pour but de créer une application web de gestion de tickets. Cette application permettra à des utilisateurs de créer des tickets, de les assigner à des techniciens et de les gérer.
+Ce projet a pour but de créer une **application web de gestion de tickets**. Cette application permettra à des utilisateurs de créer des tickets, de les assigner à des techniciens et de les gérer.
 
 ## Contenu
 
@@ -27,24 +27,39 @@ Tous les rapports sont disponibles dans le dossier [doc](doc/) :
   - [Cas d'utilisations](doc/Specification/cas_d_utilisations.md)
   - [Charte graphique](doc/Specification/charte_graphique.md)
   - [Configuration du Raspberry Pi](doc/Specification/config_rpi.md)
+  - [Rapport de cryptographie](doc/Specification/cryptographie.pdf)
+  - [Rapport de statistiques](doc/Specification/statistiques.pdf)
 - Rapports de [tests](doc/Tests/) :
   - [Dossiers de tests unitaires](doc/Tests/Dossiers_tests/)
 
 Les fichiers de code source sont disponibles dans le dossier [src](src/) :
 
-- [Scripts SQL](src/db/):
-  - [Création de la base de données](src/db/creation_mariadb.sql) (pour mariaDB)
-  - [Création de la base de données](src/db/creation_mysql.sql) (pour mysql)
+- [Scripts **SQL**](src/db/):
+  - [Création de la base de données](src/db/creation_mariadb.sql) (pour *mariaDB*)
+  - [Création de la base de données](src/db/creation_mysql.sql) (pour *mysql*)
   - [Insertion de données de test](src/db/insert.sql)
 - [Fichiers du site](src/pages/):
-  - Fichiers PHP
+  - Fichiers **PHP**
   - [Feuilles de style](src/pages/style/)
   - [Scripts JavaScript](src/pages/scripts/)
   - [Images utilisées par le site](src/pages/resources/)
+- [Application **Shiny**](src/stats):
+  - [Application](src/stats/app.R)
+  - Fichiers **csv** :
+    - [Connexions](src/stats/connexions.csv)
+    - [Tickets](src/stats/tickets.csv)
 
 ## Installation
 
-Pour installer le serveur web sur une machine Linux (basé sur Debian), il faut exécuter la script [installation.sh](installation.sh) depuis la racine du projet avec la commande *`sudo bash installation.sh`*. Ce script va installer les paquets nécessaires au fonctionnement du serveur web, puis va configurer le serveur web, le serveur shiny et la base de données (cf [rapport de configuration du RPi](doc/Specification/config_rpi.md)).
+Pour installer le serveur web sur une machine **Linux** (*basé sur *Debian**), il faut exécuter la script [installation.sh](installation.sh) depuis la racine du projet avec la commande *`sudo bash installation.sh`*. Ce script va installer les paquets nécessaires au fonctionnement du serveur web, puis va configurer le serveur web et la base de données.
+
+Pour installer le serveur web **ET** le serveur shiny, il faut exécuter le script [installation.sh](installation.sh) depuis la racine du projet avec le paramètre ***-shiny*** : *`sudo bash installation.sh -shiny`*.
+
+Consulter le [rapport de configuration du RPi](doc/Specification/config_rpi.md) pour plus d'informations.
+
+## Remarques
+
+Attention, certains fichiers comme les **maquettes** et leurs rapports ne sont pas disponible depuis toutes les versions de ce projet. Il faut consulter les différentes [*releases*](https://github.com/Boucanier/Sae_3.01_Ticketing_Web_App/releases) pour les retrouver.
 
 ## Crédits
 
