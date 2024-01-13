@@ -33,6 +33,8 @@
 
 Le but de cette SAÉ est de réaliser une \textbf{application web} de ticketing en PHP.\@
 Chaque utilisateur de cette plateforme peut créer un compte, se connecter et créer un ticket qui sera pris en charge par un technicien.
+Dans la partie probas/stats de ce projet, nous avons réalisé une page web qui permet de visualiser des statistiques sur les tickets et les connexions
+en utilisant le module \textbf{Shiny} de \textbf{R}.
 \bigskip
 
 La \textbf{première partie} de ce rapport contient une présentation du module \textbf{Shiny}.
@@ -41,9 +43,24 @@ Enfin, la \textbf{troisième partie} contient une présentation du déploiement 
 
 \section{Présentation}
 
+Le langage \textbf{R} est un langage de programmation apparu en 1993.
+Ce langage a pour but de réaliser des statistiques et des graphiques en étudiant des données.
+\bigskip
+
+Le module \textbf{Shiny} est un module de \textbf{R} qui a commencé à être développé en 2012.
+Ce  module permet de créer des applications web en \textbf{R}.
+Il permet de créer des pages web qui contiennent des graphiques et des statistiques
+et qui disposent d'une interface graphique permettant aux utilisateurs de choisir les paramètres des données qu'ils souhaitent étudier.
+\bigskip
+
+\noindent Le module \textbf{Shiny} peut être installé directement depuis la console \textbf{R} avec la commande suivante:
+\begin{center}
+    \codeword{install.packages("shiny")}
+\end{center}
+
 \section{Notre page}
 
-Notre page shiny contient 3 principaux éléments:
+\noindent Notre page Shiny contient 3 principaux éléments:
 \begin{itemize}
     \item L'interface utilisateur (\textit{ui})
     \item La partie serveur (fonction) (\textit{server})
@@ -65,6 +82,9 @@ Puis nous lançons l'application avec la fonction \codeword{shinyApp(ui, server)
 
 \subsection*{Interface utilisateur}
 \addcontentsline{toc}{subsection}{Interface utilisateur}
+
+\noindent \textit{La Figure~\ref{fig:shiny_ui} représente la partie \textbf{ui} de notre page.}
+\bigskip
 
 L'élément \textbf{ui} correspond à une \textbf{fluidPage} qui contient l'interface utilisateur de notre application.
 Notre \textbf{fluidPage} contient 3 éléments:
@@ -103,8 +123,11 @@ Son \textbf{mainPanel} contient deux \textit{outputs}:
 \subsection*{Partie serveur}
 \addcontentsline{toc}{subsection}{Partie serveur}
 
+\noindent \textit{La Figure~\ref{fig:shiny_server} représente différents outputs définis dans la partie \textbf{serveur} de notre programme.}
+\bigskip
+
 Notre fonction \textbf{server} commence par récupérer les données des fichiers csv (\textit{tickets.csv} et \textit{connexions.csv}).
-Nous avons créés ces deux fichiers en s'inspirant des données présentes dans la base de données de l'application.
+Nous avons créé ces deux fichiers en s'inspirant des données présentes dans la base de données de l'application.
 
 \noindent Nous paramétrons ensuite les représentations de nos différents \textit{outputs}.
 Ils sont listés dans l'ordre décrit dans la partie précédente:
@@ -118,16 +141,16 @@ Ils sont listés dans l'ordre décrit dans la partie précédente:
 
 \section{Déploiement}
 
-Nous avons d'abord souhaité héberger notre serveur shiny sur le \textbf{Raspberry Pi} fourni pour la SAÉ.
-Cependant, il s'est avéré impossible de lancer une application shiny sur ce serveur.
-Nous avons essayer d'installer \textbf{R} et le \textbf{module shiny} depuis les dépôts officiels mais nous avions une \textit{erreur de bus}.
+Nous avons d'abord souhaité héberger notre serveur Shiny sur le \textbf{Raspberry Pi} fourni pour la SAÉ.
+Cependant, il s'est avéré impossible de lancer une application Shiny sur ce serveur.
+Nous avons essayer d'installer \textbf{R} et le \textbf{module Shiny} depuis les dépôts officiels mais nous avions une \textit{erreur de bus}.
 Nous avons donc installé \textbf{R} par compilation depuis les sources.
 Cependant, nous avions toujours une erreur lors du lancement de l'application.
-Nous ne pouvions même pas lancé les application de test (\textit{01\_hello, 02\_text \ldots}) fournies \textbf{par shiny}.
+Nous ne pouvions même pas lancé les application de test (\textit{01\_hello, 02\_text \ldots}) fournies \textbf{par Shiny}.
 \bigskip
 
-Finalement, nous avons décider de déployer notre application shiny sur un serveur \textbf{ShinyApps.io}.
-Ce site est un site officiel de \textbf{Shiny} qui permet d'héberger des applications shiny.
+Finalement, nous avons décider de déployer notre application Shiny sur un serveur \textbf{shinyApps.io}.
+Ce site est un site officiel de \textbf{Shiny} qui permet d'héberger des applications Shiny.
 Nous avons créé un compte gratuit qui permet d'héberger jusqu'à 5 applications.
 Cependant, une application ne peut être \textit{active} (chargée sur un navigateur) que 25 heures par mois.
 Étant donné que cette page ne sert que dans ce projet (il est très peu probable qu'elle soit chargée très longtemps),
@@ -146,4 +169,20 @@ accessible pour \textbf{l'administrateur système}.
 \bigskip
 Si nous avions hébergé notre application sur le Raspberry Pi,
 nous aurions pu l'intégrer en mettant un \textbf{iframe} avec l'adresse \textbf{localhost\string:3000} (cf~\ref{subsec:deroulement}).
+
+\newpage
+
+\section{Annexes}
+\bigskip
+\begin{figure}[ht]
+    \centering
+    \frame{\includegraphics[width=0.9\textwidth]{../annexes/shiny_ui.png}}
+    \caption{Partie Interface Utilisateur de notre page}\label{fig:shiny_ui}
+\end{figure}
+\begin{figure}[ht]
+    \centering
+    \frame{\includegraphics[width=0.9\textwidth]{../annexes/shiny_server.png}}
+    \caption{Différents \textit{outputs} de notre application}\label{fig:shiny_server}
+\end{figure}
+
 \end{document}
