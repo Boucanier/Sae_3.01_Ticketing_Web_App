@@ -37,18 +37,19 @@ Notre page shiny contient 3 principaux éléments:
 \begin{itemize}
     \item L'interface utilisateur (\textit{ui})
     \item La partie serveur (fonction) (\textit{server})
-    \item ShinyApp
+    \item ShinyApp (fonction)
 \end{itemize}
+Le code de notre page ainsi que les fichiers csv utilisés se trouvent dans le dossier fourni avec ce rapport.
 
 \subsection*{Ordre du programme}
 
-Nous commençons notre programme en chargeant la bibliothèque \textbf{shiny} avec la commande \codeword{library(shiny)}.
+Nous commençons notre programme en chargeant la bibliothèque \textbf{shiny} avec la fonction \codeword{library(shiny)}.
 Puis on règle le port par défaut de l'application pour qu'elle soit toujours accessible sur le même port (\textit{port 3000})
-avec la commande \codeword{options(shiny.port = 3000)}.
+avec la fonction \codeword{options(shiny.port = 3000)}.
 \bigskip
 
 Nous ajoutons ensuite les éléments \textit{ui} et \textit{server}.
-Puis on lance l'application avec la commande \codeword{shinyApp(ui, server)}.
+Puis nous lançons l'application avec la fonction \codeword{shinyApp(ui, server)}.
 
 \subsection*{Interface utilisateur}
 
@@ -101,6 +102,6 @@ Ils sont listés dans l'ordre décrit dans la partie précédente:
     \item Le quatrième graphique est la représentation du pourcentage de connexions réussies sous forme de points.
 \end{itemize}
 
-\section{Hébergement}
+\section{Déploiement}
 
 \end{document}
