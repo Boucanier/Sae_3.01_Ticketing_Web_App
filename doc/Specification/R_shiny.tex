@@ -8,6 +8,7 @@
 \usepackage[french]{babel}
 \usepackage{listings}
 \usepackage{xcolor}
+\usepackage{hyperref}
 \title{SAÉ 3.01 Rapport de probas/stats}
 \author{Jules CHIRON, Matis RODIER, Thomas GODINEAU | INF2 FI A}
 \date{12 janvier 2024}
@@ -39,9 +40,11 @@ Notre page shiny contient 3 principaux éléments:
     \item La partie serveur (fonction) (\textit{server})
     \item ShinyApp (fonction)
 \end{itemize}
-Le code de notre page ainsi que les fichiers csv utilisés se trouvent dans le dossier fourni avec ce rapport.
+\bigskip
+\textit{Le code de notre page ainsi que les fichiers csv utilisés se trouvent dans le dossier \textbf{src/} fourni avec ce rapport.}
 
-\subsection*{Ordre du programme}
+\subsection*{Déroulement du programme}
+\addcontentsline{toc}{subsection}{Déroulement du programme}\label{subsec:deroulement}
 
 Nous commençons notre programme en chargeant la bibliothèque \textbf{shiny} avec la fonction \codeword{library(shiny)}.
 Puis on règle le port par défaut de l'application pour qu'elle soit toujours accessible sur le même port (\textit{port 3000})
@@ -52,6 +55,7 @@ Nous ajoutons ensuite les éléments \textit{ui} et \textit{server}.
 Puis nous lançons l'application avec la fonction \codeword{shinyApp(ui, server)}.
 
 \subsection*{Interface utilisateur}
+\addcontentsline{toc}{subsection}{Interface utilisateur}
 
 L'élément \textbf{ui} correspond à une \textbf{fluidPage} qui contient l'interface utilisateur de notre application.
 Notre \textbf{fluidPage} contient 3 éléments:
@@ -88,6 +92,7 @@ Son \textbf{mainPanel} contient deux \textit{outputs}:
 \end{itemize}
 
 \subsection*{Partie serveur}
+\addcontentsline{toc}{subsection}{Partie serveur}
 
 Notre fonction \textbf{server} commence par récupérer les données des fichiers csv (\textit{tickets.csv} et \textit{connexions.csv}).
 Nous avons créés ces deux fichiers en s'inspirant des données présentes dans la base de données de l'application.
@@ -116,11 +121,20 @@ Finalement, nous avons décider de déployer notre application shiny sur un serv
 Ce site est un site officiel qui permet d'héberger des applications shiny.
 Nous avons créé un compte gratuit qui permet d'héberger jusqu'à 5 applications.
 Cependant, une application ne peut être \textit{active} (chargée sur un navigateur) que 25 heures par mois.
-Étant donné que cette page ne sert que dans ce projet (il est très peu probable qu'elle soit chargée longtemps),
+Étant donné que cette page ne sert que dans ce projet (il est très peu probable qu'elle soit chargée très longtemps),
 nous avons choisi cette solution.
-
-\noindent Notre application est donc accessible depuis l'adresse suivante:
 \bigskip
 
-\noindent \textbf{https://Boucanier.shinyapps.io/proba}
+\noindent Notre application est donc accessible depuis l'adresse suivante:
+\begin{center}
+    \url{https://Boucanier.shinyapps.io/proba}
+\end{center}
+
+\noindent Nous avons intégré notre application dans un \textbf{iframe} sur notre site web.
+Elle est consultable depuis la page \textbf{Statistiques} (\textit{stats.php}) de la plateforme,
+accessible pour \textbf{l'administrateur système}.
+
+\bigskip
+Si nous avions hébergé notre application sur le Raspberry Pi,
+nous aurions pu l'intégrer en mettant un \textbf{iframe} avec l'adresse \textbf{localhost\string:3000} (cf~\ref{subsec:deroulement}).
 \end{document}
