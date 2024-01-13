@@ -104,4 +104,23 @@ Ils sont listés dans l'ordre décrit dans la partie précédente:
 
 \section{Déploiement}
 
+Nous avons d'abord souhaité héberger notre serveur shiny sur le \textbf{Raspberry Pi} fourni pour la SAÉ.
+Cependant, il s'est avéré impossible de lancer une application shiny sur ce serveur.
+Nous avons essayer d'installer \textbf{R} et le \textbf{module shiny} depuis les dépôts officiels mais nous avions une \textit{erreur de bus}.
+Nous avons donc installé \textbf{R} par compilation depuis les sources.
+Cependant, nous avions toujours une erreur lors du lancement de l'application.
+Nous ne pouvions même pas lancé les application de test (\textit{01\_hello, 02\_text \ldots}) fournies \textbf{par shiny}.
+\bigskip
+
+Finalement, nous avons décider de déployer notre application shiny sur un serveur \textbf{ShinyApps.io}.
+Ce site est un site officiel qui permet d'héberger des applications shiny.
+Nous avons créé un compte gratuit qui permet d'héberger jusqu'à 5 applications.
+Cependant, une application ne peut être \textit{active} (chargée sur un navigateur) que 25 heures par mois.
+Étant donné que cette page ne sert que dans ce projet (il est très peu probable qu'elle soit chargée longtemps),
+nous avons choisi cette solution.
+
+\noindent Notre application est donc accessible depuis l'adresse suivante:
+\bigskip
+
+\noindent \textbf{https://Boucanier.shinyapps.io/proba}
 \end{document}
