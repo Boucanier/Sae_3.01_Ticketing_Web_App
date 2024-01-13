@@ -9,4 +9,5 @@ Thumbs.db
 *.synctex.gz
 *.synctex(busy)
 *.pyg
+*.out
 security/
