@@ -8,7 +8,8 @@
 \usepackage[french]{babel}
 \usepackage{listings}
 \usepackage{xcolor}
-\usepackage{hyperref}
+\usepackage[hidelinks]{hyperref}
+
 \title{SAÉ 3.01 Rapport de probas/stats}
 \author{Jules CHIRON, Matis RODIER, Thomas GODINEAU | INF2 FI A}
 \date{12 janvier 2024}
@@ -29,6 +30,14 @@
 
 \section*{Introduction}
 \addcontentsline{toc}{section}{Introduction}
+
+Le but de cette SAÉ est de réaliser une \textbf{application web} de ticketing en PHP.\@
+Chaque utilisateur de cette plateforme peut créer un compte, se connecter et créer un ticket qui sera pris en charge par un technicien.
+\bigskip
+
+La \textbf{première partie} de ce rapport contient une présentation du module \textbf{Shiny}.
+La \textbf{deuxième partie} contient une présentation de notre code et de son contenu.
+Enfin, la \textbf{troisième partie} contient une présentation du déploiement de notre application.
 
 \section{Présentation}
 
@@ -118,7 +127,7 @@ Nous ne pouvions même pas lancé les application de test (\textit{01\_hello, 02
 \bigskip
 
 Finalement, nous avons décider de déployer notre application shiny sur un serveur \textbf{ShinyApps.io}.
-Ce site est un site officiel qui permet d'héberger des applications shiny.
+Ce site est un site officiel de \textbf{Shiny} qui permet d'héberger des applications shiny.
 Nous avons créé un compte gratuit qui permet d'héberger jusqu'à 5 applications.
 Cependant, une application ne peut être \textit{active} (chargée sur un navigateur) que 25 heures par mois.
 Étant donné que cette page ne sert que dans ce projet (il est très peu probable qu'elle soit chargée très longtemps),
