@@ -96,10 +96,10 @@ L'élément \textbf{titlePanel} permet de mettre un titre à notre page, on l'a 
 Nos \textbf{sidebarLayout} contiennent chacun un \textbf{sidebarPanel} et un \textbf{mainPanel}.
 \bigskip
 
-Le premier \textbf{sidebarLayout} sert à choisir les paramètres pour la première statistique (le pourcentage de tickets selon leur status).
+Le premier \textbf{sidebarLayout} sert à choisir les paramètres pour la première statistique (le pourcentage de tickets selon leur statut).
 Son \textbf{sidebarPanel} contient un \textbf{titlePanel} permettant de donner un titre au panel, ainsi que deux \textbf{inputs} (\textit{élément de choix}):
 \begin{itemize}
-    \item Le premier input est un \textit{selectInput} qui permet de choisir entre les différents status de ticket
+    \item Le premier input est un \textit{selectInput} qui permet de choisir entre les différents statuts de ticket
     (open (\textit{ouvert}), in\_progress (\textit{en cours}), closed (\textit{fermé}))
     \item Le deuxième input est un \textit{numericInput} qui permet de choisir le nombre de tickets à étudier (entre 1 et 40)
 \end{itemize}
@@ -134,7 +134,7 @@ Ils sont listés dans l'ordre décrit dans la partie précédente:
 
 \begin{itemize}
     \item Le premier est une zone de texte contenant le pourcentage de ticket selon le type choisis dans le \textit{selectInput}.
-    \item Le deuxième est un graphique en camembert dont chaque partie représente le pourcentage de chaque status de ticket.
+    \item Le deuxième est un graphique en camembert dont chaque partie représente le pourcentage de chaque statut de ticket.
     \item Le troisième est encore un graphique en camembert dont chaque partie représente le pourcentage de connexions réussies ou échouées.
     \item Le quatrième graphique est la représentation du pourcentage de connexions réussies sous forme de points.
 \end{itemize}
@@ -143,13 +143,13 @@ Ils sont listés dans l'ordre décrit dans la partie précédente:
 
 Nous avons d'abord souhaité héberger notre serveur Shiny sur le \textbf{Raspberry Pi} fourni pour la SAÉ.
 Cependant, il s'est avéré impossible de lancer une application Shiny sur ce serveur.
-Nous avons essayer d'installer \textbf{R} et le \textbf{module Shiny} depuis les dépôts officiels mais nous avions une \textit{erreur de bus}.
+Nous avons essayé d'installer \textbf{R} et le \textbf{module Shiny} depuis les dépôts officiels mais nous avions une \textit{erreur de bus}.
 Nous avons donc installé \textbf{R} par compilation depuis les sources.
 Cependant, nous avions toujours une erreur lors du lancement de l'application.
-Nous ne pouvions même pas lancé les application de test (\textit{01\_hello, 02\_text \ldots}) fournies \textbf{par Shiny}.
+Nous ne pouvions même pas lancer les applications de test (\textit{01\_hello, 02\_text \ldots}) fournies \textbf{par Shiny}.
 \bigskip
 
-Finalement, nous avons décider de déployer notre application Shiny sur un serveur \textbf{shinyApps.io}.
+Finalement, nous avons décidé de déployer notre application Shiny sur un serveur \textbf{shinyApps.io}.
 Ce site est un site officiel de \textbf{Shiny} qui permet d'héberger des applications Shiny.
 Nous avons créé un compte gratuit qui permet d'héberger jusqu'à 5 applications.
 Cependant, une application ne peut être \textit{active} (chargée sur un navigateur) que 25 heures par mois.
