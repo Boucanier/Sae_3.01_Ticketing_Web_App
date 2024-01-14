@@ -51,6 +51,11 @@ Les fichiers de code source sont disponibles dans le dossier [src](src/) :
     - [Connexions](src/stats/connexions.csv)
     - [Tickets](src/stats/tickets.csv)
 
+- Les différents sujets disponibles se trouvent dans le dossier [sujets](sujets/):
+  - Sujet de la [SAÉ 3.01](sujets/sujet_sae.pdf)
+  - Sujet de [cryptographie](sujets/sujet_crypto.pdf)
+  - Sujet de [statistiques](sujets/sujet_stats.pdf)
+
 ## Installation
 
 Pour installer le serveur web sur une machine **Linux** (*basé sur *Debian**), il faut exécuter la script [installation.sh](installation.sh) depuis la racine du projet avec la commande *`sudo bash installation.sh`*. Ce script va installer les paquets nécessaires au fonctionnement du serveur web, puis va configurer le serveur web et la base de données.
