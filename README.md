@@ -31,6 +31,8 @@ Tous les rapports sont disponibles dans le dossier [doc](doc/) :
   - [Rapport de statistiques](doc/Specification/statistiques.pdf)
 - Rapports de [tests](doc/Tests/) :
   - [Dossiers de tests unitaires](doc/Tests/Dossiers_tests/)
+- Rapport de [droits](doc/Droit/) :
+  - [Droits des contrats et du numérique](doc/Droit/rapport_droit.pdf)
 
 Les fichiers de code source sont disponibles dans le dossier [src](src/) :
 
