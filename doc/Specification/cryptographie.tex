@@ -8,6 +8,7 @@
 \usepackage[french]{babel}
 \usepackage{listings}
 \usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
 \title{SAÉ 3.01 Rapport de cryptographie}
 \author{Jules CHIRON, Matis RODIER, Thomas GODINEAU | INF2 FI A}
 \date{4 janvier 2024}
@@ -338,7 +339,7 @@ Puis, \textbf{chaque bloc} est traité de la manière suivante:
 \begin{itemize}
     \item On initialise 4 variables de 32 bits (A, B, C et D) avec les valeurs initiales
     \item On effectue 64 tours de boucle (on effectue $4 \times 16$ opérations) avec les fonctions $F$, $G$, $H$ et $I$
-    (fonctions $F$ pour les 16 premières, puis $G$ pour les 16 suivantes \ldots) (voir Figure~\ref{md5_algo}):
+    (fonctions $F$ pour les 16 premières, puis $G$ pour les 16 suivantes \ldots) (voir Figure~\ref{fig:md5_algo}):
     \begin{itemize}[label={\textbullet}]
         \item On applique la fonction (\textit{F, G, H ou I}) aux variables B, C et D
         \item On ajoute le résultat de la fonction à la variable A
@@ -357,7 +358,7 @@ Enfin, on concatène L, M, N et O pour obtenir \textbf{l'empreinte finale du mes
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.4\textwidth]{../annexes/md5_algo.png}
-    \caption{Représentation d'une des 64 itérations de l'algorithme MD5}\label{md5_algo}
+    \caption{Représentation d'une des 64 itérations de l'algorithme MD5}\label{fig:md5_algo}
 \end{figure}
 
 \subsection{Utilisation dans la cryptographie}
