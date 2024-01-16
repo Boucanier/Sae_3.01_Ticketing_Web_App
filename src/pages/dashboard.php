@@ -196,8 +196,8 @@
     else {
         echo '</div>';
     }
-    $error_fr = array('Le libellé doît être compris entre 1 et 30 caractères', 'Niveau d\'urgence compris entre 1 et 4', 'Le status doît être ouvert, en cours ou résolu', 'Vous pouvez attribué des tickets uniquement à des technicien');
-    $error_en = array('The label must be between 1 and 30 characters', 'Emergency level must be between 1 and 4', 'Status must be open, in progress or closed', 'You can only assign tickets to technicians');
+    $error_fr = array('Le libellé doît être compris entre 1 et 30 caractères', 'Niveau d\'urgence compris entre 1 et 4', 'Le status doît être ouvert, en cours ou résolu', 'Vous pouvez attribué des tickets uniquement à des techniciens');
+    $error_en = array('The label must be between 1 and 30 characters', 'Emergency level must be between 1 and 4', 'Status must be open, in_progress or closed', 'You can only assign tickets to technicians');
     $error = array('fr' => $error_fr, 'en' => $error_en);
 
     $success_fr = array('Vous avez bien clos le ticket', 'Vous avez bien pris le ticket', 'Vous avez bien édité le ticket');
