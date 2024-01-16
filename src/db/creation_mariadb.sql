@@ -138,7 +138,7 @@ INSERT INTO Users VALUES ('tec1', 'tec1', 'tec1', '7ed9b51b7f632a0f5fea05e0bdee4
 INSERT INTO Users VALUES ('tec2', 'tec2', 'tec2', '7ed9b51b7f632a0f5fea05e0bdee4fcbe935e7ec2b5a1fb209336f2d589710e3d595', 'tech');
 
 -- Ajout des premières salles
-INSERT INTO Rooms VALUES ("Autre"); -- salle par défaut
+INSERT INTO Rooms VALUES ("other"); -- salle par défaut
 INSERT INTO Rooms VALUES ("I21"), ("G21"), ("G22"), ("G23"), ("G24"), ("G25"), ("G26"), ("E51");
 
 -- Ajout d'un admin web
