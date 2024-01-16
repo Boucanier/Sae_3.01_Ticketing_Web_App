@@ -23,7 +23,7 @@ CREATE TABLE Tickets (
     ticket_id INTEGER PRIMARY KEY AUTO_INCREMENT,
     title VARCHAR(30) NOT NULL,
     description TEXT NOT NULL,
-    room VARCHAR(10) NOT NULL,
+    room VARCHAR(10) NOT NULL REFERENCES Rooms(room) ON UPDATE CASCADE,
     status VARCHAR(20) NOT NULL CHECK (status IN ('open', 'closed', 'in_progress')),
     emergency INTEGER NOT NULL CHECK (emergency IN (1, 2, 3, 4)),
     creation_date DATE NOT NULL,
@@ -47,6 +47,9 @@ CREATE TABLE Connections (
     date_co DATETIME NOT NULL
 );
 
+CREATE TABLE Rooms (
+    room VARCHAR(10) PRIMARY KEY
+);
 
 
 delimiter //
