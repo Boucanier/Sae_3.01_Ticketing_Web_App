@@ -11,6 +11,10 @@ DROP TRIGGER IF EXISTS check_tickets_user;
 
 
 
+CREATE TABLE Rooms (
+    room VARCHAR(10) PRIMARY KEY
+);
+
 CREATE TABLE Users (
     login VARCHAR(40) UNIQUE NOT NULL PRIMARY KEY,
     first_name VARCHAR(40) NOT NULL,
@@ -45,10 +49,6 @@ CREATE TABLE Connections (
     password VARCHAR(68) NOT NULL,
     succes BOOLEAN NOT NULL,
     date_co DATETIME NOT NULL
-);
-
-CREATE TABLE Rooms (
-    room VARCHAR(10) PRIMARY KEY
 );
 
 
