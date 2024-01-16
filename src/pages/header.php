@@ -25,7 +25,7 @@
         <div id="top">
             <img src="resources/logo.png" alt="logo de la plateforme" id="image1">
             <h1>Ticket App</h1>
-            <img src="resources/logo_UVSQ.png" alt="logo de l\'UVSQ" id="image2">
+            <a href="https://www.uvsq.fr" target="_blank"><img src="resources/logo_UVSQ.png" alt="logo de l\'UVSQ" id="image2"></a>
         </div>';
 
     if (isset($_SESSION['font']) && $_SESSION['font'] == "dyslexic"){
