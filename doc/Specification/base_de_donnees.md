@@ -16,12 +16,13 @@ Les fichiers de création de la base de données sont disponibles dans le dossie
 
 ### Tables
 
-Nous avons défini 4 tables :
+Nous avons défini 5 tables :
 
 - **Users** qui contient les informations sur les utilisateurs
 - **Tickets** qui contient les informations sur les tickets
 - **Interventions** qui contient les informations sur les interventions : c'est une table-association des tables Users et Tickets
 - **Connections** qui contient les informations sur les tentatives de connections (réussies ou échouées)
+- **Rooms** qui contient les différentes salles. Nous avons créé cette table afin de vérifier que la salle entrée est valide.
 
 ### Colonnes
 
@@ -49,6 +50,7 @@ Cette table contient les colonnes suivantes :
 - **ticket_id** : champ de type *integer* qui est un identifiant unique à chaque ticket, c'est la ***clé primaire*** de la table, elle s'auto-incrémente
 - **title** : titre du ticket de type *varchar(30)*, c'est le libellé du ticket
 - **description** : description du ticket de type *text*, c'est le détail du ticket
+- **room** : indication de la salle du problème de type *varchar(10)*, c'est une ***clé étrangère*** de la table qui fait référence à la colonne *room* de la table **Rooms**
 - **status** : statut du ticket de type *varchar(20)* qui peut prendre les valeurs suivantes :
 
   - *open* : ticket ouvert
@@ -91,6 +93,12 @@ Cette table contient les colonnes suivantes :
 
 Aucun de ces champs ne peut être nul.
 
+#### Rooms
+
+Cette table ne contient qu'une seule colonne :
+
+- **room** : champ de type *varchar(10)* qui représente chacune des salles. C'est la ***clé primaire*** de la table
+
 ## Modèle logique de données
 
 Le modèle logique de données permet de représenter les tables et leurs colonnes en précisant les clés primaires et étrangères. Il est présenté ci-dessous :
@@ -108,7 +116,7 @@ Tickets :
 - $ticket_id
 - title,
 - description
-- room
+- #room
 - status
 - emergency
 - creation_date
@@ -130,6 +138,10 @@ Connections :
 - succes
 - date_co
 
+Rooms :
+
+- $room
+
 **Légende** : Les champs précédés d'un **$** sont les clés primaires et ceux précédés d'un **#** sont des clés étrangères.
 
 ## Contraintes
@@ -141,12 +153,21 @@ Voici les différentes contraintes que nous avons définies pour les différente
   - **role** : uniques valeurs possibles : *user*, *tech*, *web_admin*, *sys_admin*
 
 - **Tickets** :
+  - **ticket_id** : unique
   - **status** : uniques valeurs possibles : *open*, *closed*, *in_progress*
   - **user_login** : référence la colonne **login** de la table **Users** -> l'utilisateur qui crée un ticket doit être du type *user*
+  - **room** : référence la colonne **room** de la table **Rooms** -> l'utilisateur doit indique une salle valide
 
 - **Interventions** :
+  - **id** : unique
   - **ticket_id** : référence la colonne **ticket_id** de la table **Tickets** -> une intervention sur un ticket ne peut être créée que si son état est *open*
   - **tech_login** : référence la colonne **login** de la table **Users** -> l'utilisateur qui prend en charge un ticket doit être du type *tech*
+ 
+- **Connections** :
+  - **id_co** : unique
+
+- **Rooms** :
+  - **room** : unique
 
 ## Déclencheurs (triggers)
 

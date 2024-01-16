@@ -3,12 +3,16 @@ USE ticket_app;
 
 
 
-DROP TABLES IF EXISTS Users, Tickets, Interventions, Connections;
+DROP TABLES IF EXISTS Users, Tickets, Interventions, Connections, Rooms;
 DROP TRIGGER IF EXISTS check_interventions_user;
 DROP TRIGGER IF EXISTS check_interventions_ticket;
 DROP TRIGGER IF EXISTS check_tickets_user;
 
 
+
+CREATE TABLE Rooms (
+    room VARCHAR(10) PRIMARY KEY
+);
 
 CREATE TABLE Users (
     login VARCHAR(40) UNIQUE NOT NULL PRIMARY KEY,
@@ -22,7 +26,7 @@ CREATE TABLE Tickets (
     ticket_id INTEGER PRIMARY KEY AUTO_INCREMENT,
     title VARCHAR(30) NOT NULL,
     description TEXT NOT NULL,
-    room VARCHAR(10) NOT NULL,
+    room VARCHAR(10) NOT NULL REFERENCES Rooms(room),
     status VARCHAR(20) NOT NULL CHECK (status IN ('open', 'closed', 'in_progress')),
     emergency INTEGER NOT NULL CHECK (emergency IN (1, 2, 3, 4)),
     creation_date DATE NOT NULL,
@@ -45,7 +49,6 @@ CREATE TABLE Connections (
     succes BOOLEAN NOT NULL,
     date_co DATETIME NOT NULL
 );
-
 
 
 delimiter //
@@ -142,6 +145,10 @@ delimiter ;
 INSERT INTO Users VALUES ('admin', 'sys', 'admin', '6bd8bb4221632a0f5fea05e0bdee4fcbe935e7ec2b5a1fb209336f2d589710e3d593', 'sys_admin');
 INSERT INTO Users VALUES ('tec1', 'tec1', 'tec1', '7ed9b51b7f632a0f5fea05e0bdee4fcbe935e7ec2b5a1fb209336f2d589710e3d595', 'tech');
 INSERT INTO Users VALUES ('tec2', 'tec2', 'tec2', '7ed9b51b7f632a0f5fea05e0bdee4fcbe935e7ec2b5a1fb209336f2d589710e3d595', 'tech');
+
+-- Ajout des premières salles
+INSERT INTO Rooms VALUES ("other"); -- salle par défaut
+INSERT INTO Rooms VALUES ("I21"), ("G21"), ("G22"), ("G23"), ("G24"), ("G25"), ("G26"), ("E51");
 
 -- Ajout d'un admin web
 INSERT INTO Users VALUES ('webadmin', 'web', 'admin', '6bd8bb4221632a0f5fea05e0bdee4fcbe935e7ec2b5a1fb209336f2d589710e3d593', 'web_admin');
