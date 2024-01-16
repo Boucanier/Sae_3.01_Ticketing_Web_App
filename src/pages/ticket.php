@@ -17,8 +17,8 @@
         </div>';
 
     if (isset($_GET["error"])){
-        $error_fr = array ('Le libellé ne doit pas être vide !', 'La description ne doit pas être vide !', 'Le libellé ne doit pas dépasser 30 caractères !', 'La description ne doit pas dépasser 65535 caractères !');
-        $error_en = array ('The title must not be empty !', 'The description must not be empty !', 'The label must not exceed 30 characters !', 'The description must not exceed 65535 characters !');
+        $error_fr = array ('Le libellé ne doit pas être vide !', 'La description ne doit pas être vide !', 'Le libellé ne doit pas dépasser 30 caractères !', 'La description ne doit pas dépasser 65535 caractères !', 'Votre ticket n\'a pas pu être créé');
+        $error_en = array ('The title must not be empty !', 'The description must not be empty !', 'The label must not exceed 30 characters !', 'The description must not exceed 65535 characters !', 'Your ticket could not have been created');
         $error = array('fr' => $error_fr, 'en' => $error_en);
 
         switch ($_GET['error']){
@@ -33,6 +33,9 @@
                 break;
             case "e3":
                 echo '<div class="error"><p>'.$error[$lang][3].'</p></div>';
+                break;
+            case "e4":
+                echo '<div class="error"><p>'.$error[$lang][4].'</p></div>';
                 break;
         }
     }

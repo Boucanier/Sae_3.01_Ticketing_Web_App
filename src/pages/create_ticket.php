@@ -11,6 +11,7 @@ if (isset($_POST['create_ticket'])){
         $salle = $_POST['choix'];
         $niveauUrgence = $_POST['niveauUrgence'];
         $descriptionPrbl = $_POST['descriptionPrbl'];
+
         if ($libelle == ''){
             // erreur qui dit que l'on doit mettre un libelle au problème
             header('Location: ticket.php?error=e0');
@@ -24,6 +25,9 @@ if (isset($_POST['create_ticket'])){
         }
         else if (strlen($descriptionPrbl) > 65535){
             header('Location: ticket.php?error=e3');
+        }
+        else if (!in_array($niveauUrgence, array(1,2,3,4))){
+            header('Location: ticket.php?error=e4');
         }
         else {
             $mysqli = new mysqli($host, $user, $passwd,$db);
