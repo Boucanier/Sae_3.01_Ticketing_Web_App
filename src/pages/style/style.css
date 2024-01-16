@@ -22,6 +22,7 @@ nav {
     display: flex;
     justify-content: space-between;
     background-color: #a6a6c2;
+    border-top: 1px solid black;
 }
 
 #titre_tab{
