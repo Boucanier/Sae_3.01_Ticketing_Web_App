@@ -29,7 +29,7 @@ ui <- fluidPage(
         label <- "Nombre de tickets à observer :",
         max <- 40,
         min <- 1,
-        value <- 15
+        value <- 40
       )
     ),
 
@@ -51,7 +51,7 @@ ui <- fluidPage(
         label <- "Nombre de dernieres connexions à observer :",
         max <- 40,
         min <- 1,
-        value <- 15
+        value <- 40
       )
     ),
 
@@ -166,7 +166,7 @@ server <- function(input, output) {
       }
 
       # On affiche le résultats
-      plot(seq(1, nb_co), pourcentages, pch = 4, xlab = "Pourcentage de connexions réussies", ylab = "Nombre de tentatives de connexions")
+      plot(seq(1, nb_co), pourcentages, pch = 4, xlab = "Nombre de tentatives de connexions", ylab = "Pourcentage de connexions réussies")
       title("Pourcentage de connexions réussies")
     }
   )
