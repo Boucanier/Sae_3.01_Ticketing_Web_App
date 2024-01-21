@@ -48,6 +48,20 @@
     $placeholder_en = array('Max&nbsp;30&nbsp;characters', 'Describe&nbsp;your&nbsp;problem&nbsp;here');
     $placeholder = array('fr' => $placeholder_fr, 'en' => $placeholder_en);
 
+    $mysqli = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB) or die ("Impossible de se connecter à la base de données");
+    $stmt = $mysqli->prepare("SELECT DISTINCT room FROM Rooms");
+
+    $stmt->execute();
+    $stmt->bind_result($room);
+    $rooms = array();
+
+    while ($stmt->fetch()){
+        $rooms[] = $room;
+    }
+
+    $stmt->close();
+    $mysqli->close();
+
     echo '<form action="create_ticket.php" method="post" id="ticket_form">
         <div id="ticket_creation">
             <div id="ticket_label">
@@ -64,10 +78,10 @@
                 <input type="text" id="libelle" name="libelle" placeholder='.$placeholder[$lang][0].'>
                 <br>
                 <select id="salle" name="choix">';
-                        $salles = array('I21', 'G21', 'G22', 'G23', 'G24', 'G25', 'G26');
                         echo '<option value="other">'.$formValue[$lang][6].'</option>';
-                        foreach($salles as $salle){
-                            echo '<option value="'.htmlentities($salle).'">'.htmlentities($salle).'</option>';
+                        foreach($rooms as $salle){
+                            if ($salle != 'other')
+                                echo '<option value="'.htmlentities($salle).'">'.htmlentities($salle).'</option>';
                         }
                 echo '</select>
                 <br>
