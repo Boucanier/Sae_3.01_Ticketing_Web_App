@@ -39,9 +39,12 @@
     $stmt->fetch();
     $stmt->close();
 
-    $description_fr = array('Ticket du ', 'Descritpion du problème', 'Salle : ', 'Niveau d\'urgence : ');
-    $description_en = array('Ticket from ', 'Probleme description', 'Room : ', 'Emergency level : ');
+    $description_fr = array('Ticket du ', 'Descritpion du problème', 'Salle : ', 'Niveau d\'urgence : ', 'Autre');
+    $description_en = array('Ticket from ', 'Probleme description', 'Room : ', 'Emergency level : ', 'Other');
     $description_lang = array('fr' => $description_fr, 'en' => $description_en);
+
+    if ($room == 'other')
+        $room = $description_lang[$lang][4];
 
     echo '<div id="part_top">
         <h2>'.$description_lang[$lang][0].htmlentities($creation_date).'</h2>
