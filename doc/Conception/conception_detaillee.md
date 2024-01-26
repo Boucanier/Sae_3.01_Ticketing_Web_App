@@ -8,7 +8,7 @@ Groupe : **INF2 - FI A**
 
 ## Site web
 
-Nous avons dans la conception architecturale défini 3 composants :
+Nous avons défini 3 composants dans la conception architecturale :
 
 - Pages web
 - Feuilles de style
@@ -18,22 +18,23 @@ Nous allons ici faire la conception détaillée de ces composants.
 
 ### Pages web
 
-Les pages web sont des fichiers HTML.
-Elles correspondent aux pages définies dans la spécification des maquettes (cf [spécification maquette](../Specification/maquettes.md)).
-On a donc les pages suivantes :
+Les pages web sont du code **HTML** contenu dans des fichiers **PHP**.
 
-- Page d'accueil utilisateur (index.html)
-- Page de connexion / création de compte (connection.html)
-- Page contact (contact.html)
-- Page affichage ticket utilisateur (ticket_details.html)
-- Page tableau de bord (dashboard.html)
-- Page profil utilisateur (profile.html)
-- Page de création de ticket (ticket.html)
+Nous avons donc les pages suivantes :
+
+- Page d'accueil utilisateur (*index.php*)
+- Page de connexion / création de compte (*connection.php*)
+- Page contact (*contact.php*)
+- Page affichage ticket utilisateur (*ticket_details.php*)
+- Page tableau de bord (*dashboard.php*)
+- Page profil utilisateur (*profile.php*)
+- Page de création de ticket (*ticket.php*)
 - Page des tickets disponibles
 - Page modification du ticket du technicien
 - Page modification du ticket de l'admin web
-- Page gérer les techniciens
+- Page gestion des techniciens
 - Page journaux d'activité
+- Page modification de la clé de chiffrement
 
 Voici les différents utilisateurs du site et les pages auxquelles ils ont accès :
 
@@ -71,21 +72,22 @@ Voici les différents utilisateurs du site et les pages auxquelles ils ont accè
 - Page profil utilisateur
 - Page modification du ticket de l'admin web
 
-#### Administrateurs systems
+#### Administrateurs système
 
 - Page d'accueil utilisateur
 - Page contact
 - Page journaux d'activité
 - Page profil utilisateur
+- Page modification de la clé de chiffrement
 
-La navigabilité entre ces différentes pages est également présentée dans le dossier de spécification (cf [spécification maquette](../Specification/maquettes.md)).
+### Feuilles de style
 
-### Feuille de style
+Nous avons deux feuilles de style CSS : **style.css** et **dys_styles.css**.
+La première est associée à tous les fichiers PHP. La raison est que toutes les pages se ressemblent et sont même identiques pour l'entête de page et le pied de page.
 
-Nous n'avons qu'une seule feuille de style CSS : **style.css**.
-Elle est associée à tous les fichiers HTML. La raison est que toutes les pages se ressemblent et sont même identiques pour l'entête de page et le pied de page.
+La seconde permet de modifier la police pour la rendre plus lisible pour les personnes dyslexiques. Elle est appliquée à toutes les pages quand l'utilisateur active le mode dyslexique.
 
 ### Images
 
-Les images utilisées sont le logo de l'IUT de Vélizy, notre logo et une icône d'utilisateur temporaire.
+Les images utilisées sont le logo de l'IUT de Vélizy, notre logo et une icône d'utilisateur.
 De plus, nous avons ajouté une vidéo de présentation du site.
