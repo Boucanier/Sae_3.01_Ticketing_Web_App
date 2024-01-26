@@ -1,6 +1,22 @@
 <?php
+    /**
+     * Fichier contenant les fonctions de chiffrement
+     * 
+     * @package Chiffrement
+     */
+
+    /**
+     * Chemin vers le fichier contenant la clé de chiffrement
+     * 
+     * @var string
+     */
     const KEY_PATH = "../../security/key.txt";
 
+    /**
+     * Récupère la clé de chiffrement dans le fichier dédié
+     * 
+     * @return string Clé de chiffrement
+     */
     function get_key(){
         $keyFile = fopen(KEY_PATH, "r") or die ("Impossible d'ouvrir en lecture le fichier key.txt");
         $key = fgets($keyFile);
@@ -8,6 +24,13 @@
         return trim($key);
     }
 
+    /**
+     * Génère un tableau de permutation à partir d'une clé
+     * 
+     * @param string $k Clé de chiffrement
+     * 
+     * @return array{int} Tableau de permutation
+     */
     function ksa($k){
         // On crée un tableau de caractères à partir de la clé
         $k = str_split($k);
@@ -36,7 +59,14 @@
         return $s;
     }
 
-
+    /**
+     * Génère une suite chiffrante à partir d'un tableau de permutation
+     * 
+     * @param array{int} $s Tableau de permutation
+     * @param int $n Nombre de valeurs à générer
+     * 
+     * @return array{int} Suite chiffrante
+     */
     function gen($s, $n){
         $j = 0;
         $k = array();
@@ -66,7 +96,14 @@
         return $k;
     }
 
-
+    /**
+     * Chiffre un message à partir d'une clé
+     * 
+     * @param string $m Message à chiffrer
+     * @param string $k Clé de chiffrement
+     * 
+     * @return string Message chiffré
+     */
     function cypher($m, $k){
         $m = str_split($m);
         
@@ -107,7 +144,14 @@
         return implode('', $c);
     }
 
-
+    /**
+     * Déchiffre un message à partir d'une clé
+     * 
+     * @param string $c Message chiffré
+     * @param string $k Clé de chiffrement
+     * 
+     * @return string Message déchiffré
+     */
     function decypher($c, $k){
         $c = str_split($c, 2);
         $s = gen(ksa($k), 128);
@@ -130,7 +174,17 @@
         return implode('', $m);
     }
 
-
+    /**
+     * Change la clé de chiffrement
+     * 
+     * Modifie le fichier contenant la clé
+     * Met à jour les mots de passe de la base de données
+     * 
+     * @param string $old_key Ancienne clé de chiffrement
+     * @param string $new_key Nouvelle clé de chiffrement
+     * 
+     * @return void
+     */
     function change_key($old_key, $new_key){
         $keyFile = fopen(KEY_PATH, "w") or die ("Impossible d'ouvrir en écriture le fichier key.txt");
         fwrite($keyFile, $new_key);
@@ -166,4 +220,3 @@
 
         $mysqli->close();
     }
-?>
