@@ -362,6 +362,21 @@
         // Compte supprimé
     }
 
+    /**
+     * Modifie un ticket
+     * 
+     * @param int $ticket_id id du ticket
+     * @param string $newLibelle nouveau titre
+     * @param int $newEmergency nouveau niveau d'urgence
+     * @param string $newStatus nouveau status
+     * @param string $newTech nouveau technicien
+     * @param string $previous_libelle ancien titre
+     * @param int $previous_emergency ancien niveau d'urgence
+     * @param string $previous_status ancien status
+     * 
+     * @return void
+     * 
+     */
     function edit_ticket($ticket_id, $newLibelle, $newEmergency, $newStatus, $newTech, $previous_libelle, $previous_emergency, $previous_status){
         $mysqli = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB);
 
@@ -414,6 +429,14 @@
         }
     }
 
+    /**
+     * Attribution du ticket a un technicien
+     * 
+     * @param int $ticket_id id du ticket sélectionné
+     * @param int $actual_user id tu technicien sélectionné
+     * 
+     * @return void
+     */
     function take_ticket($ticket_id, $actual_user){
         $mysqli = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB);
 
@@ -467,6 +490,13 @@
         }
     }
 
+    /**
+     * Permet de fermer un ticket
+     * 
+     * @param int $ticket_id id du ticket sélectionné
+     * 
+     * @return void
+     */
     function close_ticket($ticket_id){
         $actual_user = $_SESSION['login'];
         $mysqli = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB);
@@ -513,8 +543,15 @@
         }
     }
 
+    /**
+     * Renvoie la période aproximative de création d'un ticket
+     *      Ex : si on est le 3 et que le ticket a été créé le 2 du même mois, alors on renvoie "Il y a 1 jour"
+     * 
+     * @param date_format $date correspond a une date
+     * 
+     * @return string $val_tab une valeur du tableau
+     */
     function afficherDifferenceDate($date) {
-
         if (isset($_SESSION['lang']) && $_SESSION['lang'] == 'en'){
             $lang = $_SESSION['lang'];
         }
@@ -522,19 +559,24 @@
             $lang = 'fr';
         }
 
+        // Convertit la date en timestamp
         $dateTimestamp = strtotime($date);
 
+        // Calcule la différence entre la date donnée et maintenant en secondes
         $difference = time() - $dateTimestamp;
 
+        // Convertit la différence en jours, semaines, mois et années
         $jours = floor($difference / (60 * 60 * 24));
         $semaines = floor($jours / 7);
         $mois = floor($jours / 30);
         $annees = floor($jours / 365);
 
+        // Définit les tableaux de textes en français et en anglais
         $tab_fr = array('Il y a', 'année', 'années', 'mois', 'mois', 'semaine', 'semaines', 'jour', 'jours', 'Aujourd\'hui');
         $tab_en = array('', 'year ago', 'years ago', 'month ago', 'months ago', 'week ago', 'weeks ago', 'day ago', 'days ago', 'Today');
         $tab_lang = array('fr' => $tab_fr, 'en' => $tab_en);
 
+        // Détermine la période et renvoie la chaîne correspondante
         if ($annees >= 1){
             if ($annees == 1)
                 return $tab_lang[$lang][0]." ".$annees." ".$tab_lang[$lang][1];
