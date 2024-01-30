@@ -1,6 +1,11 @@
+# Fichiers cache des IDE
 .idea/
 .vscode/
+
+# Fichiers cache d'image windows
 Thumbs.db
+
+# Fichiers temporaires de LaTeX
 *.aux
 *.fls
 *.log
@@ -10,4 +15,9 @@ Thumbs.db
 *.synctex(busy)
 *.pyg
 *.out
+
+# Fichiers contenant des informations sensibles
 security/
+
+# Fichiers cache de phpDocumentor
+.phpdoc

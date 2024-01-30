@@ -21,6 +21,7 @@ Ce projet a pour but de créer une **application web de gestion de tickets**. Ce
 
 Tous les rapports sont disponibles dans le dossier [doc](doc/) :
 
+- [Documentation du code source](doc/phpDoc/)
 - Rapports de [conception](doc/Conception/)
 - Rapports de [spécification](doc/Specification/) :
   - [Base de données](doc/Specification/base_de_donnees.md)
@@ -30,6 +31,7 @@ Tous les rapports sont disponibles dans le dossier [doc](doc/) :
   - [Rapport de cryptographie](doc/Specification/cryptographie.pdf)
   - [Rapport de statistiques](doc/Specification/statistiques.pdf)
 - Rapports de [tests](doc/Tests/) :
+  - [Tests d'acceptation](doc/Tests/test_acceptation.md)
   - [Dossiers de tests unitaires](doc/Tests/Dossiers_tests/)
 - Rapport de [droits](doc/Droit/) :
   - [Droits des contrats et du numérique](doc/Droit/rapport_droit.pdf)
@@ -66,7 +68,7 @@ Consulter le [rapport de configuration du RPi](doc/Specification/config_rpi.md) 
 
 ## Remarques
 
-Attention, certains fichiers comme les **maquettes** et leurs rapports ne sont pas disponible depuis toutes les versions de ce projet. Il faut consulter les différentes [*releases*](https://github.com/Boucanier/Sae_3.01_Ticketing_Web_App/releases) pour les retrouver.
+Attention, certains fichiers comme les **différentes maquettes HTML** et leurs rapports ne sont pas disponibles depuis toutes les versions de ce projet. Il faut consulter les différentes [*releases*](https://github.com/Boucanier/Sae_3.01_Ticketing_Web_App/releases) pour les retrouver.
 
 ## Crédits
 
