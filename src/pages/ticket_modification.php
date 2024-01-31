@@ -75,7 +75,7 @@
     $formValue_en = array('Title', 'Room', 'User', 'Technician', 'Emergency level', 'Status', 'New title', 'Emergency level', 'New status', 'Assign a technician', 'Reset', 'Edit');
     $formValue = array('fr' => $formValue_fr, 'en' => $formValue_en);
     $otherValue = array('fr' => 'Autre', 'en' => 'Other');
-    $status_fr = array('Ouvert', 'En&nbsp;cours', 'Fermé');
+    $status_fr = array('Ouvert', 'En&nbsp;cours', 'Clos');
     $status_en = array('Open', 'In&nbsp;progress', 'Closed');
     $status = array('fr' => $status_fr, 'en' => $status_en);
 
@@ -149,7 +149,7 @@
                             <option value="Vide"></option>
                             <option value="open">Ouvert</option>
                             <option value="in_progress">En cours</option>
-                            <option value="closed">Résolu</option>
+                            <option value="closed">Clos</option>
                         </select>
                     </div>
                     <div class="modif_form_input">

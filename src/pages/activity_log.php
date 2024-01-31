@@ -119,7 +119,7 @@
 
             <div class="activity_log_parts">
                     <?php
-                        $infoTop = array('fr' => 'Historique des tickets fermés', 'en' => 'Closed ticket log');
+                        $infoTop = array('fr' => 'Historique des tickets clos', 'en' => 'Closed ticket log');
                         echo '<h2>'.$infoTop[$lang].'</h2>
                         <div id="scrollable-table">
                         <table id="ticket_log_table">

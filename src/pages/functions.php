@@ -547,7 +547,7 @@
      * Renvoie la période aproximative de création d'un ticket
      *      Ex : si on est le 3 et que le ticket a été créé le 2 du même mois, alors on renvoie "Il y a 1 jour"
      * 
-     * @param date_format $date correspond a une date
+     * @param string $date correspond a une date
      * 
      * @return string $val_tab une valeur du tableau
      */

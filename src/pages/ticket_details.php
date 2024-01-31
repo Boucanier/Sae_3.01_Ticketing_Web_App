@@ -59,7 +59,7 @@
             <p>'.$description_lang[$lang][2].htmlentities($room).'</p>
             <p>'.$description_lang[$lang][3].htmlentities($emergency).'</p>';
 
-    $status_fr = array('État : Ouvert', 'État : En cours', 'État : Fermé', 'État : Inconnu');
+    $status_fr = array('État : Ouvert', 'État : En cours', 'État : Clos', 'État : Inconnu');
     $status_en = array('Status : Open', 'Status : In progress', 'Status : Closed', 'Status : Unknown');
     $status_lang = array('fr' => $status_fr, 'en' => $status_en);
 
@@ -77,7 +77,7 @@
                     echo '<p>'.$status_lang[$lang][3].'</p>';
             }
 
-            $button_fr = array('Annuler', 'Prendre en charge', 'Clore');
+            $button_fr = array('Retour', 'Prendre en charge', 'Clore');
             $button_en = array('Cancel', 'Take ticket', 'Close');
             $button_lang = array('fr' => $button_fr, 'en' => $button_en);
 
