@@ -34,11 +34,6 @@
 
     $type = 'visit';
 
-    $user = "ticket_app";
-    $passwd = "ticket_s301";
-    $db = "ticket_app";
-    $host = "localhost";
-
     if (isset($_SESSION['login'])){
         $type = $_SESSION['role'];
     }

@@ -18,7 +18,7 @@
         $dispo = false;
     }
 
-    $mysqli = new mysqli($host, $user, $passwd,$db);
+    $mysqli = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB) or die ("Impossible de se connecter à la base de données");
 
     $actual_user = $_SESSION['login'];
 

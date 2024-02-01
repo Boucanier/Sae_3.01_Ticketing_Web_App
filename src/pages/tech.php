@@ -31,7 +31,7 @@
                             echo '</thead>
                                 <tbody>';
 
-                            $mysqli = new mysqli($host, $user, $passwd, $db);
+                            $mysqli = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB) or die ("Impossible de se connecter à la base de données");
                             $stmt = $mysqli->prepare("SELECT last_name, first_name, login FROM Users WHERE role = 'tech' AND login NOT LIKE 'rmv-%'");
                             $stmt->execute();
                             $data = $stmt->get_result();

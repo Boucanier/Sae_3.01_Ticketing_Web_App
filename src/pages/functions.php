@@ -6,35 +6,8 @@
      */
     session_start();
 
-    /**
-     * Nom d'utilisateur de la base de données
-     * 
-     * @var string
-     */
-    const USER_DB = "ticket_app";
-
-    /**
-     * Mot de passe de la base de données
-     * 
-     * @var string
-     */
-    const PASSWD_DB = "ticket_s301";
-
-    /**
-     * Nom de la base de données
-     * 
-     * @var string
-     */
-    const DB = "ticket_app";
-
-    /**
-     * Hôte de la base de données
-     * 
-     * @var string
-     */
-    const HOST_DB = "localhost";
-
-    include 'cypher.php';
+    include_once 'db_credentials.php';
+    include_once 'cypher.php';
 
     /**
      * Connecte un utilisateur
@@ -62,7 +35,7 @@
             }
             
             else {
-                $mysqli = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB);
+                $mysqli = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB) or die ("Impossible de se connecter à la base de données");
                 
                 // On compte le nombre de lignes avec le login entré
                 $stmt = $mysqli->prepare("SELECT COUNT(*) FROM Users WHERE login = ?");
@@ -172,7 +145,7 @@
      * @return void
      */
     function create_acc($login, $l_name, $f_name, $pwd, $conf_pwd, $reponse_attendue, $reponse_utilisateur, $role){
-        $mysqli = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB);
+        $mysqli = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB) or die ("Impossible de se connecter à la base de données");
 
         // On définit sur quelle page une erreur redirige en fonction du rôle
         if ($role == 'tech'){
@@ -268,7 +241,7 @@
      * @return void
      */
     function update_acc($login, $actual_pwd, $new_pwd, $conf_pwd){
-        $mysqli = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB);
+        $mysqli = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB) or die ("Impossible de se connecter à la base de données");
 
         // Si les nouveaux mots de passe sont identiques
         if ($new_pwd == $conf_pwd){
@@ -334,7 +307,7 @@
      * @return void
      */
     function del_acc($login){
-        $mysqli = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB);
+        $mysqli = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB) or die ("Impossible de se connecter à la base de données");
 
         // On récupère les données de l'utilisateur
         $stmt = $mysqli->prepare("SELECT last_name, first_name FROM Users WHERE login = ?");
@@ -378,7 +351,7 @@
      * 
      */
     function edit_ticket($ticket_id, $newLibelle, $newEmergency, $newStatus, $newTech, $previous_libelle, $previous_emergency, $previous_status){
-        $mysqli = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB);
+        $mysqli = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB) or die ("Impossible de se connecter à la base de données");
 
         if ($newTech != "Vide"){
             $stmt = $mysqli->prepare("SELECT login FROM Users WHERE role = 'tech'");
@@ -438,7 +411,7 @@
      * @return void
      */
     function take_ticket($ticket_id, $actual_user){
-        $mysqli = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB);
+        $mysqli = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB) or die ("Impossible de se connecter à la base de données");
 
         $stmt = $mysqli->prepare("SELECT status FROM Tickets WHERE ticket_id = ?");
         $stmt->bind_param("s", $ticket_id);
@@ -499,7 +472,7 @@
      */
     function close_ticket($ticket_id){
         $actual_user = $_SESSION['login'];
-        $mysqli = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB);
+        $mysqli = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB) or die ("Impossible de se connecter à la base de données");
 
         $stmt = $mysqli->prepare("SELECT status FROM Tickets WHERE ticket_id = ?");
         $stmt->bind_param("s", $ticket_id);
