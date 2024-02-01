@@ -3,7 +3,7 @@ $tab = array('fr' => 'Contact', 'en' => 'Contact');
 
 include "header.php";
 $mail = array('fr' => '<p>Si vous souhaitez nous contacter, cliquez sur <a href="mailto:?to=contact.golemcorp@gmail.com" target="_blank" class="link_on_page">ce lien</a></p>',
-    'en' => 'If you want to contact us, please click on <a href="mailto:?to=contact.golemcorp@gmail.com" target="_blank" class="link_on_page">this link</a></p>');
+    'en' => '<p>If you want to contact us, please click on <a href="mailto:?to=contact.golemcorp@gmail.com" target="_blank" class="link_on_page">this link</a></p>');
 
 $project = array('fr' => '<p>Voici notre <a href="https://github.com/Boucanier/Sae_3.01_Ticketing_Web_App" target="_blank" class="link_on_page">lien GitHub</a> pour ce projet</p>',
     'en' => '<p>Here is our <a href="https://github.com/Boucanier/Sae_3.01_Ticketing_Web_App" target="_blank" class="link_on_page">Github link</a> for this project</p>');
