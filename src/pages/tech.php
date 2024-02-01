@@ -96,11 +96,6 @@
                 echo '<form action="account.php" method="post">
                 <div class="user_info">
                     <div class="form_group">
-                        <label for="login">'.$formValue[$lang][0].'&nbsp;:</label>
-                        <input type="text" id="login" name="login" placeholder='.$placeholder[$lang][0].'>
-                    </div>
-                    <br>
-                    <div class="form_group">
                         <label for="name">'.$formValue[$lang][1].'&nbsp;:</label>
                         <input type="text" id="name" name="name" placeholder='.$placeholder[$lang][1].'>
                     </div>
@@ -108,6 +103,11 @@
                     <div class="form_group">
                         <label for="f_name">'.$formValue[$lang][2].'&nbsp;:</label>
                         <input type="text" id="f_name" name="f_name" placeholder='.$placeholder[$lang][2].'>
+                    </div>
+                    <br>
+                    <div class="form_group">
+                        <label for="login">'.$formValue[$lang][0].'&nbsp;:</label>
+                        <input type="text" id="login" name="login" placeholder='.$placeholder[$lang][0].'>
                     </div>
                     <br>
                     <div class="form_group">
