@@ -225,35 +225,40 @@ input {
     transition: 0.2s;
 }
 
-#account_sup:hover{
+#account_sup:hover, .nice_button:hover {
     background-color: #f65959;
     transition: 0.2s;
 }
 
-#account_sup{
-    min-width: 60%;
+.nice_button, #account_sup {
+    background-color: rgb(226, 226, 226);
+    padding: 5px;
+    font-size: 16px;
 }
 
-.reset_buttons:hover{
+#account_sup {
+    min-width: 60%;
+    padding: 10px;
+}
+
+.reset_buttons:hover {
     background-color: rgb(226, 226, 226);
     transition: 0.3s;
 }
 
-.reset_buttons, .submit_buttons, #account_sup{
+.reset_buttons, .submit_buttons, #account_sup, .nice_button {
     background-color: #fff;
     border: solid black 1px;
     border-radius: 4px;
     cursor: pointer;
 }
 
-.reset_buttons, .submit_buttons, #account_sup{
-    padding: 10px 20px;
+.reset_buttons, .submit_buttons {
     font-size: 16px;
-    margin-top: 10px;
-    width: 35%;
+    min-width: 35%;
 }
 
-.form_containers{
+.form_containers {
     display: flex;
     align-content: center;
     align-items: center;
@@ -868,4 +873,8 @@ table{
 #construction_text > p {
     font-size: 40px;
     line-height: 120%;
+}
+
+#construction_link {
+    margin-bottom: 15px;
 }

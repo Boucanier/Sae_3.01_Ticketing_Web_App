@@ -41,9 +41,9 @@
                             echo '</div></div>';
 
                         if ($_SESSION['role'] == 'user' || $_SESSION['role'] == 'tech')
-                            echo '<button id="account_sup" onclick="supAccount()">'.$presProfile[$lang][3].'</button>';
+                            echo '<button id="account_sup" onclick="supMyAccount()">'.$presProfile[$lang][3].'</button>';
                         else
-                            echo '<button id="account_sup" onclick="supAccount()" disabled>'.$presProfile[$lang][3].'</button>';
+                            echo '<button id="account_sup" onclick="supMyAccount()" disabled>'.$presProfile[$lang][3].'</button>';
                     ?>
             </div>
         </div>

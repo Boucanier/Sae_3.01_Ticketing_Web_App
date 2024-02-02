@@ -69,14 +69,13 @@ echo '<main>
                         <label for="conf_pwd">'.$formValue[$lang][4].'&nbsp;:</label>
                         <input type="password" id="conf_pwd" name="conf_pwd" placeholder='.$placeholder[$lang][4].'>
                     </div>
-                    <br>
-                </div>';
+                    <br>';
                     $nb1 = rand(1, 5);
                     $nb2 = rand(1, 5);
                     $reponse_attendue = $nb1 + $nb2;
 
                 echo '<div class="captcha_group">
-                    <label for="captcha">'.$nb1.' + '.$nb2.'&nbsp;=&nbsp;</label>
+                    <label for="captcha">'.$nb1.'&nbsp;+&nbsp;'.$nb2.'&nbsp;=&nbsp;</label>
                     <input type="number" id="captcha" name="captcha"/>';
                     if (isset($_GET['error'])){
                         if ($_GET['error'] == "14"){
@@ -85,7 +84,7 @@ echo '<main>
                     }
                 echo '
                     <input type="hidden" name="reponse_attendue" value="'.$reponse_attendue.'"/>
-                </div>
+                </div></div>
                 <br>
                 <div class="resetSubmitButtons">
                     <input type="reset" value='.$formValue[$lang][5].' class="reset_buttons">
@@ -114,7 +113,7 @@ echo '<main>
                 <div class="form_group2">
                     <label for="pwd_connect">'.$formValue[$lang][3].'&nbsp;:</label>
                     <input type="password" id="pwd_connect" name="pwd_connect" placeholder='.$placeholder[$lang][1].'>
-                    <a href="construction.php">'.$formValue[$lang][8].'</a>
+                    <a href="construction.php" id="construction_link">'.$formValue[$lang][8].'</a>
                 </div>
                 <br>
                 <div class="resetSubmitButtons">

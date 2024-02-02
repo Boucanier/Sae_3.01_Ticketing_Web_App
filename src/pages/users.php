@@ -16,8 +16,8 @@
             <h2>'.$infoTop[$lang].'</h2>
         </div>';
 
-    $header_fr = array('Rôle', 'Login', 'Nom', 'Prénom');
-    $header_en = array('Role', 'Login', 'Last name', 'First name');
+    $header_fr = array('Rôle', 'Login', 'Nom', 'Prénom', '');
+    $header_en = array('Role', 'Login', 'Last name', 'First name', '');
     $header = array('fr' => $header_fr, 'en' => $header_en);
 
     $roles_fr = array('web_admin' => 'Admin web', 'user' => 'Utilisateur', 'tech' => 'Technicien', 'sys_admin' => 'Admin système');
@@ -26,11 +26,18 @@
 
     $mysqli = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB) or die('Impossible de se connecter à la base de données');
 
-    $stmt = $mysqli->prepare('SELECT role, login, last_name, first_name FROM Users WHERE login NOT LIKE "rmv-%"');
+    $stmt = $mysqli->prepare('SELECT role, login, last_name, first_name FROM Users WHERE login NOT LIKE "rmv-%" AND role NOT LIKE "%_admin"');
     $stmt->execute();
     
     $data = $stmt->get_result();
     $data = mysqli_fetch_all($data);
+    
+    $stmt->close();
+    $mysqli->close();
+
+    $form_fr = array('Supprimer&nbsp;le&nbsp;compte', 'Modifier&nbsp;le&nbsp;mot&nbsp;de&nbsp;passe', '32&nbsp;caractères&nbsp;max');
+    $form_en = array('Delete&nbsp;account', 'Change&nbsp;password', 'Max&nbsp;32&nbsp;characters');
+    $form = array('fr' => $form_fr, 'en' => $form_en);
 
     echo '<div id="ticket_table">
         <table>';
@@ -53,11 +60,13 @@
                 else
                     echo '<td>'.$row[$i].'</td>';
             }
+            echo '<form action="account.php" method="post" id=form_'.$row[1].' type="hidden">
+                    <input type="hidden" name="sup_acc" value="true">
+                    <input type="hidden" name="login" value="'.$row[1].'">
+                </form>
+                <td><button class="nice_button" id='.$row[1].' onclick="supAccount(this.id)">'.$form[$lang][0].'</button></td>';
             echo '</tr>';
         }
-
-        $stmt->close();
-        $mysqli->close();
 
         echo '</table>
         </div>';
