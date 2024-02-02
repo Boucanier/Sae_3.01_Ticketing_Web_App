@@ -231,7 +231,7 @@
     /**
      * Modifie le mot de passe d'un utilisateur
      * 
-     * Redirige vers la page de profil si les identifiants sont invalides
+     * Redirige vers la page de profil/des utilisateurs si les identifiants sont invalides
      * 
      * @param string $login Login
      * @param string $actual_pwd Mot de passe actuel
@@ -240,7 +240,15 @@
      * 
      * @return void
      */
-    function update_acc($login, $actual_pwd, $new_pwd, $conf_pwd){
+    function update_acc($login, $actual_pwd, $new_pwd, $conf_pwd, $role){
+        // On définit sur quelle page une erreur redirige en fonction du rôle
+        if ($role == 'user'){
+            $error_link = 'Location: profile.php?';
+        }
+        else {
+            $error_link = 'Location: users.php?';
+        }
+
         $mysqli = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB) or die ("Impossible de se connecter à la base de données");
 
         // Si les nouveaux mots de passe sont identiques
@@ -254,23 +262,24 @@
             $get_pwd = $stmt->get_result()->fetch_row()[0];
 
             $stmt->close();
+            $mysqli->close();
 
             // Si le login n'existe pas
             if ($taille == 0){
-                header('Location: profile.php?error=31');
+                header($error_link.'error=31');
                 # Erreur d'identifiants
             }
 
             // Si le login existe plusieurs fois
             else if ($taille > 1){
-                header('Location: profile.php?error=32');
+                header($error_link.'error=32');
                 # Erreur de base de données
             }
 
             // Si le login existe une seule fois
             else {
                 // Si le mot de passe est correct
-                if ($actual_pwd == decypher($get_pwd, get_key())){
+                if ($actual_pwd == decypher($get_pwd, get_key()) || $role == 'web_admin'){
 
                     // On chiffre le nouveau mot de passe
                     $new_pwd = cypher($new_pwd, get_key());
@@ -281,13 +290,13 @@
                     $stmt->execute();
                     $mysqli->close();
 
-                    header('Location: profile.php?success=1');
+                    header($error_link.'success=1');
                     # Mot de passe modifié
                 }
 
                 // Si le mot de passe est incorrect
                 else {
-                    header('Location: profile.php?error=31');
+                    header($error_link.'error=31');
                     # Erreur d'identifiants
                 }
             }
@@ -295,7 +304,7 @@
         
         // Si les nouveaux mots de passe ne sont pas identiques
         else {
-            header('Location: profile.php?error=33');
+            header($error_link.'error=33');
         }
     }
 
@@ -331,7 +340,6 @@
         $stmt->close();
 
         $mysqli->close();
-        header('Location: out.php?sup_acc=true');
         // Compte supprimé
     }
 
@@ -578,4 +586,3 @@
             return $tab_lang[$lang][9];
         }
     }
-?>

@@ -251,7 +251,7 @@
     $status = array('fr' => $status_fr, 'en' => $status_en);
 
     foreach ($test_col as $row) {
-        echo '<tr id="fond_hover">';
+        echo '<tr class="fond_hover">';
         for ($i = 0; $i < count($row); $i++) {
             if ($i == 0) {
                 echo '<td class="ticket_case_'.htmlentities($row[$i]).'">'.htmlentities($row[$i]).'</td>';

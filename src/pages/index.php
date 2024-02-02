@@ -80,7 +80,7 @@ echo '<main id="main_page">
         }
         for ($i=0; $i < $long; $i++){
             $row = mysqli_fetch_array($data);
-            echo '<tr id="fond_hover">';
+            echo '<tr class="fond_hover">';
 
             $status_fr = array('open' => 'Ouvert', 'in_progress' => 'En cours', 'closed' => 'Clos');
             $status_en = array('open' => 'Open', 'in_progress' => 'In progress', 'closed' => 'Closed');

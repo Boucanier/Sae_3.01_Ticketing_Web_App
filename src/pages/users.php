@@ -45,7 +45,7 @@
         echo '</tr>';
 
         foreach ($data as $row) {
-            echo '<tr id="fond_hover">';
+            echo '<tr class="fond_hover" id='.$row[1].'>';
             for ($i = 0; $i < count($row); $i++){
                 if ($i == 0)
                     echo '<td>'.$roles[$lang][$row[$i]].'</td>';

@@ -31,17 +31,22 @@
     }
 
     else if (isset($_POST['update_acc'])){
-        if (isset($_SESSION['login'], $_POST['actual_pwd'], $_POST['new_pwd'], $_POST['conf_pwd'])){
-            update_acc($_SESSION['login'], $_POST['actual_pwd'], $_POST['new_pwd'], $_POST['conf_pwd']);
-        }
+        if (isset($_SESSION['login'], $_POST['actual_pwd'], $_POST['new_pwd'], $_POST['conf_pwd']))
+            update_acc($_SESSION['login'], $_POST['actual_pwd'], $_POST['new_pwd'], $_POST['conf_pwd'], 'user');
+
+        elseif (isset($_POST['user_login'], $_POST['new_pwd']) && isset($_SESSION['role']) && $_SESSION['role'] == 'web_admin')
+            update_acc($_SESSION['login'], 'web', $_POST['new_pwd'], 'web', 'web_admin');
     }
 
-    else if (isset($_POST['sup_acc']) && $_POST['sup_acc'] == true){
-        if (isset($_SESSION['login'])){
+    else if (isset($_POST['sup_acc']) && $_POST['sup_acc']){
+        if (isset($_SESSION['login'], $_SESSION['role']) && substr($_SESSION['role'], -6) != '_admin'){
             del_acc($_SESSION['login']);
+            header('Location: out.php?sup_acc=true');
         }
+        elseif (isset($_POST['login']) && isset($_SESSION['role']) && $_SESSION['role'] == 'web_admin')
+            del_acc($_POST['login']);
+            header('Location: users.php?success=2');
     }
 
     else header('Location: index.php');
     # Paramètres manquants
-?>

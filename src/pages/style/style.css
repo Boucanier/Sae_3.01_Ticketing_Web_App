@@ -39,7 +39,7 @@ nav {
     width: 90%;
 }
 
-#fond_hover:hover{
+.fond_hover:hover{
     background-color: #e0e0e8;
 }
 
