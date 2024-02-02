@@ -39,8 +39,8 @@
     }
 
 
-    $headerValue_fr = array('Accueil', 'Se connecter', 'Tableau de bord', 'Profil', 'Déconnexion', 'Gestion des techniciens', 'Journaux d\'activités', 'Tickets disponibles', 'Statistiques', 'Sécurité');
-    $headerValue_en = array('Home', 'Sign in', 'Dashboard', 'Profile', 'Sign out', 'Technicians management', 'Activity logs', 'Available tickets', 'Statistics', 'Security');
+    $headerValue_fr = array('Accueil', 'Se connecter', 'Tableau de bord', 'Profil', 'Déconnexion', 'Gestion des techniciens', 'Journaux d\'activités', 'Tickets disponibles', 'Statistiques', 'Sécurité', 'Gestion des utilisateurs');
+    $headerValue_en = array('Home', 'Sign in', 'Dashboard', 'Profile', 'Sign out', 'Technicians management', 'Activity logs', 'Available tickets', 'Statistics', 'Security', 'Users management');
 
     $headerValue = array('fr' => $headerValue_fr, 'en' => $headerValue_en);
 
@@ -91,6 +91,7 @@
                         <a href="index.php">'.$headerValue[$lang][0].'</a>
                         <a href="dashboard.php">'.$headerValue[$lang][2].'</a>
                         <a href="tech.php">'.$headerValue[$lang][5].'</a>
+                        <a href="users.php">'.$headerValue[$lang][10].'</a>
                     </div>
                     <div id="nav2">
                         <a href="profile.php">'.$headerValue[$lang][3].'</a>
@@ -115,4 +116,3 @@
                 </nav>
             </header>');
     }
-?>
