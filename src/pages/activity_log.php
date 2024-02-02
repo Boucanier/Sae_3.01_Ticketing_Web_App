@@ -34,7 +34,7 @@
                             echo '</tr>
                         </thead>';
 
-                        $mysqli = new mysqli($host, $user, $passwd, $db);
+                        $mysqli = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB) or die("Impossible de se connecter à la base de données");
                         $stmt = $mysqli->prepare("SELECT DATE_FORMAT(creation_date,'%d/%m/%Y'), user_login, ip_address, emergency 
                                                             FROM Tickets
                                                             WHERE status != 'closed'
