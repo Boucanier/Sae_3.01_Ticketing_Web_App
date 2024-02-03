@@ -2,8 +2,10 @@
     $tab = array('fr' => 'Accueil', 'en' => 'Home');
     include "header.php";
 
+    $success = array('fr' => 'Votre compte a bien été supprimé', 'en' => 'Your account has been successfully deleted');
+
     if (isset($_GET['success']) && $_GET['success'] == 1){
-        echo '<div class="success"><p>Votre compte a bien été supprimé</p></div>';
+        echo '<div class="success"><p>'.$success[$lang].'</p></div>';
     }
 
     $pres_fr = 'Cette application est un site de ticketing avec sa base de données.
@@ -80,7 +82,7 @@ echo '<main id="main_page">
         }
         for ($i=0; $i < $long; $i++){
             $row = mysqli_fetch_array($data);
-            echo '<tr id="fond_hover">';
+            echo '<tr class="fond_hover">';
 
             $status_fr = array('open' => 'Ouvert', 'in_progress' => 'En cours', 'closed' => 'Clos');
             $status_en = array('open' => 'Open', 'in_progress' => 'In progress', 'closed' => 'Closed');

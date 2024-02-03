@@ -82,7 +82,7 @@
             $button_lang = array('fr' => $button_fr, 'en' => $button_en);
 
             echo '<br>
-            <div class="resetSubmitButtons">
+            <div class="resetSubmitDetails">
                 <input type="button" value="'.$button_lang[$lang][0].'" class="reset_buttons" onclick="history.back();">';
 
                     if (isset($_POST['function']) && !empty($_POST['function']) && $_SESSION['role'] == 'tech'){

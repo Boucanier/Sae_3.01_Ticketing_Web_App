@@ -163,26 +163,32 @@ De plus, il a accès à la liste de tous les techniciens du site web.
 
 ## Cas 17
 
-Le cas d'utilisation 17 "Configuration du système", permet à l'administrateur système de se gérer la partie système du site web.
+Le cas d'utilisation 17 "Configuration du système" permet à l'administrateur système de se gérer la partie système du site web.
 
 Dans ce cas-ci, l'administrateur système se connecte via la page de connexion.
 Une fois connecté, celui-ci peut aller dans son tableau de bord et ainsi avoir accès au journal des tickets créés, des connexions échouées et de l'historique des tickets fermés.
 
 ## Cas 18
 
-Le cas d'utilisation 18 "Gérer les tickets", permet aux utilisateurs ou à l'administrateur web de gérer les tickets.
+Le cas d'utilisation 18 "Gérer les tickets" permet aux utilisateurs ou à l'administrateur web de gérer les tickets.
 
 Pour cela, un utilisateur doit se connecter s'il ne l'a pas déjà fait puis il pourra enfin accéder à son tableau de bord contenant tous les tickets qu'il a déjà créés. De plus, depuis cette page l'utilisateur peut avoir accès aux détails de son ticket en plus de pouvoir en créer un nouveau.
 L'administrateur web quant à lui doit être connecté et aller sur son tableau afin d'avoir accès à tous les tickets ouverts et en cours. Depuis son tableau de bord, il peut aussi avoir accès à des détails plus précis des tickets.
 
 ## Cas 19
 
-Le cas d'utilisation 19 "Changer la police", permet à n'importe quel utilisateur de changer la police du site web.
+Le cas d'utilisation 19 "Changer la police" permet à n'importe quel utilisateur de changer la police du site web.
 
 Quand l'utilisateur accède au site web, il peut sélectionner la police qu'il souhaite pour afficher le site dans le footer. Cette police est soit la police par défaut, soit la police "Open Dyslexic", adaptée pour les personnes dyslexiques.
 
 ## Cas 20
 
-Le cas d'utilisation 20 "Changer la langue", permet à n'importe quel utilisateur de changer la langue du site web.
+Le cas d'utilisation 20 "Changer la langue" permet à n'importe quel utilisateur de changer la langue du site web.
 
 Quand l'utilisateur accède au site web, il peut sélectionner la langue qu'il souhaite pour afficher le site dans le footer. Cette langue est soit le français, soit l'anglais.
+
+## Cas 21
+
+Le cas d'utilisation 21 "Modifier les utilisateurs" permet à l'administrateur web d'afficher la liste des utilisateurs.
+
+Quand l'utilisateur se connecte au site web. Il peut accéder à un onglet "Gestion des utilisateurs". Cet onglet affiche la liste de tous les utilisateurs de la plateforme (sauf les admins). Il peut ensuite modifier le mot de passe d'un utilisateur ou supprimer son compte.

@@ -10,7 +10,7 @@
 
     echo '<main><div id="part_top"><h2>'.$infoTop[$lang].'</h2></div>';
 
-    $success = array('fr' => 'Mot de passe changé avec succès !', 'en' => 'Password changed successfully !');
+    $success = array('fr' => 'Mot de passe modifié avec succès !', 'en' => 'Password changed successfully !');
 
     if (isset($_GET['success'])) {
         echo '<div class="success"><p>'.$success[$lang].'</p></div>';
@@ -41,9 +41,9 @@
                             echo '</div></div>';
 
                         if ($_SESSION['role'] == 'user' || $_SESSION['role'] == 'tech')
-                            echo '<button id="account_sup" onclick="supAccount()">'.$presProfile[$lang][3].'</button>';
+                            echo '<button id="account_sup" onclick="supMyAccount()">'.$presProfile[$lang][3].'</button>';
                         else
-                            echo '<button id="account_sup" onclick="supAccount()" disabled>'.$presProfile[$lang][3].'</button>';
+                            echo '<button id="account_sup" onclick="supMyAccount()" disabled>'.$presProfile[$lang][3].'</button>';
                     ?>
             </div>
         </div>

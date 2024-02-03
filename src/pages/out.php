@@ -1,16 +1,11 @@
 <?php
     session_start();
-    if (isset($_SESSION['login'])){
-        session_destroy();
-        if (isset($_GET['sup_acc']) && $_GET['sup_acc'] == true){
-            header('Location: index.php?success=1');
-        }
-        else {
-            header('Location: index.php');
-        }
-    }
+    session_destroy();
 
-    else {
-        header('Location: index.php');
+    if (isset($_GET['sup_acc']) && $_GET['sup_acc']){
+        header('Location: index.php?success=1');
     }
-?>
+    
+    else {
+        header('Location: index.php?test=1');
+    }
