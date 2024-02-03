@@ -11,7 +11,6 @@ function supAccount(login){
     jsChoose = confirm("Êtes-vous sûr de vouloir supprimer le compte ?");
 
     if (jsChoose == true) {
-        console.log("form_" + login);
         form = document.getElementById("form_" + login);
         form.submit();
     }
