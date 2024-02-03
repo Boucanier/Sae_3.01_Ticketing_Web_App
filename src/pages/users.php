@@ -9,6 +9,19 @@
         header('Location: index.php');
     }
 
+    $success_fr = array('Mot de passe modifié', 'Le compte a bien été supprimé');
+    $success_en = array('Password successfully changed', 'Account successfully deleted');
+    $success = array('fr' => $success_fr, 'en' => $success_en);
+
+    if (isset($_GET['success'])){
+        switch ($_GET['success']){
+            case 1 : echo '<div class="success"><p>'.$success[$lang][0].'</p></div>';
+                break;
+            case 2 : echo '<div class="success"><p>'.$success[$lang][1].'</p></div>';
+                break;
+        }
+    }
+
     $infoTop = array('fr' => 'Liste des utilisateurs', 'en' => 'Users list');
 
     echo '<main>

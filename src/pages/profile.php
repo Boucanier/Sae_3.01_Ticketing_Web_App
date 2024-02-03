@@ -10,7 +10,7 @@
 
     echo '<main><div id="part_top"><h2>'.$infoTop[$lang].'</h2></div>';
 
-    $success = array('fr' => 'Mot de passe changé avec succès !', 'en' => 'Password changed successfully !');
+    $success = array('fr' => 'Mot de passe modifié avec succès !', 'en' => 'Password changed successfully !');
 
     if (isset($_GET['success'])) {
         echo '<div class="success"><p>'.$success[$lang].'</p></div>';

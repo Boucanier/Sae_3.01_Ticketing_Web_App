@@ -2,8 +2,10 @@
     $tab = array('fr' => 'Accueil', 'en' => 'Home');
     include "header.php";
 
+    $success = array('fr' => 'Votre compte a bien été supprimé', 'en' => 'Your account has been successfully deleted');
+
     if (isset($_GET['success']) && $_GET['success'] == 1){
-        echo '<div class="success"><p>Votre compte a bien été supprimé</p></div>';
+        echo '<div class="success"><p>'.$success[$lang].'</p></div>';
     }
 
     $pres_fr = 'Cette application est un site de ticketing avec sa base de données.
