@@ -25,6 +25,20 @@ nav {
     border-top: 1px solid black;
 }
 
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input {
+    padding: 5px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
 #titre_tab{
     display: flex;
     flex-direction: column;
@@ -206,27 +220,13 @@ main {
     justify-content: space-evenly;
 }
 
-label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-input {
-    padding: 8px;
-    margin: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
 .submit_buttons:hover {
     background-color: #4CAF50;
     transition: 0.2s;
 }
 
 #account_sup:hover, .nice_button:hover {
-    background-color: #f65959;
+    background-color: rgb(226, 226, 226);
     transition: 0.2s;
 }
 
@@ -304,6 +304,10 @@ input {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.resetSubmitButtons > input {
+    padding: 8px;
 }
 
 .sign_up {
@@ -832,6 +836,7 @@ table{
 
 .error > p{
     color: red;
+    background-color: white;
     border: 1px solid red;
     font-weight: bold;
     padding: 5px;
@@ -880,4 +885,18 @@ table{
 
 #construction_link {
     margin-bottom: 15px;
+}
+
+.hidden_label {
+    visibility:hidden;
+    height: 0px;
+    width: 0px;
+}
+
+.change_passwd_form{
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
 }

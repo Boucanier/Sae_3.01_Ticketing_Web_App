@@ -243,10 +243,10 @@
     function update_acc($login, $actual_pwd, $new_pwd, $conf_pwd, $role){
         // On définit sur quelle page une erreur redirige en fonction du rôle
         if ($role == 'user'){
-            $error_link = 'Location: profile.php?';
+            $redirect_link = 'Location: profile.php?';
         }
         else {
-            $error_link = 'Location: users.php?';
+            $redirect_link = 'Location: users.php?';
         }
 
         $mysqli = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB) or die ("Impossible de se connecter à la base de données");
@@ -262,17 +262,16 @@
             $get_pwd = $stmt->get_result()->fetch_row()[0];
 
             $stmt->close();
-            $mysqli->close();
 
             // Si le login n'existe pas
             if ($taille == 0){
-                header($error_link.'error=31');
+                header($redirect_link.'error=31');
                 # Erreur d'identifiants
             }
 
             // Si le login existe plusieurs fois
             else if ($taille > 1){
-                header($error_link.'error=32');
+                header($redirect_link.'error=32');
                 # Erreur de base de données
             }
 
@@ -290,13 +289,13 @@
                     $stmt->execute();
                     $mysqli->close();
 
-                    header($error_link.'success=1');
+                    header($redirect_link.'success=1');
                     # Mot de passe modifié
                 }
 
                 // Si le mot de passe est incorrect
                 else {
-                    header($error_link.'error=31');
+                    header($redirect_link.'error=31');
                     # Erreur d'identifiants
                 }
             }
@@ -304,7 +303,7 @@
         
         // Si les nouveaux mots de passe ne sont pas identiques
         else {
-            header($error_link.'error=33');
+            header($redirect_link.'error=33');
         }
     }
 

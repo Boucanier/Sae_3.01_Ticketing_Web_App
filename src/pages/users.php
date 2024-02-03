@@ -16,8 +16,8 @@
             <h2>'.$infoTop[$lang].'</h2>
         </div>';
 
-    $header_fr = array('Rôle', 'Login', 'Nom', 'Prénom', '');
-    $header_en = array('Role', 'Login', 'Last name', 'First name', '');
+    $header_fr = array('Rôle', 'Login', 'Nom', 'Prénom', 'Nouveau mot de passe');
+    $header_en = array('Role', 'Login', 'Last name', 'First name', 'New password');
     $header = array('fr' => $header_fr, 'en' => $header_en);
 
     $roles_fr = array('web_admin' => 'Admin web', 'user' => 'Utilisateur', 'tech' => 'Technicien', 'sys_admin' => 'Admin système');
@@ -35,8 +35,8 @@
     $stmt->close();
     $mysqli->close();
 
-    $form_fr = array('Supprimer&nbsp;le&nbsp;compte', 'Modifier&nbsp;le&nbsp;mot&nbsp;de&nbsp;passe', '32&nbsp;caractères&nbsp;max');
-    $form_en = array('Delete&nbsp;account', 'Change&nbsp;password', 'Max&nbsp;32&nbsp;characters');
+    $form_fr = array('Supprimer&nbsp;le&nbsp;compte', 'Modifier&nbsp;le&nbsp;mot&nbsp;de&nbsp;passe', '32&nbsp;caractères&nbsp;max', 'Nouveau&nbsp;mot&nbsp;de&nbsp;passe');
+    $form_en = array('Delete&nbsp;account', 'Change&nbsp;password', 'Max&nbsp;32&nbsp;characters', 'New&nbsp;password');
     $form = array('fr' => $form_fr, 'en' => $form_en);
 
     echo '<div id="ticket_table">
@@ -46,6 +46,9 @@
         foreach ($header[$lang] as $value){
             if ($value == 'Rôle' || $value == 'Role')
                 echo '<th class=short_cell>'.$value.'</th>';
+            else if ($value == 'Nouveau mot de passe' || $value == 'New password'){
+                echo '<td></td><th>'.$value.'</th>';
+            }
             else
                 echo '<th>'.$value.'</th>';
         }
@@ -65,6 +68,14 @@
                     <input type="hidden" name="login" value="'.$row[1].'">
                 </form>
                 <td><button class="nice_button" id='.$row[1].' onclick="supAccount(this.id)">'.$form[$lang][0].'</button></td>';
+            echo '<td>
+                <form method="post" action="account.php" class="change_passwd_form">
+                    <input type="hidden" name="login" value="'.$row[1].'">
+                    <label class="hidden_label" for="input'.$row[1].'">'.$form[$lang][3].'</label>
+                    <input type="password" name="new_pwd" id="input'.$row[1].'" placeholder='.$form[$lang][2].'>
+                    <input class="submit_buttons" type="submit" name="update_acc" value='.$form[$lang][1].'>
+                </form>
+            </td>';
             echo '</tr>';
         }
 

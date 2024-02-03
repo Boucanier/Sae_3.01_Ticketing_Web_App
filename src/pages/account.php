@@ -34,8 +34,8 @@
         if (isset($_SESSION['login'], $_POST['actual_pwd'], $_POST['new_pwd'], $_POST['conf_pwd']))
             update_acc($_SESSION['login'], $_POST['actual_pwd'], $_POST['new_pwd'], $_POST['conf_pwd'], 'user');
 
-        else if (isset($_POST['user_login'], $_POST['new_pwd']) && isset($_SESSION['role']) && $_SESSION['role'] == 'web_admin')
-            update_acc($_SESSION['login'], 'web', $_POST['new_pwd'], 'web', 'web_admin');
+        else if (isset($_POST['login'], $_POST['new_pwd']) && isset($_SESSION['role']) && $_SESSION['role'] == 'web_admin')
+            update_acc($_POST['login'], '', $_POST['new_pwd'], $_POST['new_pwd'], 'web_admin');
     }
 
     else if (isset($_POST['sup_acc']) && $_POST['sup_acc']){
