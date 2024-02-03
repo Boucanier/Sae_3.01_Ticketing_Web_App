@@ -191,7 +191,7 @@ Il faudra trouver un id correspond au success et a l'error (x et y)
 | Résultat de test : OK                      |
 | Occurrence des résultats : systématique    |
 
-| Classe |   Login    | Mot de passe | Rôle       | Résultat attendu        |     Résultat obtenu     | Résultat test |
+| Classe |   Login    | Mot de passe | Rôle       | Résultat attendu        |     Résultat observé     | Résultat test |
 |:------:|:----------:|:------------:|:----------:|:-----------------------:|:-----------------------:|:-------------:|
 |   P1   | existe     | correct      | a ∈ sys    | index.php               |        index.php        |      OK       |
 |   P2   | existe     | correct      | a ∈ other  | dashboard.php           |      dashboard.php      |      OK       |
@@ -210,7 +210,7 @@ Il faudra trouver un id correspond au success et a l'error (x et y)
 | Résultat de test : OK                      |
 | Occurrence des résultats : systématique    |
 
-| Classe | Login  |  Nom   | Prénom |  Mdp   | Confirmation mdp | Captcha attendu | Captcha donné |  Role   |    Résultat attendu     |     Résultat obtenu     | Résultat test |
+| Classe | Login  |  Nom   | Prénom |  Mdp   | Confirmation mdp | Captcha attendu | Captcha donné |  Role   |    Résultat attendu     |     Résultat observé     | Résultat test |
 |:------:|:------:|:------:|:------:|:------:|:----------------:|:---------------:|:-------------:|:-------:|:-----------------------:|:-----------------------:|:-------------:|
 |   P1   | a ∉ E8 | b ∉ E7 | c ∉ E7 |   d    |      e = d       |        f        |     h = f     | 'user'  |      dashboard.php      |      dashboard.php      |      OK       |
 |   P2   |   Q    |   Q    |   Q    |   Q    |        Q         |        f        |     h ≠ f     | i ∈ E10 | connection.php?error=14 | connection.php?error=14 |      OK       |
@@ -236,7 +236,7 @@ Il faudra trouver un id correspond au success et a l'error (x et y)
 | Résultat de test : OK                      |
 | Occurrence des résultats : systématique    |
 
-| Classe | Mdp actuel | Nouveau mdp | Confirmation mdp | Résultat attendu     |    Résultat obtenu     | Résultat test |
+| Classe | Mdp actuel | Nouveau mdp | Confirmation mdp | Résultat attendu     |    Résultat observé     | Résultat test |
 |:------:|:----------:|:-----------:|:----------------:|:--------------------:|:---------------------:|:-------------:|
 |   P1   | mauvais    |      a      |      b = a       | profile.php?error=31 | profile.php?error=31  |      OK       |
 |   P2   | mauvais    |      a      |     b != a       | profile.php?error=33 | profile.php?error=33  |      OK       |
@@ -252,7 +252,7 @@ Il faudra trouver un id correspond au success et a l'error (x et y)
 | Résultat de test : OK                      |
 | Occurrence des résultats : systématique    |
 
-| Classe |   User    | Ticket clos |    Résultat attendu     |     Résultat obtenu     | Résultat test |
+| Classe |   User    | Ticket clos |    Résultat attendu     |     Résultat observé     | Résultat test |
 |:------:|:---------:|:-----------:|:-----------------------:|:-----------------------:|:-------------:|
 |   P1   | a ∈ tech  |     non     | dashboard.php?success=1 | dashboard.php?success=1 |      OK       |
 |   P2   | a ∈ tech  |     oui     |      dashboard.php      |      dashboard.php      |      OK       |
@@ -267,7 +267,7 @@ Il faudra trouver un id correspond au success et a l'error (x et y)
 | Résultat de test : OK                      |
 | Occurrence des résultats : systématique    |
 
-| Classe |   User    | Ticket pris |    Résultat attendu     |     Résultat obtenu     | Résultat test |
+| Classe |   User    | Ticket pris |    Résultat attendu     |     Résultat observé     | Résultat test |
 |:------:|:---------:|:-----------:|:-----------------------:|:-----------------------:|:-------------:|
 |   P1   | a ∈ tech  |     non     | dashboard.php?success=2 | dashboard.php?success=2 |      OK       |
 |   P2   | a ∈ tech  |     oui     |      dashboard.php      |      dashboard.php      |      OK       |
@@ -282,7 +282,7 @@ Il faudra trouver un id correspond au success et a l'error (x et y)
 | Résultat de test : OK                      |
 | Occurrence des résultats : systématique    |
 
-| Classe |User| newLibelle | newEmergency | newStatus | newTech | previousLibelle | previousEmergency | previousStatus | previousTech |Résultat attendu|Résultat obtenu| Résultat test |
+| Classe |User| newLibelle | newEmergency | newStatus | newTech | previousLibelle | previousEmergency | previousStatus | previousTech |Résultat attendu|Résultat observé| Résultat test |
 |:------:|:-------------:|:----------:|:------------:|:---------:|:-------:|:---------------:|:-----------------:|:--------------:|:------------:|:-------------------------------:|:-------------------------------:|:-------------:|
 |   P1   | a ∈ web_admin |   a ∈ E1   |    a ∈ E2    |  a ∈ E3   | a ∈ E4  |        Q        |         Q         |       Q        |      Q       |     dashboard.php?success=3     |     dashboard.php?success=3     |      OK       |
 |   P1   | a ∈ web_admin |   a ∉ E1   |      Q       |     Q     |    Q    |        Q        |         Q         |       Q        |      Q       | dashboard.php?error=1 | ticket_modification.php?error=1 |      OK       |

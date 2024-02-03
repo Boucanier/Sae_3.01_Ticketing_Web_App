@@ -95,7 +95,7 @@ Partitions d'équivalence :
 | Résultat de test : OK                      |
 | Occurrence des résultats : systématique    |
 
-| Classe | Donnée 1  | Résultat attendu | Résultat obtenu | Résultat test |
+| Classe | Donnée 1  | Résultat attendu | Résultat observé | Résultat test |
 |:------:|:---------:|:----------------:|:---------------:|:-------------:|
 |   P1   | a ∉ roles |  connection.php  | connection.php  |      OK       |
 |   P2   | a ∈ roles |  dashboard.php   |  dashboard.php  |      OK       |
@@ -109,7 +109,7 @@ Partitions d'équivalence :
 | Résultat de test : OK                      |
 | Occurrence des résultats : systématique    |
 
-| Classe | Donnée 1 | Résultat attendu  | Résultat obtenu | Résultat test |
+| Classe | Donnée 1 | Résultat attendu  | Résultat observé | Résultat test |
 |:------:|:--------:|:-----------------:|:---------------:|:-------------:|
 |   P1   | 'Créer'  |    account.php    |   account.php   |      OK       |
 

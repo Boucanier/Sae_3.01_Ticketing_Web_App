@@ -131,7 +131,7 @@ La donnée 1 correspond au fait qu'un type d'utilisateur accède à la page dash
 | Résultat de test : OK                      |
 | Occurrence des résultats : systématique    |
 
-| Classe |      Donnée 1      |        Résultat attendu         |        Résultat attendu         | Résultat test |
+| Classe |      Donnée 1      |        Résultat attendu         |        Résultat observé         | Résultat test |
 |:------:|:------------------:|:-------------------------------:|:-------------------------------:|:-------------:|
 |   P1   | ‘Créer un ticket’  |           ticket.php            |           ticket.php            |      OK       |
 |   P2   |     ‘Détails’      | ticket_details.php?id=ticket_id | ticket_details.php?id=ticket_id |      OK       |
@@ -145,7 +145,7 @@ La donnée 1 correspond au fait qu'un type d'utilisateur accède à la page dash
 | Résultat de test : OK                      |
 | Occurrence des résultats : systématique    |
 
-| Classe |      Donnée 1       |                 Résultat attendu                 |                 Résultat attendu                 | Résultat test |
+| Classe |      Donnée 1       |                 Résultat attendu                 |                 Résultat observé                 | Résultat test |
 |:------:|:-------------------:|:------------------------------------------------:|:------------------------------------------------:|:-------------:|
 |   P1   | ‘Détails’           |    ticket_details.php?id=ticket_id&function=take |    ticket_details.php?id=ticket_id&function=take |      OK       |
 
@@ -158,7 +158,7 @@ La donnée 1 correspond au fait qu'un type d'utilisateur accède à la page dash
 | Résultat de test : OK                      |
 | Occurrence des résultats : systématique    |
 
-| Classe |          Donnée 1           |                 Résultat attendu                 |                 Résultat attendu                 | Résultat test |
+| Classe |          Donnée 1           |                 Résultat attendu                 |                 Résultat observé                 | Résultat test |
 |:------:|:---------------------------:|:------------------------------------------------:|:------------------------------------------------:|:-------------:|
 |   P1   | 'Prendre en charge'         |   ticket_details.php?id=ticket_id&function=close |   ticket_details.php?id=ticket_id&function=close |      OK       |
 
@@ -171,7 +171,7 @@ La donnée 1 correspond au fait qu'un type d'utilisateur accède à la page dash
 | Résultat de test : OK                      |
 | Occurrence des résultats : systématique    |
 
-| Classe |        Donnée 1        |            Résultat attendu            |            Résultat attendu            | Résultat test |
+| Classe |        Donnée 1        |            Résultat attendu            |            Résultat observé            | Résultat test |
 |:------:|:----------------------:|:--------------------------------------:|:--------------------------------------:|:-------------:|
 |   P1   | 'Modifier ticket'      |   ticket_modification.php?id=ticket_id |   ticket_modification.php?id=ticket_id |      OK       |
 
@@ -184,7 +184,7 @@ La donnée 1 correspond au fait qu'un type d'utilisateur accède à la page dash
 | Résultat de test : OK                      |
 | Occurrence des résultats : systématique    |
 
-| Classe |   Donnée 1    | Résultat attendu | Résultat attendu | Résultat test |
+| Classe |   Donnée 1    | Résultat attendu | Résultat observé | Résultat test |
 |:------:|:-------------:|:----------------:|:----------------:|:-------------:|
 |   P1   |   visiteur    |    index.php     |    index.php     |      OK       |
 |   P2   | admin system  |   index.php      |   index.php      |      OK       |
