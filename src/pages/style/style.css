@@ -300,10 +300,10 @@ input {
     width: 20%;
 }
 
-.resetSubmitButtons{
+.resetSubmitButtons {
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: center;
 }
 
 .sign_up {
@@ -528,9 +528,12 @@ th {
     justify-content: center;
 }
 
-#ticket_details > p, #ticket_details > .resetSubmitButtons > input  {
+#ticket_details {
+    min-width: 25%;
+}
+
+#ticket_details > p, #ticket_details > .resetSubmitDetails > input  {
     margin-left: 25px;
-    width: 200%;
 }
 
 #ticket_description {
