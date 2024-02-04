@@ -564,7 +564,7 @@ th {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 50px;
+    margin: 0px 75px 0px 75px;
     background: lavender;
     border-radius: 40px;
     padding: 50px;
