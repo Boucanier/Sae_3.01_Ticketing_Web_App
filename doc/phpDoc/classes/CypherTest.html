@@ -65,7 +65,7 @@
 </h4>
 
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
-    <a href="packages/Donnees.html" class="-active">Donnees</a>
+    <a href="packages/Donnees.html" class="">Donnees</a>
 </h4>
 
                                     <h4 class="phpdocumentor-sidebar__root-namespace">
@@ -94,15 +94,51 @@
             <div class="phpdocumentor-column -nine phpdocumentor-content">
                                 <section>
                                         <ul class="phpdocumentor-breadcrumbs">
+            <li class="phpdocumentor-breadcrumb"><a href="packages/Tests.html">Tests</a></li>
     </ul>
 
-    <article class="phpdocumentor-element -package">
-        <h2 class="phpdocumentor-content__title">Donnees</h2>
+    <article class="phpdocumentor-element -class">
+        <h2 class="phpdocumentor-content__title">
+    CypherTest
 
-        
+        <span class="phpdocumentor-element__extends">
+        extends <abbr title="\PHPUnit\Framework\TestCase">TestCase</abbr>
+    </span>
+    
+            <div class="phpdocumentor-element__package">
+            in package
+            <ul class="phpdocumentor-breadcrumbs">
+                                    <li class="phpdocumentor-breadcrumb"><a href="packages/Tests.html">Tests</a></li>
+                            </ul>
+        </div>
+    
+    
+    </h2>
+
+<div class="phpdocumentor-label-line">
+
+    <div class="phpdocumentor-label phpdocumentor-label--success"><span>Final</span><span>Yes</span></div>
+
+
+</div>
+
+        <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="src/tests/CypherTest.php"><a href="files/src-tests-cyphertest.html"><abbr title="src/tests/CypherTest.php">CypherTest.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">14</span>
+
+    </aside>
+
+            <p class="phpdocumentor-summary">Classe de tests pour la classe Cypher</p>
+
+
+
+
+
+
 <h3 id="toc">
     Table of Contents
-    <a href="packages/Donnees.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
+    <a href="classes/CypherTest.html#toc" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h3>
 
@@ -112,177 +148,154 @@
 
 
 
-<h4 id="toc-constants">
-    Constants
-    <a href="packages/Donnees.html#toc-constants" class="headerlink"><i class="fas fa-link"></i></a>
+
+
+
+<h4 id="toc-methods">
+    Methods
+    <a href="classes/CypherTest.html#toc-methods" class="headerlink"><i class="fas fa-link"></i></a>
 
 </h4>
 <dl class="phpdocumentor-table-of-contents">
-            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
-    <a href="namespaces/default.html#constant_DB">DB</a>
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/CypherTest.html#method_testcypher">testcypher()</a>
     <span>
-        &nbsp;= &#039;ticket_app&#039;                            </span>
+                                &nbsp;: void    </span>
 </dt>
-<dd>Nom de la base de données</dd>
+<dd>Tests de la fonction de chiffrement</dd>
 
-            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
-    <a href="namespaces/default.html#constant_HOST_DB">HOST_DB</a>
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/CypherTest.html#method_testGen">testGen()</a>
     <span>
-        &nbsp;= &#039;localhost&#039;                            </span>
+                                &nbsp;: void    </span>
 </dt>
-<dd>Hôte de la base de données</dd>
+<dd>Tests de la fonction de génération de suite chiffrante</dd>
 
-            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
-    <a href="namespaces/default.html#constant_PASSWD_DB">PASSWD_DB</a>
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/CypherTest.html#method_testKsa">testKsa()</a>
     <span>
-        &nbsp;= &#039;ticket_s301&#039;                            </span>
+                                &nbsp;: void    </span>
 </dt>
-<dd>Mot de passe de la base de données</dd>
-
-            <dt class="phpdocumentor-table-of-contents__entry -constant -public">
-    <a href="namespaces/default.html#constant_USER_DB">USER_DB</a>
-    <span>
-        &nbsp;= &#039;ticket_app&#039;                            </span>
-</dt>
-<dd>Nom d&#039;utilisateur de la base de données</dd>
+<dd>Tests de la fonction de génération de permutation</dd>
 
     </dl>
 
 
 
 
+        
 
         
-    <section class="phpdocumentor-constants">
-        <h3 class="phpdocumentor-elements__header" id="constants">
-            Constants
-            <a href="packages/Donnees.html#constants" class="headerlink"><i class="fas fa-link"></i></a>
+
+            <section class="phpdocumentor-methods">
+        <h3 class="phpdocumentor-elements__header" id="methods">
+            Methods
+            <a href="classes/CypherTest.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
 
         </h3>
-                    <article class="phpdocumentor-element -constant -public ">
-    <h4 class="phpdocumentor-element__name" id="constant_DB">
-        DB
-        <a href="namespaces/default.html#constant_DB" class="headerlink"><i class="fas fa-link"></i></a>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_testcypher">
+        testcypher()
+        <a href="classes/CypherTest.html#method_testcypher" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
-
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/pages/db_credentials.php"><a href="files/src-pages-db-credentials.html"><abbr title="src/pages/db_credentials.php">db_credentials.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/tests/CypherTest.php"><a href="files/src-tests-cyphertest.html"><abbr title="src/tests/CypherTest.php">CypherTest.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">34</span>
+    <span class="phpdocumentor-element-found-in__line">41</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Nom de la base de données</p>
+        <p class="phpdocumentor-summary">Tests de la fonction de chiffrement</p>
 
-    <code class="phpdocumentor-signature phpdocumentor-code ">
+    <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">string</span>
-    <span class="phpdocumentor-signature__name">DB</span>
-    = <span class="phpdocumentor-signature__default-value">&#039;ticket_app&#039;</span>
-</code>
+                    <span class="phpdocumentor-signature__name">testcypher</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
-
+    <div class="phpdocumentor-label-line">
+        </div>
     
     
     
 
+    
 </article>
-                    <article class="phpdocumentor-element -constant -public ">
-    <h4 class="phpdocumentor-element__name" id="constant_HOST_DB">
-        HOST_DB
-        <a href="namespaces/default.html#constant_HOST_DB" class="headerlink"><i class="fas fa-link"></i></a>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_testGen">
+        testGen()
+        <a href="classes/CypherTest.html#method_testGen" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
-
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/pages/db_credentials.php"><a href="files/src-pages-db-credentials.html"><abbr title="src/pages/db_credentials.php">db_credentials.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/tests/CypherTest.php"><a href="files/src-tests-cyphertest.html"><abbr title="src/tests/CypherTest.php">CypherTest.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">13</span>
+    <span class="phpdocumentor-element-found-in__line">28</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Hôte de la base de données</p>
+        <p class="phpdocumentor-summary">Tests de la fonction de génération de suite chiffrante</p>
 
-    <code class="phpdocumentor-signature phpdocumentor-code ">
+    <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">string</span>
-    <span class="phpdocumentor-signature__name">HOST_DB</span>
-    = <span class="phpdocumentor-signature__default-value">&#039;localhost&#039;</span>
-</code>
+                    <span class="phpdocumentor-signature__name">testGen</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
-
+    <div class="phpdocumentor-label-line">
+        </div>
     
     
     
 
+    
 </article>
-                    <article class="phpdocumentor-element -constant -public ">
-    <h4 class="phpdocumentor-element__name" id="constant_PASSWD_DB">
-        PASSWD_DB
-        <a href="namespaces/default.html#constant_PASSWD_DB" class="headerlink"><i class="fas fa-link"></i></a>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_testKsa">
+        testKsa()
+        <a href="classes/CypherTest.html#method_testKsa" class="headerlink"><i class="fas fa-link"></i></a>
 
     </h4>
-
     <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/pages/db_credentials.php"><a href="files/src-pages-db-credentials.html"><abbr title="src/pages/db_credentials.php">db_credentials.php</abbr></a></abbr>
+    <abbr class="phpdocumentor-element-found-in__file" title="src/tests/CypherTest.php"><a href="files/src-tests-cyphertest.html"><abbr title="src/tests/CypherTest.php">CypherTest.php</abbr></a></abbr>
     :
-    <span class="phpdocumentor-element-found-in__line">27</span>
+    <span class="phpdocumentor-element-found-in__line">19</span>
 
     </aside>
 
-        <p class="phpdocumentor-summary">Mot de passe de la base de données</p>
+        <p class="phpdocumentor-summary">Tests de la fonction de génération de permutation</p>
 
-    <code class="phpdocumentor-signature phpdocumentor-code ">
+    <code class="phpdocumentor-code phpdocumentor-signature ">
     <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">string</span>
-    <span class="phpdocumentor-signature__name">PASSWD_DB</span>
-    = <span class="phpdocumentor-signature__default-value">&#039;ticket_s301&#039;</span>
-</code>
+                    <span class="phpdocumentor-signature__name">testKsa</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">void</span></code>
 
-
+    <div class="phpdocumentor-label-line">
+        </div>
     
     
     
 
-</article>
-                    <article class="phpdocumentor-element -constant -public ">
-    <h4 class="phpdocumentor-element__name" id="constant_USER_DB">
-        USER_DB
-        <a href="namespaces/default.html#constant_USER_DB" class="headerlink"><i class="fas fa-link"></i></a>
-
-    </h4>
-
-    <aside class="phpdocumentor-element-found-in">
-    <abbr class="phpdocumentor-element-found-in__file" title="src/pages/db_credentials.php"><a href="files/src-pages-db-credentials.html"><abbr title="src/pages/db_credentials.php">db_credentials.php</abbr></a></abbr>
-    :
-    <span class="phpdocumentor-element-found-in__line">20</span>
-
-    </aside>
-
-        <p class="phpdocumentor-summary">Nom d&#039;utilisateur de la base de données</p>
-
-    <code class="phpdocumentor-signature phpdocumentor-code ">
-    <span class="phpdocumentor-signature__visibility">public</span>
-        <span class="phpdocumentor-signature__type">string</span>
-    <span class="phpdocumentor-signature__name">USER_DB</span>
-    = <span class="phpdocumentor-signature__default-value">&#039;ticket_app&#039;</span>
-</code>
-
-
     
-    
-    
-
 </article>
             </section>
 
-        
         <div class="phpdocumentor-modal" id="source-view">
     <div class="phpdocumentor-modal-bg" data-exit-button></div>
     <div class="phpdocumentor-modal-container">
         <div class="phpdocumentor-modal-content">
-            <pre style="max-height: 500px; overflow-y: scroll" data-src="" class="language-php line-numbers linkable-line-numbers"></pre>
+            <pre style="max-height: 500px; overflow-y: scroll" data-src="files/src/tests/CypherTest.php.txt" class="language-php line-numbers linkable-line-numbers"></pre>
         </div>
         <button data-exit-button class="phpdocumentor-modal__close">&times;</button>
     </div>
@@ -373,7 +386,7 @@
     </article>
                                 </section>
                 <section class="phpdocumentor-on-this-page__sidebar">
-                            
+                                
     <section class="phpdocumentor-on-this-page__content">
         <strong class="phpdocumentor-on-this-page__title">On this page</strong>
 
@@ -381,20 +394,19 @@
             <li class="phpdocumentor-on-this-page-section__title">Table Of Contents</li>
             <li>
                 <ul class="phpdocumentor-list -clean">
-                                                                                                                                                                    <li><a href="packages/Donnees.html#toc-constants">Constants</a></li>
-                                                        </ul>
+                                                                                <li><a href="classes/CypherTest.html#toc-methods">Methods</a></li>
+                                    </ul>
             </li>
-
-                            <li class="phpdocumentor-on-this-page-section__title">Constants</li>
-                <li>
-                    <ul class="phpdocumentor-list -clean">
-                                                    <li><a href="namespaces/default.html#constant_DB">DB</a></li>
-                                                    <li><a href="namespaces/default.html#constant_HOST_DB">HOST_DB</a></li>
-                                                    <li><a href="namespaces/default.html#constant_PASSWD_DB">PASSWD_DB</a></li>
-                                                    <li><a href="namespaces/default.html#constant_USER_DB">USER_DB</a></li>
-                                            </ul>
-                </li>
             
+            
+                        <li class="phpdocumentor-on-this-page-section__title">Methods</li>
+            <li>
+                <ul class="phpdocumentor-list -clean">
+                                            <li><a href="classes/CypherTest.html#method_testcypher">testcypher()</a></li>
+                                            <li><a href="classes/CypherTest.html#method_testGen">testGen()</a></li>
+                                            <li><a href="classes/CypherTest.html#method_testKsa">testKsa()</a></li>
+                                    </ul>
+            </li>
                     </ul>
     </section>
 
@@ -412,7 +424,7 @@
     </section>
 </section>
         </div>
-        <a href="packages/Donnees.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+        <a href="classes/CypherTest.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
 
     </main>
 

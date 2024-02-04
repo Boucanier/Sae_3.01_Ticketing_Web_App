@@ -96,6 +96,26 @@ Search.appendIndex(
             "summary": "Renvoie\u0020la\u0020p\u00E9riode\u0020aproximative\u0020de\u0020cr\u00E9ation\u0020d\u0027un\u0020ticket\n\u0020\u0020\u0020\u0020\u0020Ex\u0020\u003A\u0020si\u0020on\u0020est\u0020le\u00203\u0020et\u0020que\u0020le\u0020ticket\u0020a\u0020\u00E9t\u00E9\u0020cr\u00E9\u00E9\u0020le\u00202\u0020du\u0020m\u00EAme\u0020mois,\u0020alors\u0020on\u0020renvoie\u0020\u0022Il\u0020y\u0020a\u00201\u0020jour\u0022",
             "url": "namespaces/default.html#function_afficherDifferenceDate"
         },                {
+            "fqsen": "\\CypherTest",
+            "name": "CypherTest",
+            "summary": "Classe\u0020de\u0020tests\u0020pour\u0020la\u0020classe\u0020Cypher",
+            "url": "classes/CypherTest.html"
+        },                {
+            "fqsen": "\\CypherTest\u003A\u003AtestKsa\u0028\u0029",
+            "name": "testKsa",
+            "summary": "Tests\u0020de\u0020la\u0020fonction\u0020de\u0020g\u00E9n\u00E9ration\u0020de\u0020permutation",
+            "url": "classes/CypherTest.html#method_testKsa"
+        },                {
+            "fqsen": "\\CypherTest\u003A\u003AtestGen\u0028\u0029",
+            "name": "testGen",
+            "summary": "Tests\u0020de\u0020la\u0020fonction\u0020de\u0020g\u00E9n\u00E9ration\u0020de\u0020suite\u0020chiffrante",
+            "url": "classes/CypherTest.html#method_testGen"
+        },                {
+            "fqsen": "\\CypherTest\u003A\u003Atestcypher\u0028\u0029",
+            "name": "testcypher",
+            "summary": "Tests\u0020de\u0020la\u0020fonction\u0020de\u0020chiffrement",
+            "url": "classes/CypherTest.html#method_testcypher"
+        },                {
             "fqsen": "\\",
             "name": "\\",
             "summary": "",

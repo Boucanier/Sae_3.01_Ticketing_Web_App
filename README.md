@@ -47,6 +47,8 @@ Les fichiers de code source sont disponibles dans le dossier [src](src/) :
   - [Feuilles de style](src/pages/style/)
   - [Scripts JavaScript](src/pages/scripts/)
   - [Images utilisées par le site](src/pages/resources/)
+- [Fichiers de test](src/tests/):
+  - [Fichiers de tests des fonctions de chiffrement](src/tests/CypherTest/)
 - [Application **Shiny**](src/stats):
   - [Application](src/stats/app.R)
   - Fichiers **csv** :
