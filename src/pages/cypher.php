@@ -34,6 +34,17 @@
     function ksa($k){
         // On crée un tableau de caractères à partir de la clé
         $k = str_split($k);
+
+        if (count($k) == 0){
+            // Si la clé est vide, on retourne un tableau vide
+
+            for ($i = 0; $i < 256; $i++){
+                // On récupère le code ASCII de chaque caractère
+                $k[] = 0;
+            }
+
+            return $k;
+        }
         
         for ($i = 0; $i < count($k); $i++){
             // On récupère le code ASCII de chaque caractère
@@ -62,12 +73,13 @@
     /**
      * Génère une suite chiffrante à partir d'un tableau de permutation
      * 
-     * @param array{int} $s Tableau de permutation
+     * @param string $k Clé de chiffrement
      * @param int $n Nombre de valeurs à générer
      * 
      * @return array{int} Suite chiffrante
      */
-    function gen($s, $n){
+    function gen($k, $n){
+        $s = ksa($k);
         $j = 0;
         $k = array();
     
@@ -108,7 +120,7 @@
         $m = str_split($m);
         
         // On génère la suite chiffrante
-        $s = gen(ksa($k), 128);
+        $s = gen($k, 128);
     
         for ($i = 0; $i < count($m); $i++){
             // On récupère le code ASCII de chaque caractère du message
@@ -154,7 +166,7 @@
      */
     function decypher($c, $k){
         $c = str_split($c, 2);
-        $s = gen(ksa($k), 128);
+        $s = gen($k, 128);
     
         for ($i = 0; $i < count($c); $i++){
             // On convertit chaque caractère hexadécimal en décimal

@@ -55,7 +55,7 @@ Pour la page footer nous vérifions pour chaque lien que celui-ci renvoie bien v
 | Résultat de test : OK                      |
 | Occurrence des résultats : systématique    |
 
-| Classe |      Donnée 1       | Résultat attendu | Résultat attendu | Résultat test |
+| Classe |      Donnée 1       | Résultat attendu | Résultat observé | Résultat test |
 |:------:|:-------------------:|:----------------:|:----------------:|:-------------:|
 |   P1   |  ‘Nous contacter’   |   contact.php    |   contact.php    |      OK       |
 |   P2   | ‘Changer la langue’ |    index.php     |    index.php     |      OK       |
