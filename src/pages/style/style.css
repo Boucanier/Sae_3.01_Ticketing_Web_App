@@ -25,6 +25,20 @@ nav {
     border-top: 1px solid black;
 }
 
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input {
+    padding: 5px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
 #titre_tab{
     display: flex;
     flex-direction: column;
@@ -39,7 +53,7 @@ nav {
     width: 90%;
 }
 
-#fond_hover:hover{
+.fond_hover:hover{
     background-color: #e0e0e8;
 }
 
@@ -206,54 +220,45 @@ main {
     justify-content: space-evenly;
 }
 
-label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-input {
-    padding: 8px;
-    margin: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
 .submit_buttons:hover {
     background-color: #4CAF50;
     transition: 0.2s;
 }
 
-#account_sup:hover{
-    background-color: #f65959;
+#account_sup:hover, .nice_button:hover {
+    background-color: rgb(226, 226, 226);
     transition: 0.2s;
 }
 
-#account_sup{
-    min-width: 60%;
+.nice_button, #account_sup {
+    background-color: rgb(226, 226, 226);
+    padding: 5px;
+    font-size: 16px;
 }
 
-.reset_buttons:hover{
+#account_sup {
+    min-width: 60%;
+    padding: 10px;
+}
+
+.reset_buttons:hover {
     background-color: rgb(226, 226, 226);
     transition: 0.3s;
 }
 
-.reset_buttons, .submit_buttons, #account_sup{
+.reset_buttons, .submit_buttons, #account_sup, .nice_button {
     background-color: #fff;
     border: solid black 1px;
     border-radius: 4px;
     cursor: pointer;
 }
 
-.reset_buttons, .submit_buttons, #account_sup{
-    padding: 10px 20px;
+.reset_buttons, .submit_buttons {
     font-size: 16px;
-    margin-top: 10px;
-    width: 35%;
+    min-width: 35%;
 }
 
-.form_containers{
+.form_containers {
     display: flex;
     align-content: center;
     align-items: center;
@@ -295,10 +300,14 @@ input {
     width: 20%;
 }
 
-.resetSubmitButtons{
+.resetSubmitButtons {
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: center;
+}
+
+.resetSubmitButtons > input {
+    padding: 8px;
 }
 
 .sign_up {
@@ -523,9 +532,12 @@ th {
     justify-content: center;
 }
 
-#ticket_details > p, #ticket_details > .resetSubmitButtons > input  {
+#ticket_details {
+    min-width: 25%;
+}
+
+#ticket_details > p, #ticket_details > .resetSubmitDetails > input  {
     margin-left: 25px;
-    width: 200%;
 }
 
 #ticket_description {
@@ -552,7 +564,7 @@ th {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 50px;
+    margin: 0px 75px 0px 75px;
     background: lavender;
     border-radius: 40px;
     padding: 50px;
@@ -824,6 +836,7 @@ table{
 
 .error > p{
     color: red;
+    background-color: white;
     border: 1px solid red;
     font-weight: bold;
     padding: 5px;
@@ -868,4 +881,22 @@ table{
 #construction_text > p {
     font-size: 40px;
     line-height: 120%;
+}
+
+#construction_link {
+    margin-bottom: 15px;
+}
+
+.hidden_label {
+    visibility:hidden;
+    height: 0px;
+    width: 0px;
+}
+
+.change_passwd_form{
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
 }

@@ -92,6 +92,7 @@ Ce glossaire définit les mots complexes utilisés dans le cahier des charges.
 | Consulter journaux d’activités                                                  |
 | Inscription des nouveaux utilisateurs                                           |
 | Affecter les tickets aux techniciens (les techniciens s’attribuent les tickets) |
+| Modifier les utilisateurs                                                       |
 
 | 🐟 (Niveau Sous-fonction) |
 |---------------------------|
@@ -250,6 +251,14 @@ On peut représenter les différents cas d'utilisation et leur correspondances.
 | **Niveau** : Utilisateur                                                                                                                                                                                                                        |
 | **Acteurs principaux** : Administrateur web, techniciens                                                                                                                                                                                        |
 | **Scénario** : <ol><li>L'administrateur ou le technicien se connecte</li><li>L'administrateur web peut attribuer un ticket à un technicien ou celui-ci peut s'en attribuer un</li><li>L'administrateur ou le technicien se déconnecte</li></ol> |
+
+| Cas d'utilisation 21 : Modifier les utilisateurs |
+|--------------------------------------------------|
+| **Nom** : Modifier les utilisateurs |
+| **Portée** : Application web |
+| **Niveau** : Utilisateurs    |
+| **Acteurs principaux** : admin web |
+| **Scénario** : <ol><li>L'acteur se connecte à la plateforme</li><li>L'utilisateur peut afficher la liste des utilisateurs et les modifier</li></ol> |
 
 ### Niveau stratégique
 

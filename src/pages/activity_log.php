@@ -34,7 +34,7 @@
                             echo '</tr>
                         </thead>';
 
-                        $mysqli = new mysqli($host, $user, $passwd, $db);
+                        $mysqli = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB) or die("Impossible de se connecter à la base de données");
                         $stmt = $mysqli->prepare("SELECT DATE_FORMAT(creation_date,'%d/%m/%Y'), user_login, ip_address, emergency 
                                                             FROM Tickets
                                                             WHERE status != 'closed'
@@ -45,7 +45,7 @@
                         echo '<tbody>';
                         for ($i=0; $i<mysqli_num_rows($data); $i++) {
                             $row = mysqli_fetch_array($data);
-                            echo '<tr id="fond_hover">';
+                            echo '<tr class="fond_hover">';
                             for ($j = 0; $j < 4; $j++) {
                                 if ($j == 3)
                                     echo '<td class="ticket_case_'.htmlentities($row[$j]).'">'.htmlentities($row[$j]).'</td>';
@@ -90,7 +90,7 @@
                         echo '<tbody>';
                         for ($i=0; $i < mysqli_num_rows($data); $i++) {
                             $row = mysqli_fetch_array($data);
-                            echo '<tr id="fond_hover">';
+                            echo '<tr class="fond_hover">';
                             for ($j = 0; $j < 4; $j++) {
                                 if ($j == 1){
                                     $stmt = $mysqli->prepare("SELECT * 
@@ -119,7 +119,7 @@
 
             <div class="activity_log_parts">
                     <?php
-                        $infoTop = array('fr' => 'Historique des tickets fermés', 'en' => 'Closed ticket log');
+                        $infoTop = array('fr' => 'Historique des tickets clos', 'en' => 'Closed ticket log');
                         echo '<h2>'.$infoTop[$lang].'</h2>
                         <div id="scrollable-table">
                         <table id="ticket_log_table">
@@ -147,7 +147,7 @@
                         echo '<tbody>';
                         for ($i=0; $i<mysqli_num_rows($data); $i++) {
                             $row = mysqli_fetch_array($data);
-                            echo '<tr id="fond_hover">';
+                            echo '<tr class="fond_hover">';
                             for ($j = 0; $j < 6; $j++) {
                                 if ($j == 0){
                                     echo '<td class="ticket_case_'.htmlentities($row[$j]).'">'.htmlentities($row[$j]).'</td>';

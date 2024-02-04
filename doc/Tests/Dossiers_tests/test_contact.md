@@ -53,7 +53,7 @@ Nous testons les liens présents sur la page et depuis lesquels il est possible 
 | Résultat de test : OK                      |
 | Occurrence des résultats : systématique    |
 
-| Classe |   Donnée 1    |                              Résultat attendu                               |                              Résultat attendu                              | Résultat test |
+| Classe |   Donnée 1    |                              Résultat attendu                               |                              Résultat observé                              | Résultat test |
 |:------:|:-------------:|:---------------------------------------------------------------------------:|:--------------------------------------------------------------------------:|:-------------:|
 |   P1   |   ‘ce lien’   |  _Lien vers un client mail avec un mail vers <contact.golemcorp@gmail.com>_ | _Lien vers un client mail avec un mail vers <contact.golemcorp@gmail.com>_ |      OK       |
 |   P2   | ‘lien GitHub’ |         _<https://github.com/Boucanier/Sae_3.01_Ticketing_Web_App>_         |        _<https://github.com/Boucanier/Sae_3.01_Ticketing_Web_App>_         |      OK       |

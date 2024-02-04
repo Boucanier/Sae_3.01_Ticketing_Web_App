@@ -87,7 +87,7 @@ Partitions d'équivalence :
 | Résultat de test : OK                      |
 | Occurrence des résultats : systématique    |
 
-| Classe | Donnée 1 |   Résultat attendu    |Résultat attendu | Résultat test |
+| Classe | Donnée 1 |   Résultat attendu    |Résultat observé | Résultat test |
 |:------:|:--------:|:----------------:|:----------------:|:----------------:|
 |   P1   |   a ∉ roles  | connection.php |connection.php |OK|
 |   P2   |   a ∈ roles  | profile.php |profile.php |OK|
@@ -101,7 +101,7 @@ Partitions d'équivalence :
 | Résultat de test : OK                      |
 | Occurrence des résultats : systématique    |
 
-| Classe | Donnée 1 | Résultat attendu |Résultat attendu | Résultat test |
+| Classe | Donnée 1 | Résultat attendu |Résultat observé | Résultat test |
 |:------:|:--------:|:----------------:|:----------------:|:----------------:|
 |   P1   | 'Supprimer le compte' | confirmation.php?sup_acc=true |confirmation.php?sup_acc=true |OK|
 
@@ -114,7 +114,7 @@ Partitions d'équivalence :
 | Résultat de test : OK                      |
 | Occurrence des résultats : systématique    |
 
-| Classe | Donnée 1 | Résultat attendu |Résultat attendu | Résultat test |
+| Classe | Donnée 1 | Résultat attendu |Résultat observé | Résultat test |
 |:------:|:--------:|:----------------:|:----------------:|:----------------:|
 |   P1   | 'Changer le mot de passe' | account.php |account.php |OK|
 

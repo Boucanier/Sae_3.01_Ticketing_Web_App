@@ -31,7 +31,7 @@
                             echo '</thead>
                                 <tbody>';
 
-                            $mysqli = new mysqli($host, $user, $passwd, $db);
+                            $mysqli = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB) or die ("Impossible de se connecter à la base de données");
                             $stmt = $mysqli->prepare("SELECT last_name, first_name, login FROM Users WHERE role = 'tech' AND login NOT LIKE 'rmv-%'");
                             $stmt->execute();
                             $data = $stmt->get_result();
@@ -96,11 +96,6 @@
                 echo '<form action="account.php" method="post">
                 <div class="user_info">
                     <div class="form_group">
-                        <label for="login">'.$formValue[$lang][0].'&nbsp;:</label>
-                        <input type="text" id="login" name="login" placeholder='.$placeholder[$lang][0].'>
-                    </div>
-                    <br>
-                    <div class="form_group">
                         <label for="name">'.$formValue[$lang][1].'&nbsp;:</label>
                         <input type="text" id="name" name="name" placeholder='.$placeholder[$lang][1].'>
                     </div>
@@ -108,6 +103,11 @@
                     <div class="form_group">
                         <label for="f_name">'.$formValue[$lang][2].'&nbsp;:</label>
                         <input type="text" id="f_name" name="f_name" placeholder='.$placeholder[$lang][2].'>
+                    </div>
+                    <br>
+                    <div class="form_group">
+                        <label for="login">'.$formValue[$lang][0].'&nbsp;:</label>
+                        <input type="text" id="login" name="login" placeholder='.$placeholder[$lang][0].'>
                     </div>
                     <br>
                     <div class="form_group">

@@ -36,6 +36,11 @@ Search.appendIndex(
             "summary": "Change\u0020la\u0020cl\u00E9\u0020de\u0020chiffrement",
             "url": "namespaces/default.html#function_change_key"
         },                {
+            "fqsen": "\\HOST_DB",
+            "name": "HOST_DB",
+            "summary": "H\u00F4te\u0020de\u0020la\u0020base\u0020de\u0020donn\u00E9es",
+            "url": "namespaces/default.html#constant_HOST_DB"
+        },                {
             "fqsen": "\\USER_DB",
             "name": "USER_DB",
             "summary": "Nom\u0020d\u0027utilisateur\u0020de\u0020la\u0020base\u0020de\u0020donn\u00E9es",
@@ -50,11 +55,6 @@ Search.appendIndex(
             "name": "DB",
             "summary": "Nom\u0020de\u0020la\u0020base\u0020de\u0020donn\u00E9es",
             "url": "namespaces/default.html#constant_DB"
-        },                {
-            "fqsen": "\\HOST_DB",
-            "name": "HOST_DB",
-            "summary": "H\u00F4te\u0020de\u0020la\u0020base\u0020de\u0020donn\u00E9es",
-            "url": "namespaces/default.html#constant_HOST_DB"
         },                {
             "fqsen": "\\log_acc\u0028\u0029",
             "name": "log_acc",

@@ -2,14 +2,16 @@
     $tab = array('fr' => 'Accueil', 'en' => 'Home');
     include "header.php";
 
+    $success = array('fr' => 'Votre compte a bien été supprimé', 'en' => 'Your account has been successfully deleted');
+
     if (isset($_GET['success']) && $_GET['success'] == 1){
-        echo '<div class="success"><p>Votre compte a bien été supprimé</p></div>';
+        echo '<div class="success"><p>'.$success[$lang].'</p></div>';
     }
 
     $pres_fr = 'Cette application est un site de ticketing avec sa base de données.
     C\'est-à-dire que les utilisateurs créent des tickets dans lesquels ils énoncent le problème rencontré.
     Ces tickets contiennent un titre descriptif du problème, la description de celui-ci, un niveau d\'urgence, la salle du problème, la date de création d\'un ticket.
-    Une fois créé, le ticket sera pris en charge par un technicien pour être résolu.
+    Une fois créé, le ticket sera pris en charge par un technicien pour être clos.
     Pour pouvoir créer un ticket, il vous faut vous connecter à votre compte ou en créer un si vous n\'en possédez pas.
     Il faut pour cela cliquer sur le bouton à droite sur la barre de navigation et remplir le formulaire correspondant.
     Ensuite vous accédez à votre tableau de bord (accessible depuis la barre de navigation).
@@ -66,7 +68,7 @@ echo '<main id="main_page">
             echo '<th>'.$value.'</th>';
         }
         echo '</tr>';
-        $mysqli = new mysqli($host, $user, $passwd, $db);
+        $mysqli = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB) or die ("Impossible de se connecter à la base de données");
         $stmt = $mysqli->prepare("SELECT emergency, room, title, first_name, last_name, DATE_FORMAT(creation_date,'%Y/%m/%d'), status FROM Tickets, Users
                                     WHERE Users.login = Tickets.user_login
                                     AND Users.login NOT LIKE 'rmv-%'
@@ -80,9 +82,9 @@ echo '<main id="main_page">
         }
         for ($i=0; $i < $long; $i++){
             $row = mysqli_fetch_array($data);
-            echo '<tr id="fond_hover">';
+            echo '<tr class="fond_hover">';
 
-            $status_fr = array('open' => 'Ouvert', 'in_progress' => 'En cours', 'closed' => 'Résolu');
+            $status_fr = array('open' => 'Ouvert', 'in_progress' => 'En cours', 'closed' => 'Clos');
             $status_en = array('open' => 'Open', 'in_progress' => 'In progress', 'closed' => 'Closed');
             $status = array('fr' => $status_fr, 'en' => $status_en);
 

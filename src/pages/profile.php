@@ -10,7 +10,7 @@
 
     echo '<main><div id="part_top"><h2>'.$infoTop[$lang].'</h2></div>';
 
-    $success = array('fr' => 'Mot de passe changé avec succès !', 'en' => 'Password changed successfully !');
+    $success = array('fr' => 'Mot de passe modifié avec succès !', 'en' => 'Password changed successfully !');
 
     if (isset($_GET['success'])) {
         echo '<div class="success"><p>'.$success[$lang].'</p></div>';
@@ -23,7 +23,7 @@
                     <img src="resources/temp_user_icon.png" alt="icone d'utilisateur" style="height: 300px; width: 300px">
                     <div id="info_perso">
                         <?php
-                            $mysqli = new mysqli($host, $user, $passwd,$db);
+                            $mysqli = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB) or die ("Impossible de se connecter à la base de données");
                             $stmt = $mysqli->prepare("SELECT last_name, first_name, login FROM Users WHERE login = ?");
                             $stmt->bind_param("s", $_SESSION['login']);
                             $stmt->execute();
@@ -41,9 +41,9 @@
                             echo '</div></div>';
 
                         if ($_SESSION['role'] == 'user' || $_SESSION['role'] == 'tech')
-                            echo '<button id="account_sup" onclick="supAccount()">'.$presProfile[$lang][3].'</button>';
+                            echo '<button id="account_sup" onclick="supMyAccount()">'.$presProfile[$lang][3].'</button>';
                         else
-                            echo '<button id="account_sup" onclick="supAccount()" disabled>'.$presProfile[$lang][3].'</button>';
+                            echo '<button id="account_sup" onclick="supMyAccount()" disabled>'.$presProfile[$lang][3].'</button>';
                     ?>
             </div>
         </div>

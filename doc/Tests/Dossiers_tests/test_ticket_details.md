@@ -84,7 +84,7 @@ La donnée 1 correspond au fait qu'un type d'utilisateur accède à la page tick
 | Résultat de test : OK                      |
 | Occurrence des résultats : systématique    |
 
-| Classe | Donnée 1 |   Résultat attendu    |Résultat attendu | Résultat test |
+| Classe | Donnée 1 |   Résultat attendu    |Résultat observé | Résultat test |
 |:------:|:--------:|:----------------:|:----------------:|:----------------:|
 |   P1   |         ‘Prendre en charge’           |     ticket.php | ticket.php |OK|
 
@@ -97,7 +97,7 @@ La donnée 1 correspond au fait qu'un type d'utilisateur accède à la page tick
 | Résultat de test : OK                      |
 | Occurrence des résultats : systématique    |
 
-| Classe | Donnée 1 |   Résultat attendu    |Résultat attendu | Résultat test |
+| Classe | Donnée 1 |   Résultat attendu    |Résultat observé | Résultat test |
 |:------:|:--------:|:----------------:|:----------------:|:----------------:|
 |   P1   |         'Clore'           |     ticket.php   |ticket.php   |OK|
 
@@ -110,7 +110,7 @@ La donnée 1 correspond au fait qu'un type d'utilisateur accède à la page tick
 | Résultat de test : OK                      |
 | Occurrence des résultats : systématique    |
 
-| Classe | Donnée 1 |   Résultat attendu    |Résultat attendu | Résultat test |
+| Classe | Donnée 1 |   Résultat attendu    |Résultat observé | Résultat test |
 |:------:|:--------:|:----------------:|:--------:|:----------------:|
 |   P1   |        visiteur      |   index.php  |index.php  |OK|
 |   P2   |        admin system      |   index.php  | index.php  |OK|
