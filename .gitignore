@@ -21,3 +21,4 @@ security/
 
 # Fichiers cache de phpDocumentor
 .phpdoc
+/vendor/
