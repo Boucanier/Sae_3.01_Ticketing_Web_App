@@ -9,7 +9,7 @@
 
 ## 1. Introduction
 
-Ce dossier contient les tests pour les différents fonctions contenuesdans le fichier _functions.php_. Ce fichier regroupe des fonctions utilisées par les autres fichiers du projet. Il est donc important de vérifier que ces fonctions fonctionnent correctement.
+Ce dossier contient les tests pour les différents fonctions contenues dans le fichier _functions.php_. Ce fichier regroupe des fonctions utilisées par les autres fichiers du projet. Il est donc important de vérifier que ces fonctions fonctionnent correctement.
 
 ## 2. Description de la procédure de test
 
