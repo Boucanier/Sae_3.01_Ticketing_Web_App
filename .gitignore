@@ -21,4 +21,9 @@ security/
 
 # Fichiers cache de phpDocumentor
 .phpdoc
+
+# Fichiers de composer
 /vendor/
+
+# Fichiers de phpunit
+.phpunit*
