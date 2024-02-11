@@ -23,7 +23,7 @@ security/
 .phpdoc
 
 # Fichiers de composer
-/vendor/
+vendor/
 
 # Fichiers de phpunit
 .phpunit*

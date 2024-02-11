@@ -126,7 +126,7 @@ Partitions d'équivalence :
 | Référence du test appliqué : 0             |
 |--------------------------------------------|
 | Responsable : Jules CHIRON                 |
-| Date de l'application du test : xx/02/2024 |
+| Date de l'application du test : 11/02/2024 |
 | Résultat de test : OK                      |
 | Occurrence des résultats : systématique    |
 
@@ -140,40 +140,40 @@ Partitions d'équivalence :
 | Référence du test appliqué : 1             |
 |--------------------------------------------|
 | Responsable : Jules CHIRON                 |
-| Date de l'application du test : xx/02/2024 |
+| Date de l'application du test : 11/02/2024 |
 | Résultat de test : OK                      |
 | Occurrence des résultats : systématique    |
 
 | Classe |   Clé    | Taille | Résultat attendu (taille) | Résultat attendu (contenu) | Résultat observé (taille) | Résultat observé (contenu) | Résultat du test  |
 |:------:|:--------:|:------:|:-------------------------:|:-:|:-:|:-------------------------:|:-----------------:|
-|   P1   |   ""     |  128   |            128            | _Tableau d'entiers non vide_ |   |   |   |
-|   P2   |   ""     | -128   |             0             | _Tableau d'entiers vide_ |   |   |   |
-|   P3   |   ""     |   0    |             0             | _Tableau d'entiers vide_ |   |   |   |
-|   P4   |   "a"    |  128   |            128            | _Tableau d'entiers non vide_ |   |   |   |
-|   P5   |   "a"    | -128   |             0             | _Tableau d'entiers vide_ |   |   |   |
-|   P6   |   "a"    |   0    |             0             | _Tableau d'entiers vide_ |   |   |   |
-|   P7   |  "Key" | 16 | 16 | [235,159,119,129,183,52,202,114,167,25,74,40,103,182,66,149] |   |   | |
-|   P8   | "Wiki" | 16 | 16 | [96,68,219,109,65,183,232,231,164,214,249,251,212,66,131,84] |   |   | |
-|   P9   | "Secret" | 16 | 16 | [4,212,107,5,60,168,123,89,65,114,48,42,236,155,185,146] |   |   | |
+|   P1   |   ""     |  128   |            128            | _Tableau d'entiers non vide_ | 128 | _Tableau d'entiers non vide_ | OK |
+|   P2   |   ""     | -128   |             0             | _Tableau d'entiers vide_ | 0 | _Tableau d'entiers vide_ | OK |
+|   P3   |   ""     |   0    |             0             | _Tableau d'entiers vide_ | 0 | _Tableau d'entiers vide_ | OK |
+|   P4   |   "a"    |  128   |            128            | _Tableau d'entiers non vide_ | 128 | _Tableau d'entiers non vide_ | OK |
+|   P5   |   "a"    | -128   |             0             | _Tableau d'entiers vide_ | 0 | _Tableau d'entiers vide_ | OK |
+|   P6   |   "a"    |   0    |             0             | _Tableau d'entiers vide_ | 0 | _Tableau d'entiers vide_ | OK |
+|   P7   |  "Key" | 16 | 16 | [235,159,119,129,183,52,202,114,167,25,74,40,103,182,66,149] | 16 | [235,159,119,129,183,52,202,114,167,25,74,40,103,182,66,149] | OK |
+|   P8   | "Wiki" | 16 | 16 | [96,68,219,109,65,183,232,231,164,214,249,251,212,66,131,84] | 16 | [96,68,219,109,65,183,232,231,164,214,249,251,212,66,131,84] | OK |
+|   P9   | "Secret" | 16 | 16 | [4,212,107,5,60,168,123,89,65,114,48,42,236,155,185,146] | 16 | [4,212,107,5,60,168,123,89,65,114,48,42,236,155,185,146] | OK |
 
 ---
 
 | Référence du test appliqué : 2             |
 |--------------------------------------------|
 | Responsable : Jules CHIRON                 |
-| Date de l'application du test : xx/02/2024 |
+| Date de l'application du test : 11/02/2024 |
 | Résultat de test : OK                      |
 | Occurrence des résultats : systématique    |
 
 | Classe | Message  |  Clé   | Résultat attendu  | Résultat observé  | Résultat du test  |
 |:------:|:--------:|:------:|:-----------------:|:-----------------:|:-----------------:|
-|   P1   |   "a"    |  "a"   |        68         |                 |                 |
-|   P2   |   ""     |  "a"   |        68         |                 |                 |
-|   P3   |   "a"    |  ""    |        68         |                 |                 |
-|   P4   |   ""     |  ""    |        68         |                 |                 |
-|   P5   |"Plaintext"| "Key" |bbf316e8d940af0ad3297a18578672a53d6d7c1662274bae4ab225dc649b600eb00b|||
-|   P6   |  "pedia" | "Wiki" |1021bf042087d8d794e6c9cbe472b364683c88c1436497c9824037b2c59a20835817|||
-|   P7   |"Attack at dawn"|"Secret"|45a01f645fc35b383552544b9bf589a20221e405697f30472df9296f7846c0b7c241|||
+|   P1   |   "a"    |  "a"   | _chaîne hexa non vide_ | _chaîne hexa non vide_ |       OK        |
+|   P2   |   ""     |  "a"   | _chaîne hexa non vide_ | _chaîne hexa non vide_ |       OK        |
+|   P3   |   "a"    |  ""    | _chaîne hexa non vide_ | _chaîne hexa non vide_ |       OK        |
+|   P4   |   ""     |  ""    | _chaîne hexa non vide_ | _chaîne hexa non vide_ |       OK        |
+|   P5   |"Plaintext"| "Key" |bbf316e8d940af0ad3297a18578672a53d6d7c1662274bae4ab225dc649b600eb00b|bbf316e8d940af0ad3297a18578672a53d6d7c1662274bae4ab225dc649b600eb00b| OK |
+|   P6   |  "pedia" | "Wiki" |1021bf042087d8d794e6c9cbe472b364683c88c1436497c9824037b2c59a20835817|1021bf042087d8d794e6c9cbe472b364683c88c1436497c9824037b2c59a20835817| OK |
+|   P7   |"Attack at dawn"|"Secret"|45a01f645fc35b383552544b9bf589a20221e405697f30472df9296f7846c0b7c241|45a01f645fc35b383552544b9bf589a20221e405697f30472df9296f7846c0b7c241| OK |
 
 ### 4. Conclusion
 
