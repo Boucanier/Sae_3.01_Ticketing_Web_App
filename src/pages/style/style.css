@@ -20,7 +20,8 @@ body {
 
 nav {
     display: flex;
-    justify-content: space-between;
+    flex-direction: row;
+    justify-content: left;
     background-color: #a6a6c2;
     border-top: 1px solid black;
 }
@@ -57,18 +58,18 @@ input {
     background-color: #e0e0e8;
 }
 
-#nav1 > a, #nav2 > a, footer > a, footer > div > a {
+nav > a, footer > a, footer > div > a {
     padding: 10px;
     color: black;
     text-align: center;
     text-decoration: none;
 }
 
-#nav1 > a:visited, #nav2 > a:visited, footer > a:visited, footer > div > a:visited {
+nav > a:visited, footer > a:visited, footer > div > a:visited {
     color: black;
 }
 
-header > nav > div > a:hover, footer > a:hover, footer > div > a:hover {
+header > nav > a:hover, footer > a:hover, footer > div > a:hover {
     background-color: rgb(150, 205, 250);
     border-radius: 20px;
     transition: 0.15s;
@@ -80,13 +81,9 @@ header > nav > div > a:focus, footer > a:focus, footer > div > a:hover {
     border: none;
 }
 
-#nav1, #nav2{
+nav {
     display: flex;
     flex-direction: row;
-}
-
-#nav1 {
-    justify-content: left;
 }
 
 #nav2 {
