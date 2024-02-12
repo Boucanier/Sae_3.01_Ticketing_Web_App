@@ -573,7 +573,7 @@
             if ($semaines == 1)
                 return $tab_lang[$lang][0]." ".$semaines." ".$tab_lang[$lang][5];
             else
-                return $tab_lang[$lang][0]." ".$semaines." ".$tab_lang[$lang][2];
+                return $tab_lang[$lang][0]." ".$semaines." ".$tab_lang[$lang][6];
         }
         else if($jours >= 1){
             if ($jours == 1)
