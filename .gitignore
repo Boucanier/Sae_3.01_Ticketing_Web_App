@@ -27,3 +27,6 @@ vendor/
 
 # Fichiers de phpunit
 .phpunit*
+
+# Fichiers liés à shinyapps.io
+rsconnect/
