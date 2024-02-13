@@ -48,6 +48,10 @@
     $placeholder_en = array('Max&nbsp;30&nbsp;characters', 'Describe&nbsp;your&nbsp;problem&nbsp;here');
     $placeholder = array('fr' => $placeholder_fr, 'en' => $placeholder_en);
 
+    $toolTipText_fr = array('1 : Peu important', '4 : Très urgent');
+    $toolTipText_en = array('1 : Not very important', '4 : Very important');
+    $toolTipText = array('fr' => $toolTipText_fr, 'en' => $toolTipText_en);
+
     $mysqli = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB) or die ("Impossible de se connecter à la base de données");
     $stmt = $mysqli->prepare("SELECT DISTINCT room FROM Rooms");
 
@@ -69,7 +73,7 @@
                 <br>
                 <label for="salle">'.$formValue[$lang][1].'&nbsp;:&nbsp;</label>
                 <br>
-                <label for="niveauUrgence">'.$formValue[$lang][2].'&nbsp;:&nbsp;</label>
+                <label for="niveauUrgence" id="niveauUrgenceCreateTicket">'.$formValue[$lang][2].'&nbsp;:&nbsp;</label>
                 <br>
                 <label for="descriptionPrbl">'.$formValue[$lang][3].'&nbsp;:&nbsp;</label>
                 <br>
@@ -85,7 +89,10 @@
                         }
                 echo '</select>
                 <br>
-                <input type="number" id="niveauUrgence" name="niveauUrgence" max="4" min="1" value="1"/>
+                <div id="tooltip">
+                    <input type="number" id="niveauUrgence" name="niveauUrgence" max="4" min="1" value="1"/>
+                    <span id="tooltiptext">'.$toolTipText[$lang][0].'<br>'.$toolTipText[$lang][1].'</span>
+                </div>
                 <br>
                 <textarea id="descriptionPrbl" name="descriptionPrbl" rows="5" cols="33" placeholder='.$placeholder[$lang][1].'></textarea>
                 <br>
