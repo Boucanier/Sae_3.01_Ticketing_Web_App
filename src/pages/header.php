@@ -45,74 +45,54 @@
     $headerValue = array('fr' => $headerValue_fr, 'en' => $headerValue_en);
 
     if ($type == 'visit'){
-    echo (' <nav>
-                <div id="nav1">
+        echo (' <nav>
                     <a href="index.php">'.$headerValue[$lang][0].'</a>
-                </div>
-                <div id="nav2">
                     <a href="connection.php">'.$headerValue[$lang][1].'</a>
-                </div>
-            </nav>
-        </header>');
+                </nav>
+            </header>');
     }
 
     else if ($type == 'user'){
         echo (' <nav>
-                    <div id="nav1">
-                        <a href="index.php">'.$headerValue[$lang][0].'</a>
-                        <a href="dashboard.php">'.$headerValue[$lang][2].'</a>
-                    </div>
-                    <div id="nav2">
-                        <a href="profile.php">'.$headerValue[$lang][3].'</a>
-                        <a href="out.php">'.$headerValue[$lang][4].'</a>
-                    </div>
+                    <a href="index.php">'.$headerValue[$lang][0].'</a>
+                    <a href="dashboard.php">'.$headerValue[$lang][2].'</a>
+                    <a href="profile.php">'.$headerValue[$lang][3].'</a>
+                    <a href="out.php">'.$headerValue[$lang][4].'</a>
                 </nav>
             </header>');
     }
 
     else if ($type == 'tech'){
         echo (' <nav>
-                    <div id="nav1">
-                        <a href="index.php">'.$headerValue[$lang][0].'</a>
-                        <a href="dashboard.php">'.$headerValue[$lang][2].'</a>
-                        <a href="dashboard.php?dispo=true">'.$headerValue[$lang][7].'</a>
-                    </div>
-                    <div id="nav2">
-                        <a href="profile.php">'.$headerValue[$lang][3].'</a>
-                        <a href="out.php">'.$headerValue[$lang][4].'</a>
-                    </div>
+                    <a href="index.php">'.$headerValue[$lang][0].'</a>
+                    <a href="dashboard.php">'.$headerValue[$lang][2].'</a>
+                    <a href="dashboard.php?dispo=true">'.$headerValue[$lang][7].'</a>
+                    <a href="profile.php">'.$headerValue[$lang][3].'</a>
+                    <a href="out.php">'.$headerValue[$lang][4].'</a>
                 </nav>
             </header>');
     }
 
     else if ($type == 'web_admin'){
         echo (' <nav>
-                    <div id="nav1">
-                        <a href="index.php">'.$headerValue[$lang][0].'</a>
-                        <a href="dashboard.php">'.$headerValue[$lang][2].'</a>
-                        <a href="tech.php">'.$headerValue[$lang][5].'</a>
-                        <a href="users.php">'.$headerValue[$lang][10].'</a>
-                    </div>
-                    <div id="nav2">
-                        <a href="profile.php">'.$headerValue[$lang][3].'</a>
-                        <a href="out.php">'.$headerValue[$lang][4].'</a>
-                    </div>
+                    <a href="index.php">'.$headerValue[$lang][0].'</a>
+                    <a href="dashboard.php">'.$headerValue[$lang][2].'</a>
+                    <a href="tech.php">'.$headerValue[$lang][5].'</a>
+                    <a href="users.php">'.$headerValue[$lang][10].'</a>
+                    <a href="profile.php">'.$headerValue[$lang][3].'</a>
+                    <a href="out.php">'.$headerValue[$lang][4].'</a>
                 </nav>
             </header>');
     }
 
     else if ($type == 'sys_admin'){
         echo (' <nav>
-                    <div id="nav1">
-                        <a href="index.php">'.$headerValue[$lang][0].'</a>
-                        <a href="activity_log.php">'.$headerValue[$lang][6].'</a>
-                        <a href="stats.php">'.$headerValue[$lang][8].'</a>
-                        <a href="security.php">'.$headerValue[$lang][9].'</a>
-                    </div>
-                    <div id="nav2">
-                        <a href="profile.php">'.$headerValue[$lang][3].'</a>
-                        <a href="out.php">'.$headerValue[$lang][4].'</a>
-                    </div>
+                    <a href="index.php">'.$headerValue[$lang][0].'</a>
+                    <a href="activity_log.php">'.$headerValue[$lang][6].'</a>
+                    <a href="stats.php">'.$headerValue[$lang][8].'</a>
+                    <a href="security.php">'.$headerValue[$lang][9].'</a>
+                    <a href="profile.php">'.$headerValue[$lang][3].'</a>
+                    <a href="out.php">'.$headerValue[$lang][4].'</a>
                 </nav>
             </header>');
     }

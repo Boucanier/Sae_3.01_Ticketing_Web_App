@@ -39,8 +39,8 @@
     $stmt->fetch();
     $stmt->close();
 
-    $description_fr = array('Ticket du ', 'Descritpion du problème', 'Salle : ', 'Niveau d\'urgence : ', 'Autre');
-    $description_en = array('Ticket from ', 'Probleme description', 'Room : ', 'Emergency level : ', 'Other');
+    $description_fr = array('Ticket du ', 'Description du problème', 'Salle : ', 'Niveau d\'urgence : ', 'Autre');
+    $description_en = array('Ticket from ', 'Problem description', 'Room : ', 'Emergency level : ', 'Other');
     $description_lang = array('fr' => $description_fr, 'en' => $description_en);
 
     if ($room == 'other')
