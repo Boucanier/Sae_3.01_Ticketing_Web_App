@@ -155,4 +155,4 @@ INSERT INTO Users VALUES ('webadmin', 'web', 'admin', '6bd8bb4221632a0f5fea05e0b
 
 DROP USER IF EXISTS 'ticket_app'@'localhost';
 CREATE USER 'ticket_app'@'localhost' IDENTIFIED BY 'ticket_s301';
-GRANT SELECT, INSERT, UPDATE ON *.* TO 'ticket_app'@'localhost';
+GRANT SELECT, INSERT, UPDATE, FILE ON *.* TO 'ticket_app'@'localhost';
