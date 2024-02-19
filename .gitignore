@@ -32,4 +32,4 @@ vendor/
 rsconnect/
 
 # Fichiers de logs
-src/logs/*/
+logs/*/

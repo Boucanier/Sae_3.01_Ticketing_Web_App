@@ -1,5 +1,8 @@
 #! /bin/bash
 
+logsPath=$(jq -r '.logsPath' config/logs.json)
+date_name=$(date -d "yesterday" +%Y-%m-%d)
+
 ticketStmt="SELECT CONCAT_WS(',', DATE_FORMAT(creation_date,'%d/%m/%Y'), ticket_id, user_login, ip_address, emergency) 'date,ticket_id,login,ip_adress,emergency'
     FROM Tickets
     WHERE status != 'closed'
@@ -22,10 +25,8 @@ user="ticket_app"
 passwd="ticket_s301"
 database="ticket_app"
 
-date_name=$(date -d "yesterday" +%Y-%m-%d)
-
-mysql -u $user -p$passwd -B -D $database -e "$ticketStmt" > 'tickets/tickets-'$date_name.csv
-mysql -u $user -p$passwd -B -D $database -e "$connStmt" > 'connections/connections-'$date_name.csv
-mysql -u $user -p$passwd -B -D $database -e "$closedStmt" > 'closed_tickets/closed-'$date_name.csv
+mysql -u $user -p$passwd -B -D $database -e "$ticketStmt" > $logsPath'tickets/tickets-'$date_name.csv
+mysql -u $user -p$passwd -B -D $database -e "$connStmt" > $logsPath'connections/connections-'$date_name.csv
+mysql -u $user -p$passwd -B -D $database -e "$closedStmt" > $logsPath'closed_tickets/closed-'$date_name.csv
 
 exit 0

@@ -77,6 +77,15 @@ sudo rm -r $saePath
 mkdir $saePath
 cp -r src $saePath/src
 
+# On crée les dossiers pour stocker les logs
+mkdir $saePath/logs
+mkdir $saePath/logs/connections
+mkdir $saePath/logs/closed_tickets
+mkdir $saePath/logs/tickets
+mkdir $saePath/config/
+
+# On enregistre le chemin des logs dans un fichier de configuration
+echo -e "{\"logsPath\":\"$saePath/logs/\"}" > $saePath/config/logs.json
 
 # On crée le fichier contenant la clé de chiffrement des mdp
 	# On rend ce fichier accessible en écriture au serveur apache
