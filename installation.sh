@@ -41,7 +41,7 @@ fi
 
 # Installation des dépendances nécessaires
 sudo apt update
-sudo apt install -y apache2 php8.2 php8.2-mysql mariadb-common mariadb-server
+sudo apt install -y apache2 php8.2 php8.2-mysql mariadb-common mariadb-server jq
 
 
 # Installation du serveur shiny (si l'option -shiny est passée en paramètre)
@@ -77,6 +77,7 @@ sudo rm -r $saePath
 mkdir $saePath
 cp -r src $saePath/src
 
+
 # On crée les dossiers pour stocker les logs
 mkdir $saePath/logs
 mkdir $saePath/logs/connections
@@ -86,6 +87,15 @@ mkdir $saePath/config/
 
 # On enregistre le chemin des logs dans un fichier de configuration
 echo -e "{\"logsPath\":\"$saePath/logs/\"}" > $saePath/config/logs.json
+
+# On rajoute les droits d'exécution sur le script de création des logs
+sudo chmod +x $saePath/src/logs_creation.sh
+
+# On ajoute le cron pour l'ajout des logs
+	# ATTENTION : cela supprime tous les crons déjà existants
+echo -e "00 02 * * * $saePath/src/logs_creation.sh $SUDO_USER" > $saePath/config/cron
+crontab -u $SUDO_USER $saePath/config/cron
+
 
 # On crée le fichier contenant la clé de chiffrement des mdp
 	# On rend ce fichier accessible en écriture au serveur apache

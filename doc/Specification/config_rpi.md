@@ -90,6 +90,24 @@ Ce fichier permet de définir les paramètres par défaut de fail2ban. Nous avon
 
 La configuration réseau du Raspberry Pi dans le réseau de l'IUT a été assurée par M. Hoguin. Nous pouvons donc accéder à notre Raspberry Pi à distance. Cependant, on ne peut y accéder que depuis le réseau de l'IUT. Nous copions donc les fichiers de la plateforme sur le Raspberry Pi depuis un ordinateur de l'IUT. Ainsi, il se peut que le site ne soit pas tout le temps à jour sur le Raspberry Pi.
 
+---
+
+### Fichiers de logs
+
+Les données enregistrées par la plateforme dans sa base de données (connexions, tickets ...) sont quotidiennement sauvegardées dans des fichiers de logs. Ces fichiers sont situés dans le répertoire *logs/* à la racine du projet. Les fichiers csv sont créés tous les jours à 2h du matin.
+
+Afin de faire cela, nous avons créé un script bash ([logs_creation.sh](../../src/logs_creation.sh)) qui effectue cette tâche. Ce script est exécuté tous les jours à 2h du matin avec la commande par un *cron*.
+
+Ce script bash lit un fichier *json*, c'est pourquoi nous avons installé le paquet **jq** avec la commande *`sudo apt install jq`*. Afin de créer le cron, nous créons un fichier *cron* dans le répertoire *config/* du projet avec le contenu suivant :
+
+```cron
+00 02 * * * /home/pisae/sae/src/logs_creation.sh pisae
+```
+
+Pour créer le cron, nous exécutons la commande *`crontab -u pisae config/cron`*. ***Attention***, cette commande supprime tous les crons déjà existants.
+
+---
+
 ### Script d'installation
 
 Afin de prévenir tout problème avec la carte SD, nous avons créé une copie du système chez nous. De plus, nous avons créé [un script bash](../../installation.sh) qui effectue les actions décrites dans ce rapport afin de faciliter la configuration du Raspberry Pi en cas de problème sur la carte sd ou si on souhaite installer installer le serveur pour faire des tests chez nous. Ce script est exécutable en root sur une distribution de linux basée sur Debian avec la commande *`sudo bash installation.sh`* depuis la racine du projet. ***Attention***, ce script supprime **toutes les versions de PHP existantes** sur le système avant d'installer PHP 8.2 et les modules que nous utilisons. Il faut donc faire attention à ne pas l'exécuter sur un système qui utilise PHP pour d'autres applications.
