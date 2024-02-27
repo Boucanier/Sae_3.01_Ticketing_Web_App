@@ -803,10 +803,7 @@ th {
 }
 
 #ticket_log_table {
-    margin: 3%;
-    margin-left: 10%;
-    width: 80%;
-    border-collapse: collapse;
+    width: 100%;
 }
 
 table{

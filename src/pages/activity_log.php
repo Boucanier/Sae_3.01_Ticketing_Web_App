@@ -14,32 +14,44 @@
     echo '<main><div id="part_top"><h2>'.$infoTop[$lang].'</h2></div>';
     echo '<div id="activity_log_page">';
 
-    $selection_en = array('Connections logs', 'Closed tickets logs', 'Tickets logs');
-    $selection_fr = array('Logs de connexions', 'Logs des tickets fermés', 'Logs des tickets');
+    $selection_en = array('Closed tickets logs', 'Connections logs', 'Tickets logs');
+    $selection_fr = array('Logs des tickets fermés', 'Logs de connexions', 'Logs des tickets');
     $selection = array('en' => $selection_en, 'fr' => $selection_fr);
 
-    $directory = array('connections', 'closed_tickets', 'tickets');
+    $json_log_path = '../../config/logs.json';
+    $json_log_file = fopen($json_log_path, 'r');
+    $json_log = fread($json_log_file,filesize($json_log_path));
 
-    $download = array('en' => 'Download', 'fr' => 'Télécharger');
+    $logs_dir = json_decode($json_log,true)['logsPath'];
+    foreach (scandir($logs_dir) as $dir){
+        if ($dir != '.' and $dir != '..')
+            $directory[] = $dir;
+    }
 
     for ($i = 0; $i < count($directory); $i++) {
         $dir = $directory[$i];
         echo '<div class="activity_log_parts">';
             echo '<h2>'.$selection[$lang][$i].'</h2>';
+            echo '<div id="scrollable-table">';
+                echo '<table id="ticket_log_table">';
+                    echo '<tr><th>Date</th>';
+                    echo '<th>' .(array("en" => "File", "fr" => "Fichier"))[$lang] .'</th></tr>';
 
-            echo '<table id="ticket_log_table">';
-
-            $files = scandir('../../logs/'.$dir);
-            foreach($files as $file) {
-                if ($file != '.' and $file != '..') {
-                    echo '<tr><td>' . $file . '</td>';
-                    echo '<td><a href="../../logs/' . $dir . '/' . $file . '" download>' . $download[$lang] . '</a></td></tr>';
-                }
-            }
-            echo '</table>';
+                    $files = scandir($logs_dir.$dir);
+                    sort($files);
+                    $files = array_reverse($files);
+                    foreach($files as $file) {
+                        if ($file != '.' and $file != '..') {
+                            $file = explode(".", $file)[0];
+                            $date = explode("-", $file);
+                            echo '<tr class="fond_hover"><td>' . $date[3] . '/' . $date[2] . '/' . $date[1] . '</td>';
+                            echo '<td><a href="../../logs/' . $dir . '/' . $file . '" download>' . $file . '</a></td></tr>';
+                        }
+                    }
+        echo '</table></div></div>';
     }
 
-    echo '</main>';
+    echo '</div></main>';
     include "footer.php";
 ?>
 
