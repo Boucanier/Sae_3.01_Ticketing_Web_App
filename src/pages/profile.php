@@ -58,8 +58,9 @@
                             echo '<p>'.$presProfile[$lang][0].' : '.htmlentities($result[0])."</p>";
                             echo '<p>'.$presProfile[$lang][1].' : '.htmlentities($result[1])."</p>";
                             echo '<p>'.$presProfile[$lang][2].' : '.htmlentities($result[2])."</p>";
+                            $changer_photo_texte = array('fr' => 'Changer la photo de profil', 'en' => 'Change profile picture');
                             echo '<form id="choisir_image" action="action_image.php?login='.$result[2].'" method="post" enctype="multipart/form-data">
-                                    <label for="new_image">Changer l\'image</label>
+                                    <label for="new_image">'.$changer_photo_texte[$lang].'</label>
                                     <input type="file" name="new_image" id="new_image">
                                     <input type="submit" name="submit" value="Valider">
                                    </form>';
