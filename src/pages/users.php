@@ -74,7 +74,7 @@
                     echo '<td>'.$roles[$lang][$row[$i]].'</td>';
 
                 else
-                    echo '<td>'.$row[$i].'</td>';
+                    echo '<td>'.htmlentities($row[$i]).'</td>';
             }
             echo '<form action="account.php" method="post" id=form_'.$row[1].' type="hidden">
                     <input type="hidden" name="sup_acc" value="true">
