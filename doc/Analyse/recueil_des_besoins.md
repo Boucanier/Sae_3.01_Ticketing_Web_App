@@ -103,6 +103,7 @@ Ce glossaire définit les mots complexes utilisés dans le cahier des charges.
 | Afficher un page          |
 | Changer la police         |
 | Changer la langue         |
+| Change la photo de profil |
 
 On peut représenter les différents cas d'utilisation et leur correspondances.
 
@@ -154,21 +155,30 @@ On peut représenter les différents cas d'utilisation et leur correspondances.
 | **Acteurs principaux** : Utilisateur                                              |
 | **Scénario** : <ol><li>L'utilisateur clique sur un lien de la page html</li></ol> |
 
-| Cas d'utilisation 19 : Changer la police d'écriture |
-|--------------------------------------------------|
-| **Nom** : Changer la police |
-| **Portée** : Application web |
-| **Niveau** : Sous-fonction |
-| **Acteurs principaux** : visiteurs, utilisateurs, techniciens, admins |
+| Cas d'utilisation 19 : Changer la police d'écriture                                                           |
+|---------------------------------------------------------------------------------------------------------------|
+| **Nom** : Changer la police                                                                                   |
+| **Portée** : Application web                                                                                  |
+| **Niveau** : Sous-fonction                                                                                    |
+| **Acteurs principaux** : visiteurs, utilisateurs, techniciens, admins                                         |
 | **Scénario** : <ol><li>L'acteur accède au site</li><li>L'utilisateur peut changer la police du site</li></ol> |
 
-| Cas d'utilisation 20 : Changer la langue |
-|--------------------------------------------------|
-| **Nom** : Changer la langue |
-| **Portée** : Application web |
-| **Niveau** : Sous-fonction |
-| **Acteurs principaux** : visiteurs, utilisateurs, techniciens, admins |
+| Cas d'utilisation 20 : Changer la langue                                                                                  |
+|---------------------------------------------------------------------------------------------------------------------------|
+| **Nom** : Changer la langue                                                                                               |
+| **Portée** : Application web                                                                                              |
+| **Niveau** : Sous-fonction                                                                                                |
+| **Acteurs principaux** : visiteurs, utilisateurs, techniciens, admins                                                     |
 | **Scénario** : <ol><li>L'acteur accède au site</li><li>L'utilisateur peut changer la langue d'affichage du site</li></ol> |
+
+| Cas d'utilisation 22 : Changer de mot de passe                                                                                                                       |
+|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Nom** : Changer la photo de profil                                                                                                                                 |
+| **Portée** : Base de donnée                                                                                                                                          |
+| **Niveau** : Sous-fonction                                                                                                                                           |
+| **Acteurs principaux** : Utilisateur                                                                                                                                 |
+| **Scénario** : <ol><li>L'utilisateur choisi la photo dans son répertoire de fichier</li><li>Il appuie sur le bouton Valider</li></ol>                                |
+| **Extensions** : <ul><li>Si l'image sélectionnée n'est pas au bon format<ul><li>Ne modifie pas la base de données et renvoie un message d'erreur</li></ul></li></ul> |                                  
 
 ### Niveau utilisateur
 
