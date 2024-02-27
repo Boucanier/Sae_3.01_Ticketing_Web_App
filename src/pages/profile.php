@@ -10,11 +10,13 @@
 
     echo '<main><div id="part_top"><h2>'.$infoTop[$lang].'</h2></div>';
 
-    $success = array('fr' => 'Mot de passe modifié avec succès !', 'en' => 'Password changed successfully !');
+    $success1 = array('fr' => 'Photo de profil modifié avec succès !', 'en' => 'Profile picture changed successfully !');
+    $success2 = array('fr' => 'Mot de passe modifié avec succès !', 'en' => 'Password changed successfully !');
 
-    if (isset($_GET['success'])) {
-        echo '<div class="success"><p>'.$success[$lang].'</p></div>';
-    }
+    if (isset($_GET['success']) == 51)
+        echo '<div class="success"><p>'.$success1[$lang].'</p></div>';
+    elseif (isset($_GET['success']))
+        echo '<div class="success"><p>'.$success2[$lang].'</p></div>';
     ?>
     <div id="profile">
         <div id="profile_part1">
@@ -38,6 +40,11 @@
                             echo '<p>'.$presProfile[$lang][0].' : '.htmlentities($result[0])."</p>";
                             echo '<p>'.$presProfile[$lang][1].' : '.htmlentities($result[1])."</p>";
                             echo '<p>'.$presProfile[$lang][2].' : '.htmlentities($result[2])."</p>";
+                            echo '<form id="choisir_image" action="action_image.php?login='.$result[2].'" method="post" enctype="multipart/form-data">
+                                    <label for="new_image">Changer l\'image</label>
+                                    <input type="file" name="new_image" id="new_image">
+                                    <input type="submit" name="submit" value="Valider">
+                                   </form>';
                             echo '</div></div>';
 
                         if ($_SESSION['role'] == 'user' || $_SESSION['role'] == 'tech')

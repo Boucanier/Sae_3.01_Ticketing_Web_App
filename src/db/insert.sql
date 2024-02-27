@@ -1,6 +1,6 @@
-INSERT INTO Users VALUES ('user1', 'user1', 'user1', '7fcfb3597f632a0f5fea05e0bdee4fcbe935e7ec2b5a1fb209336f2d589710e3d592', 'user');
-INSERT INTO Users VALUES ('user2', 'user2', 'user2', '7fcfb3597f632a0f5fea05e0bdee4fcbe935e7ec2b5a1fb209336f2d589710e3d592', 'user');
-INSERT INTO Users VALUES ('user3', 'user3', 'user3', '7fcfb3597f632a0f5fea05e0bdee4fcbe935e7ec2b5a1fb209336f2d589710e3d592', 'user');
+INSERT INTO Users (login, first_name, last_name, password, role) VALUES ('user1', 'user1', 'user1', '7fcfb3597f632a0f5fea05e0bdee4fcbe935e7ec2b5a1fb209336f2d589710e3d592', 'user');
+INSERT INTO Users (login, first_name, last_name, password, role) VALUES ('user2', 'user2', 'user2', '7fcfb3597f632a0f5fea05e0bdee4fcbe935e7ec2b5a1fb209336f2d589710e3d592', 'user');
+INSERT INTO Users (login, first_name, last_name, password, role) VALUES ('user3', 'user3', 'user3', '7fcfb3597f632a0f5fea05e0bdee4fcbe935e7ec2b5a1fb209336f2d589710e3d592', 'user');
 /*
     mpd = user
 */

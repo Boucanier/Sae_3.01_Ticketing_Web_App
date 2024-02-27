@@ -211,6 +211,12 @@ main {
     flex-direction: column;
 }
 
+#choisir_image{
+    border: solid black 1px;
+    padding: 20px;
+    border-radius: 40px;
+}
+
 #profile {
     display: flex;
     flex-direction: row;

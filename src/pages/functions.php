@@ -585,3 +585,26 @@
             return $tab_lang[$lang][9];
         }
     }
+
+    function ajouterImageBD($image, $specific_user){
+        $conn = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB) or die ("Impossible de se connecter à la base de données");
+
+        // Vérifiez si le fichier a été téléchargé sans erreurs
+        if($image['error'] == 0){
+            $imageData = file_get_contents($image['tmp_name']);
+            $imageData = $conn->real_escape_string($imageData);
+
+            $query = "UPDATE Users SET image='$imageData' WHERE login='$specific_user'";
+
+            if($conn->query($query) === TRUE){
+                echo "Image mise à jour avec succès.";
+            } else {
+                echo "Erreur lors de la mise à jour de l'image: " . $conn->error;
+            }
+        } else {
+            echo "Erreur lors du téléchargement de l'image.";
+        }
+        header("Location: profile.php?success=51");
+        $conn->close();
+    }
+
