@@ -22,7 +22,19 @@
         <div id="profile_part1">
             <div id="img_info">
                 <div id="information">
-                    <img src="resources/temp_user_icon.png" alt="icone d'utilisateur" style="height: 300px; width: 300px">
+                    <?php
+                    $mysqli = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB) or die ("Impossible de se connecter à la base de données");
+                    $stmt = $mysqli->prepare("SELECT image FROM Users WHERE login = ?");
+                    $stmt->bind_param("s", $_SESSION['login']);
+                    $stmt->execute();
+                    $result = $stmt->get_result()->fetch_assoc();
+
+                    if ($result && $result['image']) {
+                        echo '<img src="data:image/jpeg;base64,'.base64_encode($result['image']).'" alt="Icone d\'utilisateur" style="height: 200px; width: 200px; margin-right: 30px">';
+                    } else {
+                        echo '<img src="resources/temp_user_icon.png" alt="Icone d\'utilisateur" style="height: 200px; width: 200px">';
+                    }
+                    ?>
                     <div id="info_perso">
                         <?php
                             $mysqli = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB) or die ("Impossible de se connecter à la base de données");
@@ -30,7 +42,7 @@
                             $stmt->bind_param("s", $_SESSION['login']);
                             $stmt->execute();
                             $result = $stmt->get_result()->fetch_row();
-                            
+
                             $mysqli->close();
 
                             $presProfile_fr = array('Nom', 'Prénom', 'Login', 'Supprimer le compte');
