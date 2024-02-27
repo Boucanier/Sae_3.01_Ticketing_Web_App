@@ -13,8 +13,12 @@
     $success1 = array('fr' => 'Photo de profil modifié avec succès !', 'en' => 'Profile picture changed successfully !');
     $success2 = array('fr' => 'Mot de passe modifié avec succès !', 'en' => 'Password changed successfully !');
 
+    $error1 = array('fr' => 'Fichier pas au bon format !', 'en' => 'File does not match with an image format !');
+
     if (isset($_GET['success']) == 51)
         echo '<div class="success"><p>'.$success1[$lang].'</p></div>';
+    elseif (isset($_GET['error']) == 52)
+        echo '<div class="error"><p>'.$error1[$lang].'</p></div>';
     elseif (isset($_GET['success']))
         echo '<div class="success"><p>'.$success2[$lang].'</p></div>';
     ?>
@@ -30,9 +34,11 @@
                     $result = $stmt->get_result()->fetch_assoc();
 
                     if ($result && $result['image']) {
-                        echo '<img src="data:image/jpeg;base64,'.base64_encode($result['image']).'" alt="Icone d\'utilisateur" style="height: 200px; width: 200px; margin-right: 30px">';
+                        // photo de profil personalisé du user
+                        echo '<img id="pfp" src="data:image/jpeg;base64,'.base64_encode($result['image']).'" alt="Icone d\'utilisateur">';
                     } else {
-                        echo '<img src="resources/temp_user_icon.png" alt="Icone d\'utilisateur" style="height: 200px; width: 200px">';
+                        // photo de profil de base du user
+                        echo '<img id="pfp" src="resources/temp_user_icon.png" alt="Icone d\'utilisateur">';
                     }
                     ?>
                     <div id="info_perso">

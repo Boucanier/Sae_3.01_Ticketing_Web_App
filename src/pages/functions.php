@@ -588,23 +588,52 @@
 
     function ajouterImageBD($image, $specific_user){
         $conn = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB) or die ("Impossible de se connecter à la base de données");
-
-        // Vérifiez si le fichier a été téléchargé sans erreurs
+    
         if($image['error'] == 0){
-            $imageData = file_get_contents($image['tmp_name']);
-            $imageData = $conn->real_escape_string($imageData);
-
-            $query = "UPDATE Users SET image='$imageData' WHERE login='$specific_user'";
-
-            if($conn->query($query) === TRUE){
-                echo "Image mise à jour avec succès.";
+            $imageType = exif_imagetype($image['tmp_name']);
+            if ($imageType != false) {
+                list($width, $height) = getimagesize($image['tmp_name']);
+                $maxWidth = 1920;
+                $maxHeight = 1080;
+                
+                if($width > $maxWidth || $height > $maxHeight){// l'image est trop grande, on la redimentionne
+                    $ratio = min($maxWidth / $width, $maxHeight / $height);
+                    $newWidth = $width * $ratio;
+                    $newHeight = $height * $ratio;
+        
+                    $imageResized = imagecreatetruecolor($newWidth, $newHeight);
+                    $imageOriginal = imagecreatefromstring(file_get_contents($image['tmp_name']));
+        
+                    imagecopyresampled($imageResized, $imageOriginal, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
+                    $tempFileName = tempnam(sys_get_temp_dir(), 'resized');
+                    imagejpeg($imageResized, $tempFileName, 100);
+        
+                    $imageData = file_get_contents($tempFileName);
+                    $imageData = $conn->real_escape_string($imageData);
+        
+                    unlink($tempFileName);
+        
+                    imagedestroy($imageOriginal);
+                    imagedestroy($imageResized);
+                } else {
+                    // image est de bonne taille donc on stocke de façon basique
+                    $imageData = file_get_contents($image['tmp_name']);
+                    $imageData = $conn->real_escape_string($imageData);
+                }
+        
+                $query = "UPDATE Users SET image='$imageData' WHERE login='$specific_user'";
+        
+                if($conn->query($query) == TRUE){
+                    header("Location: profile.php?success=51"); // update dans la BD avec succes
+                } else {
+                    header("Location: profile.php?error=52"); // erreur lors de l'update
+                }
             } else {
-                echo "Erreur lors de la mise à jour de l'image: " . $conn->error;
+                header("Location: profile.php?error=52"); // Le fichier n'est pas une image
             }
         } else {
-            echo "Erreur lors du téléchargement de l'image.";
+            header("Location: profile.php"); // aucune fichier sélectionné => on fait rien
         }
-        header("Location: profile.php?success=51");
         $conn->close();
     }
-
+    
