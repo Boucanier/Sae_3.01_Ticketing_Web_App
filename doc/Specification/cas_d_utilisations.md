@@ -128,13 +128,11 @@ De plus, sur la même page il a accès à la liste de tous les techniciens du si
 
 ## Cas 13
 
-Le cas d’utilisation 13 "Consulter journaux d’activités", permet à l'administrateur système de consulter les journaux d’activités.
+Le cas d’utilisation 13 "Télécharger journaux d’activités", permet à l'administrateur système de télécharger les fichiers des logs.
 
 L’administrateur système doit tout d’abord se connecter sur le site web.
 Puis celui-ci doit se rendre sur page des journaux d’activités.
-Sur cette page, il a accès au journal des tickets qui référence tous les tickets créés avec leur date de création l’ip de la personne l’ayant créé et le niveau d’urgence de celui-ci.
-De plus, il peut voir le journal des connexions ayant échouées avec la date, le login et le mot de passe de la personne ayant tenté de se connecter et enfin l’ip de celle-ci.
-Pour finir l’administrateur système a accès à l’historique des tickets fermés qui comprend le niveau d’urgence, la salle, la description du problème, le demandeur, la date et la date de fin.
+Sur cette page, il a accès à différentes parties qui référencent chacunes tous les fichiers des logs.
 
 ## Cas 14
 

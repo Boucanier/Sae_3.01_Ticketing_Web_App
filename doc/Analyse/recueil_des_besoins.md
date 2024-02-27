@@ -80,7 +80,7 @@ Ce glossaire définit les mots complexes utilisés dans le cahier des charges.
 | Configuration du système   |
 | Gérer les tickets          |
 
-| 🌊 (Niveau Utilisateur) ⬛                                                     |
+| 🌊 (Niveau Utilisateur) ⬛                                                       |
 |---------------------------------------------------------------------------------|
 | Créer ticket                                                                    |
 | Accéder à son profil                                                            |
@@ -154,20 +154,20 @@ On peut représenter les différents cas d'utilisation et leur correspondances.
 | **Acteurs principaux** : Utilisateur                                              |
 | **Scénario** : <ol><li>L'utilisateur clique sur un lien de la page html</li></ol> |
 
-| Cas d'utilisation 19 : Changer la police d'écriture |
-|--------------------------------------------------|
-| **Nom** : Changer la police |
-| **Portée** : Application web |
-| **Niveau** : Sous-fonction |
-| **Acteurs principaux** : visiteurs, utilisateurs, techniciens, admins |
+| Cas d'utilisation 19 : Changer la police d'écriture                                                           |
+|---------------------------------------------------------------------------------------------------------------|
+| **Nom** : Changer la police                                                                                   |
+| **Portée** : Application web                                                                                  |
+| **Niveau** : Sous-fonction                                                                                    |
+| **Acteurs principaux** : visiteurs, utilisateurs, techniciens, admins                                         |
 | **Scénario** : <ol><li>L'acteur accède au site</li><li>L'utilisateur peut changer la police du site</li></ol> |
 
-| Cas d'utilisation 20 : Changer la langue |
-|--------------------------------------------------|
-| **Nom** : Changer la langue |
-| **Portée** : Application web |
-| **Niveau** : Sous-fonction |
-| **Acteurs principaux** : visiteurs, utilisateurs, techniciens, admins |
+| Cas d'utilisation 20 : Changer la langue                                                                                  |
+|---------------------------------------------------------------------------------------------------------------------------|
+| **Nom** : Changer la langue                                                                                               |
+| **Portée** : Application web                                                                                              |
+| **Niveau** : Sous-fonction                                                                                                |
+| **Acteurs principaux** : visiteurs, utilisateurs, techniciens, admins                                                     |
 | **Scénario** : <ol><li>L'acteur accède au site</li><li>L'utilisateur peut changer la langue d'affichage du site</li></ol> |
 
 ### Niveau utilisateur
@@ -228,13 +228,13 @@ On peut représenter les différents cas d'utilisation et leur correspondances.
 | **Acteurs principaux** : Administrateur web                                                                                                                                 |
 | **Scénario** : <ol><li>L'administrateur se connecte</li><li>L'administrateur web peut créer des comptes de techniciens</li><li>L'administrateur web se déconnecte</li></ol> |
 
-| Cas d'utilisation 13 : Consulter journaux d’activités                                                                                                                            |
-|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Nom** : Consulter journaux d’activités                                                                                                                                         |
-| **Portée** : Journaux d'activités                                                                                                                                                |
-| **Niveau** : Utilisateur                                                                                                                                                         |
-| **Acteurs principaux** : Administrateur système                                                                                                                                  |
-| **Scénario** : <ol><li>L'administrateur se connecte</li><li>L'administrateur système peut consulter les journaux d'activité</li><li>L'administrateur web se déconnecte</li></ol> |
+| Cas d'utilisation 13 : Télécharger journaux d’activités                                                                                                                            |
+|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Nom** : Consulter journaux d’activités                                                                                                                                           |
+| **Portée** : Journaux d'activités                                                                                                                                                  |
+| **Niveau** : Utilisateur                                                                                                                                                           |
+| **Acteurs principaux** : Administrateur système                                                                                                                                    |
+| **Scénario** : <ol><li>L'administrateur se connecte</li><li>L'administrateur système peut télécharger les journaux d'activité</li><li>L'administrateur web se déconnecte</li></ol> |
 
 | Cas d'utilisation 14 : Inscription des nouveaux utilisateurs                       |
 |------------------------------------------------------------------------------------|
@@ -252,12 +252,12 @@ On peut représenter les différents cas d'utilisation et leur correspondances.
 | **Acteurs principaux** : Administrateur web, techniciens                                                                                                                                                                                        |
 | **Scénario** : <ol><li>L'administrateur ou le technicien se connecte</li><li>L'administrateur web peut attribuer un ticket à un technicien ou celui-ci peut s'en attribuer un</li><li>L'administrateur ou le technicien se déconnecte</li></ol> |
 
-| Cas d'utilisation 21 : Modifier les utilisateurs |
-|--------------------------------------------------|
-| **Nom** : Modifier les utilisateurs |
-| **Portée** : Application web |
-| **Niveau** : Utilisateurs    |
-| **Acteurs principaux** : admin web |
+| Cas d'utilisation 21 : Modifier les utilisateurs                                                                                                    |
+|-----------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Nom** : Modifier les utilisateurs                                                                                                                 |
+| **Portée** : Application web                                                                                                                        |
+| **Niveau** : Utilisateurs                                                                                                                           |
+| **Acteurs principaux** : admin web                                                                                                                  |
 | **Scénario** : <ol><li>L'acteur se connecte à la plateforme</li><li>L'utilisateur peut afficher la liste des utilisateurs et les modifier</li></ol> |
 
 ### Niveau stratégique
