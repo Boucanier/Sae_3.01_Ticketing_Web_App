@@ -1,7 +1,7 @@
 #! /bin/bash
 
-# On récupère le nom de l'utilisateur (le premier paramètre passé au script)
-logsPath=$(jq -r '.logsPath' /home/$1/sae/config/logs.json)
+# On récupère l'emplacement du fichier indiquant l'emplacement des logs (le premier paramètre passé au script)
+logsPath=$(jq -r '.logsPath' $1)
 date_name=$(date -d "yesterday" +%Y-%m-%d)
 
 # Les requêtes SQL des données de la veille
