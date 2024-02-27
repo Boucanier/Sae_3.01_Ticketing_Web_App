@@ -93,7 +93,7 @@ sudo chmod +x $saePath/src/logs_creation.sh
 
 # On ajoute le cron pour l'ajout des logs
 	# ATTENTION : cela supprime tous les crons déjà existants
-echo -e "00 02 * * * $saePath/src/logs_creation.sh $SUDO_USER" > $saePath/config/cron
+echo -e "00 02 * * * $saePath/src/logs_creation.sh $saePath/config/logs.json" > $saePath/config/cron
 crontab -u $SUDO_USER $saePath/config/cron
 
 
