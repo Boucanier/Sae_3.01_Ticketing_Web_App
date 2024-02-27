@@ -14,7 +14,7 @@
     if (isset($_POST['id']) && !empty($_POST['id'])){
         $ticket_id = $_POST['id'];
 
-        $mysqli = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB) or die ("Impossible de se connecter à la base de données");
+        $mysqli = new mysqli($GLOBALS['db_host'], $GLOBALS['db_user'], $GLOBALS['db_passwd'], $GLOBALS['db_name']) or die ("Impossible de se connecter à la base de données");
 
         $stmt = $mysqli->prepare("SELECT ticket_id = ? FROM Tickets WHERE ticket_id = ?");
         $stmt->bind_param("ii", $ticket_id, $ticket_id);

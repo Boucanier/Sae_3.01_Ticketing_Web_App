@@ -52,7 +52,7 @@
     $toolTipText_en = array('1 : Not very important', '4 : Very important');
     $toolTipText = array('fr' => $toolTipText_fr, 'en' => $toolTipText_en);
 
-    $mysqli = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB) or die ("Impossible de se connecter à la base de données");
+    $mysqli = new mysqli($GLOBALS['db_host'], $GLOBALS['db_user'], $GLOBALS['db_passwd'], $GLOBALS['db_name']) or die ("Impossible de se connecter à la base de données");
     $stmt = $mysqli->prepare("SELECT DISTINCT room FROM Rooms");
 
     $stmt->execute();

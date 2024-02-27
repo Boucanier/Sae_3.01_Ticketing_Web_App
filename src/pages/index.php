@@ -68,7 +68,7 @@ echo '<main id="main_page">
             echo '<th>'.$value.'</th>';
         }
         echo '</tr>';
-        $mysqli = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB) or die ("Impossible de se connecter à la base de données");
+        $mysqli = new mysqli($GLOBALS['db_host'], $GLOBALS['db_user'], $GLOBALS['db_passwd'], $GLOBALS['db_name']) or die ("Impossible de se connecter à la base de données");
         $stmt = $mysqli->prepare("SELECT emergency, room, title, first_name, last_name, DATE_FORMAT(creation_date,'%Y/%m/%d'), status FROM Tickets, Users
                                     WHERE Users.login = Tickets.user_login
                                     AND Users.login NOT LIKE 'rmv-%'
