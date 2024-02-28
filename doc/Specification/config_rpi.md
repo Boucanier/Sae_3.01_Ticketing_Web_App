@@ -94,17 +94,19 @@ La configuration réseau du Raspberry Pi dans le réseau de l'IUT a été assur�
 
 ### Fichiers de logs
 
-Les données enregistrées par la plateforme dans sa base de données (connexions, tickets ...) sont quotidiennement sauvegardées dans des fichiers de logs. Ces fichiers sont situés dans le répertoire *logs/* à la racine du projet. Les fichiers csv sont créés tous les jours à 2h du matin.
+Les données enregistrées par la plateforme dans sa base de données (connexions, tickets ...) sont quotidiennement sauvegardées dans des fichiers de logs. Ces fichiers sont situés dans le répertoire *logs/* à la racine du projet. Cependant, si l'on souhaite changer l'emplacement de ce répertoire, il faut modifier le fichier [logs.json](../../config/logs.json) dans le répertoire *config/* du projet. Ce fichier indique l'emplacement des logs au serveur web. Les fichiers csv sont créés **tous les jours à 2h du matin**.
 
-Afin de faire cela, nous avons créé un script bash ([logs_creation.sh](../../src/logs_creation.sh)) qui effectue cette tâche. Ce script est exécuté tous les jours à 2h du matin avec la commande par un *cron*.
-
-Ce script bash lit un fichier *json*, c'est pourquoi nous avons installé le paquet **jq** avec la commande *`sudo apt install jq`*. Afin de créer le cron, nous créons un fichier *cron* dans le répertoire *config/* du projet avec le contenu suivant :
+Afin de faire cela, nous avons créé un script bash ([logs_creation.sh](../../src/logs_creation.sh)) qui effectue cette tâche. Ce script est exécuté tous les jours à 2h du matin avec la commande par un *cron*. Pour créer le cron, nous exécutons la commande *`crontab -u pisae config/cron`*.  de créer le cron, nous créons un fichier *cron* dans le répertoire *config/* du projet avec le contenu suivant :
 
 ```cron
 00 02 * * * /home/pisae/sae/src/logs_creation.sh pisae
 ```
 
-Pour créer le cron, nous exécutons la commande *`crontab -u pisae config/cron`*. ***Attention***, cette commande supprime tous les crons déjà existants.
+***Attention***, cette commande supprime tous les crons déjà existants !
+
+Pour récupérer les données de la base de données, nous exécutons des requêtes **SQL** depuis ce script. Pour pouvoir se connecter à la base de données, ce script lit le fichier [db_credentials.json](../../config/db_credentials.json) qui contient les identifiants de connexion à la base de données.
+
+Ce script bash lit des fichiers *json*, c'est pourquoi nous avons installé le paquet **jq** avec la commande *`sudo apt install jq`*.
 
 ---
 
