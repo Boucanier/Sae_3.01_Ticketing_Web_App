@@ -9,7 +9,7 @@ DROP TRIGGER IF EXISTS check_interventions_user;
 DROP TRIGGER IF EXISTS check_interventions_ticket;
 DROP TRIGGER IF EXISTS check_tickets_user;
 
-
+SET GLOBAL max_allowed_packet=104857600;
 
 CREATE TABLE Rooms (
     room VARCHAR(10) PRIMARY KEY

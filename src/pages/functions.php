@@ -588,41 +588,66 @@
 
     function ajouterImageBD($image, $specific_user){
         $conn = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB) or die ("Impossible de se connecter à la base de données");
-    
+
         if($image['error'] == 0){
             $imageType = exif_imagetype($image['tmp_name']);
+
             if ($imageType != false) {
                 list($width, $height) = getimagesize($image['tmp_name']);
-                $maxWidth = 1920;
-                $maxHeight = 1080;
-                
-                if($width > $maxWidth || $height > $maxHeight){// l'image est trop grande, on la redimentionne
-                    $ratio = min($maxWidth / $width, $maxHeight / $height);
+
+                $maxSize = 1920;
+
+                if($width > $maxSize || $height > $maxSize){
+                    $ratio = min($maxSize / $width, $maxSize / $height);
                     $newWidth = $width * $ratio;
                     $newHeight = $height * $ratio;
-        
-                    $imageResized = imagecreatetruecolor($newWidth, $newHeight);
-                    $imageOriginal = imagecreatefromstring(file_get_contents($image['tmp_name']));
-        
-                    imagecopyresampled($imageResized, $imageOriginal, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
-                    $tempFileName = tempnam(sys_get_temp_dir(), 'resized');
-                    imagejpeg($imageResized, $tempFileName, 100);
-        
-                    $imageData = file_get_contents($tempFileName);
-                    $imageData = $conn->real_escape_string($imageData);
-        
-                    unlink($tempFileName);
-        
-                    imagedestroy($imageOriginal);
-                    imagedestroy($imageResized);
                 } else {
-                    // image est de bonne taille donc on stocke de façon basique
-                    $imageData = file_get_contents($image['tmp_name']);
-                    $imageData = $conn->real_escape_string($imageData);
+                    $newWidth = $width;
+                    $newHeight = $height;
                 }
-        
+
+                $size = min($newWidth, $newHeight);
+
+                $imageSquare = imagecreatetruecolor($size, $size);
+
+                $white = imagecolorallocate($imageSquare, 255, 255, 255);
+                imagefill($imageSquare, 0, 0, $white);
+
+                $imageOriginal = imagecreatefromstring(file_get_contents($image['tmp_name']));
+
+                // Lecture et correction de l'orientation EXIF
+                $exif = @exif_read_data($image['tmp_name']);
+                if(!empty($exif['Orientation'])) {
+                    switch($exif['Orientation']) {
+                        case 8:
+                            $imageOriginal = imagerotate($imageOriginal, 90, 0);
+                            break;
+                        case 3:
+                            $imageOriginal = imagerotate($imageOriginal, 180, 0);
+                            break;
+                        case 6:
+                            $imageOriginal = imagerotate($imageOriginal, -90, 0);
+                            break;
+                    }
+                }
+
+                $x = ($size - $newWidth) / 2;
+                $y = ($size - $newHeight) / 2;
+
+                imagecopyresampled($imageSquare, $imageOriginal, $x, $y, 0, 0, $newWidth, $newHeight, $width, $height);
+
+                $tempFileName = tempnam(sys_get_temp_dir(), 'square');
+                imagejpeg($imageSquare, $tempFileName, 100);
+
+                $imageData = file_get_contents($tempFileName);
+                $imageData = $conn->real_escape_string($imageData);
+
+                unlink($tempFileName);
+                imagedestroy($imageOriginal);
+                imagedestroy($imageSquare);
+
                 $query = "UPDATE Users SET image='$imageData' WHERE login='$specific_user'";
-        
+
                 if($conn->query($query) == TRUE){
                     header("Location: profile.php?success=51"); // update dans la BD avec succes
                 } else {
@@ -636,4 +661,5 @@
         }
         $conn->close();
     }
-    
+
+
