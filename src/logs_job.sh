@@ -41,4 +41,7 @@ mysql -u $user -p$passwd -B -D $database -e "$ticketStmt" > $logsPath'tickets/ti
 mysql -u $user -p$passwd -B -D $database -e "$connStmt" > $logsPath'connections/connections-'$date_name.csv
 mysql -u $user -p$passwd -B -D $database -e "$closedStmt" > $logsPath'closed_tickets/closed-'$date_name.csv
 
+# On supprime les logs de plus de 180 jours (6 mois)
+find $logsPath -type f -mtime +180 -delete
+
 exit 0

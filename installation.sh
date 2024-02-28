@@ -84,17 +84,16 @@ mkdir $saePath/logs
 mkdir $saePath/logs/connections
 mkdir $saePath/logs/closed_tickets
 mkdir $saePath/logs/tickets
-mkdir $saePath/config/
 
 # On enregistre le chemin des logs dans un fichier de configuration
 echo -e "{\"logsPath\":\"$saePath/logs/\"}" > $saePath/config/logs.json
 
 # On rajoute les droits d'exécution sur le script de création des logs
-sudo chmod +x $saePath/src/logs_creation.sh
+sudo chmod +x $saePath/src/logs_job.sh
 
 # On ajoute le cron pour l'ajout des logs
 	# ATTENTION : cela supprime tous les crons déjà existants
-echo -e "00 02 * * * $saePath/src/logs_creation.sh $saePath/config" > $saePath/config/cron
+echo -e "00 02 * * * $saePath/src/logs_job.sh $saePath/config" > $saePath/config/cron
 crontab -u $SUDO_USER $saePath/config/cron
 
 
