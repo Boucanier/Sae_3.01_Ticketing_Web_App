@@ -76,6 +76,7 @@ saePath='/home/'$SUDO_USER'/sae'
 sudo rm -r $saePath
 mkdir $saePath
 cp -r src $saePath/src
+cp -r config $saePath/config
 
 
 # On crée les dossiers pour stocker les logs
