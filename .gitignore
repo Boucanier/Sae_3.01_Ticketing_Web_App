@@ -33,3 +33,4 @@ rsconnect/
 
 # Fichiers de logs
 logs/*/
+config/logs.json
