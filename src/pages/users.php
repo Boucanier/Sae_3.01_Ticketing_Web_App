@@ -29,8 +29,8 @@
             <h2>'.$infoTop[$lang].'</h2>
         </div>';
 
-    $header_fr = array('Rôle', 'Login', 'Nom', 'Prénom', 'Nouveau mot de passe');
-    $header_en = array('Role', 'Login', 'Last name', 'First name', 'New password');
+    $header_fr = array('Photo de profil', 'Rôle', 'Login', 'Nom', 'Prénom', 'Nouveau mot de passe');
+    $header_en = array('Profile picture', 'Role', 'Login', 'Last name', 'First name', 'New password');
     $header = array('fr' => $header_fr, 'en' => $header_en);
 
     $roles_fr = array('web_admin' => 'Admin web', 'user' => 'Utilisateur', 'tech' => 'Technicien', 'sys_admin' => 'Admin système');
@@ -69,6 +69,11 @@
 
         foreach ($data as $row) {
             echo '<tr class="fond_hover" id='.$row[1].'>';
+
+            echo "<td>";
+                afficher_image($row[1], "in_table");
+            echo "</td>";
+
             for ($i = 0; $i < count($row); $i++){
                 if ($i == 0)
                     echo '<td>'.$roles[$lang][$row[$i]].'</td>';

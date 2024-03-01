@@ -671,4 +671,38 @@
         $conn->close();
     }
 
+    /**
+     * @param string $login le login de l'utilisateur pour lequel on doit afficher la photo
+     * @param string $typeOfPfp permet de savoir ou on doit afficher la photo
+     * @return void
+     */
+    function afficher_image($login, $typeOfPfp){
+        $mysqli = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB) or die ("Impossible de se connecter à la base de données");
+        $stmt = $mysqli->prepare("SELECT image FROM Users WHERE login = ?");
+        $stmt->bind_param("s", $login);
+        $stmt->execute();
+        $result = $stmt->get_result()->fetch_assoc();
 
+        if ($result && $result['image']) {
+            // photo de profil personalisé du user
+            switch ($typeOfPfp){
+                case "in_table":
+                    echo '<img id="pfp_in_table" src="data:image/jpeg;base64,' . base64_encode($result['image']) . '" alt="Icone d\'utilisateur">';
+                    break;
+                case "in_profile":
+                    echo '<img id="pfp" src="data:image/jpeg;base64,' . base64_encode($result['image']) . '" alt="Icone d\'utilisateur">';
+                    break;
+            }
+
+        } else {
+            // photo de profil de base du user
+            switch ($typeOfPfp){
+                case "in_table":
+                    echo '<img id="pfp_in_table" src="resources/temp_user_icon.png" alt="Icone d\'utilisateur">';
+                    break;
+                case "in_profile":
+                    echo '<img id="pfp" src="resources/temp_user_icon.png" alt="Icone d\'utilisateur">';
+                    break;
+            }
+        }
+    }

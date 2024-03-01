@@ -27,19 +27,7 @@
             <div id="img_info">
                 <div id="information">
                     <?php
-                    $mysqli = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB) or die ("Impossible de se connecter à la base de données");
-                    $stmt = $mysqli->prepare("SELECT image FROM Users WHERE login = ?");
-                    $stmt->bind_param("s", $_SESSION['login']);
-                    $stmt->execute();
-                    $result = $stmt->get_result()->fetch_assoc();
-
-                    if ($result && $result['image']) {
-                        // photo de profil personalisé du user
-                        echo '<img id="pfp" src="data:image/jpeg;base64,'.base64_encode($result['image']).'" alt="Icone d\'utilisateur">';
-                    } else {
-                        // photo de profil de base du user
-                        echo '<img id="pfp" src="resources/temp_user_icon.png" alt="Icone d\'utilisateur">';
-                    }
+                    afficher_image($_SESSION['login'], "in_profile")
                     ?>
                     <div id="info_perso">
                         <?php
