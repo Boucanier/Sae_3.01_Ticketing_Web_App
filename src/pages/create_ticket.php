@@ -1,9 +1,6 @@
 <?php
 session_start();
-$user = "ticket_app";
-$passwd = "ticket_s301";
-$db = "ticket_app";
-$host = "localhost";
+include_once('db_credentials.php');
 
 if (isset($_POST['create_ticket'])){
     if (isset($_POST['libelle']) && isset($_POST['choix']) && isset($_POST['niveauUrgence']) && isset($_POST['descriptionPrbl'])){
@@ -12,7 +9,7 @@ if (isset($_POST['create_ticket'])){
         $niveauUrgence = $_POST['niveauUrgence'];
         $descriptionPrbl = $_POST['descriptionPrbl'];
 
-        $mysqli = new mysqli($host, $user, $passwd,$db);
+        $mysqli = new mysqli($GLOBALS['db_host'], $GLOBALS['db_user'], $GLOBALS['db_passwd'], $GLOBALS['db_name']);
 
         $stmt = $mysqli->prepare("SELECT DISTINCT room FROM Rooms");
         $stmt->execute();
@@ -65,5 +62,3 @@ if (isset($_POST['create_ticket'])){
 else {
     header('Location: dashboard.php');
 }
-
-?>

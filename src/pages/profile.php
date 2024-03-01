@@ -31,7 +31,7 @@
                     ?>
                     <div id="info_perso">
                         <?php
-                            $mysqli = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB) or die ("Impossible de se connecter à la base de données");
+                            $mysqli = new mysqli($GLOBALS['db_host'], $GLOBALS['db_user'], $GLOBALS['db_passwd'], $GLOBALS['db_name']) or die ("Impossible de se connecter à la base de données");
                             $stmt = $mysqli->prepare("SELECT last_name, first_name, login FROM Users WHERE login = ?");
                             $stmt->bind_param("s", $_SESSION['login']);
                             $stmt->execute();

@@ -204,7 +204,7 @@
 
         $tables = array('Users', 'Connections');
         
-        $mysqli = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB) or die ("Impossible de se connecter à la base de données");
+        $mysqli = new mysqli($GLOBALS['db_host'], $GLOBALS['db_user'], $GLOBALS['db_passwd'], $GLOBALS['db_name']) or die ("Impossible de se connecter à la base de données");
 
         for ($i = 0; $i < count($tables); $i++){
             $stmt = $mysqli->prepare("SELECT login, password FROM ".$tables[$i]." WHERE login NOT LIKE 'rmv-%'");

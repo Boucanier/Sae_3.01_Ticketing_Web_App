@@ -37,7 +37,7 @@
     $roles_en = array('web_admin' => 'Web admin', 'user' => 'User', 'tech' => 'Technician', 'sys_admin' => 'System admin');
     $roles = array('fr' => $roles_fr, 'en' => $roles_en);
 
-    $mysqli = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB) or die('Impossible de se connecter à la base de données');
+    $mysqli = new mysqli($GLOBALS['db_host'], $GLOBALS['db_user'], $GLOBALS['db_passwd'], $GLOBALS['db_name']) or die('Impossible de se connecter à la base de données');
 
     $stmt = $mysqli->prepare('SELECT role, login, last_name, first_name FROM Users WHERE login NOT LIKE "rmv-%" AND role NOT LIKE "%_admin"');
     $stmt->execute();

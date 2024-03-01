@@ -31,7 +31,10 @@ fi
 # On récupère la version de PHP installée sur la machine
 phpVersion=$(php -v | grep -o 'PHP [0-9]\.[0-9]' | cut -f2 -d' ')
 
-if [[ $phpVersion != "8.2" ]]
+# On veut la version 8.2 de PHP
+rqVersion="8.2"
+
+if [[ $phpVersion != $rqVersion ]]
 then
 	echo -e '\n Désinstallation de PHP\n'
 
@@ -41,7 +44,7 @@ fi
 
 # Installation des dépendances nécessaires
 sudo apt update
-sudo apt install -y apache2 php8.2 php8.2-mysql mariadb-common mariadb-server
+sudo apt install -y apache2 php$rqVersion php$rqVersion-mysql mariadb-common mariadb-server jq
 
 
 # Installation du serveur shiny (si l'option -shiny est passée en paramètre)
@@ -76,6 +79,25 @@ saePath='/home/'$SUDO_USER'/sae'
 sudo rm -r $saePath
 mkdir $saePath
 cp -r src $saePath/src
+cp -r config $saePath/config
+
+
+# On crée les dossiers pour stocker les logs
+mkdir $saePath/logs
+mkdir $saePath/logs/connections
+mkdir $saePath/logs/closed_tickets
+mkdir $saePath/logs/tickets
+
+# On enregistre le chemin des logs dans un fichier de configuration
+echo -e "{\"logsPath\":\"$saePath/logs/\"}" > $saePath/config/logs.json
+
+# On rajoute les droits d'exécution sur le script de création des logs
+sudo chmod +x $saePath/src/logs_job.sh
+
+# On ajoute le cron pour l'ajout des logs
+	# ATTENTION : cela supprime tous les crons déjà existants
+echo -e "00 02 * * * $saePath/src/logs_job.sh $saePath/config" > $saePath/config/cron
+crontab -u $SUDO_USER $saePath/config/cron
 
 
 # On crée le fichier contenant la clé de chiffrement des mdp

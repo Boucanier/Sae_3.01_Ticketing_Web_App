@@ -180,7 +180,7 @@ main {
     border: none;
 }
 
-#derniers_tickets {
+    #derniers_tickets {
     align-self: center;
     margin: 30px;
     background-color: white;
@@ -811,7 +811,6 @@ th {
 
 #ticket_log_table {
     width: 100%;
-    border-collapse: collapse;
 }
 
 table{

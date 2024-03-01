@@ -17,7 +17,7 @@ Thumbs.db
 *.out
 
 # Fichiers contenant des informations sensibles
-security/
+security
 
 # Fichiers cache de phpDocumentor
 .phpdoc
@@ -30,3 +30,7 @@ vendor/
 
 # Fichiers liés à shinyapps.io
 rsconnect/
+
+# Fichiers de logs
+logs/*/
+config/logs.json
