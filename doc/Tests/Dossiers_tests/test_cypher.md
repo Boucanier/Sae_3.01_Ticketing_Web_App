@@ -41,14 +41,18 @@ Nous testons toutes les fonctions qui prennent des paramètres particuliers. Nou
 
 Partitions d'équivalence :
 
-- _a = {chaîne de caractères vide}_
-- _b = {chaînes de caractères non vides}_
-- _c = {tableaux non vides}_
+- _a1 = {chaîne de caractères vide}_
+- _a2 = {chaînes de caractères non vides}_
+- _A = a1 U a2 = {chaînes de caractères}_
+
+- _c1 = {tableaux non vides}_
+- _c2 = {tableaux vides}_
+- _C = c1 U c2 = {tableaux}_
 
 | Classe |   Clé    | Résultat attendu  |
 |:------:|:--------:|:-----------------:|
-|   P1   |  x ∈ a   |     y ∈ c         |
-|   P2   |  x ∈ b   |     y ∈ c         |
+|   P1   |  x ∈ a1  |     y ∈ c1        |
+|   P2   |  x ∈ a2  |     y ∈ c1        |
 
 ---
 
@@ -63,27 +67,35 @@ Partitions d'équivalence :
 
 Partitions d'équivalence :
 
-- _a = {chaîne de caractères vide}_
-- _b = {chaînes de caractères non vides}_
-- _c = {tableaux non vides}_
-- _d = ℕ*_
-- _e = {x ∈ ℤ | x < 0}_
-- _f = {0}_
+- _a1 = {chaîne de caractères vide}_
+- _a2 = {chaînes de caractères non vides}_
+- _A = a1 U a2 = {chaînes de caractères}_
+
+- _c1 = {tableaux non vides}_
+- _c2 = {tableaux vides}_
+- _C = c1 U c2 = {tableaux}_
+
+- _d1 = ℕ*_
+- _d2 = {x ∈ ℤ | x < 0}_
+- _d3 = {0}_
+- _D = d1 U d2 U d3 = ℕ_
+
 - _g1 = {Key}_
 - _g2 = {Wiki}_
 - _g3 = {Secret}_
+- _G = g1 U g2 U g3 = {Clés de tests}_
 
 | Classe |   Clé    | Taille | Résultat attendu (taille du tableau)   | Résultat attendu (contenu du tableau)   |
 |:------:|:--------:|:------:|:--------------------------------------:|:---------------------------------------:|
-|   P1   |  x ∈ a   | y ∈ d  |                  z = y                 |                  z ∈ c                  |
-|   P2   |  x ∈ a   | y ∈ e  |                  z ∈ f                 |                  z ∈ a                  |
-|   P3   |  x ∈ a   | y ∈ f  |                  z ∈ f                 |                  z ∈ a                  |
-|   P4   |  x ∈ b   | y ∈ d  |                  z = y                 |                  z ∈ c                  |
-|   P5   |  x ∈ b   | y ∈ e  |                  z ∈ f                 |                  z ∈ a                  |
-|   P6   |  x ∈ b   | y ∈ f  |                  z ∈ f                 |                  z ∈ a                  |
-|   P7   |  x ∈ g1  | y ∈ d  |                  z = y                 |                  z ∈ c                  |
-|   P8   |  x ∈ g2  | y ∈ d  |                  z = y                 |                  z ∈ c                  |
-|   P9   |  x ∈ g3  | y ∈ d  |                  z = y                 |                  z ∈ c                  |
+|   P1   |  x ∈ a1  | y ∈ d1 |                  z = y                 |                  z ∈ c1                 |
+|   P2   |  x ∈ a1  | y ∈ d2 |                  z ∈ d3                |                  z ∈ a1                 |
+|   P3   |  x ∈ a1  | y ∈ d3 |                  z ∈ d3                |                  z ∈ a1                 |
+|   P4   |  x ∈ a2  | y ∈ d1 |                  z = y                 |                  z ∈ c1                 |
+|   P5   |  x ∈ a2  | y ∈ d2 |                  z ∈ d3                |                  z ∈ a1                 |
+|   P6   |  x ∈ a2  | y ∈ d3 |                  z ∈ d3                |                  z ∈ a1                 |
+|   P7   |  x ∈ g1  | y ∈ d1 |                  z = y                 |                  z ∈ c1                 |
+|   P8   |  x ∈ g2  | y ∈ d1 |                  z = y                 |                  z ∈ c1                 |
+|   P9   |  x ∈ g3  | y ∈ d1 |                  z = y                 |                  z ∈ c1                 |
 
 ---
 
@@ -98,25 +110,31 @@ Partitions d'équivalence :
 
 Partitions d'équivalence :
 
-- _a = {chaîne de caractères vide}_
-- _b = {chaînes de caractères non vides}_
+- _a1 = {chaîne de caractères vide}_
+- _a2 = {chaînes de caractères non vides}_
+- _A = a1 U a2 = {chaînes de caractères}_
+
 - _d1 = {Key}_
 - _d2 = {Wiki}_
 - _d3 = {Secret}_
+- _D = d1 U d2 U d3 = {Clés de tests}_
+
 - _e1 = {Plaintext}_
 - _e2 = {pedia}_
 - _e3 = {Attack at dawn}_
+- _E = e1 U e2 U e3 = {Messages de tests}_
+
 - _f1 = {bbf316e8d940af0ad3297a18578672a53d6d7c1662274bae4ab225dc649b600eb00b}_
 - _f2 = {1021bf042087d8d794e6c9cbe472b364683c88c1436497c9824037b2c59a20835817}_
 - _f3 = {45a01f645fc35b383552544b9bf589a20221e405697f30472df9296f7846c0b7c241}_
-- _f4 = {b \ {f1 U f2 U f3}}_
+- _F = f1 U f2 U f3 = {Chiffrement des messages de tests}_
 
 | Classe | Message  |  Clé   | Résultat attendu |
 |:------:|:--------:|:------:|:----------------:|
-|   P1   |  x ∈ b   | y ∈ b  |      z ∈ f4      |
-|   P2   |  x ∈ a   | y ∈ b  |      z ∈ f4      |
-|   P3   |  x ∈ b   | y ∈ a  |      z ∈ f4      |
-|   P4   |  x ∈ a   | y ∈ a  |      z ∈ f4      |
+|   P1   |  x ∈ a2  | y ∈ a2 |      z ∈ a2      |
+|   P2   |  x ∈ a1  | y ∈ a2 |      z ∈ a2      |
+|   P3   |  x ∈ a2  | y ∈ a1 |      z ∈ a2      |
+|   P4   |  x ∈ a1  | y ∈ a1 |      z ∈ a2      |
 |   P5   |  x ∈ e1  | y ∈ d1 |      z ∈ f1      |
 |   P6   |  x ∈ e2  | y ∈ d2 |      z ∈ f2      |
 |   P7   |  x ∈ e2  | y ∈ d3 |      z ∈ f3      |
