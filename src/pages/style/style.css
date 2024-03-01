@@ -204,11 +204,18 @@ main {
     display: flex;
     flex-direction: row;
     align-items: center;
+    margin-bottom: 30px;
 }
 
 #info_perso {
     display: flex;
     flex-direction: column;
+}
+
+#choisir_image{
+    border: solid black 1px;
+    padding: 20px;
+    border-radius: 40px;
 }
 
 #profile {
@@ -526,7 +533,7 @@ th {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
 }
 
 #ticket_details {
@@ -930,4 +937,25 @@ table{
 
 #tooltip:hover #tooltiptext {
     visibility: visible;
+}
+
+#pfp {
+    height: 200px;
+    width: 200px;
+    margin-right: 30px;
+    border-radius: 40px;
+    border: solid black 1px;
+}
+
+#pfp_in_table{
+    height: 50px;
+    width: 50px;
+    border-radius: 5px;
+}
+
+#pfp_ticket_details{
+    height: 210px;
+    width: 210px;
+    border-radius: 5px;
+    border: solid black 1px;
 }

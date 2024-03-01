@@ -49,7 +49,9 @@
     echo '<div id="part_top">
         <h2>'.$description_lang[$lang][0].htmlentities($creation_date).'</h2>
     </div>
-    <form id="ticket_about" action="action_ticket.php" method="post">
+    <div id="ticket_about">';
+        afficher_image($_SESSION['login'], "in_ticket_details");
+        echo '
         <div id="ticket_description">
             <h3>'.$description_lang[$lang][1].'</h3>
             <p>'.htmlentities($description).'</p>
@@ -82,7 +84,7 @@
             $button_lang = array('fr' => $button_fr, 'en' => $button_en);
 
             echo '<br>
-            <div class="resetSubmitDetails">
+            <form class="resetSubmitDetails" action="action_ticket.php" method="post">
                 <input type="button" value="'.$button_lang[$lang][0].'" class="reset_buttons" onclick="history.back();">';
 
                     if (isset($_POST['function']) && !empty($_POST['function']) && $_SESSION['role'] == 'tech'){
@@ -107,7 +109,7 @@
                         }
                         echo '<input name="ticket_id" type="hidden" value="'.$ticket_id.'"/>';
                     }
-    echo '</div></div></form></main>';
+    echo '</div></div></main>';
     include "footer.php";
 ?>
 </body>

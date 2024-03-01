@@ -192,3 +192,12 @@ Quand l'utilisateur accède au site web, il peut sélectionner la langue qu'il s
 Le cas d'utilisation 21 "Modifier les utilisateurs" permet à l'administrateur web d'afficher la liste des utilisateurs.
 
 Quand l'utilisateur se connecte au site web. Il peut accéder à un onglet "Gestion des utilisateurs". Cet onglet affiche la liste de tous les utilisateurs de la plateforme (sauf les admins). Il peut ensuite modifier le mot de passe d'un utilisateur ou supprimer son compte.
+
+## Cas 22
+
+Le cas d'utilisation 22 "changer de photo de profil", permet à un utilisateur standard de changer de photo de profil.
+
+Pour cela, l'utilisateur doit être connecté et accéder à la page de son profil, accessible depuis le bouton "profil" dans la barre de navigation.
+Il choisi la photo dans son répertoire de fichier pour changer de photo de profil.
+Il valide ensuite en cliquant sur le bouton "Valider".
+Si les champs ont été correctement remplis, le changement de photo de profil s'effectue dans la base de données et sur la page en même temps.

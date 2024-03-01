@@ -585,3 +585,130 @@
             return $tab_lang[$lang][9];
         }
     }
+
+    /**
+     * Permet de stocker une image pour un certain user en base de données
+     *
+     * @param file $image image téléchargée
+     * @param string $specific_user le login de l'utilisateur dans la base de données
+     * @return void
+     */
+    function ajouterImageBD($image, $specific_user){
+        $conn = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB) or die ("Impossible de se connecter à la base de données");
+
+        if($image['error'] == 0){
+            $imageType = exif_imagetype($image['tmp_name']);
+
+            if ($imageType != false) {
+                list($width, $height) = getimagesize($image['tmp_name']);
+
+                $maxSize = 1920;
+
+                // on resize l taille de l'image si celle-ci est trop grande (elle dépasse les 1920 pixel)
+                if($width > $maxSize || $height > $maxSize){
+                    $ratio = min($maxSize / $width, $maxSize / $height);
+                    $newWidth = $width * $ratio;
+                    $newHeight = $height * $ratio;
+                } else {
+                    $newWidth = $width;
+                    $newHeight = $height;
+                }
+
+                // on prend la largeur minimum
+                $size = min($newWidth, $newHeight);
+
+                $imageSquare = imagecreatetruecolor($size, $size);
+
+                $white = imagecolorallocate($imageSquare, 255, 255, 255);
+                imagefill($imageSquare, 0, 0, $white);
+
+                $imageOriginal = imagecreatefromstring(file_get_contents($image['tmp_name']));
+
+                // lecture et correction de l'orientation EXIF (la façon dont l'image a été prise)
+                $exif = @exif_read_data($image['tmp_name']);
+                if(!empty($exif['Orientation'])) {
+                    switch($exif['Orientation']) {
+                        case 8:
+                            $imageOriginal = imagerotate($imageOriginal, 90, 0);
+                            break;
+                        case 3:
+                            $imageOriginal = imagerotate($imageOriginal, 180, 0);
+                            break;
+                        case 6:
+                            $imageOriginal = imagerotate($imageOriginal, -90, 0);
+                            break;
+                    }
+                }
+
+                $x = ($size - $newWidth) / 2;
+                $y = ($size - $newHeight) / 2;
+
+                imagecopyresampled($imageSquare, $imageOriginal, $x, $y, 0, 0, $newWidth, $newHeight, $width, $height);
+
+                $tempFileName = tempnam(sys_get_temp_dir(), 'square');
+                imagejpeg($imageSquare, $tempFileName, 100);
+
+                $imageData = file_get_contents($tempFileName);
+                $imageData = $conn->real_escape_string($imageData);
+
+                unlink($tempFileName);
+                imagedestroy($imageOriginal);
+                imagedestroy($imageSquare);
+
+                $query = "UPDATE Users SET image='$imageData' WHERE login='$specific_user'";
+
+                if($conn->query($query) == TRUE){
+                    header("Location: profile.php?success=51"); // update dans la BD avec succes
+                } else {
+                    header("Location: profile.php?error=52"); // erreur lors de l'update
+                }
+            } else {
+                header("Location: profile.php?error=52"); // le fichier n'est pas une image
+            }
+        } else {
+            header("Location: profile.php"); // aucun fichier sélectionné => on fait rien
+        }
+        $conn->close();
+    }
+
+    /**
+     * @param string $login le login de l'utilisateur pour lequel on doit afficher la photo
+     * @param string $typeOfPfp permet de savoir ou on doit afficher la photo
+     * @return void
+     */
+    function afficher_image($login, $typeOfPfp){
+        $mysqli = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB) or die ("Impossible de se connecter à la base de données");
+        $stmt = $mysqli->prepare("SELECT image FROM Users WHERE login = ?");
+        $stmt->bind_param("s", $login);
+        $stmt->execute();
+        $result = $stmt->get_result()->fetch_assoc();
+
+        if ($result && $result['image']) {
+            // photo de profil personalisé du user
+            switch ($typeOfPfp){
+                case "in_table":
+                    echo '<img id="pfp_in_table" src="data:image/jpeg;base64,' . base64_encode($result['image']) . '" alt="Icone d\'utilisateur">';
+                    break;
+                case "in_profile":
+                    echo '<img id="pfp" src="data:image/jpeg;base64,' . base64_encode($result['image']) . '" alt="Icone d\'utilisateur">';
+                    break;
+                case "in_ticket_details":
+                    echo '<img id="pfp_ticket_details" src="data:image/jpeg;base64,' . base64_encode($result['image']) . '" alt="Icone d\'utilisateur">';
+                    break;
+            }
+
+        } else {
+            // photo de profil de base du user
+            switch ($typeOfPfp){
+                case "in_table":
+                    echo '<img id="pfp_in_table" src="resources/temp_user_icon.png" alt="Icone d\'utilisateur">';
+                    break;
+                case "in_profile":
+                    echo '<img id="pfp" src="resources/temp_user_icon.png" alt="Icone d\'utilisateur">';
+                    break;
+                case "in_ticket_details":
+                    echo '<img id="pfp_ticket_details" src="resources/temp_user_icon.png" alt="Icone d\'utilisateur">';
+                    break;
+            }
+        }
+    }

@@ -10,17 +10,25 @@
 
     echo '<main><div id="part_top"><h2>'.$infoTop[$lang].'</h2></div>';
 
-    $success = array('fr' => 'Mot de passe modifié avec succès !', 'en' => 'Password changed successfully !');
+    $success1 = array('fr' => 'Photo de profil modifié avec succès !', 'en' => 'Profile picture changed successfully !');
+    $success2 = array('fr' => 'Mot de passe modifié avec succès !', 'en' => 'Password changed successfully !');
 
-    if (isset($_GET['success'])) {
-        echo '<div class="success"><p>'.$success[$lang].'</p></div>';
-    }
+    $error1 = array('fr' => 'Fichier pas au bon format !', 'en' => 'File does not match with an image format !');
+
+    if (isset($_GET['success']) == 51)
+        echo '<div class="success"><p>'.$success1[$lang].'</p></div>';
+    elseif (isset($_GET['error']) == 52)
+        echo '<div class="error"><p>'.$error1[$lang].'</p></div>';
+    elseif (isset($_GET['success']))
+        echo '<div class="success"><p>'.$success2[$lang].'</p></div>';
     ?>
     <div id="profile">
         <div id="profile_part1">
             <div id="img_info">
                 <div id="information">
-                    <img src="resources/temp_user_icon.png" alt="icone d'utilisateur" style="height: 300px; width: 300px">
+                    <?php
+                    afficher_image($_SESSION['login'], "in_profile")
+                    ?>
                     <div id="info_perso">
                         <?php
                             $mysqli = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB) or die ("Impossible de se connecter à la base de données");
@@ -28,7 +36,7 @@
                             $stmt->bind_param("s", $_SESSION['login']);
                             $stmt->execute();
                             $result = $stmt->get_result()->fetch_row();
-                            
+
                             $mysqli->close();
 
                             $presProfile_fr = array('Nom', 'Prénom', 'Login', 'Supprimer le compte');
@@ -38,6 +46,12 @@
                             echo '<p>'.$presProfile[$lang][0].' : '.htmlentities($result[0])."</p>";
                             echo '<p>'.$presProfile[$lang][1].' : '.htmlentities($result[1])."</p>";
                             echo '<p>'.$presProfile[$lang][2].' : '.htmlentities($result[2])."</p>";
+                            $changer_photo_texte = array('fr' => 'Changer la photo de profil', 'en' => 'Change profile picture');
+                            echo '<form id="choisir_image" action="action_image.php?login='.$result[2].'" method="post" enctype="multipart/form-data">
+                                    <label for="new_image">'.$changer_photo_texte[$lang].'</label>
+                                    <input type="file" name="new_image" id="new_image">
+                                    <input type="submit" name="submit" value="Valider">
+                                   </form>';
                             echo '</div></div>';
 
                         if ($_SESSION['role'] == 'user' || $_SESSION['role'] == 'tech')
