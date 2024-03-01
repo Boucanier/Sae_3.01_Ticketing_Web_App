@@ -31,7 +31,10 @@ fi
 # On récupère la version de PHP installée sur la machine
 phpVersion=$(php -v | grep -o 'PHP [0-9]\.[0-9]' | cut -f2 -d' ')
 
-if [[ $phpVersion != "8.2" ]]
+# On veut la version 8.2 de PHP
+rqVersion="8.2"
+
+if [[ $phpVersion != $rqVersion ]]
 then
 	echo -e '\n Désinstallation de PHP\n'
 
@@ -41,7 +44,7 @@ fi
 
 # Installation des dépendances nécessaires
 sudo apt update
-sudo apt install -y apache2 php8.2 php8.2-mysql mariadb-common mariadb-server jq
+sudo apt install -y apache2 php$rqVersion php$rqVersion-mysql mariadb-common mariadb-server jq
 
 
 # Installation du serveur shiny (si l'option -shiny est passée en paramètre)
