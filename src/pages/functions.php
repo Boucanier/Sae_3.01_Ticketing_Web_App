@@ -587,14 +587,14 @@
     }
 
     /**
-     * Permet de stocker une image pour un certain user en base de données
+     * Permet de stocker une image pour un certain utilisateur en base de données
      *
-     * @param file $image image téléchargée
+     * @param array $image image téléchargée
      * @param string $specific_user le login de l'utilisateur dans la base de données
      * @return void
      */
     function ajouterImageBD($image, $specific_user){
-        $conn = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB) or die ("Impossible de se connecter à la base de données");
+        $conn = new mysqli($GLOBALS['db_host'], $GLOBALS['db_user'], $GLOBALS['db_passwd'], $GLOBALS['db_name']) or die ("Impossible de se connecter à la base de données");
 
         if($image['error'] == 0){
             $imageType = exif_imagetype($image['tmp_name']);
@@ -672,12 +672,14 @@
     }
 
     /**
+     * Permet d'afficher une image pour un certain utilisateur
+     * 
      * @param string $login le login de l'utilisateur pour lequel on doit afficher la photo
      * @param string $typeOfPfp permet de savoir ou on doit afficher la photo
      * @return void
      */
     function afficher_image($login, $typeOfPfp){
-        $mysqli = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB) or die ("Impossible de se connecter à la base de données");
+        $mysqli = new mysqli($GLOBALS['db_host'], $GLOBALS['db_user'], $GLOBALS['db_passwd'], $GLOBALS['db_name']) or die ("Impossible de se connecter à la base de données");
         $stmt = $mysqli->prepare("SELECT image FROM Users WHERE login = ?");
         $stmt->bind_param("s", $login);
         $stmt->execute();
