@@ -11,14 +11,14 @@ date_name=$(date -d "yesterday" +%Y-%m-%d)
 
 # Les requêtes SQL des données de la veille
     # On récupère les tickets ouverts
-ticketStmt="SELECT CONCAT_WS(',', DATE_FORMAT(creation_date,'%d/%m/%Y'), ticket_id, user_login, ip_address, emergency) 'date,ticket_id,login,ip_adress,emergency'
+ticketStmt="SELECT CONCAT_WS(',', DATE_FORMAT(creation_date,'%d/%m/%Y'), ticket_id, user_login, ip_address, emergency) 'date,ticket_id,login,ip_address,emergency'
     FROM Tickets
     WHERE status != 'closed'
     AND DATE(creation_date) = CURDATE() - INTERVAL 1 DAY
     ORDER BY creation_date DESC;"
 
     # On récupère toutes les connexions
-connStmt="SELECT CONCAT_WS(',', DATE_FORMAT(date_co,'%d/%m/%Y %T'), id_co, login, password, ip_address) 'date,id,login,password,ip_adress'
+connStmt="SELECT CONCAT_WS(',', DATE_FORMAT(date_co,'%d/%m/%Y %T'), id_co, login, password, ip_address) 'date,id,login,password,ip_address'
     FROM Connections
     WHERE DATE(date_co) = CURDATE() - INTERVAL 1 DAY
     ORDER BY date_co DESC;"
