@@ -586,6 +586,13 @@
         }
     }
 
+    /**
+     * Permet de stocker une image pour un certain user en base de données
+     *
+     * @param file $image image téléchargée
+     * @param string $specific_user le login de l'utilisateur dans la base de données
+     * @return void
+     */
     function ajouterImageBD($image, $specific_user){
         $conn = new mysqli(HOST_DB, USER_DB, PASSWD_DB, DB) or die ("Impossible de se connecter à la base de données");
 
@@ -597,6 +604,7 @@
 
                 $maxSize = 1920;
 
+                // on resize l taille de l'image si celle-ci est trop grande (elle dépasse les 1920 pixel)
                 if($width > $maxSize || $height > $maxSize){
                     $ratio = min($maxSize / $width, $maxSize / $height);
                     $newWidth = $width * $ratio;
@@ -606,6 +614,7 @@
                     $newHeight = $height;
                 }
 
+                // on prend la largeur minimum
                 $size = min($newWidth, $newHeight);
 
                 $imageSquare = imagecreatetruecolor($size, $size);
@@ -615,7 +624,7 @@
 
                 $imageOriginal = imagecreatefromstring(file_get_contents($image['tmp_name']));
 
-                // Lecture et correction de l'orientation EXIF
+                // lecture et correction de l'orientation EXIF (la façon dont l'image a été prise)
                 $exif = @exif_read_data($image['tmp_name']);
                 if(!empty($exif['Orientation'])) {
                     switch($exif['Orientation']) {
@@ -654,10 +663,10 @@
                     header("Location: profile.php?error=52"); // erreur lors de l'update
                 }
             } else {
-                header("Location: profile.php?error=52"); // Le fichier n'est pas une image
+                header("Location: profile.php?error=52"); // le fichier n'est pas une image
             }
         } else {
-            header("Location: profile.php"); // aucune fichier sélectionné => on fait rien
+            header("Location: profile.php"); // aucun fichier sélectionné => on fait rien
         }
         $conn->close();
     }
