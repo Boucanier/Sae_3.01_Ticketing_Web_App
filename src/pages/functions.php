@@ -692,6 +692,9 @@
                 case "in_profile":
                     echo '<img id="pfp" src="data:image/jpeg;base64,' . base64_encode($result['image']) . '" alt="Icone d\'utilisateur">';
                     break;
+                case "in_ticket_details":
+                    echo '<img id="pfp_ticket_details" src="data:image/jpeg;base64,' . base64_encode($result['image']) . '" alt="Icone d\'utilisateur">';
+                    break;
             }
 
         } else {
@@ -702,6 +705,9 @@
                     break;
                 case "in_profile":
                     echo '<img id="pfp" src="resources/temp_user_icon.png" alt="Icone d\'utilisateur">';
+                    break;
+                case "in_ticket_details":
+                    echo '<img id="pfp_ticket_details" src="resources/temp_user_icon.png" alt="Icone d\'utilisateur">';
                     break;
             }
         }
