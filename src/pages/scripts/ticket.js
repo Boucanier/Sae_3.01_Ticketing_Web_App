@@ -12,13 +12,6 @@ function changeTechForStatus(){
         tech.options[1].selected = true;
     }
 
-    else if (value == 'Vide'){
-        for (var i = 0; i < tech.options.length; i++) {
-            tech.options[i].removeAttribute("disabled");
-        }
-        tech.options[0].selected = true;
-    }
-
     else {
         tech_vide.removeAttribute("disabled");
         tech.options[0].selected = true;

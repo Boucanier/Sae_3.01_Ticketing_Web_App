@@ -157,7 +157,7 @@
                         <select id="new_tech" name="new_tech">';
                             echo '<option value="Vide" id="tech_vide"></option>';
                             foreach($techniciens as $tech){
-                                echo '<option value="'.htmlentities($tech[0]).'">'.htmlentities($tech[1]).' '.htmlentities($tech[2]).'</option>';
+                                echo '<option value="'.htmlentities($tech[0]).'" disabled="disabled">'.htmlentities($tech[1]).' '.htmlentities($tech[2]).'</option>';
                             }
                             echo '
                             <!-- Afficher la liste de tous les techniciens, valeur = login, affichage = prénom + nom -->
