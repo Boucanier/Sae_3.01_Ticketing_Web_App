@@ -212,6 +212,10 @@ Voici les différents déclencheurs que nous avons :
   - S'effectue *après* la suppression du compte
   - Met le *status* de tous les tickets appartenant à l'utilisateur supprimé à "closed"
 
+- **remove_intervention_for_ticket_re_open** : Supprime l'intervention lors d'un ticket ré-ouvert
+  - S'effectue *après* la modification du ticket
+  - *Supprime la ligne* correspondant à l'*ID du ticket modifié* dans la table Interventions
+
 ## Conclusion
 
 Nous avons présenté dans ce rapport les différentes tables de la base de données ainsi que leurs colonnes, leurs types et leurs contraintes. Nous avons également présenté le modèle logique de données qui permet de représenter les tables et leurs colonnes en précisant les clés primaires et étrangères. Cette spécification nous permettra de créer la base de données et de l'utiliser dans notre application.

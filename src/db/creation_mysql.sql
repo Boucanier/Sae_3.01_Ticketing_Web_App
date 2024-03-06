@@ -143,6 +143,17 @@ BEGIN
 END //
 delimiter ;
 
+delimiter //
+CREATE TRIGGER remove_intervention_for_ticket_re_open AFTER UPDATE ON Tickets
+    FOR EACH ROW
+BEGIN
+    IF (NEW.status = 'open') THEN
+    DELETE FROM Interventions
+    WHERE Interventions.ticket_id = NEW.ticket_id;
+END IF;
+END //
+delimiter ;
+
 
 -- Ajout des utilisateurs demandés dans le sujet
 INSERT INTO Users (login, first_name, last_name, password, role) VALUES ('admin', 'sys', 'admin', '6bd8bb4221632a0f5fea05e0bdee4fcbe935e7ec2b5a1fb209336f2d589710e3d593', 'sys_admin');
@@ -155,6 +166,7 @@ INSERT INTO Rooms VALUES ("I21"), ("G21"), ("G22"), ("G23"), ("G24"), ("G25"), (
 
 -- Ajout d'un admin web
 INSERT INTO Users (login, first_name, last_name, password, role) VALUES ('webadmin', 'web', 'admin', '6bd8bb4221632a0f5fea05e0bdee4fcbe935e7ec2b5a1fb209336f2d589710e3d593', 'web_admin');
+
 
 DROP USER IF EXISTS 'ticket_app'@'localhost';
 CREATE USER 'ticket_app'@'localhost' IDENTIFIED BY 'ticket_s301';
