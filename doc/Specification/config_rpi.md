@@ -119,6 +119,8 @@ Afin de prévenir tout problème avec la carte SD, nous avons créé une copie d
 #### Remarques
 
 Comme expliqué dans le [rapport de statistiques](statistiques.md), nous n'avons pas installé le serveur shiny sur le Raspberry Pi.
-Cependant, il est quand même possible de lancer le serveur shiny sur le Raspberry Pi. Pour cela, il faut exécuter le script avec l'option *-shiny* : *`sudo bash installation.sh -shiny`*.
+Cependant, il est quand même possible de lancer le serveur shiny sur le Raspberry Pi. Pour cela, il faut exécuter le script avec l'option *--shiny* : *`sudo bash installation.sh --shiny`*.
 
 ***Attention***, pour afficher les statistiques du serveur **local**, il faut modifier l'*iframe* dans le fichier [stats.php](../../src/pages/stats.php) en remplaçant l'adresse *Boucanier.shinyapps.io/proba* par *localhost:3000*.
+
+Si l'on ne souhaite pas écraser la base de données existante, il faut rajouter l'option *--save-db* : *`sudo bash installation.sh --save-db`*.

@@ -2,14 +2,25 @@
 
 
 # On récupère l'option passée en paramètre
-option=$1
+options=($1 $2)
+shiny=0
+saveDb=0
 
-# On vérifie que l'option est bien -shiny ou vide
-if [[ $option != "-shiny" ]] && [[ -n $option ]]
-then
-	echo -e 'Option `'$option'` invalide\n\n Abandon'
-	exit 1
-fi
+for option in ${options[@]}
+do
+	# On vérifie que l'option est bien --shiny, --save-db ou vide
+	if [[ $option != "--shiny" ]] && [[ $option != "--save-db" ]] && [[ -n $option ]]
+	then
+		echo -e 'Option `'$option'` invalide\n\n Abandon'
+		exit 1
+	elif [[ $option == "--shiny" ]]
+	then
+		shiny=1
+	elif [[ $option == "--save-db" ]]
+	then
+		saveDb=1
+	fi
+done
 
 
 # On vérifie que le script est bien exécuté en root (Effective User ID = 0)
@@ -47,8 +58,8 @@ sudo apt update
 sudo apt install -y apache2 php$rqVersion php$rqVersion-mysql mariadb-common mariadb-server jq
 
 
-# Installation du serveur shiny (si l'option -shiny est passée en paramètre)
-if [[ $option == "-shiny" ]]
+# Installation du serveur shiny (si l'option --shiny est passée en paramètre)
+if ((shiny))
 then
 	# Installation de R
 	sudo apt install -y r-base
@@ -108,8 +119,13 @@ echo "default" > $saePath/security/key.txt
 sudo chmod 666 $saePath/security/key.txt
 
 
-# Création de la base de données
-sudo mysql -e "source $saePath/src/db/creation_mariadb.sql" 
+# On vérifie si la base de données doit être gardée
+if ! ((saveDb))
+then
+	# Sinon : création de la base de données
+	sudo mysql -e "source $saePath/src/db/creation_mariadb.sql"
+	echo "\nBase de données écrasée\n"
+fi
 
 
 # On supprime toute configuration pour le dossier de notre site déjà existante dans apache2.conf
