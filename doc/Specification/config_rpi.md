@@ -116,6 +116,8 @@ Conformément aux [recommandations de la CNIL](https://www.cnil.fr/sites/cnil/fi
 
 Afin de prévenir tout problème avec la carte SD, nous avons créé une copie du système chez nous. De plus, nous avons créé [un script bash](../../installation.sh) qui effectue les actions décrites dans ce rapport afin de faciliter la configuration du Raspberry Pi en cas de problème sur la carte sd ou si on souhaite installer installer le serveur pour faire des tests chez nous. Ce script est exécutable en root sur une distribution de linux basée sur Debian avec la commande *`sudo bash installation.sh`* depuis la racine du projet. ***Attention***, ce script supprime **toutes les versions de PHP existantes** sur le système avant d'installer PHP 8.2 et les modules que nous utilisons. Il faut donc faire attention à ne pas l'exécuter sur un système qui utilise PHP pour d'autres applications.
 
+Ce script conserve une **copie des fichiers** du serveur au cas où l'on rencontre un problème avec une nouvelle version.
+
 #### Remarques
 
 Comme expliqué dans le [rapport de statistiques](statistiques.md), nous n'avons pas installé le serveur shiny sur le Raspberry Pi.
@@ -124,3 +126,5 @@ Cependant, il est quand même possible de lancer le serveur shiny sur le Raspber
 ***Attention***, pour afficher les statistiques du serveur **local**, il faut modifier l'*iframe* dans le fichier [stats.php](../../src/pages/stats.php) en remplaçant l'adresse *Boucanier.shinyapps.io/proba* par *localhost:3000*.
 
 Si l'on ne souhaite pas écraser la base de données existante, il faut rajouter l'option *--save-db* : *`sudo bash installation.sh --save-db`*.
+
+Si l'on souhaite conserver les fichiers de logs déjà existants, il faut rajouter l'option *--save-logs* : *`sudo bash installation.sh --save-logs`*.
