@@ -678,24 +678,18 @@
      * @param string $typeOfPfp permet de savoir ou on doit afficher la photo
      * @return void
      */
-    function afficher_image($login, $typeOfPfp){
-        $mysqli = new mysqli($GLOBALS['db_host'], $GLOBALS['db_user'], $GLOBALS['db_passwd'], $GLOBALS['db_name']) or die ("Impossible de se connecter à la base de données");
-        $stmt = $mysqli->prepare("SELECT image FROM Users WHERE login = ?");
-        $stmt->bind_param("s", $login);
-        $stmt->execute();
-        $result = $stmt->get_result()->fetch_assoc();
-
-        if ($result && $result['image']) {
+    function afficher_image($image, $typeOfPfp){
+        if ($image) {
             // photo de profil personalisé du user
             switch ($typeOfPfp){
                 case "in_table":
-                    echo '<img id="pfp_in_table" src="data:image/jpeg;base64,' . base64_encode($result['image']) . '" alt="Icone d\'utilisateur">';
+                    echo '<img id="pfp_in_table" src="data:image/jpeg;base64,' . base64_encode($image) . '" alt="Icone d\'utilisateur">';
                     break;
                 case "in_profile":
-                    echo '<img id="pfp" src="data:image/jpeg;base64,' . base64_encode($result['image']) . '" alt="Icone d\'utilisateur">';
+                    echo '<img id="pfp" src="data:image/jpeg;base64,' . base64_encode($image) . '" alt="Icone d\'utilisateur">';
                     break;
                 case "in_ticket_details":
-                    echo '<img id="pfp_ticket_details" src="data:image/jpeg;base64,' . base64_encode($result['image']) . '" alt="Icone d\'utilisateur">';
+                    echo '<img id="pfp_ticket_details" src="data:image/jpeg;base64,' . base64_encode($image) . '" alt="Icone d\'utilisateur">';
                     break;
             }
 

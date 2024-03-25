@@ -39,7 +39,7 @@
 
     $mysqli = new mysqli($GLOBALS['db_host'], $GLOBALS['db_user'], $GLOBALS['db_passwd'], $GLOBALS['db_name']) or die('Impossible de se connecter à la base de données');
 
-    $stmt = $mysqli->prepare('SELECT role, login, last_name, first_name FROM Users WHERE login NOT LIKE "rmv-%" AND role NOT LIKE "%_admin"');
+    $stmt = $mysqli->prepare('SELECT role, login, last_name, first_name, image FROM Users WHERE login NOT LIKE "rmv-%" AND role NOT LIKE "%_admin"');
     $stmt->execute();
     
     $data = $stmt->get_result();
@@ -71,10 +71,10 @@
             echo '<tr class="fond_hover" id='.$row[1].'>';
 
             echo "<td>";
-                afficher_image($row[1], "in_table");
+                afficher_image($row[4], "in_table");
             echo "</td>";
 
-            for ($i = 0; $i < count($row); $i++){
+            for ($i = 0; $i < count($row)-1; $i++){
                 if ($i == 0)
                     echo '<td>'.$roles[$lang][$row[$i]].'</td>';
 

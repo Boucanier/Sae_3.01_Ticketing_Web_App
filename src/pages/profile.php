@@ -21,28 +21,29 @@
         echo '<div class="error"><p>'.$error1[$lang].'</p></div>';
     elseif (isset($_GET['success']))
         echo '<div class="success"><p>'.$success2[$lang].'</p></div>';
+
+    $mysqli = new mysqli($GLOBALS['db_host'], $GLOBALS['db_user'], $GLOBALS['db_passwd'], $GLOBALS['db_name']) or die ("Impossible de se connecter à la base de données");
+    $stmt = $mysqli->prepare("SELECT last_name, first_name, login, image FROM Users WHERE login = ?");
+    $stmt->bind_param("s", $_SESSION['login']);
+    $stmt->execute();
+    $result = $stmt->get_result()->fetch_row();
+
+    $mysqli->close();
+
+    $presProfile_fr = array('Nom', 'Prénom', 'Login', 'Supprimer le compte');
+    $presProfile_en = array('Last name', 'First name', 'Login', 'Delete account');
+    $presProfile = array('fr' => $presProfile_fr, 'en' => $presProfile_en);
     ?>
+    
     <div id="profile">
         <div id="profile_part1">
             <div id="img_info">
                 <div id="information">
                     <?php
-                    afficher_image($_SESSION['login'], "in_profile")
+                    afficher_image($result[3], "in_profile")
                     ?>
                     <div id="info_perso">
                         <?php
-                            $mysqli = new mysqli($GLOBALS['db_host'], $GLOBALS['db_user'], $GLOBALS['db_passwd'], $GLOBALS['db_name']) or die ("Impossible de se connecter à la base de données");
-                            $stmt = $mysqli->prepare("SELECT last_name, first_name, login FROM Users WHERE login = ?");
-                            $stmt->bind_param("s", $_SESSION['login']);
-                            $stmt->execute();
-                            $result = $stmt->get_result()->fetch_row();
-
-                            $mysqli->close();
-
-                            $presProfile_fr = array('Nom', 'Prénom', 'Login', 'Supprimer le compte');
-                            $presProfile_en = array('Last name', 'First name', 'Login', 'Delete account');
-                            $presProfile = array('fr' => $presProfile_fr, 'en' => $presProfile_en);
-
                             echo '<p>'.$presProfile[$lang][0].' : '.htmlentities($result[0])."</p>";
                             echo '<p>'.$presProfile[$lang][1].' : '.htmlentities($result[1])."</p>";
                             echo '<p>'.$presProfile[$lang][2].' : '.htmlentities($result[2])."</p>";

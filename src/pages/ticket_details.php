@@ -32,12 +32,16 @@
         header('Location: dashboard.php');
     }
 
-    $stmt = $mysqli->prepare("SELECT DATE_FORMAT(creation_date,'%d/%m/%Y'), description, title, room, emergency, status FROM Tickets WHERE ticket_id = ?");
-    $stmt->bind_param("i", $ticket_id);
+    $stmt = $mysqli->prepare("SELECT DATE_FORMAT(creation_date,'%d/%m/%Y'), description, title, room, emergency, status, image 
+                              FROM Tickets
+                              INNER JOIN Users ON Tickets.user_login = Users.login
+                              WHERE ticket_id = ?;");
+    $stmt->bind_param("i", $ticket_id); // Assuming $ticket_id has been defined earlier
     $stmt->execute();
-    $stmt->bind_result($creation_date, $description, $title, $room, $emergency, $status);
+    $stmt->bind_result($creation_date, $description, $title, $room, $emergency, $status, $image);
     $stmt->fetch();
     $stmt->close();
+
 
     $description_fr = array('Ticket du ', 'Description du problème', 'Salle : ', 'Niveau d\'urgence : ', 'Autre');
     $description_en = array('Ticket from ', 'Problem description', 'Room : ', 'Emergency level : ', 'Other');
@@ -50,7 +54,7 @@
         <h2>'.$description_lang[$lang][0].htmlentities($creation_date).'</h2>
     </div>
     <div id="ticket_about">';
-        afficher_image($_SESSION['login'], "in_ticket_details");
+        afficher_image($image, "in_ticket_details");
         echo '
         <div id="ticket_description">
             <h3>'.$description_lang[$lang][1].'</h3>
