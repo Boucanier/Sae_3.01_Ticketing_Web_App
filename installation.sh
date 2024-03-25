@@ -87,7 +87,15 @@ fi
 # Déplacement des fichiers
 # $SUDO_USER renvoie l'utilisateur qui a appelé la commande sudo
 saePath='/home/'$SUDO_USER'/sae'
-sudo rm -r $saePath
+
+# On garde une copie du dossier de la saé si il existe déjà
+if [[ -d $saePath ]]
+then
+	echo -e '\nDossier de la saé déjà existant\nSauvegarde du dossier\n'
+	sudo mv $saePath $saePath.old
+fi
+
+# On crée le dossier de la saé
 mkdir $saePath
 cp -r src $saePath/src
 cp -r config $saePath/config
@@ -124,7 +132,7 @@ if ! ((saveDb))
 then
 	# Sinon : création de la base de données
 	sudo mysql -e "source $saePath/src/db/creation_mariadb.sql"
-	echo "\nBase de données écrasée\n"
+	echo -e "\nBase de données écrasée\n"
 fi
 
 
