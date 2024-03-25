@@ -12,7 +12,9 @@ do
 	# On vérifie que l'option est bien --shiny, --save-db ou vide
 	if [[ $option != "--shiny" ]] && [[ $option != "--save-db" ]] && [[ $option != "--save-logs" ]] && [[ -n $option ]]
 	then
-		echo -e 'Option `'$option'` invalide\n\n Abandon'
+		echo -e 'Option `'$option'` invalide'
+		echo -e 'Options possibles : --shiny, --save-db, --save-logs'
+		echo -e '\n --- Abandon ---'
 		exit 1
 	elif [[ $option == "--shiny" ]]
 	then
@@ -30,7 +32,8 @@ done
 # On vérifie que le script est bien exécuté en root (Effective User ID = 0)
 if [[ $EUID != 0 ]]
 then
-	echo -e 'Ce script doit être exécuté en root\n\n Abandon'
+	echo -e 'Ce script doit être exécuté en root'
+	echo -e '\n --- Abandon ---'
 	exit 1
 fi
 
@@ -38,7 +41,7 @@ read -p 'Si un serveur apache est déjà installé sur cette machine, ce script 
 
 if [[ $goValue != "o" ]]
 then
-	echo -e '\n Abandon'
+	echo -e '\n --- Abandon ---'
 	exit 1
 fi
 
