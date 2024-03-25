@@ -2,7 +2,7 @@
 
 
 # On récupère l'option passée en paramètre
-options=($1 $2)
+options=($1 $2 $3)
 shiny=0
 saveDb=0
 saveLogs=0
