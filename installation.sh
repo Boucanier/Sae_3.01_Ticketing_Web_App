@@ -5,11 +5,12 @@
 options=($1 $2)
 shiny=0
 saveDb=0
+saveLogs=0
 
 for option in ${options[@]}
 do
 	# On vérifie que l'option est bien --shiny, --save-db ou vide
-	if [[ $option != "--shiny" ]] && [[ $option != "--save-db" ]] && [[ -n $option ]]
+	if [[ $option != "--shiny" ]] && [[ $option != "--save-db" ]] && [[ $option != "--save-logs" ]] && [[ -n $option ]]
 	then
 		echo -e 'Option `'$option'` invalide\n\n Abandon'
 		exit 1
@@ -19,6 +20,9 @@ do
 	elif [[ $option == "--save-db" ]]
 	then
 		saveDb=1
+	elif [[ $option == "--save-logs" ]]
+	then
+		saveLogs=1
 	fi
 done
 
@@ -92,6 +96,10 @@ saePath='/home/'$SUDO_USER'/sae'
 if [[ -d $saePath ]]
 then
 	echo -e '\nDossier de la saé déjà existant\nSauvegarde du dossier\n'
+	if [[ -d "$saePath.old" ]]
+	then
+		sudo rm -r $saePath.old
+	fi
 	sudo mv $saePath $saePath.old
 fi
 
@@ -117,6 +125,14 @@ sudo chmod +x $saePath/src/logs_job.sh
 	# ATTENTION : cela supprime tous les crons déjà existants
 echo -e "00 02 * * * $saePath/src/logs_job.sh $saePath/config" > $saePath/config/cron
 crontab -u $SUDO_USER $saePath/config/cron
+
+
+# On copie les anciens logs si ils existent
+if ((saveLogs)) && [[ -d "$saePath.old" ]]
+then
+	echo -e 'Sauvegarde des logs\n'
+	cp -r $saePath.old/logs/* $saePath/logs/
+fi
 
 
 # On crée le fichier contenant la clé de chiffrement des mdp
