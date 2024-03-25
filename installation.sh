@@ -2,16 +2,19 @@
 
 
 # On récupère l'option passée en paramètre
-options=($1 $2)
+options=($1 $2 $3)
 shiny=0
 saveDb=0
+saveLogs=0
 
 for option in ${options[@]}
 do
 	# On vérifie que l'option est bien --shiny, --save-db ou vide
-	if [[ $option != "--shiny" ]] && [[ $option != "--save-db" ]] && [[ -n $option ]]
+	if [[ $option != "--shiny" ]] && [[ $option != "--save-db" ]] && [[ $option != "--save-logs" ]] && [[ -n $option ]]
 	then
-		echo -e 'Option `'$option'` invalide\n\n Abandon'
+		echo -e 'Option `'$option'` invalide'
+		echo -e 'Options possibles : --shiny, --save-db, --save-logs'
+		echo -e '\n --- Abandon ---'
 		exit 1
 	elif [[ $option == "--shiny" ]]
 	then
@@ -19,6 +22,9 @@ do
 	elif [[ $option == "--save-db" ]]
 	then
 		saveDb=1
+	elif [[ $option == "--save-logs" ]]
+	then
+		saveLogs=1
 	fi
 done
 
@@ -26,7 +32,8 @@ done
 # On vérifie que le script est bien exécuté en root (Effective User ID = 0)
 if [[ $EUID != 0 ]]
 then
-	echo -e 'Ce script doit être exécuté en root\n\n Abandon'
+	echo -e 'Ce script doit être exécuté en root'
+	echo -e '\n --- Abandon ---'
 	exit 1
 fi
 
@@ -34,7 +41,7 @@ read -p 'Si un serveur apache est déjà installé sur cette machine, ce script 
 
 if [[ $goValue != "o" ]]
 then
-	echo -e '\n Abandon'
+	echo -e '\n --- Abandon ---'
 	exit 1
 fi
 
@@ -87,7 +94,19 @@ fi
 # Déplacement des fichiers
 # $SUDO_USER renvoie l'utilisateur qui a appelé la commande sudo
 saePath='/home/'$SUDO_USER'/sae'
-sudo rm -r $saePath
+
+# On garde une copie du dossier de la saé si il existe déjà
+if [[ -d $saePath ]]
+then
+	echo -e '\nDossier de la saé déjà existant\nSauvegarde du dossier\n'
+	if [[ -d "$saePath.old" ]]
+	then
+		sudo rm -r $saePath.old
+	fi
+	sudo mv $saePath $saePath.old
+fi
+
+# On crée le dossier de la saé
 mkdir $saePath
 cp -r src $saePath/src
 cp -r config $saePath/config
@@ -111,6 +130,14 @@ echo -e "00 02 * * * $saePath/src/logs_job.sh $saePath/config" > $saePath/config
 crontab -u $SUDO_USER $saePath/config/cron
 
 
+# On copie les anciens logs si ils existent
+if ((saveLogs)) && [[ -d "$saePath.old" ]]
+then
+	echo -e 'Sauvegarde des logs\n'
+	cp -r $saePath.old/logs/* $saePath/logs/
+fi
+
+
 # On crée le fichier contenant la clé de chiffrement des mdp
 	# On rend ce fichier accessible en écriture au serveur apache
 	# Il faut impérativement changer la clé de chiffrement par défaut depuis un compte d'admin système
@@ -124,7 +151,7 @@ if ! ((saveDb))
 then
 	# Sinon : création de la base de données
 	sudo mysql -e "source $saePath/src/db/creation_mariadb.sql"
-	echo "\nBase de données écrasée\n"
+	echo -e "\nBase de données écrasée\n"
 fi
 
 
