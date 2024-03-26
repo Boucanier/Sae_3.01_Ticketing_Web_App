@@ -39,9 +39,17 @@
         <div id="profile_part1">
             <div id="img_info">
                 <div id="information">
-                    <?php
-                    afficher_image($result[3], "in_profile")
-                    ?>
+                    <div id="pfp_and_delete_pfp">
+                        <?php
+                        afficher_image($result[3], "in_profile");
+                        if ($result[3]){
+                            echo "<form action=action_image.php method=post>
+                                      <input hidden name='delete_pfp' value='$result[2]'>
+                                      <input type='submit' value='Réinitialiser la photo'>
+                                  </form>";
+                        }
+                        ?>
+                    </div>
                     <div id="info_perso">
                         <?php
                             echo '<p>'.$presProfile[$lang][0].' : '.htmlentities($result[0])."</p>";
