@@ -1,0 +1,89 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+
+\title{Manuel d'utilisation de \textbf{Ticket App}}
+\author{Jules CHIRON, Matis RODIER, Thomas GODINEAU | INF2 FI A}
+
+\usepackage[T1]{fontenc}
+\begin{document}
+\maketitle
+
+\begin{figure}[h]
+    \includegraphics[width=0.6\textwidth]{annexes/logo_uvsq}
+\end{figure}
+
+\tableofcontents{}
+
+\section*{Introduction}
+\addcontentsline{toc}{section}{Introduction}
+
+\textbf{Ticket App} est une application web de ticketing en PHP.\@
+Ce document a pour but de vous guider dans l'utilisation de notre application.
+
+\bigskip
+\noindent Il existe plusieurs types d'utilisateurs sur notre plateforme:
+\begin{itemize}
+    \item Les utilisateurs
+    \item Les techniciens
+    \item L'administrateur web
+    \item L'administrateur système
+\end{itemize}
+
+\bigskip
+\noindent Ce manuel contient une section pour chaque type d'utilisateur.
+
+\section{Utilisateur}
+
+Chaque utilisateur peut créer un ticket et consulter l'avancée de ses tickets.
+
+\subsection*{Création de compte et connexion}
+
+Pour vous connecter ou créer un compte depuis la page d'accueil, cliquez sur le bouton \textit{\textbf{Se connecter}} en haut à droite de la page.
+
+\noindent Une fois sur la page de connexion, vous pouvez soit \textbf{créer un compte} depuis l'encadré de gauche,
+soit \textbf{vous connecter} depuis l'encadré de droite.
+
+Pour créer un compte, il faut que vous renseignez: votre \textit{nom}, votre \textit{prénom}, un \textit{login} de votre choix et un \textit{mot de passe}. 
+il faut ensuite remplir le \textit{captcha} (simple calcul) et cliquer sur le bouton \textit{\textbf{Créer}}.
+Vous serrez alors automatiquement connecté.
+
+\bigskip
+Pour vous connecter, il faut que vous renseignez votre \textit{login} et votre \textit{mot de passe} et cliquer sur le bouton \textit{\textbf{Se connecter}}.
+Vous serrez alors automatiquement redirigé vers votre tableau de bord.
+
+\subsection*{Tableau de bord}
+
+Le tableau de bord d'un utilisateur permet de \textbf{créer des tickets} et de \textbf{consulter} l'avancée de ses tickets.
+
+\subsubsection*{Création de ticket}
+
+Pour créer un ticket, cliquez sur le bouton \textit{\textbf{Créer un ticket}} depuis votre tableau de bord.
+Sur la page de création de ticket, il faut renseigner un \textit{libellé} pour le ticket.
+Ce \textit{libellé} doit permettre de reconnaître rapidement votre problème (par exemple: \textit{Prise cassée}, \textit{Problème de boot}, \ldots)
+Il faut ensuite indiquer la \textit{salle} de votre problème.
+Seules les salles du département informatique sont disponibles.
+S'il s'agit d'un problème dans une autre salle ou sur un ordinateur personnel, veuillez sélectionner le champ \textit{\textbf{Autre}}.
+Vous devez également indiquer le \textit{niveau d'urgence} de votre problème.
+Ce niveau est compris \textbf{entre 1 et 4}, 1 étant un problème \textbf{peu important} et 4 un problème \textbf{très urgent}.
+Enfin, décrivez précisément votre problème dans le champ \textit{Description}.
+
+\bigskip
+\noindent Une fois ces informations renseignées, cliquez sur le bouton \textit{\textbf{Valider}} pour valider la création de votre ticket.
+
+\subsubsection*{Consulter un ticket}
+
+Vous pouvez consulter les détauls de tous les tickets que vous avez créé depuis votre tableau de bord.
+Pour cela, cliquez sur le bouton \textit{\textbf{Détails}} à côté du ticket que vous souhaitez consulter.
+Vous retrouverez alors toutes les informations que vous avez renseignées lors de la création du ticket ainsi que son état actuel.
+
+\section{Technicien}
+
+\section{Administrateur web}
+
+\section{Administrateur système}
+
+\end{document}
