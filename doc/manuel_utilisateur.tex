@@ -4,6 +4,7 @@
 \usepackage{graphicx}
 \usepackage[utf8]{inputenc}
 \usepackage[french]{babel}
+\usepackage[hidelinks]{hyperref}
 
 \title{Manuel d'utilisation de \textbf{Ticket App}}
 \author{Jules CHIRON, Matis RODIER, Thomas GODINEAU | INF2 FI A}
@@ -35,6 +36,7 @@ Ce document a pour but de vous guider dans l'utilisation de notre application.
 
 \bigskip
 \noindent Ce manuel contient une section pour chaque type d'utilisateur.
+La section \textit{\textbf{Profil}} concerne \textbf{tous} les types d'utilisateurs.
 
 \section{Utilisateur}
 
@@ -148,5 +150,79 @@ Le technicien peut être modifié à tout moment.
 \noindent Pour valider les modifications, cliquez sur le bouton \textit{\textbf{Modifier}}.
 
 \section{Administrateur système}
+
+L'administrateur système peut \textbf{consulter les fichiers de logs} de la plateforme, accéder à des \textbf{statistiques} sur la plateforme et
+\textbf{modifier la clé de chiffrement} des mots de passe.
+
+\subsection*{Connexion}
+
+Pour vous connecter depuis la page d'accueil, cliquez sur le bouton \textit{\textbf{Se connecter}} en haut à droite de la page.
+Renseignez ensuite le \textit{login} et le \textit{mot de passe} qui vous ont été fournis et cliquez sur le bouton \textit{\textbf{Se connecter}}.
+
+\subsection*{Journaux d'activité}
+
+La page des \textbf{journaux d'activité} est accessible en cliquant sur le bouton \textit{\textbf{Journaux d'activité}} sur les boutons de navigation du site.
+Cette page permet de télécharger les \textbf{fichiers de logs} de la plateforme.
+Les trois types de logs téléchargeables sont:
+
+\begin{itemize}
+    \item \textit{Logs des tickets fermés} qui contient l'historique des tickets fermés
+    \item \textit{Logs des connexions échouées} qui contient l'historique des connexions échouées à la plateforme
+    \item \textit{Liste des tickets ouverts} qui contient tous les tickets créés à la date de création du fichier
+\end{itemize}
+
+\bigskip
+\noindent Les fichiers de logs sont générés tous les jours à 2h du matin.
+Les \textbf{fichiers vides} sont indiqués afin de faciliter la recherche des logs.
+
+\bigskip
+\noindent Pour télécharger un fichier de logs, il suffit de \textbf{cliquer sur son nom}.
+
+\subsection*{Statistiques}
+
+La page des \textbf{statistiques} est accessible en cliquant sur le bouton \textit{\textbf{Statistiques}} sur les boutons de navigation du site.
+Cette page contient des statistiques sur la plateforme. Ces statistiques peuvent être paramétrées depuis l'interface proposée sur la page.
+
+\subsection*{Clé de chiffrement}
+
+La page de modification de la \textbf{clé de chiffrement} est accessible en cliquant sur le bouton \textit{\textbf{Sécurité}} sur les boutons de navigation du site.
+Cette page permet de modifier la clé de chiffrement des mots de passe stockés dans la base de données.
+Pour modifier la clé de chiffrement, il faut rentrer la \textbf{clé actuelle} puis la \textbf{nouvelle clé} (à deux reprises) et cliquer sur le bouton \textit{\textbf{Mettre à jour}}.
+
+\subsubsection*{Remarque}
+
+\noindent La clé de chiffrement par défaut est \textit{\textbf{default}}.
+
+\section{Profil}
+
+La page de profil est accessible en cliquant sur le bouton \textit{\textbf{Profil}} sur les boutons de navigation du site pour tous utilisateurs connectés.
+
+\subsection*{Changement de mot de passe}
+
+Chaque utilisateur peut changer son mot de passe depuis sa page de profil.
+Pour cela, il faut compléter les champs de l'encadré de \textbf{droite}.
+Il faut ainsi rentrer sont \textit{mot de passe \textbf{actuel}}, le \textit{nouveau mot de passe} et le \textit{nouveau mot de passe} à nouveau pour confirmer.
+Il faut ensuite cliquer sur le bouton \textit{\textbf{Changer le mot de passe}} pour valider le changement de mot de passe.
+
+\subsection*{Photo de profil}
+
+Chaque utilisateur peut joindre une photo de profil à son compte.
+Pour cela, il faut sélectionner une photo depuis son \textbf{ordinateur} dans le formulaire ``\textit{\textbf{Changer la photo de profil}}''.
+Il faut ensuite cliquer sur le bouton \textit{\textbf{Valider}} pour valider le changement de photo de profil.
+
+\subsection*{Suppression de compte}
+
+Seuls les \textbf{utilisateurs} et les \textbf{techniciens} peuvent supprimer leur compte.
+Pour cela, il faut cliquer sur le bouton \textit{\textbf{Supprimer le compte}} sur la page de profil.
+Les données du compte seront ensuite \textit{anonymisées} et le compte sera supprimé.
+
+\addcontentsline{toc}{section}{Contact}
+\section*{Contact}
+
+Afin de nous contacter, vous pouvez nous envoyer un mail à l'adresse suivante:
+
+\begin{center}
+    \url{contact.golemcorp@gmail.com}
+\end{center}
 
 \end{document}
