@@ -21,6 +21,7 @@ Ce projet a pour but de créer une **application web de gestion de tickets**. Ce
 
 Tous les rapports sont disponibles dans le dossier [doc](doc/) :
 
+- [Manuel d'utilisation](doc/manuel_utilisateur.pdf)
 - [Documentation du code source](doc/phpDoc/)
 - Rapports de [conception](doc/Conception/)
 - Rapports de [spécification](doc/Specification/) :
