@@ -13,6 +13,8 @@
     $success1 = array('fr' => 'Photo de profil modifié avec succès !', 'en' => 'Profile picture changed successfully !');
     $success2 = array('fr' => 'Mot de passe modifié avec succès !', 'en' => 'Password changed successfully !');
 
+    $resetPic = array('fr' => 'Réinitialiser la photo', 'en' => 'Reset the picture');
+
     $error1 = array('fr' => 'Fichier pas au bon format !', 'en' => 'File does not match with an image format !');
 
     if (isset($_GET['success']) == 51)
@@ -45,7 +47,7 @@
                         if ($result[3]){
                             echo "<form action=action_image.php method=post>
                                       <input hidden name='delete_pfp' value='$result[2]'>
-                                      <input type='submit' value='Réinitialiser la photo'>
+                                      <input type='submit' value='$resetPic[$lang]'>
                                   </form>";
                         }
                         ?>
