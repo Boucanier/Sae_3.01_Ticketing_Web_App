@@ -142,8 +142,8 @@ fi
 	# On rend ce fichier accessible en écriture au serveur apache
 	# Il faut impérativement changer la clé de chiffrement par défaut depuis un compte d'admin système
 mkdir -p $saePath/security
-echo "default" > $saePath/security/key.txt
-sudo chmod 666 $saePath/security/key.txt
+echo {\"key\":\"default\"} > $saePath/security/key.json
+sudo chmod 666 $saePath/security/key.json
 
 
 # On vérifie si la base de données doit être gardée
