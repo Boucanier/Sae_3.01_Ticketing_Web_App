@@ -1,0 +1,232 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage[hidelinks]{hyperref}
+
+\title{Manuel d'utilisation de \textbf{Ticket App}}
+\author{Jules CHIRON, Matis RODIER, Thomas GODINEAU | INF2 FI A}
+
+\usepackage[T1]{fontenc}
+\begin{document}
+\maketitle
+
+\begin{figure}[h]
+    \includegraphics[width=0.6\textwidth]{annexes/logo_uvsq}
+\end{figure}
+
+\tableofcontents{}
+
+\section*{Introduction}
+\addcontentsline{toc}{section}{Introduction}
+
+\textbf{Ticket App} est une application web de ticketing en PHP.\@
+Ce document a pour but de vous guider dans l'utilisation de notre application.
+
+\bigskip
+\noindent Il existe plusieurs types d'utilisateurs sur notre plateforme:
+\begin{itemize}
+    \item Les utilisateurs
+    \item Les techniciens
+    \item L'administrateur web
+    \item L'administrateur système
+\end{itemize}
+
+\bigskip
+\noindent Ce manuel contient une section pour chaque type d'utilisateur.
+La section \textit{\textbf{Profil}} concerne \textbf{tous} les types d'utilisateurs.
+
+\section{Utilisateur}
+
+Chaque utilisateur peut créer un ticket et consulter l'avancée de ses tickets.
+
+\subsection*{Création de compte et connexion}
+
+Pour vous connecter ou créer un compte depuis la page d'accueil, cliquez sur le bouton \textit{\textbf{Se connecter}} en haut à droite de la page.
+
+\noindent Une fois sur la page de connexion, vous pouvez soit \textbf{créer un compte} depuis l'encadré de gauche,
+soit \textbf{vous connecter} depuis l'encadré de droite.
+
+Pour créer un compte, il faut que vous renseigniez: votre \textit{nom}, votre \textit{prénom}, un \textit{login} de votre choix et un \textit{mot de passe}. 
+il faut ensuite remplir le \textit{captcha} (calcul simple) et cliquer sur le bouton \textit{\textbf{Créer}}.
+Vous serez alors automatiquement connecté.
+
+\bigskip
+Pour vous connecter, il faut que vous renseigniez votre \textit{login} et votre \textit{mot de passe} et cliquer sur le bouton \textit{\textbf{Se connecter}}.
+Vous serez alors automatiquement redirigé vers votre tableau de bord.
+
+\subsection*{Tableau de bord}
+
+Le tableau de bord d'un utilisateur permet de \textbf{créer des tickets} et de \textbf{consulter} l'avancée de ses tickets.
+
+\subsubsection*{Création de ticket}
+
+Pour créer un ticket, cliquez sur le bouton \textit{\textbf{Créer un ticket}} depuis votre tableau de bord.
+Sur la page de création de ticket, il faut renseigner un \textit{libellé} pour le ticket.
+Ce \textit{libellé} doit permettre de reconnaître rapidement votre problème (par exemple: \textit{Prise cassée}, \textit{Problème de boot}, \ldots)
+Il faut ensuite indiquer la \textit{salle} de votre problème.
+Seules les salles du département informatique sont disponibles.
+S'il s'agit d'un problème dans une autre salle ou sur un ordinateur personnel, veuillez sélectionner le champ \textit{\textbf{Autre}}.
+Vous devez également indiquer le \textit{niveau d'urgence} de votre problème.
+Ce niveau est compris \textbf{entre 1 et 4}, 1 étant un problème \textbf{peu important} et 4 un problème \textbf{très urgent}.
+Enfin, décrivez précisément votre problème dans le champ \textit{Description}.
+
+\bigskip
+\noindent Une fois ces informations renseignées, cliquez sur le bouton \textit{\textbf{Valider}} pour valider la création de votre ticket.
+
+\subsubsection*{Consulter un ticket}
+
+Vous pouvez consulter les détails de tous les tickets que vous avez créé depuis votre tableau de bord.
+Pour cela, cliquez sur le bouton \textit{\textbf{Détails}} à côté du ticket que vous souhaitez consulter.
+Vous retrouverez alors toutes les informations que vous avez renseignées lors de la création du ticket ainsi que son état actuel.
+
+\section{Technicien}
+
+Chaque technicien peut \textbf{prendre en charge} des tickets. Il peut également \textbf{clore les tickets} qu'il a pris en charge.
+
+\subsection*{Connexion}
+
+Pour vous connecter depuis la page d'accueil, cliquez sur le bouton \textit{\textbf{Se connecter}} en haut à droite de la page.
+Renseignez ensuite le \textit{login} et le \textit{mot de passe} qui vous ont été fournis et cliquez sur le bouton \textit{\textbf{Se connecter}}.
+Vous serez alors automatiquement redirigé vers votre tableau de bord.
+
+\subsection*{Prise en charge de ticket}
+
+Pour afficher la liste des tickets non affectés, cliquez sur le bouton \textit{\textbf{Tickets disponibles}} sur les boutons de navigation du site.
+Pour prendre en charge un ticket, cliquez sur le bouton \textit{\textbf{Prendre}} à côté du ticket que vous souhaitez prendre en charge.
+Les détails du ticket s'afficheront alors et vous pourrez cliquer sur le bouton \textit{\textbf{Prendre en charge}} pour confirmer la prise en charge du ticket ou sur le bouton \textit{\textbf{Retour}} pour annuler.
+
+\bigskip
+\noindent Tous les tickets que vous avez pris en charge sont affichés sur votre tableau de bord.
+
+\subsection*{Fermeture de ticket}
+
+Pour pouvoir clore un ticket, il faut vous rendre sur votre tableau de bord.
+Cliquez ensuite sur le bouton \textit{\textbf{Détails}} à côté du ticket que vous souhaitez clore.
+Les détails du ticket s'afficheront alors et vous pourrez cliquer sur le bouton \textit{\textbf{Clore}} pour clore le ticket ou sur le bouton \textit{\textbf{Retour}} pour annuler.
+
+\section{Administrateur web}
+
+L'administrateur web peut \textbf{gérer les techniciens}, \textbf{gérer les utilisateurs} et \textbf{gérer les tickets} de la plateforme.
+
+\subsection*{Connexion}
+
+Pour vous connecter depuis la page d'accueil, cliquez sur le bouton \textit{\textbf{Se connecter}} en haut à droite de la page.
+Renseignez ensuite le \textit{login} et le \textit{mot de passe} qui vous ont été fournis et cliquez sur le bouton \textit{\textbf{Se connecter}}.
+Vous serez alors automatiquement redirigé vers votre tableau de bord.
+
+\subsection*{Gestion des techniciens}
+
+Pour afficher la page de gestion des techniciens, cliquez sur le bouton \textit{\textbf{Gestion des techniciens}} sur les boutons de navigation du site.
+Cette page contient la liste de tous les techniciens avec le nombre de tickets dont ils ont \textbf{actuellement} la charge.
+
+\bigskip
+\noindent Vous pouvez également ajouter des techniciens depuis cette page en utilisant l'encadré de droite ``\textit{\textbf{Ajouter un technicien}}''.
+Pour ce faire, vous devez renseigner le \textit{nom}, le \textit{prénom}, le \textit{login} et le \textit{mot de passe} du technicien puis cliquer sur le bouton \textit{\textbf{Créer}}.
+
+\subsection*{Gestion des utilisateurs}
+
+Pour afficher la page de gestion des utilisateurs, cliquez sur le bouton \textit{\textbf{Gestion des utilisateurs}} sur les boutons de navigation du site.
+Cette page contient la liste de tous les utilisateurs (\textit{utilisateurs et techniciens}).
+Vous avez la possibilité de supprimer un compte en cliquant sur le bouton \textit{\textbf{Supprimer le compte}} à côté du compte que vous souhaitez supprimer.
+Vous pouvez également modifier le mot de passe d'un utilisateur en rentrant un nouveau mot de passe et en cliquant sur le bouton \textit{\textbf{Modifier le mot de passe}} sur la ligne de l'utilisateur.
+
+\subsection*{Gestion des tickets}
+
+L'ensemble des tickets \textbf{non clos} se trouve sur le \textbf{tableau de bord} de l'administrateur web.
+Pour modifier un ticket, il faut cliquer sur le bouton \textit{\textbf{Détails}} à côté du ticket que vous souhaitez modifier.
+
+\subsubsection*{Modification de ticket}
+
+Sur la page de détails d'un ticket, vous pouvez modifier son \textit{libellé} et son \textit{niveau d'urgence}.
+Vous pouvez également changer l'état du ticket avec le champ \textit{\textbf{Nouvel état}}.
+\textbf{ATTENTION!} en changeant l'état d'un ticket en \textit{clos}, vous ne pourrez plus le modifier par la suite.
+De la même manière, vous pouvez affecter le ticket à un technicien dans le champ \textit{\textbf{Affecter un technicien}}.
+Le technicien peut être modifié à tout moment.
+
+\bigskip
+\noindent Pour valider les modifications, cliquez sur le bouton \textit{\textbf{Modifier}}.
+
+\section{Administrateur système}
+
+L'administrateur système peut \textbf{consulter les fichiers de logs} de la plateforme, accéder à des \textbf{statistiques} sur la plateforme et
+\textbf{modifier la clé de chiffrement} des mots de passe.
+
+\subsection*{Connexion}
+
+Pour vous connecter depuis la page d'accueil, cliquez sur le bouton \textit{\textbf{Se connecter}} en haut à droite de la page.
+Renseignez ensuite le \textit{login} et le \textit{mot de passe} qui vous ont été fournis et cliquez sur le bouton \textit{\textbf{Se connecter}}.
+
+\subsection*{Journaux d'activité}
+
+La page des \textbf{journaux d'activité} est accessible en cliquant sur le bouton \textit{\textbf{Journaux d'activité}} sur les boutons de navigation du site.
+Cette page permet de télécharger les \textbf{fichiers de logs} de la plateforme.
+Les trois types de logs téléchargeables sont:
+
+\begin{itemize}
+    \item \textit{Logs des tickets fermés} qui contient l'historique des tickets fermés
+    \item \textit{Logs des connexions échouées} qui contient l'historique des connexions échouées à la plateforme
+    \item \textit{Liste des tickets ouverts} qui contient tous les tickets créés à la date de création du fichier
+\end{itemize}
+
+\bigskip
+\noindent Les fichiers de logs sont générés tous les jours à 2h du matin.
+Les \textbf{fichiers vides} sont indiqués afin de faciliter la recherche des logs.
+
+\bigskip
+\noindent Pour télécharger un fichier de logs, il suffit de \textbf{cliquer sur son nom}.
+
+\subsection*{Statistiques}
+
+La page des \textbf{statistiques} est accessible en cliquant sur le bouton \textit{\textbf{Statistiques}} sur les boutons de navigation du site.
+Cette page contient des statistiques sur la plateforme. Ces statistiques peuvent être paramétrées depuis l'interface proposée sur la page.
+
+\subsection*{Clé de chiffrement}
+
+La page de modification de la \textbf{clé de chiffrement} est accessible en cliquant sur le bouton \textit{\textbf{Sécurité}} sur les boutons de navigation du site.
+Cette page permet de modifier la clé de chiffrement des mots de passe stockés dans la base de données.
+Pour modifier la clé de chiffrement, il faut rentrer la \textbf{clé actuelle} puis la \textbf{nouvelle clé} (à deux reprises) et cliquer sur le bouton \textit{\textbf{Mettre à jour}}.
+
+\subsubsection*{Remarque}
+
+\noindent La clé de chiffrement par défaut est \textit{\textbf{default}}.
+
+\section{Profil}
+
+La page de profil est accessible en cliquant sur le bouton \textit{\textbf{Profil}} sur les boutons de navigation du site pour tous utilisateurs connectés.
+
+\subsection*{Changement de mot de passe}
+
+Chaque utilisateur peut changer son mot de passe depuis sa page de profil.
+Pour cela, il faut compléter les champs de l'encadré de \textbf{droite}.
+Il faut ainsi rentrer sont \textit{mot de passe \textbf{actuel}}, le \textit{nouveau mot de passe} et le \textit{nouveau mot de passe} à nouveau pour confirmer.
+Il faut ensuite cliquer sur le bouton \textit{\textbf{Changer le mot de passe}} pour valider le changement de mot de passe.
+
+\subsection*{Photo de profil}
+
+Chaque utilisateur peut joindre une photo de profil à son compte.
+Pour cela, il faut sélectionner une photo depuis son \textbf{ordinateur} dans le formulaire ``\textit{\textbf{Changer la photo de profil}}''.
+Il faut ensuite cliquer sur le bouton \textit{\textbf{Valider}} pour valider le changement de photo de profil.
+
+\subsubsection*{Suppression de photo de profil}
+
+Pour supprimer sa photo de profil, il suffit de cliquer sur le bouton \textit{\textbf{Réinitialiser la photo}} en dessous de la photo de profil actuelle.
+
+\subsection*{Suppression de compte}
+
+Seuls les \textbf{utilisateurs} et les \textbf{techniciens} peuvent supprimer leur compte.
+Pour cela, il faut cliquer sur le bouton \textit{\textbf{Supprimer le compte}} sur la page de profil.
+Les données du compte seront ensuite \textit{anonymisées} et le compte sera supprimé.
+
+\addcontentsline{toc}{section}{Contact}
+\section*{Contact}
+
+Afin de nous contacter, vous pouvez nous envoyer un mail à l'adresse suivante:
+
+\begin{center}
+    \url{contact.golemcorp@gmail.com}
+\end{center}
+
+\end{document}
