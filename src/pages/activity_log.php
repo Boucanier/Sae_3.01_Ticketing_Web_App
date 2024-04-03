@@ -44,8 +44,13 @@
                         if ($file != '.' and $file != '..') {
                             $file = explode(".", $file)[0];
                             $date = explode("-", $file);
+                            $emptyMsg = array('en' => '', 'fr' => '');
+                            if (filesize($logs_dir . $dir . '/' . $file . '.csv') == 0){
+                                $emptyMsg['en'] = ' (empty)';
+                                $emptyMsg['fr'] = ' (vide)';
+                            }
                             echo '<tr class="fond_hover"><td>' . $date[3] . '/' . $date[2] . '/' . $date[1] . '</td>';
-                            echo '<td><a href="action_logs.php?file=' . $logs_dir . $dir . '/' . $file . '.csv" download>' . $file . '.csv</a></td></tr>';
+                            echo '<td><a href="action_logs.php?file=' . $logs_dir . $dir . '/' . $file . '.csv" download>' . $file . '.csv</a>' . $emptyMsg[$lang] . '</td></tr>';
                         }
                     }
         echo '</table></div></div>';

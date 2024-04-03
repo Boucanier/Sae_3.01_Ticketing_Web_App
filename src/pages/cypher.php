@@ -10,7 +10,7 @@
      * 
      * @var string
      */
-    const KEY_PATH = "../../security/key.txt";
+    const KEY_PATH = "../../security/key.json";
 
     /**
      * Récupère la clé de chiffrement dans le fichier dédié
@@ -18,8 +18,9 @@
      * @return string Clé de chiffrement
      */
     function get_key(){
-        $keyFile = fopen(KEY_PATH, "r") or die ("Impossible d'ouvrir en lecture le fichier key.txt");
-        $key = fgets($keyFile);
+        $keyFile = fopen(KEY_PATH, "r") or die ("Impossible d'ouvrir en lecture le fichier key.json");
+        $json = fread($keyFile, filesize(KEY_PATH));
+        $key = json_decode($json, true)["key"];
         fclose($keyFile);
         return trim($key);
     }
@@ -199,7 +200,10 @@
      */
     function change_key($old_key, $new_key){
         $keyFile = fopen(KEY_PATH, "w") or die ("Impossible d'ouvrir en écriture le fichier key.txt");
-        fwrite($keyFile, $new_key);
+
+        $keyString = json_encode(array("key" => $new_key));
+        fwrite($keyFile, $keyString);
+
         fclose($keyFile);
 
         $tables = array('Users', 'Connections');

@@ -18,9 +18,10 @@ ticketStmt="SELECT CONCAT_WS(',', DATE_FORMAT(creation_date,'%d/%m/%Y'), ticket_
     ORDER BY creation_date DESC;"
 
     # On récupère toutes les connexions
-connStmt="SELECT CONCAT_WS(',', DATE_FORMAT(date_co,'%d/%m/%Y %T'), id_co, login, password, ip_address, succes) 'date,id,login,password,ip_address,success'
+connStmt="SELECT CONCAT_WS(',', DATE_FORMAT(date_co,'%d/%m/%Y %T'), id_co, login, password, ip_address) 'date,id,login,password,ip_address'
     FROM Connections
     WHERE DATE(date_co) = CURDATE() - INTERVAL 1 DAY
+    AND succes = 0
     ORDER BY date_co DESC;"
 
     # On récupère les tickets fermés
